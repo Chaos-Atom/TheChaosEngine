@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "thechaosengine:iron_dust_block",
+    "thechaosengine:gold_dust_block",
+    "thechaosengine:copper_dust_block"
+  ]
+}
