@@ -1,0 +1,31 @@
+{
+  "creativetab.thechaosengine.the_chaos_engine_items": "The Chaos Engine",
+
+  "item.thechaosengine.iron_dust": "Iron Dust",
+  "item.thechaosengine.gold_dust": "Gold Dust",
+  "item.thechaosengine.copper_dust": "Copper Dust",
+
+  "item.thechaosengine.iron_chunk": "Iron Chunk",
+  "item.thechaosengine.gold_chunk": "Gold Chunk",
+  "item.thechaosengine.copper_chunk": "Copper Chunk",
+
+  "item.thechaosengine.enchanted_iron_shards": "Enchanted Iron Shards",
+  "item.thechaosengine.enchanted_gold_shards": "Enchanted Gold Shards",
+  "item.thechaosengine.enchanted_copper_shards": "Enchanted Copper Shards",
+
+  "item.thechaosengine.purified_crystal_iron": "Purified Crystal Iron",
+  "item.thechaosengine.purified_crystal_gold": "Purified Crystal Gold",
+  "item.thechaosengine.purified_crystal_copper": "Purified Crystal Copper",
+
+  "item.thechaosengine.crystal_iron": "Crystal Iron",
+  "item.thechaosengine.crystal_gold": "Crystal Gold",
+  "item.thechaosengine.crystal_copper": "Crystal Copper",
+
+  "item.thechaosengine.iron_nanoparticle": "Iron Nanoparticle",
+  "item.thechaosengine.gold_nanoparticle": "Gold Nanoparticle",
+  "item.thechaosengine.copper_nanoparticle": "Copper Nanoparticle",
+
+  "block.thechaosengine.iron_dust_block": "Block of Iron Dust",
+  "block.thechaosengine.gold_dust_block": "Block of Gold Dust",
+  "block.thechaosengine.copper_dust_block": "Block of Copper Dust"
+}

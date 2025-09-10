@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "thechaosengine:item/gold_nanoparticle",
+    "layer1": "thechaosengine:item/nanoparticle_canister"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "thechaosengine:block/copper_dust_block"
+      },
+      {
+        "model": "thechaosengine:block/copper_dust_block",
+        "y": 90
+      },
+      {
+        "model": "thechaosengine:block/copper_dust_block",
+        "y": 180
+      },
+      {
+        "model": "thechaosengine:block/copper_dust_block",
+        "y": 270
+      }
+    ]
+  }
+}
