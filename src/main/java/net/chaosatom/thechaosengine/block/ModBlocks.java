@@ -2,6 +2,7 @@ package net.chaosatom.thechaosengine.block;
 
 import com.mojang.serialization.MapCodec;
 import net.chaosatom.thechaosengine.TheChaosEngine;
+import net.chaosatom.thechaosengine.block.custom.CompactCoalGeneratorBlock;
 import net.chaosatom.thechaosengine.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -45,6 +46,10 @@ public class ModBlocks {
                     return null;
                 }
             });
+
+    // Complex Blocks
+    public static  final DeferredBlock<Block> COMPACT_COAL_GENERATOR = registerBlock("compact_coal_generator",
+            () -> new CompactCoalGeneratorBlock(BlockBehaviour.Properties.of().noOcclusion()));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

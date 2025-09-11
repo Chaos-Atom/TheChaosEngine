@@ -43,6 +43,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.IRON_DUST_BLOCK);
                         output.accept(ModBlocks.GOLD_DUST_BLOCK);
                         output.accept(ModBlocks.COPPER_DUST_BLOCK);
+                        output.accept(ModBlocks.COMPACT_COAL_GENERATOR);
                     }).build());
 
     public static void register(IEventBus eventBus) {

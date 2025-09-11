@@ -1,9 +1,12 @@
 package net.chaosatom.thechaosengine;
 
 import net.chaosatom.thechaosengine.block.ModBlocks;
+import net.chaosatom.thechaosengine.block.entity.ModBlockEntities;
 import net.chaosatom.thechaosengine.item.ModCreativeModeTabs;
 import net.chaosatom.thechaosengine.item.ModItems;
-import net.minecraft.world.item.CreativeModeTabs;
+import net.chaosatom.thechaosengine.screen.ModMenuTypes;
+import net.chaosatom.thechaosengine.screen.custom.CompactCoalGeneratorScreen;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -43,6 +46,9 @@ public class TheChaosEngine {
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
 
+        ModBlockEntities.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
+
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
 
@@ -66,11 +72,16 @@ public class TheChaosEngine {
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
-    @EventBusSubscriber(modid = TheChaosEngine.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    @EventBusSubscriber(modid = MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     static class ClientModEvents {
         @SubscribeEvent
         static void onClientSetup(FMLClientSetupEvent event) {
 
+        }
+
+        @SubscribeEvent
+        public static void registerScreens(RegisterMenuScreensEvent event) {
+            event.register(ModMenuTypes.COMPACT_COAL_GENERATOR_MENU.get(), CompactCoalGeneratorScreen::new);
         }
     }
 }

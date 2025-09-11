@@ -27,5 +27,7 @@
 
   "block.thechaosengine.iron_dust_block": "Block of Iron Dust",
   "block.thechaosengine.gold_dust_block": "Block of Gold Dust",
-  "block.thechaosengine.copper_dust_block": "Block of Copper Dust"
+  "block.thechaosengine.copper_dust_block": "Block of Copper Dust",
+
+  "block.thechaosengine.compact_coal_generator": "Compact Coal Generator"
 }

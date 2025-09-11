@@ -29,6 +29,13 @@ repositories {
         name = "ModMaven"
         url = "https://modmaven.dev"
     }
+
+    maven {
+        url "https://cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
 }
 
 base {
@@ -134,6 +141,9 @@ dependencies {
     // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar
     // The group id is ignored when searching -- in this case, it is "blank"
     // implementation "blank:coolmod-${mc_version}:${coolmod_version}"
+
+    implementation "curse.maven:mekanism-268560:6895130"
+    implementation "curse.maven:mekanism-generators-268566:6895133"
 
     // Example mod dependency using a file as dependency
     // implementation files("libs/coolmod-${mc_version}-${coolmod_version}.jar")

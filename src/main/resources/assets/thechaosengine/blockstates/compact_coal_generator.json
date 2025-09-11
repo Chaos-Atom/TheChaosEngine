@@ -1,0 +1,9 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "thechaosengine:block/compact_coal_generator"
+      }
+    ]
+  }
+}
