@@ -2,7 +2,9 @@ package net.chaosatom.thechaosengine.block.entity.custom;
 
 import net.chaosatom.thechaosengine.block.entity.ModBlockEntities;
 import net.chaosatom.thechaosengine.block.entity.energy.ModEnergyStorage;
+import net.chaosatom.thechaosengine.block.entity.energy.ModEnergyUtil;
 import net.chaosatom.thechaosengine.screen.custom.CompactCoalGeneratorMenu;
+import net.chaosatom.thechaosengine.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -49,7 +51,7 @@ public class CompactCoalGeneratorBlockEntity extends BlockEntity implements Menu
 
     private final ModEnergyStorage ENERGY_STORAGE = createEnergyStorage();
     private ModEnergyStorage createEnergyStorage() {
-        return new ModEnergyStorage(64000, 320) {
+        return new ModEnergyStorage(64000, ENERGY_TRANSFER_AMOUNT) {
             @Override
             public void onEnergyChanged() {
                 setChanged();
@@ -130,10 +132,11 @@ public class CompactCoalGeneratorBlockEntity extends BlockEntity implements Menu
             ModEnergyUtil.moveEnergy(this.worldPosition, this.worldPosition.above(), 320, this.level);
         }
     }
-    */
+
+     */
 
     private boolean hasFuelItemInSlot() {
-        return this.itemHandler.getStackInSlot(INPUT_SLOT).is(Items.COAL);
+        return this.itemHandler.getStackInSlot(INPUT_SLOT).is(ModTags.Items.COAL_GENERATOR_FUEL);
     }
 
     private boolean isBurningFuel() {

@@ -18,6 +18,7 @@ public class CompactCoalGeneratorMenu extends AbstractContainerMenu {
     public final CompactCoalGeneratorBlockEntity blockEntity;
     private final Level level;
     private final ContainerData data;
+    private final int burnProgress = 160;
 
     public CompactCoalGeneratorMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
         this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
@@ -39,13 +40,13 @@ public class CompactCoalGeneratorMenu extends AbstractContainerMenu {
     }
 
     public boolean isBurning() {
-        return data.get(0) < 160;
+        return data.get(0) < burnProgress;
     }
 
     public float getFuelProgress() {
         int i = this.data.get(1);
         if (i == 0) {
-            i = 160;
+            i = burnProgress;
         }
         return Mth.clamp((float)this.data.get(0) / (float)i, 0.0f, 1.0f);
     }
