@@ -1,9 +1,19 @@
 {
   "variants": {
-    "": [
-      {
-        "model": "thechaosengine:block/compact_coal_generator"
-      }
-    ]
+    "facing=east": {
+      "model": "thechaosengine:block/compact_coal_generator",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "thechaosengine:block/compact_coal_generator"
+    },
+    "facing=south": {
+      "model": "thechaosengine:block/compact_coal_generator",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "thechaosengine:block/compact_coal_generator",
+      "y": 270
+    }
   }
 }

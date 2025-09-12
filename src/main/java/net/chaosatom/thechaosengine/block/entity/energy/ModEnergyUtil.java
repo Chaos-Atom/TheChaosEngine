@@ -39,6 +39,6 @@ public class ModEnergyUtil {
 
     public static  boolean doesBlockHaveEnergyStorage(BlockPos positionToCheck, Level level) {
         return level.getBlockEntity(positionToCheck) != null
-                && level. getCapability(Capabilities.EnergyStorage.BLOCK, positionToCheck, null) != null;
+                && level.getCapability(Capabilities.EnergyStorage.BLOCK, positionToCheck, null) != null;
     }
 }

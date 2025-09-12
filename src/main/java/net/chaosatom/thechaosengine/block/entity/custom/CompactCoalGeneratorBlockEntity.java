@@ -21,10 +21,10 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.Nullable;
@@ -117,23 +117,25 @@ public class CompactCoalGeneratorBlockEntity extends BlockEntity implements Menu
         }
 
         if (isBurningFuel()) {
-            increaseBurnTimer();
+            if (getBlockState().getValue(BlockStateProperties.POWERED) != burnProgress > 0) {
+                level.setBlockAndUpdate(getBlockPos(), getBlockState().setValue(BlockStateProperties.POWERED, burnProgress > 0));
+            }
+            increaseBurnProgress();
             if (currentFuelDoneBurning()) {
+                level.setBlockAndUpdate(getBlockPos(), getBlockState().setValue(BlockStateProperties.POWERED, false));
                 resetBurning();
             }
             fillUpOnEnergy();
         }
-        // pushEnergyToNeighbourAbove();
+        pushEnergyToNeighbourAbove();
     }
 
-    /*
+
     private void pushEnergyToNeighbourAbove() {
         if (ModEnergyUtil.doesBlockHaveEnergyStorage(this.worldPosition.above(), this.level)) {
             ModEnergyUtil.moveEnergy(this.worldPosition, this.worldPosition.above(), 320, this.level);
         }
     }
-
-     */
 
     private boolean hasFuelItemInSlot() {
         return this.itemHandler.getStackInSlot(INPUT_SLOT).is(ModTags.Items.COAL_GENERATOR_FUEL);
@@ -148,8 +150,8 @@ public class CompactCoalGeneratorBlockEntity extends BlockEntity implements Menu
         isBurning = true;
     }
 
-    private void increaseBurnTimer() {
-        this.burnProgress--;
+    private void increaseBurnProgress() {
+        this.burnProgress--; // Little misleading but decreases from a starting value towards zero
     }
 
     private boolean currentFuelDoneBurning() {
