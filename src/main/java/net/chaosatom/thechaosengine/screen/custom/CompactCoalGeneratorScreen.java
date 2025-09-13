@@ -28,10 +28,6 @@ public class CompactCoalGeneratorScreen extends AbstractContainerScreen<CompactC
     @Override
     protected void init() {
         super.init();
-        // Gets rid of title and inventory title
-        this.inventoryLabelY = 10000;
-        this.titleLabelY = 10000;
-
         assignEnergyInfoArea();
     }
 
@@ -44,7 +40,7 @@ public class CompactCoalGeneratorScreen extends AbstractContainerScreen<CompactC
 
     private void assignEnergyInfoArea() {
         // Based off a 256x256px average MC gui layout
-        // Verbose use of variables to clarify what the math
+        // Verbose use of variables to clarify what the numbers means
         int vertEnergyBarLocX = 156;
         int vertEnergyBarLocY = 11;
         energyInfoArea = new EnergyDisplayTooltipArea(((width - imageWidth) / 2) + vertEnergyBarLocX,
@@ -53,6 +49,7 @@ public class CompactCoalGeneratorScreen extends AbstractContainerScreen<CompactC
 
     @Override
     protected void renderLabels(GuiGraphics guiGraphics, int pMouseX, int pMouseY) {
+        super.renderLabels(guiGraphics, pMouseX, pMouseY);
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
         renderEnergyAreaTooltip(guiGraphics, pMouseX, pMouseY, x, y);

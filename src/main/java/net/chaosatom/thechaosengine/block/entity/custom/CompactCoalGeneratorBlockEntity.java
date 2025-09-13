@@ -51,7 +51,7 @@ public class CompactCoalGeneratorBlockEntity extends BlockEntity implements Menu
 
     private final ModEnergyStorage ENERGY_STORAGE = createEnergyStorage();
     private ModEnergyStorage createEnergyStorage() {
-        return new ModEnergyStorage(64000, ENERGY_TRANSFER_AMOUNT) {
+        return new ModEnergyStorage(64000, 320) {
             @Override
             public void onEnergyChanged() {
                 setChanged();
@@ -110,22 +110,38 @@ public class CompactCoalGeneratorBlockEntity extends BlockEntity implements Menu
     }
 
     public void tick(Level level, BlockPos blockPos, BlockState blockState) {
-        if (hasFuelItemInSlot()) {
-            if (!isBurningFuel()) {
-                startBurning();
-            }
-        }
-
-        if (isBurningFuel()) {
+        // Probably far from the most ideal way of ensuring this works well but if it works, it works.
+        // Checks if upon loading the world, the generator still has some residual fuel to burn, it continues properly
+        if (burnProgress > 0 && itemHandler.getStackInSlot(INPUT_SLOT).isEmpty()) {
             if (getBlockState().getValue(BlockStateProperties.POWERED) != burnProgress > 0) {
                 level.setBlockAndUpdate(getBlockPos(), getBlockState().setValue(BlockStateProperties.POWERED, burnProgress > 0));
             }
             increaseBurnProgress();
             if (currentFuelDoneBurning()) {
                 level.setBlockAndUpdate(getBlockPos(), getBlockState().setValue(BlockStateProperties.POWERED, false));
-                resetBurning();
             }
             fillUpOnEnergy();
+        }
+
+        // Checks if there is no more residual fuel to burn, resets it, and restarts the energy gen. process
+        if (burnProgress <= 0 && itemHandler.getStackInSlot(INPUT_SLOT).is(ModTags.Items.COAL_GENERATOR_FUEL)) {
+            if (hasFuelItemInSlot()) {
+                if (!isBurningFuel()) {
+                    startBurning();
+                }
+            }
+
+            if (isBurningFuel()) {
+                if (getBlockState().getValue(BlockStateProperties.POWERED) != burnProgress > 0) {
+                    level.setBlockAndUpdate(getBlockPos(), getBlockState().setValue(BlockStateProperties.POWERED, burnProgress > 0));
+                }
+                increaseBurnProgress();
+                if (currentFuelDoneBurning()) {
+                    level.setBlockAndUpdate(getBlockPos(), getBlockState().setValue(BlockStateProperties.POWERED, false));
+                    resetBurning();
+                }
+                fillUpOnEnergy();
+            }
         }
         pushEnergyToNeighbourAbove();
     }
@@ -133,7 +149,7 @@ public class CompactCoalGeneratorBlockEntity extends BlockEntity implements Menu
 
     private void pushEnergyToNeighbourAbove() {
         if (ModEnergyUtil.doesBlockHaveEnergyStorage(this.worldPosition.above(), this.level)) {
-            ModEnergyUtil.moveEnergy(this.worldPosition, this.worldPosition.above(), 320, this.level);
+            ModEnergyUtil.moveEnergy(this.worldPosition, this.worldPosition.above(), ENERGY_TRANSFER_AMOUNT, this.level);
         }
     }
 
@@ -164,7 +180,7 @@ public class CompactCoalGeneratorBlockEntity extends BlockEntity implements Menu
     }
 
     private void fillUpOnEnergy() {
-        this.ENERGY_STORAGE.receiveEnergy(320, false);
+        this.ENERGY_STORAGE.receiveEnergy(4, false);
     }
 
     @Override
@@ -180,6 +196,7 @@ public class CompactCoalGeneratorBlockEntity extends BlockEntity implements Menu
 
     @Override
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        super.loadAdditional(tag, registries);
         itemHandler.deserializeNBT(registries, tag.getCompound("compact_coal_generator.inventory"));
         ENERGY_STORAGE.setEnergy(tag.getInt("compact_coal_generator"));
 
