@@ -4,7 +4,6 @@ import net.chaosatom.thechaosengine.block.ModBlocks;
 import net.chaosatom.thechaosengine.block.entity.custom.CompactCoalGeneratorBlockEntity;
 import net.chaosatom.thechaosengine.screen.ModMenuTypes;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
@@ -18,7 +17,6 @@ public class CompactCoalGeneratorMenu extends AbstractContainerMenu {
     public final CompactCoalGeneratorBlockEntity blockEntity;
     private final Level level;
     private final ContainerData data;
-    private final int burnProgress = 160;
 
     public CompactCoalGeneratorMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
         this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
@@ -40,15 +38,18 @@ public class CompactCoalGeneratorMenu extends AbstractContainerMenu {
     }
 
     public boolean isBurning() {
-        return data.get(0) < burnProgress;
+        return this.data.get(0) > 0;
     }
 
     public float getFuelProgress() {
-        int i = this.data.get(1);
-        if (i == 0) {
-            i = burnProgress;
+        int currentProgress = this.data.get(0);
+        int maxProgress = this.data.get(1);
+
+        if (maxProgress == 0) {
+            return 0f;
         }
-        return Mth.clamp((float)this.data.get(0) / (float)i, 0.0f, 1.0f);
+
+        return (float)currentProgress / (float)maxProgress;
     }
 
     // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons

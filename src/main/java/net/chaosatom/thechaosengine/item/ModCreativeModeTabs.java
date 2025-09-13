@@ -16,7 +16,7 @@ public class ModCreativeModeTabs {
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, TheChaosEngine.MOD_ID);
 
     public static final Supplier<CreativeModeTab> THE_CHAOS_ENGINE_ITEMS_TAB = CREATIVE_MODE_TAB.register("the_chaos_engine_items_tab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.IRON_DUST.get()))
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.COMPACT_COAL_GENERATOR.get()))
                     .title(Component.translatable("creativetab.thechaosengine.the_chaos_engine_items"))
                     .displayItems((parameters, output) -> {
                         // Ores
