@@ -2,6 +2,7 @@ package net.chaosatom.thechaosengine.block.entity.custom;
 
 import net.chaosatom.thechaosengine.block.entity.ModBlockEntities;
 import net.chaosatom.thechaosengine.block.entity.energy.ModEnergyStorage;
+import net.chaosatom.thechaosengine.item.ModItems;
 import net.chaosatom.thechaosengine.screen.custom.CompactCoalGeneratorMenu;
 import net.chaosatom.thechaosengine.util.ModTags;
 import net.minecraft.core.BlockPos;
@@ -53,6 +54,7 @@ public class CompactCoalGeneratorBlockEntity extends BlockEntity implements Menu
             FUEL_STATS.put(Items.COAL, new FuelData(800, 1));
             FUEL_STATS.put(Items.CHARCOAL, new FuelData(800, 1));
             FUEL_STATS.put(Items.COAL_BLOCK, new FuelData(8000, 1));
+            FUEL_STATS.put(ModItems.COAL_DUST.get(), new FuelData(460, 2));
         }
     }
 

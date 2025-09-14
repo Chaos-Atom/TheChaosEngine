@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "thechaosengine:block/iron_dust_block"
-  }
-}

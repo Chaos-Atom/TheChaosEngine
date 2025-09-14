@@ -23,6 +23,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.IRON_DUST);
                         output.accept(ModItems.GOLD_DUST);
                         output.accept(ModItems.COPPER_DUST);
+                        output.accept(ModItems.COAL_DUST);
                         output.accept(ModItems.IRON_CHUNK);
                         output.accept(ModItems.GOLD_CHUNK);
                         output.accept(ModItems.COPPER_CHUNK);
