@@ -6,6 +6,7 @@ import net.chaosatom.thechaosengine.block.entity.custom.CompactCoalGeneratorBloc
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;

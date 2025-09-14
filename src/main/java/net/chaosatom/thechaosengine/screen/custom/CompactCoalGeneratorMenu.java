@@ -32,7 +32,7 @@ public class CompactCoalGeneratorMenu extends AbstractContainerMenu {
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
 
-        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 0, 80, 35));
+        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 0, 62, 50));
 
         addDataSlots(data);
     }

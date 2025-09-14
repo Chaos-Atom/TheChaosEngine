@@ -17,17 +17,19 @@ import java.util.Optional;
 public class CompactCoalGeneratorScreen extends AbstractContainerScreen<CompactCoalGeneratorMenu> {
     private static final ResourceLocation GUI_TEXTURE =
             ResourceLocation.fromNamespaceAndPath(TheChaosEngine.MOD_ID,"textures/gui/compact_coal_generator/compact_coal_generator_gui.png");
-    private static final ResourceLocation LIT_PROGRESS_TEXTURE =
-            ResourceLocation.fromNamespaceAndPath("minecraft","container/furnace/lit_progress");
+    private static final ResourceLocation COMBUSTION_PROGRESS_TEXTURE =
+            ResourceLocation.fromNamespaceAndPath(TheChaosEngine.MOD_ID,"textures/gui/compact_coal_generator/combustion_progress.png");
     private EnergyDisplayTooltipArea energyInfoArea;
 
     public CompactCoalGeneratorScreen(CompactCoalGeneratorMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
+
     }
 
     @Override
     protected void init() {
         super.init();
+        this.titleLabelX = 27;
         assignEnergyInfoArea();
     }
 
@@ -65,19 +67,28 @@ public class CompactCoalGeneratorScreen extends AbstractContainerScreen<CompactC
 
         guiGraphics.blit(GUI_TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
 
-        energyInfoArea.render(guiGraphics);
         renderFuelBurning(guiGraphics, x, y);
+        energyInfoArea.render(guiGraphics);
     }
 
     private void renderFuelBurning(GuiGraphics guiGraphics, int x, int y) {
         if(this.menu.isBurning()) {
-            int l = Mth.ceil(this.menu.getFuelProgress() * 13.0F) + 1;
+            int l = Mth.ceil(this.menu.getFuelProgress() * 14);
 
-            // Mostly to understand better what these numbers do.
-            int progressTexLocationX = 80;
-            int progressTexLocationY = 18;
-            guiGraphics.blitSprite(LIT_PROGRESS_TEXTURE, 14, 14, 0, 14 - l,
-                    x + progressTexLocationX, y + progressTexLocationY + 14 - l, 14, l);
+            if (l > 0) {
+                // Mostly to understand better what these numbers do.
+                int progressTexLocationX = 62;
+                int progressTexLocationY = 33;
+                guiGraphics.blit(COMBUSTION_PROGRESS_TEXTURE,
+                        x + progressTexLocationX,
+                        y + progressTexLocationY + 14 - l,
+                        0,
+                        14 - l,
+                        14,
+                        l,
+                        14,
+                        14);
+            }
         }
     }
 

@@ -40,7 +40,7 @@ public class EnergyDisplayTooltipArea {
 
     public void render(GuiGraphics guiGraphics) {
         int stored = (int)(height * (energy.getEnergyStored() / (float)energy.getMaxEnergyStored()));
-        /* For future reference because coding is scary still
+        /* For future reference because coding is still scary
         "0x" means the int is using hexadecimal 0-15 as 0-9 & a-f
         using ARGB setup with ff meaning 255 (max) in alpha channel (15*16^1) + (15*16^0)
         Example: 0xffb51500 is A:ff, R:b5, G:15, B:00 or A:255, R:181, G:15, B:00

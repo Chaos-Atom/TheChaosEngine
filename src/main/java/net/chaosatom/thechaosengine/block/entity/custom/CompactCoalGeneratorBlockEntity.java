@@ -2,7 +2,6 @@ package net.chaosatom.thechaosengine.block.entity.custom;
 
 import net.chaosatom.thechaosengine.block.entity.ModBlockEntities;
 import net.chaosatom.thechaosengine.block.entity.energy.ModEnergyStorage;
-import net.chaosatom.thechaosengine.block.entity.energy.ModEnergyUtil;
 import net.chaosatom.thechaosengine.screen.custom.CompactCoalGeneratorMenu;
 import net.chaosatom.thechaosengine.util.ModTags;
 import net.minecraft.core.BlockPos;
@@ -27,8 +26,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.neoforge.items.ItemStackHandler;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
@@ -38,6 +39,7 @@ public class CompactCoalGeneratorBlockEntity extends BlockEntity implements Menu
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
+            assert level != null;
             if (!level.isClientSide()) {
                 level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
             }
@@ -60,7 +62,6 @@ public class CompactCoalGeneratorBlockEntity extends BlockEntity implements Menu
     private int burnProgress = 0; // in ticks
     private int maxBurnProgress = 0;
     private int energyPerTick = 0;
-    private boolean isBurning = false;
 
     private static final int ENERGY_TRANSFER_AMOUNT = 320;
 
@@ -70,6 +71,7 @@ public class CompactCoalGeneratorBlockEntity extends BlockEntity implements Menu
             @Override
             public void onEnergyChanged() {
                 setChanged();
+                assert getLevel() != null;
                 getLevel().sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
             }
         };
@@ -107,12 +109,12 @@ public class CompactCoalGeneratorBlockEntity extends BlockEntity implements Menu
     }
 
     @Override
-    public Component getDisplayName() {
+    public @NotNull Component getDisplayName() {
         return Component.literal("Compact Coal Generator");
     }
 
     @Override
-    public @Nullable AbstractContainerMenu createMenu(int pContainerId, Inventory pPlayerInventory, Player pPlayer) {
+    public @Nullable AbstractContainerMenu createMenu(int pContainerId, @NotNull Inventory pPlayerInventory, @NotNull Player pPlayer) {
         return new CompactCoalGeneratorMenu(pContainerId, pPlayerInventory, this, this.data);
     }
 
@@ -121,6 +123,7 @@ public class CompactCoalGeneratorBlockEntity extends BlockEntity implements Menu
         for (int i = 0; i < itemHandler.getSlots(); i++) {
             inventory.setItem(i, itemHandler.getStackInSlot(i));
         }
+        assert this.level != null;
         Containers.dropContents(this.level, this.worldPosition, inventory);
     }
 
@@ -153,14 +156,53 @@ public class CompactCoalGeneratorBlockEntity extends BlockEntity implements Menu
         if (blockState.getValue(BlockStateProperties.POWERED) != isLit) {
             level.setBlock(blockPos, blockState.setValue(BlockStateProperties.POWERED, isLit), 3);
         }
-        pushEnergyToNeighbourAbove();
+        pushEnergyToOutputSide();
     }
 
-    private void pushEnergyToNeighbourAbove() {
-        if (ModEnergyUtil.doesBlockHaveEnergyStorage(this.worldPosition.above(), this.level)) {
-            ModEnergyUtil.moveEnergy(this.worldPosition, this.worldPosition.above(), ENERGY_TRANSFER_AMOUNT, this.level);
+    private void pushEnergyToOutputSide() {
+        if (this.ENERGY_STORAGE.getEnergyStored() <= 0) {
+            return;
+        }
+
+        Direction facing = this.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
+        Direction rightSide = facing.getClockWise();
+        assert level != null;
+        IEnergyStorage neighborEnergy = level.getCapability(Capabilities.EnergyStorage.BLOCK,
+                worldPosition.relative(rightSide),
+                rightSide.getOpposite());
+        if (neighborEnergy != null && neighborEnergy.canReceive()) {
+            int toSend = this.ENERGY_STORAGE.extractEnergy(ENERGY_TRANSFER_AMOUNT, true);
+            int toReceive = neighborEnergy.receiveEnergy(toSend, false);
+            this.ENERGY_STORAGE.extractEnergy(toReceive, false);
+            setChanged();
         }
     }
+
+    /* Will use this variant for something else later (A battery maybe)?
+    private void pushEnergyToAllNeighbors() {
+        if (this.ENERGY_STORAGE.getEnergyStored() <= 0) {
+            return;
+        }
+
+        for (Direction direction : Direction.values()) {
+            BlockEntity neighbor = level.getBlockEntity(worldPosition.relative(direction));
+            if (neighbor == null || neighbor.equals(this)) {
+                continue;
+            }
+
+            IEnergyStorage neighborEnergy = level.getCapability(Capabilities.EnergyStorage.BLOCK,
+                    worldPosition.relative(direction),
+                    direction.getOpposite());
+
+            if (neighborEnergy != null && neighborEnergy.canReceive()) {
+                int toSend = this.ENERGY_STORAGE.extractEnergy(ENERGY_TRANSFER_AMOUNT, true);
+                int toReceive = neighborEnergy.receiveEnergy(toSend, false);
+                this.ENERGY_STORAGE.extractEnergy(toReceive, false);
+                setChanged();
+            }
+        }
+    }
+    */
 
     private boolean hasFuelItemInSlot() {
         return this.itemHandler.getStackInSlot(INPUT_SLOT).is(ModTags.Items.COAL_GENERATOR_FUEL);
@@ -171,7 +213,7 @@ public class CompactCoalGeneratorBlockEntity extends BlockEntity implements Menu
     }
 
     @Override
-    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+    protected void saveAdditional(CompoundTag tag, HolderLookup.@NotNull Provider registries) {
         tag.put("compact_coal_generator.inventory", itemHandler.serializeNBT(registries));
 
         tag.putInt("compact_coal_generator.burn_progress", burnProgress);
@@ -184,7 +226,7 @@ public class CompactCoalGeneratorBlockEntity extends BlockEntity implements Menu
     }
 
     @Override
-    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+    protected void loadAdditional(@NotNull CompoundTag tag, HolderLookup.@NotNull Provider registries) {
         super.loadAdditional(tag, registries);
         itemHandler.deserializeNBT(registries, tag.getCompound("compact_coal_generator.inventory"));
 
@@ -201,12 +243,12 @@ public class CompactCoalGeneratorBlockEntity extends BlockEntity implements Menu
     }
 
     @Override
-    public CompoundTag getUpdateTag(HolderLookup.Provider pRegistries) {
+    public @NotNull CompoundTag getUpdateTag(HolderLookup.@NotNull Provider pRegistries) {
         return saveWithoutMetadata(pRegistries);
     }
 
     @Override
-    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt, HolderLookup.Provider lookupProvider) {
+    public void onDataPacket(@NotNull Connection net, @NotNull ClientboundBlockEntityDataPacket pkt, HolderLookup.@NotNull Provider lookupProvider) {
         super.onDataPacket(net, pkt, lookupProvider);
     }
 }
