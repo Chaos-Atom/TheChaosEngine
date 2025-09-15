@@ -1,0 +1,10 @@
+// 1.21.1	2025-09-14T04:44:43.7742796	Block States: thechaosengine
+247f44ca35401c1ebacc481585fce712066132f5 assets/thechaosengine/blockstates/copper_dust_block.json
+3f346295a37dd695c48b974063298073fd5fac2a assets/thechaosengine/blockstates/gold_dust_block.json
+40141a4be1b7cedf9273a63cea07accd60c4650d assets/thechaosengine/blockstates/iron_dust_block.json
+802caa6e4f103b96718b53fe6438b5d87f860cfe assets/thechaosengine/models/block/copper_dust_block.json
+c0b77a6368bc1811ae9a81d291bf093ec6b4f85b assets/thechaosengine/models/block/gold_dust_block.json
+629964f83527cda688d96f1c93c20bdbd8c05297 assets/thechaosengine/models/block/iron_dust_block.json
+a4393c5e24dfbe3715034ce90513555adc90ecfb assets/thechaosengine/models/item/copper_dust_block.json
+c039546a694348ec8298599638c7f6eed53cca64 assets/thechaosengine/models/item/gold_dust_block.json
+2ad84492ee701591c949a4d12e1660912e6817e6 assets/thechaosengine/models/item/iron_dust_block.json
