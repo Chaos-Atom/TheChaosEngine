@@ -51,10 +51,10 @@ public class CompactCoalGeneratorBlockEntity extends BlockEntity implements Menu
         public record FuelData(int specificBurnProgress, int specificEnergyPerTick) {}
         public static final HashMap<Item, FuelData> FUEL_STATS = new HashMap<>();
         static {
-            FUEL_STATS.put(Items.COAL, new FuelData(800, 1));
-            FUEL_STATS.put(Items.CHARCOAL, new FuelData(800, 1));
-            FUEL_STATS.put(Items.COAL_BLOCK, new FuelData(8000, 1));
-            FUEL_STATS.put(ModItems.COAL_DUST.get(), new FuelData(460, 2));
+            FUEL_STATS.put(Items.COAL, new FuelData(110, 1));
+            FUEL_STATS.put(Items.CHARCOAL, new FuelData(110, 1));
+            FUEL_STATS.put(Items.COAL_BLOCK, new FuelData(1100, 1));
+            FUEL_STATS.put(ModItems.COAL_DUST.get(), new FuelData(65, 2));
         }
     }
 
@@ -153,10 +153,10 @@ public class CompactCoalGeneratorBlockEntity extends BlockEntity implements Menu
             }
         }
 
-        // Checks if the generator is running, if it is, set block state to POWERED for particle effects, sounds, etc.
+        // Checks if the generator is running, if it is, set block state to LIT for particle effects, sounds, etc.
         boolean isLit = burnProgress > 0;
-        if (blockState.getValue(BlockStateProperties.POWERED) != isLit) {
-            level.setBlock(blockPos, blockState.setValue(BlockStateProperties.POWERED, isLit), 3);
+        if (blockState.getValue(BlockStateProperties.LIT) != isLit) {
+            level.setBlock(blockPos, blockState.setValue(BlockStateProperties.LIT, isLit), 3);
         }
         pushEnergyToOutputSide();
     }

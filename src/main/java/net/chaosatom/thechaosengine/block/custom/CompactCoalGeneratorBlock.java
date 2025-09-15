@@ -24,6 +24,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
@@ -31,10 +32,14 @@ import org.jetbrains.annotations.Nullable;
 
 public class CompactCoalGeneratorBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final BooleanProperty LIT = BlockStateProperties.LIT;
     public static final MapCodec<CompactCoalGeneratorBlock> CODEC = simpleCodec(CompactCoalGeneratorBlock::new);
     
     public CompactCoalGeneratorBlock(Properties properties) {
         super(properties);
+        this.registerDefaultState(this.getStateDefinition().any()
+                .setValue(FACING, Direction.NORTH)
+                .setValue(LIT, false));
     }
 
     @Override
@@ -58,12 +63,12 @@ public class CompactCoalGeneratorBlock extends BaseEntityBlock {
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext context) {
         return this.defaultBlockState()
                 .setValue(FACING, context.getHorizontalDirection().getOpposite())
-                .setValue(BlockStateProperties.POWERED, false);
+                .setValue(LIT, false);
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING, BlockStateProperties.POWERED);
+        builder.add(FACING, LIT);
     }
 
     // BLOCK ENTITY //
@@ -110,21 +115,21 @@ public class CompactCoalGeneratorBlock extends BaseEntityBlock {
 
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
-        if (state.getValue(BlockStateProperties.POWERED)) {
-
-            double d0 = (double)pos.getX() + (double)0.75F;
-            double d1 = (double)pos.getY() + (double)1.15F;
-            double d2 = (double)pos.getZ() + (double)0.875F;
-            if (random.nextDouble() < 0.1) {
-                // Plays sounds at a specific spot
-                level.playLocalSound(d0, d1, d2, SoundEvents.BLASTFURNACE_FIRE_CRACKLE, SoundSource.BLOCKS,
-                        0.85F,
-                        0.75F,
-                        false);
-            }
-            // Creates smoke particles at a specific spot on the block.
-            level.addParticle(ParticleTypes.SMOKE, d0, d1, d2, (double)0.0F, (double)0.0F, (double)0.0F);
-            level.addParticle(ParticleTypes.SMOKE, d0, d1, d2, (double)0.0F, (double)0.01F, (double)0.0F);
+        if (!state.getValue(LIT)) {
+            return;
         }
+        double d0 = (double)pos.getX() + (double)0.75F;
+        double d1 = (double)pos.getY() + (double)1.15F;
+        double d2 = (double)pos.getZ() + (double)0.875F;
+        if (random.nextDouble() < 0.1) {
+            // Plays sounds at a specific spot
+            level.playLocalSound(d0, d1, d2, SoundEvents.BLASTFURNACE_FIRE_CRACKLE, SoundSource.BLOCKS,
+                    0.85F,
+                    0.75F,
+                    false);
+        }
+        // Creates smoke particles at a specific spot on the block.
+        level.addParticle(ParticleTypes.SMOKE, d0, d1, d2, (double)0.0F, (double)0.0F, (double)0.0F);
+        level.addParticle(ParticleTypes.SMOKE, d0, d1, d2, (double)0.0F, (double)0.01F, (double)0.0F);
     }
 }
