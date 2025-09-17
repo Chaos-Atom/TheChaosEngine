@@ -65,8 +65,8 @@ public class CompactCoalGeneratorBlockEntity extends BlockEntity implements Menu
         };
     }
 
-    public CompactCoalGeneratorBlockEntity(BlockPos pPos, BlockState pBlockState) {
-        super(ModBlockEntities.COMPACT_COAL_GENERATOR_BE.get(), pPos, pBlockState);
+    public CompactCoalGeneratorBlockEntity(BlockPos pos, BlockState blockState) {
+        super(ModBlockEntities.COMPACT_COAL_GENERATOR_BE.get(), pos, blockState);
         this.data = new ContainerData() {
             @Override
             public int get(int pIndex) {

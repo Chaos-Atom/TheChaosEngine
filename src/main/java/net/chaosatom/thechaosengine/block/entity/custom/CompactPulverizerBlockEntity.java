@@ -1,11 +1,13 @@
 package net.chaosatom.thechaosengine.block.entity.custom;
 
 import net.chaosatom.thechaosengine.block.entity.ModBlockEntities;
+import net.chaosatom.thechaosengine.block.entity.energy.ModEnergyStorage;
 import net.chaosatom.thechaosengine.recipe.ModRecipes;
 import net.chaosatom.thechaosengine.recipe.PulverizerRecipe;
 import net.chaosatom.thechaosengine.recipe.PulverizerRecipeInput;
 import net.chaosatom.thechaosengine.screen.custom.CompactPulverizerMenu;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -25,6 +27,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -48,8 +51,22 @@ public class CompactPulverizerBlockEntity extends BlockEntity implements MenuPro
 
     private final ContainerData data;
     private int progress = 0;
-    private int maxProgress = 80;
-    private final int DEFAULT_MAX_PROGRESS = 80;
+    private int maxProgress = 65;
+    private final int DEFAULT_MAX_PROGRESS = 65;
+
+    private static final int ENERGY_CRAFT_AMOUNT = 1; // amount of energy per Tick to craft
+
+    private final ModEnergyStorage ENERGY_STORAGE = createEnergyStorage();
+    private ModEnergyStorage createEnergyStorage() {
+        return new ModEnergyStorage(64000, 320) {
+            @Override
+            public void onEnergyChanged() {
+                setChanged();
+                assert getLevel() != null;
+                getLevel().sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
+            }
+        };
+    }
 
     public CompactPulverizerBlockEntity(BlockPos pos, BlockState blockState) {
         super(ModBlockEntities.COMPACT_PULVERIZER_BE.get(), pos, blockState);
@@ -78,6 +95,10 @@ public class CompactPulverizerBlockEntity extends BlockEntity implements MenuPro
         };
     }
 
+    public IEnergyStorage getEnergyStorage(@Nullable Direction direction) {
+        return this.ENERGY_STORAGE;
+    }
+
     public void drops() {
         SimpleContainer inventory = new SimpleContainer(itemHandler.getSlots());
         for (int i = 0; i < itemHandler.getSlots(); i++) {
@@ -90,6 +111,7 @@ public class CompactPulverizerBlockEntity extends BlockEntity implements MenuPro
     public void tick(Level level, BlockPos blockPos, BlockState blockState) {
         if (hasRecipe() && isOutputSlotEmptyOrReceivable()) {
             progress++;
+            useEnergyForCrafting();
             setChanged(level, blockPos, blockState);
 
             if (hasCraftingFinished()) {
@@ -104,6 +126,10 @@ public class CompactPulverizerBlockEntity extends BlockEntity implements MenuPro
         if (blockState.getValue(BlockStateProperties.LIT) != isLit) {
             level.setBlock(blockPos, blockState.setValue(BlockStateProperties.LIT, isLit), 3);
         }
+    }
+
+    private void useEnergyForCrafting() {
+        this.ENERGY_STORAGE.extractEnergy(ENERGY_CRAFT_AMOUNT, false);
     }
 
     // Custom Crafting Logic via Helper methods
@@ -138,7 +164,12 @@ public class CompactPulverizerBlockEntity extends BlockEntity implements MenuPro
         }
 
         ItemStack output = recipe.get().value().output();
-        return canInsertAmountIntoOutputSlot(output.getCount()) && canInsertItemInputOutputSlot(output);
+        return canInsertAmountIntoOutputSlot(output.getCount()) && canInsertItemInputOutputSlot(output) &&
+                hasEnoughEnergyToCraft();
+    }
+
+    private boolean hasEnoughEnergyToCraft() {
+        return this.ENERGY_STORAGE.getEnergyStored() >= ENERGY_CRAFT_AMOUNT * maxProgress;
     }
 
     private Optional<RecipeHolder<PulverizerRecipe>> getCurrentRecipe() {
@@ -173,8 +204,11 @@ public class CompactPulverizerBlockEntity extends BlockEntity implements MenuPro
     @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         tag.put("inventory", itemHandler.serializeNBT(registries));
+
         tag.putInt("compact_pulverizer.progress", progress);
         tag.putInt("compact_pulverizer.max_progress", maxProgress);
+
+        tag.putInt("compact_pulverizer.energy", ENERGY_STORAGE.getEnergyStored());
 
         super.saveAdditional(tag, registries);
     }
@@ -182,8 +216,11 @@ public class CompactPulverizerBlockEntity extends BlockEntity implements MenuPro
     @Override
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         itemHandler.deserializeNBT(registries, tag.getCompound("inventory"));
+
         progress = tag.getInt("compact_pulverizer.progress");
         maxProgress = tag.getInt("compact_pulverizer.max_progress");
+
+        ENERGY_STORAGE.setEnergy(tag.getInt("compact_pulverizer.energy"));
 
         super.loadAdditional(tag, registries);
     }
