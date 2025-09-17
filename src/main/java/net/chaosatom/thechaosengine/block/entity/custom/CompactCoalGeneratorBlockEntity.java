@@ -2,7 +2,7 @@ package net.chaosatom.thechaosengine.block.entity.custom;
 
 import net.chaosatom.thechaosengine.block.entity.ModBlockEntities;
 import net.chaosatom.thechaosengine.block.entity.energy.ModEnergyStorage;
-import net.chaosatom.thechaosengine.item.ModItems;
+import net.chaosatom.thechaosengine.recipe.FuelItemRecipes;
 import net.chaosatom.thechaosengine.screen.custom.CompactCoalGeneratorMenu;
 import net.chaosatom.thechaosengine.util.ModTags;
 import net.minecraft.core.BlockPos;
@@ -22,7 +22,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -32,8 +31,6 @@ import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.HashMap;
 
 public class CompactCoalGeneratorBlockEntity extends BlockEntity implements MenuProvider {
     public final ItemStackHandler itemHandler = new ItemStackHandler(1) {
@@ -47,17 +44,6 @@ public class CompactCoalGeneratorBlockEntity extends BlockEntity implements Menu
         }
     };
 
-    public static class FuelItemValues {
-        public record FuelData(int specificBurnProgress, int specificEnergyPerTick) {}
-        public static final HashMap<Item, FuelData> FUEL_STATS = new HashMap<>();
-        static {
-            FUEL_STATS.put(Items.COAL, new FuelData(110, 1));
-            FUEL_STATS.put(Items.CHARCOAL, new FuelData(110, 1));
-            FUEL_STATS.put(Items.COAL_BLOCK, new FuelData(1100, 1));
-            FUEL_STATS.put(ModItems.COAL_DUST.get(), new FuelData(65, 2));
-        }
-    }
-
     private static final int INPUT_SLOT = 0;
 
     protected final ContainerData data;
@@ -69,7 +55,7 @@ public class CompactCoalGeneratorBlockEntity extends BlockEntity implements Menu
 
     private final ModEnergyStorage ENERGY_STORAGE = createEnergyStorage();
     private ModEnergyStorage createEnergyStorage() {
-        return new ModEnergyStorage(64000, 320) {
+        return new ModEnergyStorage(32000, 320) {
             @Override
             public void onEnergyChanged() {
                 setChanged();
@@ -80,7 +66,7 @@ public class CompactCoalGeneratorBlockEntity extends BlockEntity implements Menu
     }
 
     public CompactCoalGeneratorBlockEntity(BlockPos pPos, BlockState pBlockState) {
-        super(ModBlockEntities.COAL_GENERATOR_BE.get(), pPos, pBlockState);
+        super(ModBlockEntities.COMPACT_COAL_GENERATOR_BE.get(), pPos, pBlockState);
         this.data = new ContainerData() {
             @Override
             public int get(int pIndex) {
@@ -141,7 +127,7 @@ public class CompactCoalGeneratorBlockEntity extends BlockEntity implements Menu
         if (burnProgress <= 0 && hasFuelItemInSlot()) {
             Item fuelItem = this.itemHandler.getStackInSlot(INPUT_SLOT).getItem(); // Assigns item based on slot's item
             // Grabs item-specific data assigned in map & record from fuelItem
-            FuelItemValues.FuelData fuelData = FuelItemValues.FUEL_STATS.get(fuelItem);
+            FuelItemRecipes.FuelData fuelData = FuelItemRecipes.FUEL_STATS.get(fuelItem);
             if (fuelData != null) {
                 // Consumes one item (confirmed to be valid fuel) from generator's slot
                 this.itemHandler.extractItem(INPUT_SLOT, 1, false);

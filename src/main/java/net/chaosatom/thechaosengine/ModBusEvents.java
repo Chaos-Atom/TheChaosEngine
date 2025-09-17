@@ -13,10 +13,11 @@ import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 public class ModBusEvents {
     @SubscribeEvent
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {
-        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ModBlockEntities.COAL_GENERATOR_BE.get(),
+        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ModBlockEntities.COMPACT_COAL_GENERATOR_BE.get(),
                 CompactCoalGeneratorBlockEntity::getEnergyStorage);
 
-        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntities.COAL_GENERATOR_BE.get(),
+        // Checks that the input side of the generator is a valid item pusher, accepts items from that side only
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntities.COMPACT_COAL_GENERATOR_BE.get(),
                 (blockEntity, side) -> {
                     Direction facing = blockEntity.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
                     Direction leftSide = facing.getCounterClockWise();

@@ -1,0 +1,10 @@
+{
+  "type": "thechaosengine:pulverizing",
+  "ingredient": {
+    "item": "minecraft:gold_ore"
+  },
+  "result": {
+    "id": "thechaosengine:gold_dust",
+    "count": 2
+  }
+}

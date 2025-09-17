@@ -4,8 +4,10 @@ import net.chaosatom.thechaosengine.block.ModBlocks;
 import net.chaosatom.thechaosengine.block.entity.ModBlockEntities;
 import net.chaosatom.thechaosengine.item.ModCreativeModeTabs;
 import net.chaosatom.thechaosengine.item.ModItems;
+import net.chaosatom.thechaosengine.recipe.ModRecipes;
 import net.chaosatom.thechaosengine.screen.ModMenuTypes;
 import net.chaosatom.thechaosengine.screen.custom.CompactCoalGeneratorScreen;
+import net.chaosatom.thechaosengine.screen.custom.CompactPulverizerScreen;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import org.slf4j.Logger;
 
@@ -49,6 +51,8 @@ public class TheChaosEngine {
         ModBlockEntities.register(modEventBus);
         ModMenuTypes.register(modEventBus);
 
+        ModRecipes.register(modEventBus);
+
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
 
@@ -82,6 +86,7 @@ public class TheChaosEngine {
         @SubscribeEvent
         public static void registerScreens(RegisterMenuScreensEvent event) {
             event.register(ModMenuTypes.COMPACT_COAL_GENERATOR_MENU.get(), CompactCoalGeneratorScreen::new);
+            event.register(ModMenuTypes.COMPACT_PULVERIZER_MENU.get(), CompactPulverizerScreen::new);
         }
     }
 }

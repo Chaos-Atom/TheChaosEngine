@@ -1,0 +1,10 @@
+{
+  "type": "thechaosengine:pulverizing",
+  "ingredient": {
+    "item": "minecraft:iron_ore"
+  },
+  "result": {
+    "id": "thechaosengine:iron_dust",
+    "count": 2
+  }
+}

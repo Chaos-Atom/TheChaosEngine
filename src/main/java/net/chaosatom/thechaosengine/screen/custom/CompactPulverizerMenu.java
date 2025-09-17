@@ -1,7 +1,7 @@
 package net.chaosatom.thechaosengine.screen.custom;
 
 import net.chaosatom.thechaosengine.block.ModBlocks;
-import net.chaosatom.thechaosengine.block.entity.custom.CompactCoalGeneratorBlockEntity;
+import net.chaosatom.thechaosengine.block.entity.custom.CompactPulverizerBlockEntity;
 import net.chaosatom.thechaosengine.screen.ModMenuTypes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
@@ -11,45 +11,40 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.items.SlotItemHandler;
-import org.jetbrains.annotations.NotNull;
 
-public class CompactCoalGeneratorMenu extends AbstractContainerMenu {
-    public final CompactCoalGeneratorBlockEntity blockEntity;
+public class CompactPulverizerMenu extends AbstractContainerMenu {
+    public final CompactPulverizerBlockEntity blockEntity;
     private final Level level;
     private final ContainerData data;
 
-    public CompactCoalGeneratorMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
-        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
+    public CompactPulverizerMenu(int containerId, Inventory inventory, FriendlyByteBuf extraData) {
+        this(containerId, inventory, inventory.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
     }
 
-    public CompactCoalGeneratorMenu(int pContainerId, Inventory inv, BlockEntity blockEntity, ContainerData data) {
-        super(ModMenuTypes.COMPACT_COAL_GENERATOR_MENU.get(), pContainerId);
-        checkContainerSize(inv, 1);
-        this.blockEntity = ((CompactCoalGeneratorBlockEntity) blockEntity);
-        this.level = inv.player.level();
+    public CompactPulverizerMenu(int containerId, Inventory inventory, BlockEntity entity, ContainerData data) {
+        super(ModMenuTypes.COMPACT_PULVERIZER_MENU.get(), containerId);
+        blockEntity = ((CompactPulverizerBlockEntity) entity);
+        this.level = inventory.player.level();
         this.data = data;
 
-        addPlayerInventory(inv);
-        addPlayerHotbar(inv);
+        addPlayerInventory(inventory);
+        addPlayerHotbar(inventory);
 
-        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 0, 80, 49));
+        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 0, 53, 37));
+        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 1, 107, 37));
 
         addDataSlots(data);
     }
-
-    public boolean isBurning() {
-        return this.data.get(0) > 0;
+    public boolean isCrafting() {
+        return data.get(0) > 0;
     }
 
-    public float getFuelProgress() {
-        int currentProgress = this.data.get(0);
+    public int getScaledArrowProgress() {
+        int progress = this.data.get(0);
         int maxProgress = this.data.get(1);
+        int arrowPixelSize = 28;
 
-        if (maxProgress == 0) {
-            return 0f;
-        }
-
-        return (float)currentProgress / (float)maxProgress;
+        return maxProgress != 0 && progress != 0 ? progress * arrowPixelSize / maxProgress : 0;
     }
 
     // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons
@@ -68,7 +63,7 @@ public class CompactCoalGeneratorMenu extends AbstractContainerMenu {
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
     // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 1;  // must be the number of slots you have!
+    private static final int TE_INVENTORY_SLOT_COUNT = 2;  // must be the number of slots you have!
     @Override
     public ItemStack quickMoveStack(Player playerIn, int pIndex) {
         Slot sourceSlot = slots.get(pIndex);
@@ -103,28 +98,22 @@ public class CompactCoalGeneratorMenu extends AbstractContainerMenu {
     }
 
     @Override
-    public boolean stillValid(@NotNull Player pPlayer) {
+    public boolean stillValid(Player player) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlocks.COMPACT_COAL_GENERATOR.get());
+                player, ModBlocks.COMPACT_PULVERIZER.get());
     }
 
     private void addPlayerInventory(Inventory playerInventory) {
-        // Verbose variable usage for educational purpose
-        int INVENTORY_X = 8; // x-coordinate of where the top-leftmost slot starts
-        int INVENTORY_Y = 84; // y-coordinate of top-leftmost slot
-        for (int i = 0; i < PLAYER_INVENTORY_ROW_COUNT; ++i) {
-            for (int l = 0; l < PLAYER_INVENTORY_COLUMN_COUNT; ++l) {
-                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, INVENTORY_X + l * 18, INVENTORY_Y + i * 18));
+        for (int i = 0; i < 3; i++) {
+            for (int l = 0; l < 9; l++) {
+                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 84 + i * 18));
             }
         }
     }
 
-    private void addPlayerHotbar(Inventory playerInventory) {
-        // Verbose variable usage for educational purpose
-        int HOTBAR_X = 8; // x-coordinate of where the first hotbar slot starts
-        int HOTBAR_Y = 142; // y-coordinate of first hotbar slot
-        for (int i = 0; i < 9; ++i) {
-            this.addSlot(new Slot(playerInventory, i, HOTBAR_X + i * 18, HOTBAR_Y));
+    private void addPlayerHotbar(Inventory playerHotBar) {
+        for (int i = 0; i < 9; i++) {
+            this.addSlot(new Slot(playerHotBar, i, 8 + i * 18, 142));
         }
     }
 }

@@ -2,14 +2,11 @@ package net.chaosatom.thechaosengine.block.custom;
 
 import com.mojang.serialization.MapCodec;
 import net.chaosatom.thechaosengine.block.entity.ModBlockEntities;
-import net.chaosatom.thechaosengine.block.entity.custom.CompactCoalGeneratorBlockEntity;
+import net.chaosatom.thechaosengine.block.entity.custom.CompactPulverizerBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.RandomSource;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.SimpleMenuProvider;
@@ -27,15 +24,14 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class CompactCoalGeneratorBlock extends BaseEntityBlock {
+public class CompactPulverizerBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
-    public static final MapCodec<CompactCoalGeneratorBlock> CODEC = simpleCodec(CompactCoalGeneratorBlock::new);
-    
-    public CompactCoalGeneratorBlock(Properties properties) {
+    public static final MapCodec<CompactPulverizerBlock> CODEC = simpleCodec(CompactPulverizerBlock::new);
+
+    public CompactPulverizerBlock(Properties properties) {
         super(properties);
 
         this.registerDefaultState(this.getStateDefinition().any()
@@ -75,64 +71,51 @@ public class CompactCoalGeneratorBlock extends BaseEntityBlock {
     /* BLOCK ENTITY */
 
     @Override
-    protected RenderShape getRenderShape(BlockState state) {return RenderShape.MODEL;}
+    public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+        return new CompactPulverizerBlockEntity(blockPos, blockState);
+    }
+
+    @Override
+    protected RenderShape getRenderShape(BlockState state) {
+        return RenderShape.MODEL;
+    }
 
     @Override
     protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
         if (state.getBlock() != newState.getBlock()) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
-            if (blockEntity instanceof CompactCoalGeneratorBlockEntity compactCoalGeneratorBlockEntity) {
-                compactCoalGeneratorBlockEntity.drops();
+            if (blockEntity instanceof CompactPulverizerBlockEntity compactPulverizerBlockEntity) {
+                compactPulverizerBlockEntity.drops();
             }
         }
+
         super.onRemove(state, level, pos, newState, movedByPiston);
     }
 
     @Override
-    protected @NotNull ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player,
+                                              InteractionHand hand, BlockHitResult hitResult) {
         if (!level.isClientSide()) {
             BlockEntity entity = level.getBlockEntity(pos);
-            if (entity instanceof CompactCoalGeneratorBlockEntity coalGeneratorBlockEntity) {
-                player.openMenu(new SimpleMenuProvider(coalGeneratorBlockEntity, Component.literal("Compact Coal Generator")), pos);
+            if (entity instanceof CompactPulverizerBlockEntity compactPulverizerBlockEntity) {
+                ((ServerPlayer) player).openMenu(new SimpleMenuProvider(compactPulverizerBlockEntity, Component.translatable("block.thechaosengine.compact_pulverizer")), pos);
             } else {
-                throw new IllegalStateException("Our Container Provider is missing!");
+                throw new IllegalStateException("Our Container provider is missing!");
             }
         }
         return ItemInteractionResult.sidedSuccess(level.isClientSide());
     }
 
     @Override
-    public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new CompactCoalGeneratorBlockEntity(blockPos,blockState);
-    }
-
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
-        if (pLevel.isClientSide()) {
+    public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
+        if (level.isClientSide()) {
             return null;
         }
-        return createTickerHelper(pBlockEntityType, ModBlockEntities.COMPACT_COAL_GENERATOR_BE.get(),
-                ((level, blockPos, blockState, coalGeneratorBlockEntity) -> coalGeneratorBlockEntity.tick(level, blockPos, blockState)));
+
+        return createTickerHelper(blockEntityType, ModBlockEntities.COMPACT_PULVERIZER_BE.get(),
+                (level1, blockPos, blockState, compactPulverizerBlockEntity)
+                        -> compactPulverizerBlockEntity.tick(level1, blockPos, blockState));
     }
 
     /* SOUNDS & PARTICLES */
-
-    @Override
-    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
-        if (!state.getValue(LIT)) {
-            return;
-        }
-        double d0 = (double)pos.getX() + (double)0.75F;
-        double d1 = (double)pos.getY() + (double)1.15F;
-        double d2 = (double)pos.getZ() + (double)0.875F;
-        if (random.nextDouble() < 0.1) {
-            // Plays sounds at a specific spot
-            level.playLocalSound(d0, d1, d2, SoundEvents.BLASTFURNACE_FIRE_CRACKLE, SoundSource.BLOCKS,
-                    0.85F,
-                    0.75F,
-                    false);
-        }
-        // Creates smoke particles at a specific spot on the block.
-        level.addParticle(ParticleTypes.SMOKE, d0, d1, d2, (double)0.0F, (double)0.0F, (double)0.0F);
-        level.addParticle(ParticleTypes.SMOKE, d0, d1, d2, (double)0.0F, (double)0.01F, (double)0.0F);
-    }
 }

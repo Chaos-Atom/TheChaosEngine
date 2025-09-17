@@ -3,6 +3,7 @@ package net.chaosatom.thechaosengine.screen.custom;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.chaosatom.thechaosengine.TheChaosEngine;
 import net.chaosatom.thechaosengine.screen.renderer.EnergyDisplayTooltipArea;
+import net.chaosatom.thechaosengine.screen.renderer.StickyNoteTooltipArea;
 import net.chaosatom.thechaosengine.util.MouseUtil;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -20,33 +21,49 @@ public class CompactCoalGeneratorScreen extends AbstractContainerScreen<CompactC
     private static final ResourceLocation COMBUSTION_PROGRESS_TEXTURE =
             ResourceLocation.fromNamespaceAndPath(TheChaosEngine.MOD_ID,"textures/gui/compact_coal_generator/combustion_progress.png");
     private EnergyDisplayTooltipArea energyInfoArea;
+    private StickyNoteTooltipArea stickyNoteTooltipArea;
 
     public CompactCoalGeneratorScreen(CompactCoalGeneratorMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
-
     }
+
+    // To clarify what the numbers in renderEnergyAreaTooltip() and assignEnergyInfoArea()
+    private final int vertEnergyBarLocX = 159;
+    private final int vertEnergyBarLocY = 9;
 
     @Override
     protected void init() {
         super.init();
         this.titleLabelX = 27;
+        this.titleLabelY = 7;
         assignEnergyInfoArea();
+        assignStickyNoteInfoArea();
     }
 
     private void renderEnergyAreaTooltip(GuiGraphics guiGraphics, int pMouseX, int pMouseY, int x, int y) {
-        if(isMouseAboveArea(pMouseX, pMouseY, x, y, 156, 11, 8, 64)) {
+        if(isMouseAboveArea(pMouseX, pMouseY, x, y, vertEnergyBarLocX, vertEnergyBarLocY, 8, 64)) {
             guiGraphics.renderTooltip(this.font, energyInfoArea.getTooltips(),
                     Optional.empty(), pMouseX - x, pMouseY - y);
         }
     }
 
+    private void renderStickyNoteTooltip(GuiGraphics guiGraphics, int mouseX, int mouseY, int x, int y) {
+        if (isMouseAboveArea(mouseX, mouseY, x, y, 18, 23, 23, 20)) {
+            guiGraphics.renderTooltip(this.font,
+                    stickyNoteTooltipArea.getStickyNoteTooltips(),
+                    mouseX - x,
+                    mouseY - y);
+        }
+    }
+
     private void assignEnergyInfoArea() {
-        // Based off a 256x256px average MC gui layout
-        // Verbose use of variables to clarify what the numbers means
-        int vertEnergyBarLocX = 156;
-        int vertEnergyBarLocY = 11;
         energyInfoArea = new EnergyDisplayTooltipArea(((width - imageWidth) / 2) + vertEnergyBarLocX,
                 ((height - imageHeight) / 2) + vertEnergyBarLocY, menu.blockEntity.getEnergyStorage(null));
+    }
+
+    private void assignStickyNoteInfoArea() {
+        stickyNoteTooltipArea = new StickyNoteTooltipArea((width - imageWidth) / 2,
+                (height - imageHeight) / 2, width, height);
     }
 
     @Override
@@ -55,6 +72,7 @@ public class CompactCoalGeneratorScreen extends AbstractContainerScreen<CompactC
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
         renderEnergyAreaTooltip(guiGraphics, pMouseX, pMouseY, x, y);
+        renderStickyNoteTooltip(guiGraphics, pMouseX, pMouseY, x, y);
     }
 
     @Override
@@ -74,11 +92,10 @@ public class CompactCoalGeneratorScreen extends AbstractContainerScreen<CompactC
     private void renderFuelBurning(GuiGraphics guiGraphics, int x, int y) {
         if(this.menu.isBurning()) {
             int l = Mth.ceil(this.menu.getFuelProgress() * 14);
-
             if (l > 0) {
                 // Mostly to understand better what these numbers do.
-                int progressTexLocationX = 62;
-                int progressTexLocationY = 33;
+                int progressTexLocationX = 80;
+                int progressTexLocationY = 32;
                 guiGraphics.blit(COMBUSTION_PROGRESS_TEXTURE,
                         x + progressTexLocationX,
                         y + progressTexLocationY + 14 - l,
