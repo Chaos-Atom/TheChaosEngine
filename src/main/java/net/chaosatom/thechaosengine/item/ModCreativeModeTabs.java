@@ -47,6 +47,7 @@ public class ModCreativeModeTabs {
 
                         // MACHINE BLOCKS (SINGLE)
                         output.accept(ModBlocks.COMPACT_COAL_GENERATOR);
+                        output.accept(ModBlocks.COMPACT_PULVERIZER);
                     }).build());
 
     public static void register(IEventBus eventBus) {

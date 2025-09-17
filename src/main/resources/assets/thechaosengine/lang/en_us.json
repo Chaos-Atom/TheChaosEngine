@@ -30,5 +30,11 @@
   "block.thechaosengine.gold_dust_block": "Block of Gold Dust",
   "block.thechaosengine.copper_dust_block": "Block of Copper Dust",
 
-  "block.thechaosengine.compact_coal_generator": "Compact Coal Generator"
+  "block.thechaosengine.compact_coal_generator": "Compact Coal Generator",
+  "block.thechaosengine.compact_pulverizer": "Compact Pulverizer",
+
+  "blockentity.thechaosengine.compact_coal_generator": "Compact Coal Generator",
+  "blockentity.thechaosengine.compact_pulverizer": "Compact Pulverizer",
+
+  "tooltip.thechaosengine.compact_coal_generator_stickynote": "Sticky Note"
 }
