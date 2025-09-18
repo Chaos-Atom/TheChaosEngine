@@ -115,7 +115,7 @@ public class CompactCoalGeneratorBlock extends BaseEntityBlock {
     }
 
     /* SOUNDS & PARTICLES */
-
+    // TODO: Add custom sounds
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
         if (!state.getValue(LIT)) {
@@ -131,8 +131,11 @@ public class CompactCoalGeneratorBlock extends BaseEntityBlock {
                     0.75F,
                     false);
         }
-        // Creates smoke particles at a specific spot on the block.
-        level.addParticle(ParticleTypes.SMOKE, d0, d1, d2, (double)0.0F, (double)0.0F, (double)0.0F);
-        level.addParticle(ParticleTypes.SMOKE, d0, d1, d2, (double)0.0F, (double)0.01F, (double)0.0F);
+        if (level.getBlockEntity(pos) instanceof CompactCoalGeneratorBlockEntity compactCoalGeneratorBlockEntity
+                && !compactCoalGeneratorBlockEntity.itemHandler.getStackInSlot(0).isEmpty()) {
+            // Creates smoke particles at a specific spot on the block.
+            level.addParticle(ParticleTypes.SMOKE, d0, d1, d2, (double)0.0F, (double)0.0F, (double)0.0F);
+            level.addParticle(ParticleTypes.SMOKE, d0, d1, d2, (double)0.0F, (double)0.01F, (double)0.0F);
+        }
     }
 }

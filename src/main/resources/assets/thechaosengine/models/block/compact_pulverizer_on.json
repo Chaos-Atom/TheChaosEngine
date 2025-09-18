@@ -3,11 +3,11 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"1": "thechaosengine:block/compact_pulverizer/compact_pulverizer_sides",
-		"2": "thechaosengine:block/compact_pulverizer/compact_pulverizer_top",
+		"2": "thechaosengine:block/compact_pulverizer/compact_pulverizer_on_top",
 		"3": "thechaosengine:block/compact_machine_bottom",
 		"4": "thechaosengine:block/compact_pulverizer/compact_pulverizer_smallpanels",
-		"5": "thechaosengine:block/compact_pulverizer/compact_pulverizer_drum",
-		"6": "thechaosengine:block/compact_pulverizer/compact_pulverizer_screen",
+		"5": "thechaosengine:block/compact_pulverizer/compact_pulverizer_on_drum",
+		"6": "thechaosengine:block/compact_pulverizer/compact_pulverizer_on_screen",
 		"particle": "thechaosengine:block/compact_pulverizer/compact_pulverizer_sides"
 	},
 	"elements": [
