@@ -1,19 +1,18 @@
 package net.chaosatom.thechaosengine.recipe;
 
+import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 
-public record PulverizerRecipe(Ingredient inputItem, ItemStack output) implements Recipe<PulverizerRecipeInput> {
+public record PulverizerRecipe(Ingredient inputItem, ItemStack output, int processTime, int energy) implements Recipe<PulverizerRecipeInput> {
     @Override
     public NonNullList<Ingredient> getIngredients() {
         NonNullList<Ingredient> list = NonNullList.create();
@@ -56,13 +55,19 @@ public record PulverizerRecipe(Ingredient inputItem, ItemStack output) implement
         return ModRecipes.PULVERIZER_TYPE.get();
     }
 
+    public interface Factory<T extends PulverizerRecipe> {
+        T create(String string, CookingBookCategory bookCategory, Ingredient ingredient, ItemStack result, int processTime, int energy);
+    }
+
     public static class Serializer implements RecipeSerializer<PulverizerRecipe> {
         // Basically a way to serialize and deserialize data from different formats to/from JSON files
         // Within .fieldOf(String name), the string is the name that is within the JSON file
         private static final MapCodec<PulverizerRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> // Given an instance...
                 inst.group( // Defines the fields within the instance
                 Ingredient.CODEC_NONEMPTY.fieldOf("ingredient").forGetter(PulverizerRecipe::inputItem), // First field, an ItemStack as the ingredient...thing?
-                ItemStack.CODEC.fieldOf("result").forGetter(PulverizerRecipe::output)) // Second field, an ItemStack as an output item
+                ItemStack.CODEC.fieldOf("result").forGetter(PulverizerRecipe::output), // Second field, an ItemStack as an output item
+                Codec.INT.fieldOf("processtime").forGetter(PulverizerRecipe::processTime),
+                Codec.INT.fieldOf("energy").forGetter(PulverizerRecipe::energy))
                 .apply(inst, PulverizerRecipe::new)); // Defines how to create the object
 
         // Serializes and deserializes data into packets to send to server. Enables client-server communication
@@ -70,6 +75,8 @@ public record PulverizerRecipe(Ingredient inputItem, ItemStack output) implement
                 StreamCodec.composite(
                         Ingredient.CONTENTS_STREAM_CODEC, PulverizerRecipe::inputItem,
                         ItemStack.STREAM_CODEC, PulverizerRecipe::output,
+                        ByteBufCodecs.VAR_INT, PulverizerRecipe::processTime,
+                        ByteBufCodecs.VAR_INT, PulverizerRecipe::energy,
                         PulverizerRecipe::new);
 
         @Override

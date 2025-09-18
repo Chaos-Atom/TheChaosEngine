@@ -1,12 +1,12 @@
 {
   "type": "thechaosengine:pulverizing",
   "ingredient": {
-    "item": "minecraft:copper_ore"
+    "item": "minecraft:deepslate_copper_ore"
   },
   "result": {
     "id": "thechaosengine:copper_dust",
     "count": 2
   },
-  "processtime": 74,
+  "processtime": 113,
   "energy": 1
 }

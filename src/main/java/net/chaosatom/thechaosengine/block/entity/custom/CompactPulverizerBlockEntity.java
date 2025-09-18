@@ -17,6 +17,7 @@ import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.WorldlyContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -27,14 +28,17 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.energy.IEnergyStorage;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.ItemHandlerHelper;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
-public class CompactPulverizerBlockEntity extends BlockEntity implements MenuProvider {
+public class CompactPulverizerBlockEntity extends BlockEntity implements MenuProvider, WorldlyContainer {
     public final ItemStackHandler itemHandler = new ItemStackHandler(2) {
         @Override
         protected void onContentsChanged(int slot) {
@@ -108,28 +112,42 @@ public class CompactPulverizerBlockEntity extends BlockEntity implements MenuPro
         Containers.dropContents(this.level, this.worldPosition, inventory);
     }
 
+    /* Main Processing Logic */
+
     public void tick(Level level, BlockPos blockPos, BlockState blockState) {
-        if (hasRecipe() && isOutputSlotEmptyOrReceivable()) {
-            progress++;
+        Optional<RecipeHolder<PulverizerRecipe>> recipe = getCurrentRecipe();
+        boolean wasWorkingThisTick = false;
+
+        if (recipe.isEmpty() || !isOutputSlotEmptyOrReceivable()) {
+            resetProgress();
+            setChanged(level, blockPos, blockState);
+            return;
+        }
+
+        if (this.ENERGY_STORAGE.getEnergyStored() >= maxProgress && hasRecipe()) {
+            wasWorkingThisTick = true;
             useEnergyForCrafting();
+            this.progress++;
             setChanged(level, blockPos, blockState);
 
             if (hasCraftingFinished()) {
                 craftItem();
+                wasWorkingThisTick = false;
                 resetProgress();
             }
-        } else {
-            resetProgress();
         }
 
-        boolean isLit = progress > 0;
+        boolean isLit = wasWorkingThisTick;
         if (blockState.getValue(BlockStateProperties.LIT) != isLit) {
             level.setBlock(blockPos, blockState.setValue(BlockStateProperties.LIT, isLit), 3);
         }
+        pushOutputs();
     }
 
     private void useEnergyForCrafting() {
-        this.ENERGY_STORAGE.extractEnergy(ENERGY_CRAFT_AMOUNT, false);
+        Optional<RecipeHolder<PulverizerRecipe>> recipe = getCurrentRecipe();
+        int specificEnergyCost = recipe.get().value().energy();
+        this.ENERGY_STORAGE.extractEnergy(specificEnergyCost, false);
     }
 
     // Custom Crafting Logic via Helper methods
@@ -141,6 +159,9 @@ public class CompactPulverizerBlockEntity extends BlockEntity implements MenuPro
 
     private void craftItem() {
         Optional<RecipeHolder<PulverizerRecipe>> recipe = getCurrentRecipe();
+        if (recipe.isEmpty()) {
+            return;
+        }
         ItemStack output = recipe.get().value().output();
 
         itemHandler.extractItem(INPUT_SLOT, 1, false);
@@ -149,7 +170,9 @@ public class CompactPulverizerBlockEntity extends BlockEntity implements MenuPro
     }
 
     private boolean hasCraftingFinished() {
-        return this.progress >= this.maxProgress;
+        Optional<RecipeHolder<PulverizerRecipe>> recipe = getCurrentRecipe();
+        int specificProgress = recipe.get().value().processTime();
+        return this.progress >= specificProgress;
     }
 
     private boolean isOutputSlotEmptyOrReceivable() {
@@ -164,8 +187,10 @@ public class CompactPulverizerBlockEntity extends BlockEntity implements MenuPro
         }
 
         ItemStack output = recipe.get().value().output();
-        return canInsertAmountIntoOutputSlot(output.getCount()) && canInsertItemInputOutputSlot(output) &&
-                hasEnoughEnergyToCraft();
+        this.maxProgress = recipe.get().value().processTime();
+
+        return canInsertAmountIntoOutputSlot(output.getCount()) && canInsertItemInputIntoOutputSlot(output) &&
+                this.ENERGY_STORAGE.getEnergyStored() >= recipe.get().value().energy();
     }
 
     private boolean hasEnoughEnergyToCraft() {
@@ -177,7 +202,7 @@ public class CompactPulverizerBlockEntity extends BlockEntity implements MenuPro
                 .getRecipeFor(ModRecipes.PULVERIZER_TYPE.get(), new PulverizerRecipeInput(itemHandler.getStackInSlot(INPUT_SLOT)), level);
     }
 
-    private boolean canInsertItemInputOutputSlot(ItemStack output) {
+    private boolean canInsertItemInputIntoOutputSlot(ItemStack output) {
         return itemHandler.getStackInSlot(OUTPUT_SLOT).isEmpty() ||
                 itemHandler.getStackInSlot(OUTPUT_SLOT).getItem() == output.getItem();
     }
@@ -233,5 +258,113 @@ public class CompactPulverizerBlockEntity extends BlockEntity implements MenuPro
     @Override
     public @NotNull CompoundTag getUpdateTag(HolderLookup.@NotNull Provider pRegistries) {
         return saveWithoutMetadata(pRegistries);
+    }
+
+    /* Sided Inventory via WorldlyContainers
+    * This stuff really melted my brain at first...
+    */
+
+    @Override
+    public int[] getSlotsForFace(Direction side) {
+        return new int[]{INPUT_SLOT, OUTPUT_SLOT};
+    }
+
+    @Override
+    public boolean canPlaceItemThroughFace(int slotIndex, ItemStack itemStack, @Nullable Direction direction) {
+        Direction facing = getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
+        if (direction == facing) {
+            return false;
+        }
+        return slotIndex == INPUT_SLOT;
+    }
+
+    @Override
+    public boolean canTakeItemThroughFace(int slotIndex, ItemStack itemStack, Direction direction) {
+        return slotIndex == OUTPUT_SLOT;
+    }
+
+    @Override
+    public int getContainerSize() {
+        return itemHandler.getSlots();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return this.itemHandler.getStackInSlot(INPUT_SLOT).isEmpty() && itemHandler.getStackInSlot(OUTPUT_SLOT).isEmpty();
+    }
+
+    @Override
+    public ItemStack getItem(int slotIndex) {
+        return itemHandler.getStackInSlot(slotIndex);
+    }
+
+    @Override
+    public ItemStack removeItem(int slotIndex, int count) {
+        return this.itemHandler.extractItem(slotIndex, count, false);
+    }
+
+    @Override
+    public ItemStack removeItemNoUpdate(int slotIndex) {
+        ItemStack stack = itemHandler.getStackInSlot(slotIndex);
+        itemHandler.setStackInSlot(slotIndex, ItemStack.EMPTY);
+        return stack;
+    }
+
+    @Override
+    public void setItem(int slotIndex, ItemStack itemStack) {
+        itemHandler.setStackInSlot(slotIndex, itemStack);
+    }
+
+    @Override
+    public boolean stillValid(Player player) {
+        // Checks if players are within a certain distance of interacting inventories
+        return player.distanceToSqr(this.worldPosition.getX() + 0.5, this.worldPosition.getY() + 0.5, this.worldPosition.getZ() + 0.5) <= 64.0;
+    }
+
+    @Override
+    public void clearContent() {
+        // Empties output slot of items during extraction
+        for (int i = 0; i < itemHandler.getSlots(); i++) {
+            itemHandler.setStackInSlot(i, ItemStack.EMPTY);
+        }
+    }
+    /* Additional Sided Inventory Logic */
+
+    private void pushOutputs() {
+        // Ends method call if there is no more items to push
+        ItemStack outputStack = itemHandler.getStackInSlot(OUTPUT_SLOT);
+        if (outputStack.isEmpty()) {
+            return;
+        }
+
+        Direction facing = this.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
+        Direction[] outputDirections = { Direction.DOWN, facing.getClockWise() }; // Bottom & Right side of block
+
+        // For each output side, check if neighbor is a block entity
+        for (Direction direction : outputDirections) {
+            BlockEntity neighbor = level.getBlockEntity(worldPosition.relative(direction));
+            if (neighbor == null) {
+                continue; // Continue search if there's no block entity
+            }
+
+            // Obtains the ItemHandler Capability of neighboring blocks
+            IItemHandler neighborHandler = level.getCapability(Capabilities.ItemHandler.BLOCK,
+                    worldPosition.relative(direction),
+                    direction.getOpposite());
+
+            if (neighborHandler != null) {
+                // If current checked block has ItemHandler Capability...
+                // First check through ItemHandlerHelper that the ItemStack from our output can be inserted
+                ItemStack remainder = ItemHandlerHelper.insertItem(neighborHandler, outputStack, false);
+
+                // Obtains the remainder of what cannot be inserted
+                // // In that case, the output slot is updated to match the remainder (as remaining items to be pushed)
+                if (remainder.getCount() < outputStack.getCount()) {
+                    itemHandler.setStackInSlot(OUTPUT_SLOT, remainder);
+                    setChanged();
+                    return; // Stops after item is successfully pushed to neighbor block
+                }
+            }
+        }
     }
 }

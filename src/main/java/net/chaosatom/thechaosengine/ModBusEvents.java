@@ -9,6 +9,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
 
 @EventBusSubscriber(modid = TheChaosEngine.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class ModBusEvents {
@@ -19,7 +20,9 @@ public class ModBusEvents {
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ModBlockEntities.COMPACT_PULVERIZER_BE.get(),
                 CompactPulverizerBlockEntity::getEnergyStorage);
 
-        // Checks that the input side of the generator is a valid item pusher, accepts items from that side only
+        /* Checks that the input side of the generator is a valid item pusher, accepts items from that side only
+        * I am unsure if this is okay to but this logic in here...
+        */
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntities.COMPACT_COAL_GENERATOR_BE.get(),
                 (blockEntity, side) -> {
                     Direction facing = blockEntity.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
@@ -30,5 +33,8 @@ public class ModBusEvents {
                     }
                     return null;
                 });
+
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntities.COMPACT_PULVERIZER_BE.get(),
+                SidedInvWrapper::new);
     }
 }

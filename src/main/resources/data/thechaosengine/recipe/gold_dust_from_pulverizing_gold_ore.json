@@ -6,5 +6,7 @@
   "result": {
     "id": "thechaosengine:gold_dust",
     "count": 2
-  }
+  },
+  "processtime": 160,
+  "energy": 1
 }

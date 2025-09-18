@@ -70,6 +70,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         oreBlastingSingle(recipeOutput, ModItems.COPPER_DUST.get(), RecipeCategory.MISC, Items.COPPER_INGOT,
                 0.7f, 90, "copper_ingot");
 
+        // Ore Pulverizing
+
+
     }
 
     protected static void oreSmelting(RecipeOutput pRecipeOutput, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult,
