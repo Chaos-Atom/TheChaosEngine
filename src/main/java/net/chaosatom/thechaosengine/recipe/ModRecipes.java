@@ -24,6 +24,16 @@ public class ModRecipes {
                 }
             });
 
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<InductionFoundryRecipe>> INDUCTION_FOUNDRY_SERIALIZER =
+            SERIALIZERS.register("induction_smelting", InductionFoundryRecipe.Serializer::new);
+    public static final DeferredHolder<RecipeType<?>, RecipeType<InductionFoundryRecipe>> INDUCTION_FOUNDRY_TYPE =
+            TYPES.register("induction_smelting", () -> new RecipeType<InductionFoundryRecipe>() {
+                @Override
+                public String toString() {
+                    return "induction_smelting";
+                }
+            });
+
     public static void register(IEventBus eventBus) {
         SERIALIZERS.register(eventBus);
         TYPES.register(eventBus);

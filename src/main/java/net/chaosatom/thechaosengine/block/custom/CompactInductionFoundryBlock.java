@@ -2,14 +2,11 @@ package net.chaosatom.thechaosengine.block.custom;
 
 import com.mojang.serialization.MapCodec;
 import net.chaosatom.thechaosengine.block.entity.ModBlockEntities;
-import net.chaosatom.thechaosengine.block.entity.custom.CompactPulverizerBlockEntity;
+import net.chaosatom.thechaosengine.block.entity.custom.CompactInductionFoundryBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.ItemParticleOption;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.SimpleMenuProvider;
@@ -29,12 +26,12 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
-public class CompactPulverizerBlock extends BaseEntityBlock {
+public class CompactInductionFoundryBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
-    public static final MapCodec<CompactPulverizerBlock> CODEC = simpleCodec(CompactPulverizerBlock::new);
+    public static final MapCodec<CompactInductionFoundryBlock> CODEC = simpleCodec(CompactInductionFoundryBlock::new);
 
-    public CompactPulverizerBlock(Properties properties) {
+    public CompactInductionFoundryBlock(Properties properties) {
         super(properties);
 
         this.registerDefaultState(this.getStateDefinition().any()
@@ -75,7 +72,7 @@ public class CompactPulverizerBlock extends BaseEntityBlock {
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new CompactPulverizerBlockEntity(blockPos, blockState);
+        return new CompactInductionFoundryBlockEntity(blockPos, blockState);
     }
 
     @Override
@@ -87,8 +84,8 @@ public class CompactPulverizerBlock extends BaseEntityBlock {
     protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
         if (state.getBlock() != newState.getBlock()) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
-            if (blockEntity instanceof CompactPulverizerBlockEntity compactPulverizerBlockEntity) {
-                compactPulverizerBlockEntity.drops();
+            if (blockEntity instanceof CompactInductionFoundryBlockEntity compactInductionFoundryBlockEntity) {
+                compactInductionFoundryBlockEntity.drops();
             }
         }
 
@@ -100,9 +97,9 @@ public class CompactPulverizerBlock extends BaseEntityBlock {
                                               InteractionHand hand, BlockHitResult hitResult) {
         if (!level.isClientSide()) {
             BlockEntity entity = level.getBlockEntity(pos);
-            if (entity instanceof CompactPulverizerBlockEntity compactPulverizerBlockEntity) {
-                ((ServerPlayer) player).openMenu(new SimpleMenuProvider(compactPulverizerBlockEntity,
-                        Component.translatable("block.thechaosengine.compact_pulverizer")), pos);
+            if (entity instanceof CompactInductionFoundryBlockEntity compactInductionFoundryBlockEntity) {
+                ((ServerPlayer) player).openMenu(new SimpleMenuProvider(compactInductionFoundryBlockEntity,
+                        Component.translatable("block.thechaosengine.compact_induction_foundry")), pos);
             } else {
                 throw new IllegalStateException("Our Container provider is missing!");
             }
@@ -116,43 +113,10 @@ public class CompactPulverizerBlock extends BaseEntityBlock {
             return null;
         }
 
-        return createTickerHelper(blockEntityType, ModBlockEntities.COMPACT_PULVERIZER_BE.get(),
-                (level1, blockPos, blockState, compactPulverizerBlockEntity)
-                        -> compactPulverizerBlockEntity.tick(level1, blockPos, blockState));
+        return createTickerHelper(blockEntityType, ModBlockEntities.COMPACT_INDUCTION_FOUNDRY_BE.get(),
+                (level1, blockPos, blockState, compactInductionFoundryBlockEntity)
+                        -> compactInductionFoundryBlockEntity.tick(level1, blockPos, blockState));
     }
 
-    /* SOUNDS & PARTICLES */
-    @Override
-    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
-        if (!state.getValue(LIT)) {
-            return;
-        }
-        double xPos = (double)pos.getX() + (double)0.5F;
-        double yPos = (double)pos.getY() + (double)1.05F;
-        double zPos = (double)pos.getZ() + (double)0.5F;
-        /* TODO: Add custom sounds
-        if (random.nextDouble() < 0.1) {
-            // Plays sounds at a specific spot
-            level.playLocalSound(xPos, yPos, zPos, SoundEvents.STONE_BREAK, SoundSource.BLOCKS,
-                    0.85F, 1F,
-                    true);
-        }
-         */
-
-        double spread = 0.34; // Higher values gives greater spread about origin
-        double jump = 0.12; // Higher the value, the further the particles will spawn from origin
-        double xOffset = random.nextDouble() * spread - 0.25;
-        double yOffset =  Math.abs(random.nextDouble() * jump);
-        double zOffset = random.nextDouble() * spread - 0.25;
-        double wiggle = random.nextDouble() * 0.15; // Adds randomness to speed
-        if (level.getBlockEntity(pos) instanceof CompactPulverizerBlockEntity compactPulverizerBlockEntity
-                && !compactPulverizerBlockEntity.itemHandler.getStackInSlot(0).isEmpty()) {
-            level.addParticle(ParticleTypes.CRIT,
-                    xPos + xOffset, yPos + yOffset, zPos + zOffset,
-                    (double)0.0F, (double)0.01F, (double)0.0F);
-            level.addParticle(new ItemParticleOption(ParticleTypes.ITEM, compactPulverizerBlockEntity.itemHandler.getStackInSlot(0)),
-                    xPos + xOffset, yPos + yOffset, zPos + zOffset,
-                    (double)0.0F, (double)0.02F + wiggle, (double)0.0F);
-        }
-    }
+    // TODO: Add animateTick Method & logic
 }

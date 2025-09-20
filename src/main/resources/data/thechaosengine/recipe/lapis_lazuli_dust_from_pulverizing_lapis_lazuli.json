@@ -1,0 +1,12 @@
+{
+  "type": "thechaosengine:pulverizing",
+  "ingredient": {
+    "item": "minecraft:lapis_lazuli"
+  },
+  "result": {
+    "id": "thechaosengine:lapis_lazuli_dust",
+    "count": 1
+  },
+  "processtime": 48,
+  "energy": 1
+}

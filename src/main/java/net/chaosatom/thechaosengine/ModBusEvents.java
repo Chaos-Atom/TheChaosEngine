@@ -2,6 +2,7 @@ package net.chaosatom.thechaosengine;
 
 import net.chaosatom.thechaosengine.block.entity.ModBlockEntities;
 import net.chaosatom.thechaosengine.block.entity.custom.CompactCoalGeneratorBlockEntity;
+import net.chaosatom.thechaosengine.block.entity.custom.CompactInductionFoundryBlockEntity;
 import net.chaosatom.thechaosengine.block.entity.custom.CompactPulverizerBlockEntity;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -19,6 +20,8 @@ public class ModBusEvents {
                 CompactCoalGeneratorBlockEntity::getEnergyStorage);
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ModBlockEntities.COMPACT_PULVERIZER_BE.get(),
                 CompactPulverizerBlockEntity::getEnergyStorage);
+        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ModBlockEntities.COMPACT_INDUCTION_FOUNDRY_BE.get(),
+                CompactInductionFoundryBlockEntity::getEnergyStorage);
 
         /* Checks that the input side of the generator is a valid item pusher, accepts items from that side only
         * I am unsure if this is okay to but this logic in here...
@@ -35,6 +38,8 @@ public class ModBusEvents {
                 });
 
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntities.COMPACT_PULVERIZER_BE.get(),
+                SidedInvWrapper::new);
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntities.COMPACT_INDUCTION_FOUNDRY_BE.get(),
                 SidedInvWrapper::new);
     }
 }

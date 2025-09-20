@@ -1,5 +1,6 @@
-// 1.21.1	2025-09-17T00:18:00.1530133	Loot Tables
+// 1.21.1	2025-09-19T05:06:50.830027	Loot Tables
 58f9d92e79e4e2e482fd2a2db5c6ca449997281e data/thechaosengine/loot_table/blocks/compact_coal_generator.json
+ba145ac9c9172bde2104371715314fa3d46ae4f6 data/thechaosengine/loot_table/blocks/compact_induction_foundry.json
 851d6593a82a9190935e41ece71d500b9ed4320e data/thechaosengine/loot_table/blocks/compact_pulverizer.json
 bce4cb0b016f2448c7822e82c30f2d4af3b81dd2 data/thechaosengine/loot_table/blocks/copper_dust_block.json
 1db54654c07919615218ed033911eefb8e0df2fe data/thechaosengine/loot_table/blocks/gold_dust_block.json

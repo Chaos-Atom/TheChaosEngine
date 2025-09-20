@@ -5,6 +5,7 @@
   "item.thechaosengine.gold_dust": "Gold Dust",
   "item.thechaosengine.copper_dust": "Copper Dust",
   "item.thechaosengine.coal_dust": "Coal Dust",
+  "item.thechaosengine.lapis_lazuli_dust": "Lapis Lazuli Dust",
 
   "item.thechaosengine.iron_chunk": "Iron Chunk",
   "item.thechaosengine.gold_chunk": "Gold Chunk",
@@ -32,9 +33,11 @@
 
   "block.thechaosengine.compact_coal_generator": "Compact Coal Generator",
   "block.thechaosengine.compact_pulverizer": "Compact Pulverizer",
+  "block.thechaosengine.compact_induction_foundry": "Compact Induction Foundry",
 
   "blockentity.thechaosengine.compact_coal_generator": "Compact Coal Generator",
   "blockentity.thechaosengine.compact_pulverizer": "Compact Pulverizer",
+  "blockentity.thechaosengine.compact_induction_foundry": "Compact Induction Foundry",
 
   "tooltip.thechaosengine.compact_coal_generator_stickynote": "Sticky Note"
 }

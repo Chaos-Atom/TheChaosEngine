@@ -1,0 +1,12 @@
+{
+  "type": "thechaosengine:pulverizing",
+  "ingredient": {
+    "item": "minecraft:coal"
+  },
+  "result": {
+    "id": "thechaosengine:coal_dust",
+    "count": 1
+  },
+  "processtime": 43,
+  "energy": 1
+}

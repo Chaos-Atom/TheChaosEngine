@@ -124,7 +124,7 @@ public class CompactCoalGeneratorBlockEntity extends BlockEntity implements Menu
         }
 
         // Starts a new fuel burn cycle when block is idle and has correct fuel item according to hashmap
-        if (burnProgress <= 0 && hasFuelItemInSlot()) {
+        if (burnProgress <= 0 && hasFuelItemInSlot() && ENERGY_STORAGE.getEnergyStored() < 32000) {
             Item fuelItem = this.itemHandler.getStackInSlot(INPUT_SLOT).getItem(); // Assigns item based on slot's item
             // Grabs item-specific data assigned in map & record from fuelItem
             FuelItemRecipes.FuelData fuelData = FuelItemRecipes.FUEL_STATS.get(fuelItem);

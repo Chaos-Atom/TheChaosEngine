@@ -3,6 +3,7 @@ package net.chaosatom.thechaosengine.block;
 import com.mojang.serialization.MapCodec;
 import net.chaosatom.thechaosengine.TheChaosEngine;
 import net.chaosatom.thechaosengine.block.custom.CompactCoalGeneratorBlock;
+import net.chaosatom.thechaosengine.block.custom.CompactInductionFoundryBlock;
 import net.chaosatom.thechaosengine.block.custom.CompactPulverizerBlock;
 import net.chaosatom.thechaosengine.item.ModItems;
 import net.minecraft.world.item.BlockItem;
@@ -38,7 +39,6 @@ public class ModBlocks {
                     return null;
                 }
             });
-
     public static final DeferredBlock<Block> COPPER_DUST_BLOCK = registerBlock("copper_dust_block",
             () -> new FallingBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_ORANGE).strength(1f).sound(SoundType.SAND))
             {
@@ -53,6 +53,8 @@ public class ModBlocks {
             () -> new CompactCoalGeneratorBlock(BlockBehaviour.Properties.of().noOcclusion().strength(3f)));
     public static final DeferredBlock<Block> COMPACT_PULVERIZER = registerBlock("compact_pulverizer",
             () -> new CompactPulverizerBlock(BlockBehaviour.Properties.of().noOcclusion().strength(3f)));
+    public static final DeferredBlock<Block> COMPACT_INDUCTION_FOUNDRY = registerBlock("compact_induction_foundry",
+            () -> new CompactInductionFoundryBlock(BlockBehaviour.Properties.of().noOcclusion().strength(3f)));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

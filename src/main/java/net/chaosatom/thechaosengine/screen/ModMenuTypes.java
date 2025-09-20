@@ -2,6 +2,7 @@ package net.chaosatom.thechaosengine.screen;
 
 import net.chaosatom.thechaosengine.TheChaosEngine;
 import net.chaosatom.thechaosengine.screen.custom.CompactCoalGeneratorMenu;
+import net.chaosatom.thechaosengine.screen.custom.CompactInductionFoundryMenu;
 import net.chaosatom.thechaosengine.screen.custom.CompactPulverizerMenu;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -21,6 +22,9 @@ public class ModMenuTypes {
 
     public static final DeferredHolder<MenuType<?>, MenuType<CompactPulverizerMenu>> COMPACT_PULVERIZER_MENU =
             registerMenuType("compact_pulverizer_menu", CompactPulverizerMenu::new);
+
+    public static final DeferredHolder<MenuType<?>, MenuType<CompactInductionFoundryMenu>> COMPACT_INDUCTION_FOUNDRY_MENU =
+            registerMenuType("compact_induction_foundry_menu", CompactInductionFoundryMenu::new);
 
     private static <T extends AbstractContainerMenu>DeferredHolder<MenuType<?>,
             MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {

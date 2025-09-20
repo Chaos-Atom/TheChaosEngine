@@ -19,6 +19,8 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> COAL_DUST = ITEMS.register("coal_dust",
             () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> LAPIS_LAZULI_DUST = ITEMS.register("lapis_lazuli_dust",
+            () -> new Item(new Item.Properties()));
 
     // Tier 2 Ore Processing
     public static final DeferredItem<Item> IRON_CHUNK = ITEMS.register("iron_chunk",

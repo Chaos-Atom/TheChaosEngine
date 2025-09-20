@@ -2,10 +2,8 @@ package net.chaosatom.thechaosengine.block.entity.custom;
 
 import net.chaosatom.thechaosengine.block.entity.ModBlockEntities;
 import net.chaosatom.thechaosengine.block.entity.energy.ModEnergyStorage;
-import net.chaosatom.thechaosengine.recipe.ModRecipes;
-import net.chaosatom.thechaosengine.recipe.PulverizerRecipe;
-import net.chaosatom.thechaosengine.recipe.PulverizerRecipeInput;
-import net.chaosatom.thechaosengine.screen.custom.CompactPulverizerMenu;
+import net.chaosatom.thechaosengine.recipe.*;
+import net.chaosatom.thechaosengine.screen.custom.CompactInductionFoundryMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -38,7 +36,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
-public class CompactPulverizerBlockEntity extends BlockEntity implements MenuProvider, WorldlyContainer {
+public class CompactInductionFoundryBlockEntity extends BlockEntity implements MenuProvider, WorldlyContainer {
     public final ItemStackHandler itemHandler = new ItemStackHandler(2) {
         @Override
         protected void onContentsChanged(int slot) {
@@ -49,16 +47,18 @@ public class CompactPulverizerBlockEntity extends BlockEntity implements MenuPro
         }
     };
 
-    // Makes it easier to tell what each slot index represents
+    // Labeled Slot Index
     private static final int INPUT_SLOT = 0;
     private static final int OUTPUT_SLOT = 1;
 
+
+    // Inventory & Processing Related
     private final ContainerData data;
     private int progress = 0;
     private int maxProgress = 65;
     private final int DEFAULT_MAX_PROGRESS = 65;
 
-    private static final int ENERGY_CRAFT_AMOUNT = 1; // amount of energy per Tick to craft
+    private static final int ENERGY_CRAFT_AMOUNT = 2;
 
     private final ModEnergyStorage ENERGY_STORAGE = createEnergyStorage();
     private ModEnergyStorage createEnergyStorage() {
@@ -76,14 +76,23 @@ public class CompactPulverizerBlockEntity extends BlockEntity implements MenuPro
         return this.ENERGY_STORAGE;
     }
 
-    public CompactPulverizerBlockEntity(BlockPos pos, BlockState blockState) {
-        super(ModBlockEntities.COMPACT_PULVERIZER_BE.get(), pos, blockState);
+    public void drops() {
+        SimpleContainer inventory = new SimpleContainer(itemHandler.getSlots());
+        for (int i = 0; i < itemHandler.getSlots(); i++) {
+            inventory.setItem(i, itemHandler.getStackInSlot(i));
+        }
+        assert this.level != null;
+        Containers.dropContents(this.level, this.worldPosition, inventory);
+    }
+
+    public CompactInductionFoundryBlockEntity(BlockPos pos, BlockState blockState) {
+        super(ModBlockEntities.COMPACT_INDUCTION_FOUNDRY_BE.get(), pos, blockState);
         this.data = new ContainerData() {
             @Override
             public int get(int index) {
                 return switch (index) {
-                    case 0 -> CompactPulverizerBlockEntity.this.progress;
-                    case 1 -> CompactPulverizerBlockEntity.this.maxProgress;
+                    case 0 -> CompactInductionFoundryBlockEntity.this.progress;
+                    case 1 -> CompactInductionFoundryBlockEntity.this.maxProgress;
                     default -> 0;
                 };
             }
@@ -91,8 +100,8 @@ public class CompactPulverizerBlockEntity extends BlockEntity implements MenuPro
             @Override
             public void set(int index, int value) {
                 switch (index) {
-                    case 0: CompactPulverizerBlockEntity.this.progress = value;
-                    case 1: CompactPulverizerBlockEntity.this.maxProgress = value;
+                    case 0 : CompactInductionFoundryBlockEntity.this.progress = value;
+                    case 1: CompactInductionFoundryBlockEntity.this.maxProgress = value;
                 }
             }
 
@@ -103,19 +112,10 @@ public class CompactPulverizerBlockEntity extends BlockEntity implements MenuPro
         };
     }
 
-    public void drops() {
-        SimpleContainer inventory = new SimpleContainer(itemHandler.getSlots());
-        for (int i = 0; i < itemHandler.getSlots(); i++) {
-            inventory.setItem(i, itemHandler.getStackInSlot(i));
-        }
-        assert this.level != null;
-        Containers.dropContents(this.level, this.worldPosition, inventory);
-    }
-
     /* Main Processing Logic */
 
     public void tick(Level level, BlockPos blockPos, BlockState blockState) {
-        Optional<RecipeHolder<PulverizerRecipe>> recipe = getCurrentRecipe();
+        Optional<RecipeHolder<InductionFoundryRecipe>> recipe = getCurrentRecipe();
         boolean wasWorkingThisTick = false;
 
         if (recipe.isEmpty() || !isOutputSlotEmptyOrReceivable()) {
@@ -148,14 +148,12 @@ public class CompactPulverizerBlockEntity extends BlockEntity implements MenuPro
     }
     /* Custom Crafting Logic via Helper methods */
 
-    // Simple helper boolean helper to check if the machine should stay on if there is still more work to do.
-    // Mostly used to remove flicker effect when the machine turns off on the same tick that it will turn back on for next craft
     private boolean canStillWork() {
         return itemHandler.getStackInSlot(INPUT_SLOT).getCount() > 0 && hasRecipe();
     }
 
     private void useEnergyForCrafting() {
-        Optional<RecipeHolder<PulverizerRecipe>> recipe = getCurrentRecipe();
+        Optional<RecipeHolder<InductionFoundryRecipe>> recipe = getCurrentRecipe();
         int specificEnergyCost = recipe.get().value().energy();
         this.ENERGY_STORAGE.extractEnergy(specificEnergyCost, false);
     }
@@ -166,7 +164,7 @@ public class CompactPulverizerBlockEntity extends BlockEntity implements MenuPro
     }
 
     private void craftItem() {
-        Optional<RecipeHolder<PulverizerRecipe>> recipe = getCurrentRecipe();
+        Optional<RecipeHolder<InductionFoundryRecipe>> recipe = getCurrentRecipe();
         if (recipe.isEmpty()) {
             return;
         }
@@ -178,7 +176,7 @@ public class CompactPulverizerBlockEntity extends BlockEntity implements MenuPro
     }
 
     private boolean hasCraftingFinished() {
-        Optional<RecipeHolder<PulverizerRecipe>> recipe = getCurrentRecipe();
+        Optional<RecipeHolder<InductionFoundryRecipe>> recipe = getCurrentRecipe();
         int specificProgress = recipe.get().value().processTime();
         return this.progress >= specificProgress;
     }
@@ -189,7 +187,7 @@ public class CompactPulverizerBlockEntity extends BlockEntity implements MenuPro
     }
 
     private boolean hasRecipe() {
-        Optional<RecipeHolder<PulverizerRecipe>> recipe = getCurrentRecipe();
+        Optional<RecipeHolder<InductionFoundryRecipe>> recipe = getCurrentRecipe();
         if (recipe.isEmpty()) {
             return false;
         }
@@ -205,9 +203,10 @@ public class CompactPulverizerBlockEntity extends BlockEntity implements MenuPro
         return this.ENERGY_STORAGE.getEnergyStored() >= ENERGY_CRAFT_AMOUNT * maxProgress;
     }
 
-    private Optional<RecipeHolder<PulverizerRecipe>> getCurrentRecipe() {
+    private Optional<RecipeHolder<InductionFoundryRecipe>> getCurrentRecipe() {
         return this.level.getRecipeManager()
-                .getRecipeFor(ModRecipes.PULVERIZER_TYPE.get(), new PulverizerRecipeInput(itemHandler.getStackInSlot(INPUT_SLOT)), level);
+                .getRecipeFor(ModRecipes.INDUCTION_FOUNDRY_TYPE.get(),
+                        new InductionFoundryRecipeInput(itemHandler.getStackInSlot(INPUT_SLOT)), level);
     }
 
     private boolean canInsertItemInputIntoOutputSlot(ItemStack output) {
@@ -222,26 +221,26 @@ public class CompactPulverizerBlockEntity extends BlockEntity implements MenuPro
         return maxCount >= currentCount + count;
     }
 
-    // General Block Entity Methods
+    /* General Block Entity Methods */
 
     @Override
     public @NotNull Component getDisplayName() {
-        return Component.translatable("blockentity.thechaosengine.compact_pulverizer");
+        return Component.translatable("blockentity.thechaosnegine.compact_induction_foundry");
     }
 
     @Override
     public @Nullable AbstractContainerMenu createMenu(int containerId, Inventory inventory, Player player) {
-        return new CompactPulverizerMenu(containerId, inventory, this, this.data);
+        return new CompactInductionFoundryMenu(containerId, inventory, this, this.data);
     }
 
     @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         tag.put("inventory", itemHandler.serializeNBT(registries));
 
-        tag.putInt("compact_pulverizer.progress", progress);
-        tag.putInt("compact_pulverizer.max_progress", maxProgress);
+        tag.putInt("compact_induction_foundry.progress", progress);
+        tag.putInt("compact_induction_foundry.max_progress", maxProgress);
 
-        tag.putInt("compact_pulverizer.energy", ENERGY_STORAGE.getEnergyStored());
+        tag.putInt("compact_induction_foundry.energy", ENERGY_STORAGE.getEnergyStored());
 
         super.saveAdditional(tag, registries);
     }
@@ -250,10 +249,10 @@ public class CompactPulverizerBlockEntity extends BlockEntity implements MenuPro
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         itemHandler.deserializeNBT(registries, tag.getCompound("inventory"));
 
-        progress = tag.getInt("compact_pulverizer.progress");
-        maxProgress = tag.getInt("compact_pulverizer.max_progress");
+        progress = tag.getInt("compact_induction_foundry.progress");
+        maxProgress = tag.getInt("compact_induction_foundry.max_progress");
 
-        ENERGY_STORAGE.setEnergy(tag.getInt("compact_pulverizer.energy"));
+        ENERGY_STORAGE.setEnergy(tag.getInt("compact_induction_foundry.energy"));
 
         super.loadAdditional(tag, registries);
     }
@@ -268,12 +267,10 @@ public class CompactPulverizerBlockEntity extends BlockEntity implements MenuPro
         return saveWithoutMetadata(pRegistries);
     }
 
-    /* Sided Inventory via WorldlyContainers
-    * This stuff really melted my brain at first...
-    */
+    /* WorldlyContainer Methods */
 
     @Override
-    public int[] getSlotsForFace(Direction side) {
+    public int[] getSlotsForFace(Direction direction) {
         return new int[]{INPUT_SLOT, OUTPUT_SLOT};
     }
 
@@ -336,7 +333,6 @@ public class CompactPulverizerBlockEntity extends BlockEntity implements MenuPro
             itemHandler.setStackInSlot(i, ItemStack.EMPTY);
         }
     }
-    /* Additional Sided Inventory Logic */
 
     private void pushOutputs() {
         // Ends method call if there is no more items to push

@@ -1,0 +1,12 @@
+{
+  "type": "thechaosengine:induction_smelting",
+  "ingredient": {
+    "item": "thechaosengine:iron_dust"
+  },
+  "result": {
+    "id": "minecraft:iron_ingot",
+    "count": 1
+  },
+  "processtime": 50,
+  "energy": 1
+}

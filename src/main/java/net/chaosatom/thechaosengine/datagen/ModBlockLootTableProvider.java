@@ -31,6 +31,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         dropSelf(ModBlocks.COMPACT_COAL_GENERATOR.get());
         dropSelf(ModBlocks.COMPACT_PULVERIZER.get());
+        dropSelf(ModBlocks.COMPACT_INDUCTION_FOUNDRY.get());
     }
 
     // Modified version of createCopperOreDrops to be more generic

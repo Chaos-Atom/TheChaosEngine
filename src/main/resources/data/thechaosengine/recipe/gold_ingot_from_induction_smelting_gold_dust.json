@@ -1,0 +1,12 @@
+{
+  "type": "thechaosengine:induction_smelting",
+  "ingredient": {
+    "item": "thechaosengine:gold_dust"
+  },
+  "result": {
+    "id": "minecraft:gold_ingot",
+    "count": 1
+  },
+  "processtime": 25,
+  "energy": 3
+}

@@ -24,6 +24,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.GOLD_DUST);
                         output.accept(ModItems.COPPER_DUST);
                         output.accept(ModItems.COAL_DUST);
+                        output.accept(ModItems.LAPIS_LAZULI_DUST);
                         output.accept(ModItems.IRON_CHUNK);
                         output.accept(ModItems.GOLD_CHUNK);
                         output.accept(ModItems.COPPER_CHUNK);
@@ -48,6 +49,7 @@ public class ModCreativeModeTabs {
                         // MACHINE BLOCKS (SINGLE)
                         output.accept(ModBlocks.COMPACT_COAL_GENERATOR);
                         output.accept(ModBlocks.COMPACT_PULVERIZER);
+                        output.accept(ModBlocks.COMPACT_INDUCTION_FOUNDRY);
                     }).build());
 
     public static void register(IEventBus eventBus) {
