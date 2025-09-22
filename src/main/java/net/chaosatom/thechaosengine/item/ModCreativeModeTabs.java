@@ -50,6 +50,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.COMPACT_COAL_GENERATOR);
                         output.accept(ModBlocks.COMPACT_PULVERIZER);
                         output.accept(ModBlocks.COMPACT_INDUCTION_FOUNDRY);
+                        output.accept(ModBlocks.ATMOSPHERIC_CONDENSER);
                     }).build());
 
     public static void register(IEventBus eventBus) {

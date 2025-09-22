@@ -1,6 +1,7 @@
 package net.chaosatom.thechaosengine;
 
 import net.chaosatom.thechaosengine.block.entity.ModBlockEntities;
+import net.chaosatom.thechaosengine.block.entity.custom.AtmosphericCondenserBlockEntity;
 import net.chaosatom.thechaosengine.block.entity.custom.CompactCoalGeneratorBlockEntity;
 import net.chaosatom.thechaosengine.block.entity.custom.CompactInductionFoundryBlockEntity;
 import net.chaosatom.thechaosengine.block.entity.custom.CompactPulverizerBlockEntity;
@@ -22,6 +23,11 @@ public class ModBusEvents {
                 CompactPulverizerBlockEntity::getEnergyStorage);
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ModBlockEntities.COMPACT_INDUCTION_FOUNDRY_BE.get(),
                 CompactInductionFoundryBlockEntity::getEnergyStorage);
+        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ModBlockEntities.ATMOSPHERIC_CONDENSER_BE.get(),
+                AtmosphericCondenserBlockEntity::getEnergyStorage);
+
+        event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, ModBlockEntities.ATMOSPHERIC_CONDENSER_BE.get(),
+                AtmosphericCondenserBlockEntity::getTank);
 
         /* Checks that the input side of the generator is a valid item pusher, accepts items from that side only
         * I am unsure if this is okay to but this logic in here...

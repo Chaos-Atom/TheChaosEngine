@@ -34,10 +34,17 @@
   "block.thechaosengine.compact_coal_generator": "Compact Coal Generator",
   "block.thechaosengine.compact_pulverizer": "Compact Pulverizer",
   "block.thechaosengine.compact_induction_foundry": "Compact Induction Foundry",
+  "block.thechaosengine.atmospheric_condenser": "Atmospheric Condenser",
+
+  "block.thechaosengine.atmospheric_condenser.tooltip": "§7Currently not deployed, place on ground and right-click to deploy.§r",
 
   "blockentity.thechaosengine.compact_coal_generator": "Compact Coal Generator",
   "blockentity.thechaosengine.compact_pulverizer": "Compact Pulverizer",
   "blockentity.thechaosengine.compact_induction_foundry": "Compact Induction Foundry",
+  "blockentity.thechaosengine.atmospheric_condenser": "Atmospheric Condenser",
 
-  "tooltip.thechaosengine.compact_coal_generator_stickynote": "Sticky Note"
+  "tooltip.thechaosengine.compact_coal_generator_stickynote": "Sticky Note",
+
+  "tooltip.thechaosengine.liquid.amount.with.capacity": "%s / %s mB",
+  "tooltip.thechaosengine.liquid.amount": "%s mB"
 }

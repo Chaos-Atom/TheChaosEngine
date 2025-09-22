@@ -2,6 +2,7 @@ package net.chaosatom.thechaosengine.block;
 
 import com.mojang.serialization.MapCodec;
 import net.chaosatom.thechaosengine.TheChaosEngine;
+import net.chaosatom.thechaosengine.block.custom.AtmosphericCondenserBlock;
 import net.chaosatom.thechaosengine.block.custom.CompactCoalGeneratorBlock;
 import net.chaosatom.thechaosengine.block.custom.CompactInductionFoundryBlock;
 import net.chaosatom.thechaosengine.block.custom.CompactPulverizerBlock;
@@ -55,6 +56,8 @@ public class ModBlocks {
             () -> new CompactPulverizerBlock(BlockBehaviour.Properties.of().noOcclusion().strength(3f)));
     public static final DeferredBlock<Block> COMPACT_INDUCTION_FOUNDRY = registerBlock("compact_induction_foundry",
             () -> new CompactInductionFoundryBlock(BlockBehaviour.Properties.of().noOcclusion().strength(3f)));
+    public static final DeferredBlock<Block> ATMOSPHERIC_CONDENSER = registerBlock("atmospheric_condenser",
+            () -> new AtmosphericCondenserBlock(BlockBehaviour.Properties.of().noOcclusion().strength(3f)));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

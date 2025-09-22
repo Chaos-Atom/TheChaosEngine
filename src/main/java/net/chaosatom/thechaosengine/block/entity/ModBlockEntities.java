@@ -2,6 +2,7 @@ package net.chaosatom.thechaosengine.block.entity;
 
 import net.chaosatom.thechaosengine.TheChaosEngine;
 import net.chaosatom.thechaosengine.block.ModBlocks;
+import net.chaosatom.thechaosengine.block.entity.custom.AtmosphericCondenserBlockEntity;
 import net.chaosatom.thechaosengine.block.entity.custom.CompactCoalGeneratorBlockEntity;
 import net.chaosatom.thechaosengine.block.entity.custom.CompactInductionFoundryBlockEntity;
 import net.chaosatom.thechaosengine.block.entity.custom.CompactPulverizerBlockEntity;
@@ -27,6 +28,10 @@ public class ModBlockEntities {
     public static final Supplier<BlockEntityType<CompactInductionFoundryBlockEntity>> COMPACT_INDUCTION_FOUNDRY_BE =
             BLOCK_ENTITIES.register("compact_induction_foundry_be", () -> BlockEntityType.Builder.of(
                     CompactInductionFoundryBlockEntity::new, ModBlocks.COMPACT_INDUCTION_FOUNDRY.get()).build(null));
+
+    public static final Supplier<BlockEntityType<AtmosphericCondenserBlockEntity>> ATMOSPHERIC_CONDENSER_BE =
+            BLOCK_ENTITIES.register("atmospheric_condenesr_be", () -> BlockEntityType.Builder.of(
+                    AtmosphericCondenserBlockEntity::new, ModBlocks.ATMOSPHERIC_CONDENSER.get()).build(null));
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

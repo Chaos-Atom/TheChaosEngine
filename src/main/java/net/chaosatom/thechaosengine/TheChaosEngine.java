@@ -2,15 +2,16 @@ package net.chaosatom.thechaosengine;
 
 import net.chaosatom.thechaosengine.block.ModBlocks;
 import net.chaosatom.thechaosengine.block.entity.ModBlockEntities;
-import net.chaosatom.thechaosengine.block.entity.renderer.CompactInductionFoundryBlockEntityRenderer;
+import net.chaosatom.thechaosengine.client.renderer.AtmosphericCondenserBlockEntityRenderer;
+import net.chaosatom.thechaosengine.client.renderer.CompactInductionFoundryBlockEntityRenderer;
 import net.chaosatom.thechaosengine.item.ModCreativeModeTabs;
 import net.chaosatom.thechaosengine.item.ModItems;
 import net.chaosatom.thechaosengine.recipe.ModRecipes;
 import net.chaosatom.thechaosengine.screen.ModMenuTypes;
+import net.chaosatom.thechaosengine.screen.custom.AtmosphericCondenserScreen;
 import net.chaosatom.thechaosengine.screen.custom.CompactCoalGeneratorScreen;
 import net.chaosatom.thechaosengine.screen.custom.CompactInductionFoundryScreen;
 import net.chaosatom.thechaosengine.screen.custom.CompactPulverizerScreen;
-import net.neoforged.fml.earlydisplay.ElementShader;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import org.slf4j.Logger;
@@ -89,6 +90,7 @@ public class TheChaosEngine {
         @SubscribeEvent
         public static void registerBlockEntityRenderer(EntityRenderersEvent.RegisterRenderers event) {
             event.registerBlockEntityRenderer(ModBlockEntities.COMPACT_INDUCTION_FOUNDRY_BE.get(), CompactInductionFoundryBlockEntityRenderer::new);
+            event.registerBlockEntityRenderer(ModBlockEntities.ATMOSPHERIC_CONDENSER_BE.get(), AtmosphericCondenserBlockEntityRenderer::new);
         }
 
         @SubscribeEvent
@@ -96,6 +98,7 @@ public class TheChaosEngine {
             event.register(ModMenuTypes.COMPACT_COAL_GENERATOR_MENU.get(), CompactCoalGeneratorScreen::new);
             event.register(ModMenuTypes.COMPACT_PULVERIZER_MENU.get(), CompactPulverizerScreen::new);
             event.register(ModMenuTypes.COMPACT_INDUCTION_FOUNDRY_MENU.get(), CompactInductionFoundryScreen::new);
+            event.register(ModMenuTypes.ATMOSPHERIC_CONDENSER_MENU.get(), AtmosphericCondenserScreen::new);
         }
     }
 }

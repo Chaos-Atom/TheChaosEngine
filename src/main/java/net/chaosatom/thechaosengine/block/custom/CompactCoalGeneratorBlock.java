@@ -131,6 +131,13 @@ public class CompactCoalGeneratorBlock extends BaseEntityBlock {
                     0.75F,
                     false);
         }
+
+        // TODO: Fix particle directionality
+        Direction direction = state.getValue(FACING);
+        Direction.Axis directionAxis = direction.getAxis();
+        double d3 = directionAxis == Direction.Axis.X ? (double)direction.getStepX() * 0.5: 0;
+        double d4 = directionAxis == Direction.Axis.Z ? (double)direction.getStepZ() * 0.5: 0;
+
         if (level.getBlockEntity(pos) instanceof CompactCoalGeneratorBlockEntity compactCoalGeneratorBlockEntity
                 && !compactCoalGeneratorBlockEntity.itemHandler.getStackInSlot(0).isEmpty()) {
             // Creates smoke particles at a specific spot on the block.

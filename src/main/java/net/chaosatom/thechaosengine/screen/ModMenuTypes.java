@@ -1,6 +1,7 @@
 package net.chaosatom.thechaosengine.screen;
 
 import net.chaosatom.thechaosengine.TheChaosEngine;
+import net.chaosatom.thechaosengine.screen.custom.AtmosphericCondenserMenu;
 import net.chaosatom.thechaosengine.screen.custom.CompactCoalGeneratorMenu;
 import net.chaosatom.thechaosengine.screen.custom.CompactInductionFoundryMenu;
 import net.chaosatom.thechaosengine.screen.custom.CompactPulverizerMenu;
@@ -25,6 +26,9 @@ public class ModMenuTypes {
 
     public static final DeferredHolder<MenuType<?>, MenuType<CompactInductionFoundryMenu>> COMPACT_INDUCTION_FOUNDRY_MENU =
             registerMenuType("compact_induction_foundry_menu", CompactInductionFoundryMenu::new);
+
+    public static final DeferredHolder<MenuType<?>, MenuType<AtmosphericCondenserMenu>> ATMOSPHERIC_CONDENSER_MENU =
+            registerMenuType("atmospheric_condenser_menu", AtmosphericCondenserMenu::new);
 
     private static <T extends AbstractContainerMenu>DeferredHolder<MenuType<?>,
             MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {
