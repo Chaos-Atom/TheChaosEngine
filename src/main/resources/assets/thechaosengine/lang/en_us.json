@@ -31,6 +31,16 @@
   "block.thechaosengine.gold_dust_block": "Block of Gold Dust",
   "block.thechaosengine.copper_dust_block": "Block of Copper Dust",
 
+  "block.thechaosengine.bauxite": "Bauxite",
+  "block.thechaosengine.bauxite_stairs": "Bauxite Stairs",
+  "block.thechaosengine.bauxite_slab": "Bauxite Slab",
+  "block.thechaosengine.bauxite_wall": "Bauxite Wall",
+
+  "block.thechaosengine.polished_bauxite": "Polished Bauxite",
+  "block.thechaosengine.polished_bauxite_stairs": "Polished Bauxite Stairs",
+  "block.thechaosengine.polished_bauxite_slab": "Polished Bauxite Slab",
+  "block.thechaosengine.polished_bauxite_wall": "Polished Bauxite Wall",
+
   "block.thechaosengine.compact_coal_generator": "Compact Coal Generator",
   "block.thechaosengine.compact_pulverizer": "Compact Pulverizer",
   "block.thechaosengine.compact_induction_foundry": "Compact Induction Foundry",
@@ -43,7 +53,7 @@
   "blockentity.thechaosengine.compact_induction_foundry": "Compact Induction Foundry",
   "blockentity.thechaosengine.atmospheric_condenser": "Atmospheric Condenser",
 
-  "tooltip.thechaosengine.compact_coal_generator_stickynote": "Sticky Note",
+  "tooltip.thechaosengine.compact_coal_generator_stickynote": "§7Sticky Note§r",
 
   "tooltip.thechaosengine.liquid.amount.with.capacity": "%s / %s mB",
   "tooltip.thechaosengine.liquid.amount": "%s mB",

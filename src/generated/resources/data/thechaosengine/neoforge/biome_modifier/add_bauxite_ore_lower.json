@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#thechaosengine:bauxite_biomes",
+  "features": "thechaosengine:bauxite_ore_placed_lower",
+  "step": "underground_ores"
+}

@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "thechaosengine:block/bauxite"
+      },
+      {
+        "model": "thechaosengine:block/bauxite",
+        "y": 180
+      },
+      {
+        "model": "thechaosengine:block/bauxite",
+        "x": 180
+      },
+      {
+        "model": "thechaosengine:block/bauxite",
+        "z": 180
+      }
+    ]
+  }
+}

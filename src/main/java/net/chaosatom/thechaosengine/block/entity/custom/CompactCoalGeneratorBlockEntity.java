@@ -1,10 +1,10 @@
 package net.chaosatom.thechaosengine.block.entity.custom;
 
-import net.chaosatom.thechaosengine.block.entity.ModBlockEntities;
-import net.chaosatom.thechaosengine.block.entity.energy.ModEnergyStorage;
+import net.chaosatom.thechaosengine.block.entity.ChaosEngineBlockEntities;
+import net.chaosatom.thechaosengine.util.energy.EnergyStorage;
 import net.chaosatom.thechaosengine.recipe.FuelItemRecipes;
 import net.chaosatom.thechaosengine.screen.custom.CompactCoalGeneratorMenu;
-import net.chaosatom.thechaosengine.util.ModTags;
+import net.chaosatom.thechaosengine.util.ChaosEngineTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -53,9 +53,9 @@ public class CompactCoalGeneratorBlockEntity extends BlockEntity implements Menu
 
     private static final int ENERGY_TRANSFER_AMOUNT = 320;
 
-    private final ModEnergyStorage ENERGY_STORAGE = createEnergyStorage();
-    private ModEnergyStorage createEnergyStorage() {
-        return new ModEnergyStorage(32000, 320) {
+    private final EnergyStorage ENERGY_STORAGE = createEnergyStorage();
+    private EnergyStorage createEnergyStorage() {
+        return new EnergyStorage(32000, 320) {
             @Override
             public void onEnergyChanged() {
                 setChanged();
@@ -66,7 +66,7 @@ public class CompactCoalGeneratorBlockEntity extends BlockEntity implements Menu
     }
 
     public CompactCoalGeneratorBlockEntity(BlockPos pos, BlockState blockState) {
-        super(ModBlockEntities.COMPACT_COAL_GENERATOR_BE.get(), pos, blockState);
+        super(ChaosEngineBlockEntities.COMPACT_COAL_GENERATOR_BE.get(), pos, blockState);
         this.data = new ContainerData() {
             @Override
             public int get(int pIndex) {
@@ -193,7 +193,7 @@ public class CompactCoalGeneratorBlockEntity extends BlockEntity implements Menu
     */
 
     private boolean hasFuelItemInSlot() {
-        return this.itemHandler.getStackInSlot(INPUT_SLOT).is(ModTags.Items.COAL_GENERATOR_FUEL);
+        return this.itemHandler.getStackInSlot(INPUT_SLOT).is(ChaosEngineTags.Items.COAL_GENERATOR_FUEL);
     }
 
     private void fillUpOnEnergy() {

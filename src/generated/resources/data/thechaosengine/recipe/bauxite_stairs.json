@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "bauxite",
+  "key": {
+    "#": {
+      "item": "thechaosengine:bauxite"
+    }
+  },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "id": "thechaosengine:bauxite_stairs"
+  }
+}

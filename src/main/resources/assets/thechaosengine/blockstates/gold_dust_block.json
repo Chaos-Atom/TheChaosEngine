@@ -1,0 +1,29 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "thechaosengine:block/gold_dust_block"
+      },
+      {
+        "model": "thechaosengine:block/gold_dust_block",
+        "x": 180
+      },
+      {
+        "model": "thechaosengine:block/gold_dust_block",
+        "z": 180
+      },
+      {
+        "model": "thechaosengine:block/gold_dust_block",
+        "y": 90
+      },
+      {
+        "model": "thechaosengine:block/gold_dust_block",
+        "y": 180
+      },
+      {
+        "model": "thechaosengine:block/gold_dust_block",
+        "y": 270
+      }
+    ]
+  }
+}

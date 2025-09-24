@@ -1,4 +1,5 @@
-// 1.21.1	2025-09-20T04:33:02.8334409	Item Models: thechaosengine
+// 1.21.1	2025-09-25T03:42:33.2803405	Item Models: thechaosengine
+ae9eba2710c3dcb2364973b0e60551a6800cc7f0 assets/thechaosengine/models/item/bauxite_wall.json
 4f520d592d06a919b1a352c44a45cfa02a10912e assets/thechaosengine/models/item/coal_dust.json
 4a8722c455830cd490ee7c1044d6cf279c554cf7 assets/thechaosengine/models/item/copper_chunk.json
 6e0cb712ca154847cf471a1505001e988e5faaaa assets/thechaosengine/models/item/copper_dust.json
@@ -13,6 +14,7 @@ bca5d9dd32b4bc0336af2600f2d9473f847df69c assets/thechaosengine/models/item/gold_
 c59af63fd258598d788d94efe720034f03d72786 assets/thechaosengine/models/item/iron_chunk.json
 0daa3448d6f08c061d244601c47bf636ff21cf23 assets/thechaosengine/models/item/iron_dust.json
 b30f6c349f893add39273beab0dbc4475fb6d838 assets/thechaosengine/models/item/lapis_lazuli_dust.json
+0eefbebd28f0fc4143ed9f13f61e1198d1443d44 assets/thechaosengine/models/item/polished_bauxite_wall.json
 2d90455c87a92ae251789a31c4b574e1c1b515e9 assets/thechaosengine/models/item/purified_crystal_copper.json
 e2e9039c716af9c19b1a30a8dd25ed1fefdf2ba5 assets/thechaosengine/models/item/purified_crystal_gold.json
 8105d79cad824ee6b1bf9c870c56ae3dba567a54 assets/thechaosengine/models/item/purified_crystal_iron.json

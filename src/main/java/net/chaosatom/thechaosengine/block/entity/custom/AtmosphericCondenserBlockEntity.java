@@ -1,9 +1,9 @@
 package net.chaosatom.thechaosengine.block.entity.custom;
 
-import net.chaosatom.thechaosengine.block.entity.ModBlockEntities;
-import net.chaosatom.thechaosengine.block.entity.energy.ModEnergyStorage;
+import net.chaosatom.thechaosengine.block.entity.ChaosEngineBlockEntities;
+import net.chaosatom.thechaosengine.util.energy.EnergyStorage;
 import net.chaosatom.thechaosengine.screen.custom.AtmosphericCondenserMenu;
-import net.chaosatom.thechaosengine.util.ModTags;
+import net.chaosatom.thechaosengine.util.ChaosEngineTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
@@ -128,7 +128,7 @@ public class AtmosphericCondenserBlockEntity extends BlockEntity implements GeoB
 
     /* UTILITY */
     public AtmosphericCondenserBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.ATMOSPHERIC_CONDENSER_BE.get(), pos, state);
+        super(ChaosEngineBlockEntities.ATMOSPHERIC_CONDENSER_BE.get(), pos, state);
         this.data = new ContainerData() {
             @Override
             public int get(int index) {
@@ -154,9 +154,9 @@ public class AtmosphericCondenserBlockEntity extends BlockEntity implements GeoB
         };
     }
 
-    private final ModEnergyStorage ENERGY_STORAGE = createEnergyStorage();
-    private ModEnergyStorage createEnergyStorage() {
-        return new ModEnergyStorage(32000, 320) {
+    private final EnergyStorage ENERGY_STORAGE = createEnergyStorage();
+    private EnergyStorage createEnergyStorage() {
+        return new EnergyStorage(32000, 320) {
             @Override
             public void onEnergyChanged() {
                 setChanged();
@@ -272,17 +272,17 @@ public class AtmosphericCondenserBlockEntity extends BlockEntity implements GeoB
 
         // Hope this is one of the better ways of doing this...
         // Adds (or subtracts) a bonus to water generation based on biome the condenser is in
-        if (biome.is(ModTags.Biomes.EXTREMELY_WET)) {
+        if (biome.is(ChaosEngineTags.Biomes.EXTREMELY_WET)) {
             effectivenessMultiplier += 1.05;
-        } else if (biome.is(ModTags.Biomes.VERY_WET)) {
+        } else if (biome.is(ChaosEngineTags.Biomes.VERY_WET)) {
             effectivenessMultiplier += 0.88;
-        } else if (biome.is(ModTags.Biomes.WET)) {
+        } else if (biome.is(ChaosEngineTags.Biomes.WET)) {
             effectivenessMultiplier += 0.74;
-        } else if (biome.is(ModTags.Biomes.TEMPERATE)) {
+        } else if (biome.is(ChaosEngineTags.Biomes.TEMPERATE)) {
             effectivenessMultiplier += 0.50;
-        } else if (biome.is(ModTags.Biomes.DRY)) {
+        } else if (biome.is(ChaosEngineTags.Biomes.DRY)) {
             effectivenessMultiplier -= 0.39;
-        } else if (biome.is(ModTags.Biomes.ARID)) {
+        } else if (biome.is(ChaosEngineTags.Biomes.ARID)) {
             effectivenessMultiplier -= 0.85;
         } else {
             effectivenessMultiplier += 0.15;

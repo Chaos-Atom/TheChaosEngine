@@ -1,13 +1,13 @@
 package net.chaosatom.thechaosengine;
 
-import net.chaosatom.thechaosengine.block.ModBlocks;
-import net.chaosatom.thechaosengine.block.entity.ModBlockEntities;
+import net.chaosatom.thechaosengine.block.ChaosEngineBlocks;
+import net.chaosatom.thechaosengine.block.entity.ChaosEngineBlockEntities;
 import net.chaosatom.thechaosengine.client.renderer.AtmosphericCondenserBlockEntityRenderer;
 import net.chaosatom.thechaosengine.client.renderer.CompactInductionFoundryBlockEntityRenderer;
-import net.chaosatom.thechaosengine.item.ModCreativeModeTabs;
-import net.chaosatom.thechaosengine.item.ModItems;
-import net.chaosatom.thechaosengine.recipe.ModRecipes;
-import net.chaosatom.thechaosengine.screen.ModMenuTypes;
+import net.chaosatom.thechaosengine.item.ChaosEngineCreativeModeTabs;
+import net.chaosatom.thechaosengine.item.ChaosEngineItems;
+import net.chaosatom.thechaosengine.recipe.ChaosEngineRecipes;
+import net.chaosatom.thechaosengine.screen.ChaosEngineMenuTypes;
 import net.chaosatom.thechaosengine.screen.custom.AtmosphericCondenserScreen;
 import net.chaosatom.thechaosengine.screen.custom.CompactCoalGeneratorScreen;
 import net.chaosatom.thechaosengine.screen.custom.CompactInductionFoundryScreen;
@@ -48,15 +48,15 @@ public class TheChaosEngine {
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
 
-        ModCreativeModeTabs.register(modEventBus);
+        ChaosEngineCreativeModeTabs.register(modEventBus);
 
-        ModItems.register(modEventBus);
-        ModBlocks.register(modEventBus);
+        ChaosEngineItems.register(modEventBus);
+        ChaosEngineBlocks.register(modEventBus);
 
-        ModBlockEntities.register(modEventBus);
-        ModMenuTypes.register(modEventBus);
+        ChaosEngineBlockEntities.register(modEventBus);
+        ChaosEngineMenuTypes.register(modEventBus);
 
-        ModRecipes.register(modEventBus);
+        ChaosEngineRecipes.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
@@ -89,16 +89,16 @@ public class TheChaosEngine {
 
         @SubscribeEvent
         public static void registerBlockEntityRenderer(EntityRenderersEvent.RegisterRenderers event) {
-            event.registerBlockEntityRenderer(ModBlockEntities.COMPACT_INDUCTION_FOUNDRY_BE.get(), CompactInductionFoundryBlockEntityRenderer::new);
-            event.registerBlockEntityRenderer(ModBlockEntities.ATMOSPHERIC_CONDENSER_BE.get(), AtmosphericCondenserBlockEntityRenderer::new);
+            event.registerBlockEntityRenderer(ChaosEngineBlockEntities.COMPACT_INDUCTION_FOUNDRY_BE.get(), CompactInductionFoundryBlockEntityRenderer::new);
+            event.registerBlockEntityRenderer(ChaosEngineBlockEntities.ATMOSPHERIC_CONDENSER_BE.get(), AtmosphericCondenserBlockEntityRenderer::new);
         }
 
         @SubscribeEvent
         public static void registerScreens(RegisterMenuScreensEvent event) {
-            event.register(ModMenuTypes.COMPACT_COAL_GENERATOR_MENU.get(), CompactCoalGeneratorScreen::new);
-            event.register(ModMenuTypes.COMPACT_PULVERIZER_MENU.get(), CompactPulverizerScreen::new);
-            event.register(ModMenuTypes.COMPACT_INDUCTION_FOUNDRY_MENU.get(), CompactInductionFoundryScreen::new);
-            event.register(ModMenuTypes.ATMOSPHERIC_CONDENSER_MENU.get(), AtmosphericCondenserScreen::new);
+            event.register(ChaosEngineMenuTypes.COMPACT_COAL_GENERATOR_MENU.get(), CompactCoalGeneratorScreen::new);
+            event.register(ChaosEngineMenuTypes.COMPACT_PULVERIZER_MENU.get(), CompactPulverizerScreen::new);
+            event.register(ChaosEngineMenuTypes.COMPACT_INDUCTION_FOUNDRY_MENU.get(), CompactInductionFoundryScreen::new);
+            event.register(ChaosEngineMenuTypes.ATMOSPHERIC_CONDENSER_MENU.get(), AtmosphericCondenserScreen::new);
         }
     }
 }

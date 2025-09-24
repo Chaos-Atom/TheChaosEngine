@@ -1,8 +1,8 @@
 package net.chaosatom.thechaosengine.screen.custom;
 
-import net.chaosatom.thechaosengine.block.ModBlocks;
+import net.chaosatom.thechaosengine.block.ChaosEngineBlocks;
 import net.chaosatom.thechaosengine.block.entity.custom.AtmosphericCondenserBlockEntity;
-import net.chaosatom.thechaosengine.screen.ModMenuTypes;
+import net.chaosatom.thechaosengine.screen.ChaosEngineMenuTypes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -22,7 +22,7 @@ public class AtmosphericCondenserMenu extends AbstractContainerMenu {
     }
 
     public AtmosphericCondenserMenu(int containerId, Inventory inventory, BlockEntity entity, ContainerData data) {
-        super(ModMenuTypes.ATMOSPHERIC_CONDENSER_MENU.get(), containerId);
+        super(ChaosEngineMenuTypes.ATMOSPHERIC_CONDENSER_MENU.get(), containerId);
         checkContainerSize(inventory, 1);
         this.blockEntity = ((AtmosphericCondenserBlockEntity) entity);
         this.level = inventory.player.level();
@@ -106,7 +106,7 @@ public class AtmosphericCondenserMenu extends AbstractContainerMenu {
     @Override
     public boolean stillValid(Player player) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                player, ModBlocks.ATMOSPHERIC_CONDENSER.get());
+                player, ChaosEngineBlocks.ATMOSPHERIC_CONDENSER.get());
     }
 
     private void addPlayerInventory(Inventory playerInventory) {

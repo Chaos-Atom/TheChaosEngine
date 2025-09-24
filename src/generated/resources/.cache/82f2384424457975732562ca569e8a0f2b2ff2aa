@@ -1,2 +1,4 @@
-// 1.21.1	2025-09-14T04:44:43.777281	Tags for minecraft:block mod id thechaosengine
+// 1.21.1	2025-09-25T03:42:33.286373	Tags for minecraft:block mod id thechaosengine
+593d90227e48a1254b07c918447e5be92f5b8364 data/minecraft/tags/block/mineable/pickaxe.json
 93d6392079f3ebffbbebb883a96e3bb7bc93f487 data/minecraft/tags/block/mineable/shovel.json
+500fbc422e39ff8f1d0172fd3a66c5b12a1685da data/minecraft/tags/block/walls.json

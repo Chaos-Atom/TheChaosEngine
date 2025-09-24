@@ -1,8 +1,8 @@
 package net.chaosatom.thechaosengine.screen.custom;
 
-import net.chaosatom.thechaosengine.block.ModBlocks;
+import net.chaosatom.thechaosengine.block.ChaosEngineBlocks;
 import net.chaosatom.thechaosengine.block.entity.custom.CompactCoalGeneratorBlockEntity;
-import net.chaosatom.thechaosengine.screen.ModMenuTypes;
+import net.chaosatom.thechaosengine.screen.ChaosEngineMenuTypes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -23,7 +23,7 @@ public class CompactCoalGeneratorMenu extends AbstractContainerMenu {
     }
 
     public CompactCoalGeneratorMenu(int pContainerId, Inventory inv, BlockEntity blockEntity, ContainerData data) {
-        super(ModMenuTypes.COMPACT_COAL_GENERATOR_MENU.get(), pContainerId);
+        super(ChaosEngineMenuTypes.COMPACT_COAL_GENERATOR_MENU.get(), pContainerId);
         checkContainerSize(inv, 1);
         this.blockEntity = ((CompactCoalGeneratorBlockEntity) blockEntity);
         this.level = inv.player.level();
@@ -105,7 +105,7 @@ public class CompactCoalGeneratorMenu extends AbstractContainerMenu {
     @Override
     public boolean stillValid(@NotNull Player pPlayer) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlocks.COMPACT_COAL_GENERATOR.get());
+                pPlayer, ChaosEngineBlocks.COMPACT_COAL_GENERATOR.get());
     }
 
     private void addPlayerInventory(Inventory playerInventory) {

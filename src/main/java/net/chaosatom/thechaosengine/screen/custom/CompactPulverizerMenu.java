@@ -1,8 +1,8 @@
 package net.chaosatom.thechaosengine.screen.custom;
 
-import net.chaosatom.thechaosengine.block.ModBlocks;
+import net.chaosatom.thechaosengine.block.ChaosEngineBlocks;
 import net.chaosatom.thechaosengine.block.entity.custom.CompactPulverizerBlockEntity;
-import net.chaosatom.thechaosengine.screen.ModMenuTypes;
+import net.chaosatom.thechaosengine.screen.ChaosEngineMenuTypes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -22,7 +22,7 @@ public class CompactPulverizerMenu extends AbstractContainerMenu {
     }
 
     public CompactPulverizerMenu(int containerId, Inventory inventory, BlockEntity entity, ContainerData data) {
-        super(ModMenuTypes.COMPACT_PULVERIZER_MENU.get(), containerId);
+        super(ChaosEngineMenuTypes.COMPACT_PULVERIZER_MENU.get(), containerId);
         blockEntity = ((CompactPulverizerBlockEntity) entity);
         this.level = inventory.player.level();
         this.data = data;
@@ -100,7 +100,7 @@ public class CompactPulverizerMenu extends AbstractContainerMenu {
     @Override
     public boolean stillValid(Player player) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                player, ModBlocks.COMPACT_PULVERIZER.get());
+                player, ChaosEngineBlocks.COMPACT_PULVERIZER.get());
     }
 
     private void addPlayerInventory(Inventory playerInventory) {

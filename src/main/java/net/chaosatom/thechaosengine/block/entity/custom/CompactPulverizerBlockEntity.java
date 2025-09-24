@@ -1,8 +1,8 @@
 package net.chaosatom.thechaosengine.block.entity.custom;
 
-import net.chaosatom.thechaosengine.block.entity.ModBlockEntities;
-import net.chaosatom.thechaosengine.block.entity.energy.ModEnergyStorage;
-import net.chaosatom.thechaosengine.recipe.ModRecipes;
+import net.chaosatom.thechaosengine.block.entity.ChaosEngineBlockEntities;
+import net.chaosatom.thechaosengine.util.energy.EnergyStorage;
+import net.chaosatom.thechaosengine.recipe.ChaosEngineRecipes;
 import net.chaosatom.thechaosengine.recipe.PulverizerRecipe;
 import net.chaosatom.thechaosengine.recipe.PulverizerRecipeInput;
 import net.chaosatom.thechaosengine.screen.custom.CompactPulverizerMenu;
@@ -60,9 +60,9 @@ public class CompactPulverizerBlockEntity extends BlockEntity implements MenuPro
 
     private static final int ENERGY_CRAFT_AMOUNT = 1; // amount of energy per Tick to craft
 
-    private final ModEnergyStorage ENERGY_STORAGE = createEnergyStorage();
-    private ModEnergyStorage createEnergyStorage() {
-        return new ModEnergyStorage(64000, 320) {
+    private final EnergyStorage ENERGY_STORAGE = createEnergyStorage();
+    private EnergyStorage createEnergyStorage() {
+        return new EnergyStorage(64000, 320) {
             @Override
             public void onEnergyChanged() {
                 setChanged();
@@ -77,7 +77,7 @@ public class CompactPulverizerBlockEntity extends BlockEntity implements MenuPro
     }
 
     public CompactPulverizerBlockEntity(BlockPos pos, BlockState blockState) {
-        super(ModBlockEntities.COMPACT_PULVERIZER_BE.get(), pos, blockState);
+        super(ChaosEngineBlockEntities.COMPACT_PULVERIZER_BE.get(), pos, blockState);
         this.data = new ContainerData() {
             @Override
             public int get(int index) {
@@ -207,7 +207,7 @@ public class CompactPulverizerBlockEntity extends BlockEntity implements MenuPro
 
     private Optional<RecipeHolder<PulverizerRecipe>> getCurrentRecipe() {
         return this.level.getRecipeManager()
-                .getRecipeFor(ModRecipes.PULVERIZER_TYPE.get(), new PulverizerRecipeInput(itemHandler.getStackInSlot(INPUT_SLOT)), level);
+                .getRecipeFor(ChaosEngineRecipes.PULVERIZER_TYPE.get(), new PulverizerRecipeInput(itemHandler.getStackInSlot(INPUT_SLOT)), level);
     }
 
     private boolean canInsertItemInputIntoOutputSlot(ItemStack output) {

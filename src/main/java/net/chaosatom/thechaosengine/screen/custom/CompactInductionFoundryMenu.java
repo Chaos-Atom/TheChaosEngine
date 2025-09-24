@@ -1,8 +1,8 @@
 package net.chaosatom.thechaosengine.screen.custom;
 
-import net.chaosatom.thechaosengine.block.ModBlocks;
+import net.chaosatom.thechaosengine.block.ChaosEngineBlocks;
 import net.chaosatom.thechaosengine.block.entity.custom.CompactInductionFoundryBlockEntity;
-import net.chaosatom.thechaosengine.screen.ModMenuTypes;
+import net.chaosatom.thechaosengine.screen.ChaosEngineMenuTypes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -23,7 +23,7 @@ public class CompactInductionFoundryMenu extends AbstractContainerMenu {
     }
 
     public CompactInductionFoundryMenu(int containerId, Inventory inventory, BlockEntity entity, ContainerData data) {
-        super(ModMenuTypes.COMPACT_INDUCTION_FOUNDRY_MENU.get(), containerId);
+        super(ChaosEngineMenuTypes.COMPACT_INDUCTION_FOUNDRY_MENU.get(), containerId);
         blockEntity = ((CompactInductionFoundryBlockEntity) entity);
         this.level = inventory.player.level();
         this.data = data;
@@ -135,7 +135,7 @@ public class CompactInductionFoundryMenu extends AbstractContainerMenu {
     @Override
     public boolean stillValid(Player player) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                player, ModBlocks.COMPACT_INDUCTION_FOUNDRY.get());
+                player, ChaosEngineBlocks.COMPACT_INDUCTION_FOUNDRY.get());
     }
 
     private void addPlayerInventory(Inventory playerInventory) {

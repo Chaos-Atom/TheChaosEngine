@@ -47,12 +47,12 @@ public record PulverizerRecipe(Ingredient inputItem, ItemStack output, int proce
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return ModRecipes.PULVERIZER_SERIALIZER.get();
+        return ChaosEngineRecipes.PULVERIZER_SERIALIZER.get();
     }
 
     @Override
     public RecipeType<?> getType() {
-        return ModRecipes.PULVERIZER_TYPE.get();
+        return ChaosEngineRecipes.PULVERIZER_TYPE.get();
     }
 
     public interface Factory<T extends PulverizerRecipe> {

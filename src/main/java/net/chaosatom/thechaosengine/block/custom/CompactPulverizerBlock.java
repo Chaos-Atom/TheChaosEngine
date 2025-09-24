@@ -1,7 +1,7 @@
 package net.chaosatom.thechaosengine.block.custom;
 
 import com.mojang.serialization.MapCodec;
-import net.chaosatom.thechaosengine.block.entity.ModBlockEntities;
+import net.chaosatom.thechaosengine.block.entity.ChaosEngineBlockEntities;
 import net.chaosatom.thechaosengine.block.entity.custom.CompactPulverizerBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -116,7 +116,7 @@ public class CompactPulverizerBlock extends BaseEntityBlock {
             return null;
         }
 
-        return createTickerHelper(blockEntityType, ModBlockEntities.COMPACT_PULVERIZER_BE.get(),
+        return createTickerHelper(blockEntityType, ChaosEngineBlockEntities.COMPACT_PULVERIZER_BE.get(),
                 (level1, blockPos, blockState, compactPulverizerBlockEntity)
                         -> compactPulverizerBlockEntity.tick(level1, blockPos, blockState));
     }
