@@ -3,6 +3,7 @@ package net.chaosatom.thechaosengine.block.entity.custom;
 import net.chaosatom.thechaosengine.block.entity.ModBlockEntities;
 import net.chaosatom.thechaosengine.block.entity.energy.ModEnergyStorage;
 import net.chaosatom.thechaosengine.screen.custom.AtmosphericCondenserMenu;
+import net.chaosatom.thechaosengine.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
@@ -24,7 +25,6 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -41,8 +41,13 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoBlockEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.animation.*;
+import software.bernie.geckolib.animation.AnimatableManager;
+import software.bernie.geckolib.animation.AnimationController;
+import software.bernie.geckolib.animation.RawAnimation;
 import software.bernie.geckolib.util.GeckoLibUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AtmosphericCondenserBlockEntity extends BlockEntity implements GeoBlockEntity, MenuProvider, WorldlyContainer{
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
@@ -59,7 +64,7 @@ public class AtmosphericCondenserBlockEntity extends BlockEntity implements GeoB
 
         @Override
         public int getSlotLimit(int slot) {
-            return slot == 1 ? 1 : super.getSlotLimit(slot);
+            return slot == 0 ? 1 : super.getSlotLimit(slot);
         }
     };
 
@@ -78,12 +83,21 @@ public class AtmosphericCondenserBlockEntity extends BlockEntity implements GeoB
     private final ContainerData data;
     private int effectiveness = 0;
     private int maxEffectiveness = 250;
+    private static final int FLUID_TRANSFER_AMOUNT = 500; // mB for cycle
 
     // Water Generation Related
     private int cooldown = 0;
     private static final int MAX_COOLDOWN = 5; // Total cycle time, runs every second (20 ticks)
-    private static final int BASE_WATER_GENERATION = 5; // Base rate: 10 mB per cycle
-    private static final int ENERGY_REQUIREMENT = 10; // Energy cost per cycle, FE
+    private static final int BASE_WATER_GENERATION = 15; // Base rate: 10 mB per cycle
+    private static final int ENERGY_REQUIREMENT = 20; // Energy cost per cycle, FE
+    private static final int SEA_LEVEL = 63;
+    private static final double BONUS_PER_BLOCK_DOWN = 0.01;
+    private static final double PENALTY_PER_BLOCK_UP = 0.005;
+    private static final double MAX_HEIGHT_BONUS = 0.35; // Technically max depth but name is for consistency
+    private static final double MAX_HEIGHT_PENALTY = 0.65;
+
+    private int effectivenessUpdateCooldown = 0;
+    private static final int EFFECTIVE_UPDATE_INTERVAL = 200; // Every 30 seconds, run a check to update effectiveness
 
     // GeckoLib Animation Setup
 
@@ -94,16 +108,22 @@ public class AtmosphericCondenserBlockEntity extends BlockEntity implements GeoB
             .thenLoop("atmospheric_condenser.idle");
     private static final RawAnimation UNDEPLOYED_LOOP = RawAnimation.begin()
             .thenLoop("atmospheric_condenser.undeployed");
+    private static final RawAnimation RETRACT_SEQUENCE = RawAnimation.begin()
+            .thenPlay("atmospheric_condenser.retracting")
+            .thenLoop("atmospheric_condenser.undeployed");
 
     private enum AnimationState {
         UNDEPLOYED,
         DEPLOYING,
-        DEPLOYED;
+        DEPLOYED,
+        RETRACTING;
     }
 
     private AnimationState animState = AnimationState.UNDEPLOYED;
     private int deployTime = 0;
     private static final int DEPLOY_ANIMATION_LENGTH = 100; // Total time in ticks for deploy animation
+    private int retractTime = 0;
+    private static final int RETRACT_ANIMATION_LENGTH = 35;
 
 
     /* UTILITY */
@@ -186,31 +206,43 @@ public class AtmosphericCondenserBlockEntity extends BlockEntity implements GeoB
                 this.animState = AnimationState.DEPLOYED;
                 setChanged();
             }
+        } else if (this.animState == AnimationState.RETRACTING) {
+            this.retractTime--;
+
+            if (this.retractTime <= 0) {
+                this.animState = AnimationState.UNDEPLOYED;
+                setChanged();
+            }
+        }
+        if (level.isClientSide() || this.animState != AnimationState.DEPLOYED) {
+            return;
         }
 
         if (hasFluidHandlerInSlot()) {
             transferFluidFromTankToHandler();
         }
 
-
-        if (level.isClientSide() || this.animState != AnimationState.DEPLOYED) {
-            return;
+        if (this.effectivenessUpdateCooldown <= 0) {
+            this.effectivenessUpdateCooldown = EFFECTIVE_UPDATE_INTERVAL;
+            updatedEffectiveness(level, blockPos);
+        } else {
+            this.effectivenessUpdateCooldown--;
         }
 
         if (cooldown > 0) {
             cooldown--;
             return;
         }
-
         this.cooldown = MAX_COOLDOWN;
-        if (canGenerate()) {
-            int waterAmount = updateAndGetWaterAmount(level, blockPos);
-            if (waterAmount > 0) {
-                this.ENERGY_STORAGE.extractEnergy(ENERGY_REQUIREMENT, false);
-                this.FLUID_TANK.fill(new FluidStack(Fluids.WATER, waterAmount), IFluidHandler.FluidAction.EXECUTE);
-                setChanged();
-            }
+
+        int waterAmount = getWaterAmount();
+
+        if (canGenerate() && waterAmount > 0) {
+            this.ENERGY_STORAGE.extractEnergy(ENERGY_REQUIREMENT, false);
+            this.FLUID_TANK.fill(new FluidStack(Fluids.WATER, waterAmount), IFluidHandler.FluidAction.EXECUTE);
+            setChanged();
         }
+        pushFluidToOutputSides();
     }
 
     /* tick() method Helper Methods */
@@ -234,30 +266,101 @@ public class AtmosphericCondenserBlockEntity extends BlockEntity implements GeoB
         return this.ENERGY_STORAGE.getEnergyStored() >= ENERGY_REQUIREMENT && this.FLUID_TANK.getSpace() > 0;
     }
 
-    private int updateAndGetWaterAmount(Level level, BlockPos pos) {
+    private void updatedEffectiveness(Level level, BlockPos pos) {
         double effectivenessMultiplier = 1.0;
-
         Holder<Biome> biome = level.getBiome(pos);
 
-        if (biome.is(Biomes.JUNGLE) || biome.is(Biomes.OCEAN) || biome.is(Biomes.SWAMP)) {
-            effectivenessMultiplier += 0.85;
-        } else if (biome.is(Biomes.DESERT) || biome.is(Biomes.BADLANDS)) {
-            effectivenessMultiplier -=0.5;
+        // Hope this is one of the better ways of doing this...
+        // Adds (or subtracts) a bonus to water generation based on biome the condenser is in
+        if (biome.is(ModTags.Biomes.EXTREMELY_WET)) {
+            effectivenessMultiplier += 1.05;
+        } else if (biome.is(ModTags.Biomes.VERY_WET)) {
+            effectivenessMultiplier += 0.88;
+        } else if (biome.is(ModTags.Biomes.WET)) {
+            effectivenessMultiplier += 0.74;
+        } else if (biome.is(ModTags.Biomes.TEMPERATE)) {
+            effectivenessMultiplier += 0.50;
+        } else if (biome.is(ModTags.Biomes.DRY)) {
+            effectivenessMultiplier -= 0.39;
+        } else if (biome.is(ModTags.Biomes.ARID)) {
+            effectivenessMultiplier -= 0.85;
         } else {
+            effectivenessMultiplier += 0.15;
+        }
+
+        // Adds (or subtracts) a bonus based on the vertical position of the condenser
+        int heightDifference = SEA_LEVEL - pos.getY();
+        double heightModifier = 0.0;
+        if (heightModifier > 0) {
+            heightModifier = heightDifference * BONUS_PER_BLOCK_DOWN;
+        } else {
+            heightModifier = heightDifference * PENALTY_PER_BLOCK_UP;
+        }
+        heightModifier = Math.max(-MAX_HEIGHT_PENALTY, Math.min(MAX_HEIGHT_BONUS, heightModifier));
+        effectivenessMultiplier += heightModifier;
+
+        // Adds a bonus if its raining
+        if (level.isRaining()) {
+            effectivenessMultiplier += 0.25;
+        } else if (level.isThundering()) {
             effectivenessMultiplier += 0.35;
         }
 
-        if (level.isRaining()) {
-            effectivenessMultiplier += 0.25;
-        }
-
-        if (!level.canSeeSky(pos)) {
+        // Adds a bonus if it's underground (sort of)
+        if (!level.canSeeSky(pos) && pos.getY() < 63) {
             effectivenessMultiplier += 0.45;
         }
-        this.effectiveness = (int) (effectivenessMultiplier * 100);
 
-        return (int) Math.floor(BASE_WATER_GENERATION * effectivenessMultiplier);
+        effectivenessMultiplier = Math.max(0, effectivenessMultiplier);
+        this.effectiveness = (int) (effectivenessMultiplier * 100);
     }
+
+    private int getWaterAmount() {
+        double effectiveMultiplier = (double) this.effectiveness / 100;
+        return (int) Math.floor(BASE_WATER_GENERATION * effectiveMultiplier);
+    }
+
+    private void pushFluidToOutputSides() {
+        if (this.FLUID_TANK.getFluidAmount() <= 0) { return; }
+
+        List<IFluidHandler> validNeighbors = new ArrayList<>();
+        Direction facing = this.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
+        Direction[] outputSides = { facing.getClockWise(), facing.getCounterClockWise() };
+        for (Direction side : outputSides) {
+            BlockPos neighborPos = worldPosition.relative(side);
+            IFluidHandler neighborFluidHandler = level.getCapability(Capabilities.FluidHandler.BLOCK, neighborPos, side.getOpposite());
+
+            // Checks if the neighbor exists AND has a valid fluid tank that can be filled. If true, add to list for distribution
+            if (neighborFluidHandler != null) {
+                if (neighborFluidHandler.fill(this.FLUID_TANK.getFluid(), IFluidHandler.FluidAction.SIMULATE) > 0) {
+                    validNeighbors.add(neighborFluidHandler);
+                }
+            }
+        }
+         // Check if there are any valid neighbors in list
+        if (!validNeighbors.isEmpty()) {
+            int amountToPush = Math.min(this.FLUID_TANK.getFluidAmount(), FLUID_TRANSFER_AMOUNT);
+            int amountPerNeighbor = amountToPush / validNeighbors.size(); // Equally distribute amount between both sides (if valid)
+
+            // If there is not enough to push, exit method with no fluid exchange
+            if (amountPerNeighbor <= 0) { return; }
+
+            for (IFluidHandler neighbor : validNeighbors) {
+                FluidStack toSend = this.FLUID_TANK.getFluid().copy();
+                toSend.setAmount(amountPerNeighbor);
+
+                // Set amount to send to valid neighbor
+                int accepted = neighbor.fill(toSend, IFluidHandler.FluidAction.EXECUTE);
+                // If there is some amount that can be sent, proceed to send from condenser's tank to neighbor
+                if (accepted > 0) {
+                    this.FLUID_TANK.drain(accepted, IFluidHandler.FluidAction.EXECUTE);
+                    setChanged();
+                }
+            }
+        }
+    }
+
+    /* Animation Related Helper Methods */
 
     public void startDeployment() {
         // If the current animation state is undeployed...
@@ -266,6 +369,15 @@ public class AtmosphericCondenserBlockEntity extends BlockEntity implements GeoB
             this.animState = AnimationState.DEPLOYING;
             // set deployTime to length of deploying animation
             this.deployTime = DEPLOY_ANIMATION_LENGTH;
+            setChanged();
+        }
+    }
+
+    public void startRetraction() {
+        // Similar style to startDeployment() but checks if condenser is deployed and resets back it to undeployed
+        if (this.animState == AnimationState.DEPLOYED) {
+            this.animState = AnimationState.RETRACTING;
+            this.retractTime = RETRACT_ANIMATION_LENGTH;
             setChanged();
         }
     }
@@ -280,6 +392,8 @@ public class AtmosphericCondenserBlockEntity extends BlockEntity implements GeoB
 
         tag.putInt("atmospheric_condenser.effectiveness", effectiveness);
         tag.putInt("atmospheric_condenser.max_effectiveness", maxEffectiveness);
+        tag.putInt("atmospheric_condenser.cooldown", cooldown);
+        tag.putInt("atmospheric_condenser.effectivenessUpdateCooldown", effectivenessUpdateCooldown);
 
         tag.putInt("atmospheric_condenser.animation_state", this.animState.ordinal());
         tag.putInt("atmospheric_condenser.deploy_time", this.deployTime);
@@ -295,6 +409,8 @@ public class AtmosphericCondenserBlockEntity extends BlockEntity implements GeoB
 
         this.effectiveness = tag.getInt("atmospheric_condenser.effectiveness");
         this.maxEffectiveness = tag.getInt("atmospheric_condenser.max_effectiveness");
+        this.cooldown = tag.getInt("atmospheric_condenser.cooldown");
+        this.effectivenessUpdateCooldown = tag.getInt("atmospheric_condenser.effectivenessUpdateCooldown");
 
         this.animState = AnimationState.values()[tag.getInt("atmospheric_condenser.animation_state")];
         this.deployTime = tag.getInt("atmospheric_condenser.deploy_time");
@@ -405,6 +521,7 @@ public class AtmosphericCondenserBlockEntity extends BlockEntity implements GeoB
             case UNDEPLOYED ->  state.setAndContinue(UNDEPLOYED_LOOP);
             case DEPLOYING -> state.setAndContinue(DEPLOY_SEQUENCE);
             case DEPLOYED -> state.setAndContinue(DEPLOYED_LOOP);
+            case RETRACTING -> state.setAndContinue(RETRACT_SEQUENCE);
         }));
     }
 

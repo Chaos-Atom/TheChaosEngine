@@ -131,13 +131,17 @@ public class AtmosphericCondenserBlock extends BaseEntityBlock implements Entity
         BlockPos pos = context.getClickedPos();
 
         if (!context.getLevel().getBlockState(pos.above()).canBeReplaced(context)) {
+            Player player = context.getPlayer();
+
+            if (player != null && !context.getLevel().isClientSide()) {
+                player.displayClientMessage(Component.translatable("message.thechaosengine.condenser_no_room"), true);
+            }
             return null;
-        } else {
-            return defaultBlockState()
-                    .setValue(FACING, context.getHorizontalDirection().getOpposite())
-                    .setValue(LIT, false)
-                    .setValue(DEPLOYED, false);
         }
+        return defaultBlockState()
+                .setValue(FACING, context.getHorizontalDirection().getOpposite())
+                .setValue(LIT, false)
+                .setValue(DEPLOYED, false);
     }
 
     /* BLOCK ENTITY */
@@ -169,14 +173,19 @@ public class AtmosphericCondenserBlock extends BaseEntityBlock implements Entity
                                               InteractionHand hand, BlockHitResult hitResult) {
         if (!state.getValue(DEPLOYED)) {
 
+            // Checks if the block about the condenser is an air block so it's free to expand upwards.
             if (level.getBlockState(pos.above()).isAir()) {
-                level.setBlock(pos, state.setValue(DEPLOYED, true), 3);
+                level.setBlock(pos, state.setValue(DEPLOYED, true), 3); // Sets state to Deployed
 
                 if (level.getBlockEntity(pos) instanceof AtmosphericCondenserBlockEntity atmosphericCondenserBlockEntity) {
                     atmosphericCondenserBlockEntity.startDeployment();
                 }
                 return ItemInteractionResult.sidedSuccess(level.isClientSide());
             } else {
+                // If there is a solid block, do not change state / does not deploy condenser
+                if (!level.isClientSide()) {
+                    player.displayClientMessage(Component.translatable("message.thechaosengine.condenser_obstructed"), true);
+                }
                 return ItemInteractionResult.FAIL;
             }
         }
@@ -194,6 +203,24 @@ public class AtmosphericCondenserBlock extends BaseEntityBlock implements Entity
             }
         }
         return ItemInteractionResult.sidedSuccess(level.isClientSide());
+    }
+
+    @Override
+    protected void neighborChanged(BlockState state, Level level, BlockPos pos, Block neighborBlock, BlockPos neighborPos, boolean movedByPiston) {
+        // Checks if the new block placed is aboved a deployed (activated) condenser
+        if (neighborPos.equals(pos.above()) && state.getValue(DEPLOYED)) {
+
+            // Checks if that new block is not an air block (is a solid block)
+            if (!level.getBlockState(pos.above()).isAir()) {
+                level.setBlock(pos, state.setValue(DEPLOYED, false), 3);
+
+                if (level.getBlockEntity(pos) instanceof AtmosphericCondenserBlockEntity blockEntity) {
+                    blockEntity.startRetraction();
+                }
+            }
+        }
+
+        super.neighborChanged(state, level, pos, neighborBlock, neighborPos, movedByPiston);
     }
 
     @Override

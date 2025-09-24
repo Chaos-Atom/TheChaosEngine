@@ -46,5 +46,8 @@
   "tooltip.thechaosengine.compact_coal_generator_stickynote": "Sticky Note",
 
   "tooltip.thechaosengine.liquid.amount.with.capacity": "%s / %s mB",
-  "tooltip.thechaosengine.liquid.amount": "%s mB"
+  "tooltip.thechaosengine.liquid.amount": "%s mB",
+
+  "message.thechaosengine.condenser_no_room": "Not enough space to place the Atmospheric Condenser.",
+  "message.thechaosengine.condenser_obstructed": "Atmospheric Condenser is obstructed and cannot deploy."
 }

@@ -18,9 +18,9 @@ import java.util.Optional;
 
 public class AtmosphericCondenserScreen extends AbstractContainerScreen<AtmosphericCondenserMenu> {
     private static final ResourceLocation GUI_TEXTURE =
-            ResourceLocation.fromNamespaceAndPath(TheChaosEngine.MOD_ID,"textures/gui/atmospheric_condenser_gui.png");
+            ResourceLocation.fromNamespaceAndPath(TheChaosEngine.MOD_ID,"textures/gui/atmospheric_condenser/atmospheric_condenser_gui.png");
     private static final ResourceLocation EFFECTIVENESS_METER =
-            ResourceLocation.fromNamespaceAndPath(TheChaosEngine.MOD_ID, "textures/gui/effectiveness_meter.png");
+            ResourceLocation.fromNamespaceAndPath(TheChaosEngine.MOD_ID, "textures/gui/atmospheric_condenser/effectiveness_meter.png");
 
     private FluidTankRenderer fluidRenderer;
     private EnergyDisplayTooltipArea energyInfoArea;

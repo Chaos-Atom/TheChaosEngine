@@ -1,10 +1,8 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"IDLE": {
-			"loop": "hold_on_last_frame"
-		},
 		"atmospheric_condenser.deploying": {
+			"loop": "hold_on_last_frame",
 			"animation_length": 5,
 			"bones": {
 				"Lower Shell": {
@@ -297,7 +295,7 @@
 			}
 		},
 		"atmospheric_condenser.undeployed": {
-			"loop": true
+			"loop": "hold_on_last_frame"
 		},
 		"atmospheric_condenser.idle": {
 			"loop": true,
@@ -430,6 +428,207 @@
 						},
 						"5.0": {
 							"vector": [0, "50 + math.sin(query.anim_time*1000)*2", 0]
+						}
+					}
+				}
+			}
+		},
+		"atmospheric_condenser.retracting": {
+			"loop": "hold_on_last_frame",
+			"animation_length": 1.75,
+			"bones": {
+				"Middle Shell": {
+					"position": {
+						"0.0": {
+							"vector": [0, 2, 0]
+						},
+						"1.1667": {
+							"vector": [0, 2, 0]
+						},
+						"1.5417": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutCubic"
+						}
+					}
+				},
+				"Screen": {
+					"rotation": {
+						"0.0": {
+							"vector": [60, 0, 0],
+							"easing": "easeInOutExpo"
+						},
+						"0.5833": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutExpo"
+						}
+					},
+					"position": {
+						"0.0": {
+							"vector": [0, 0.6, -4.1],
+							"easing": "easeInOutExpo"
+						},
+						"0.5833": {
+							"vector": [0, 0, -4.1],
+							"easing": "easeInOutExpo"
+						},
+						"1.0": {
+							"vector": [0, 0, -0.8],
+							"easing": "easeInOutQuad"
+						}
+					}
+				},
+				"Upper Shell": {
+					"position": {
+						"0.0": {
+							"vector": [0, 3, 0],
+							"easing": "easeInBounce",
+							"easingArgs": [0.075]
+						},
+						"1.1667": {
+							"vector": [0, 3, 0],
+							"easing": "easeInBounce",
+							"easingArgs": [0.075]
+						},
+						"1.5": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutQuad"
+						}
+					}
+				},
+				"Vent 1": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, -50, 0],
+							"easing": "easeInBounce",
+							"easingArgs": [0.075]
+						},
+						"0.5": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutQuart"
+						}
+					}
+				},
+				"Vent_2": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, -50, 0],
+							"easing": "easeInBounce",
+							"easingArgs": [0.075]
+						},
+						"0.5417": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutQuart"
+						}
+					}
+				},
+				"Vent_3": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, -50, 0],
+							"easing": "easeInBounce",
+							"easingArgs": [0.075]
+						},
+						"0.5833": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutQuart"
+						}
+					}
+				},
+				"Vent_4": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, -50, 0],
+							"easing": "easeInBounce",
+							"easingArgs": [0.075]
+						},
+						"0.625": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutQuart"
+						}
+					}
+				},
+				"Vent_5": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 50, 0]
+						},
+						"0.5": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutQuart"
+						}
+					}
+				},
+				"Vent_6": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 50, 0]
+						},
+						"0.5417": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutQuart"
+						}
+					}
+				},
+				"Vent_7": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 50, 0]
+						},
+						"0.5833": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutQuart"
+						}
+					}
+				},
+				"Vent_8": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 50, 0]
+						},
+						"0.625": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutQuart"
+						}
+					}
+				},
+				"Main Tower": {
+					"position": {
+						"0.0": {
+							"vector": [0, 15.95, 0],
+							"easing": "easeInBounce",
+							"easingArgs": [0.025]
+						},
+						"0.3333": {
+							"vector": [0, 14.95, 0],
+							"easing": "easeInOutBack"
+						},
+						"0.5833": {
+							"vector": [0, 14.95, 0],
+							"easing": "linear"
+						},
+						"1.0": {
+							"vector": [0, 0.05, 0],
+							"easing": "easeInOutCirc"
+						}
+					},
+					"scale": {
+						"vector": [1, 1, 1],
+						"easing": "linear"
+					}
+				},
+				"Condenser Pipes": {
+					"scale": {
+						"0.0": {
+							"vector": [1, 2, 1],
+							"easing": "linear"
+						},
+						"0.5833": {
+							"vector": [1, 2, 1],
+							"easing": "linear"
+						},
+						"1.0": {
+							"vector": [1, 0.5, 1],
+							"easing": "easeInOutCirc"
 						}
 					}
 				}
