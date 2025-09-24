@@ -1,6 +1,7 @@
 package net.chaosatom.thechaosengine.datagen;
 
-import net.chaosatom.thechaosengine.block.ModBlocks;
+import net.chaosatom.thechaosengine.block.ChaosEngineBlocks;
+import net.chaosatom.thechaosengine.item.ChaosEngineItems;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
@@ -18,20 +19,33 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 import java.util.Set;
 
-public class ModBlockLootTableProvider extends BlockLootSubProvider {
-    protected ModBlockLootTableProvider(HolderLookup.Provider provider) {
+public class ChaosEngineBlockLootTableProvider extends BlockLootSubProvider {
+    protected ChaosEngineBlockLootTableProvider(HolderLookup.Provider provider) {
         super(Set.of(), FeatureFlags.REGISTRY.allFlags(), provider);
     }
 
     @Override
     protected void generate() {
-        dropSelf(ModBlocks.IRON_DUST_BLOCK.get());
-        dropSelf(ModBlocks.GOLD_DUST_BLOCK.get());
-        dropSelf(ModBlocks.COPPER_DUST_BLOCK.get());
+        dropSelf(ChaosEngineBlocks.IRON_DUST_BLOCK.get());
+        dropSelf(ChaosEngineBlocks.GOLD_DUST_BLOCK.get());
+        dropSelf(ChaosEngineBlocks.COPPER_DUST_BLOCK.get());
 
-        dropSelf(ModBlocks.COMPACT_COAL_GENERATOR.get());
-        dropSelf(ModBlocks.COMPACT_PULVERIZER.get());
-        dropSelf(ModBlocks.COMPACT_INDUCTION_FOUNDRY.get());
+        dropSelf(ChaosEngineBlocks.COMPACT_COAL_GENERATOR.get());
+        dropSelf(ChaosEngineBlocks.COMPACT_PULVERIZER.get());
+        dropSelf(ChaosEngineBlocks.COMPACT_INDUCTION_FOUNDRY.get());
+        dropSelf(ChaosEngineBlocks.ATMOSPHERIC_CONDENSER.get());
+
+        dropSelf(ChaosEngineBlocks.BAUXITE.get());
+        dropSelf(ChaosEngineBlocks.BAUXITE_STAIRS.get());
+        this.add(ChaosEngineBlocks.BAUXITE_SLAB.get(),
+                block -> createSlabItemTable(ChaosEngineBlocks.BAUXITE_SLAB.get()));
+        dropSelf(ChaosEngineBlocks.BAUXITE_WALL.get());
+
+        dropSelf(ChaosEngineBlocks.POLISHED_BAUXITE.get());
+        dropSelf(ChaosEngineBlocks.POLISHED_BAUXITE_STAIRS.get());
+        this.add(ChaosEngineBlocks.POLISHED_BAUXITE_SLAB.get(),
+                block -> createSlabItemTable(ChaosEngineBlocks.POLISHED_BAUXITE_SLAB.get()));
+        dropSelf(ChaosEngineBlocks.POLISHED_BAUXITE_WALL.get());
     }
 
     // Modified version of createCopperOreDrops to be more generic
@@ -45,6 +59,6 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
     @Override
     protected Iterable<Block> getKnownBlocks() {
-        return ModBlocks.BLOCKS.getEntries().stream().map(Holder::value)::iterator;
+        return ChaosEngineBlocks.BLOCKS.getEntries().stream().map(Holder::value)::iterator;
     }
 }

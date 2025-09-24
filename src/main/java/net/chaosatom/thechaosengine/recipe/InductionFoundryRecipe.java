@@ -45,12 +45,12 @@ public record InductionFoundryRecipe(Ingredient inputItem, ItemStack output, int
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return ModRecipes.INDUCTION_FOUNDRY_SERIALIZER.get();
+        return ChaosEngineRecipes.INDUCTION_FOUNDRY_SERIALIZER.get();
     }
 
     @Override
     public RecipeType<?> getType() {
-        return ModRecipes.INDUCTION_FOUNDRY_TYPE.get();
+        return ChaosEngineRecipes.INDUCTION_FOUNDRY_TYPE.get();
     }
 
     public interface Factory<T extends InductionFoundryRecipe> {

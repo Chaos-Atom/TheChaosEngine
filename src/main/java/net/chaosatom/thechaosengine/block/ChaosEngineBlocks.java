@@ -6,12 +6,10 @@ import net.chaosatom.thechaosengine.block.custom.AtmosphericCondenserBlock;
 import net.chaosatom.thechaosengine.block.custom.CompactCoalGeneratorBlock;
 import net.chaosatom.thechaosengine.block.custom.CompactInductionFoundryBlock;
 import net.chaosatom.thechaosengine.block.custom.CompactPulverizerBlock;
-import net.chaosatom.thechaosengine.item.ModItems;
+import net.chaosatom.thechaosengine.item.ChaosEngineItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.FallingBlock;
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
@@ -20,10 +18,10 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
 
-public class ModBlocks {
+public class ChaosEngineBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(TheChaosEngine.MOD_ID);
 
-    // Block of Ore Dust
+    // Block of Ore Dust (with Falling)
     public static final DeferredBlock<Block> IRON_DUST_BLOCK = registerBlock("iron_dust_block",
             () -> new FallingBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(1f).sound(SoundType.SAND))
                 {
@@ -49,6 +47,27 @@ public class ModBlocks {
                 }
             });
 
+    // General Blocks
+    public static final DeferredBlock<Block> BAUXITE = registerBlock("bauxite",
+            () -> new Block(BlockBehaviour.Properties.of().strength(1.35f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> BAUXITE_STAIRS = registerBlock("bauxite_stairs",
+            () -> new StairBlock(ChaosEngineBlocks.BAUXITE.get().defaultBlockState() ,BlockBehaviour.Properties.of().strength(1.35f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> BAUXITE_SLAB = registerBlock("bauxite_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.of().strength(1.35f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> BAUXITE_WALL = registerBlock("bauxite_wall",
+            () -> new WallBlock(BlockBehaviour.Properties.of().strength(1.35f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+
+
+
+    public static final DeferredBlock<Block> POLISHED_BAUXITE = registerBlock("polished_bauxite",
+            () -> new Block(BlockBehaviour.Properties.of().strength(1.35f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> POLISHED_BAUXITE_STAIRS = registerBlock("polished_bauxite_stairs",
+            () -> new StairBlock(ChaosEngineBlocks.POLISHED_BAUXITE.get().defaultBlockState() ,BlockBehaviour.Properties.of().strength(1.35f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> POLISHED_BAUXITE_SLAB = registerBlock("polished_bauxite_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.of().strength(1.35f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> POLISHED_BAUXITE_WALL = registerBlock("polished_bauxite_wall",
+            () -> new WallBlock(BlockBehaviour.Properties.of().strength(1.35f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+
     // Complex Blocks
     public static  final DeferredBlock<Block> COMPACT_COAL_GENERATOR = registerBlock("compact_coal_generator",
             () -> new CompactCoalGeneratorBlock(BlockBehaviour.Properties.of().noOcclusion().strength(3f)));
@@ -66,7 +85,7 @@ public class ModBlocks {
     }
 
     private static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block) {
-        ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+        ChaosEngineItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
 
     public static void register(IEventBus eventBus) {

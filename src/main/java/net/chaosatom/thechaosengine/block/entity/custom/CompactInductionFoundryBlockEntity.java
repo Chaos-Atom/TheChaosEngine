@@ -1,7 +1,7 @@
 package net.chaosatom.thechaosengine.block.entity.custom;
 
-import net.chaosatom.thechaosengine.block.entity.ModBlockEntities;
-import net.chaosatom.thechaosengine.block.entity.energy.ModEnergyStorage;
+import net.chaosatom.thechaosengine.block.entity.ChaosEngineBlockEntities;
+import net.chaosatom.thechaosengine.util.energy.EnergyStorage;
 import net.chaosatom.thechaosengine.recipe.*;
 import net.chaosatom.thechaosengine.screen.custom.CompactInductionFoundryMenu;
 import net.minecraft.core.BlockPos;
@@ -60,9 +60,9 @@ public class CompactInductionFoundryBlockEntity extends BlockEntity implements M
 
     private static final int ENERGY_CRAFT_AMOUNT = 2;
 
-    private final ModEnergyStorage ENERGY_STORAGE = createEnergyStorage();
-    private ModEnergyStorage createEnergyStorage() {
-        return new ModEnergyStorage(64000, 320) {
+    private final EnergyStorage ENERGY_STORAGE = createEnergyStorage();
+    private EnergyStorage createEnergyStorage() {
+        return new EnergyStorage(64000, 320) {
             @Override
             public void onEnergyChanged() {
                 setChanged();
@@ -86,7 +86,7 @@ public class CompactInductionFoundryBlockEntity extends BlockEntity implements M
     }
 
     public CompactInductionFoundryBlockEntity(BlockPos pos, BlockState blockState) {
-        super(ModBlockEntities.COMPACT_INDUCTION_FOUNDRY_BE.get(), pos, blockState);
+        super(ChaosEngineBlockEntities.COMPACT_INDUCTION_FOUNDRY_BE.get(), pos, blockState);
         this.data = new ContainerData() {
             @Override
             public int get(int index) {
@@ -205,7 +205,7 @@ public class CompactInductionFoundryBlockEntity extends BlockEntity implements M
 
     private Optional<RecipeHolder<InductionFoundryRecipe>> getCurrentRecipe() {
         return this.level.getRecipeManager()
-                .getRecipeFor(ModRecipes.INDUCTION_FOUNDRY_TYPE.get(),
+                .getRecipeFor(ChaosEngineRecipes.INDUCTION_FOUNDRY_TYPE.get(),
                         new InductionFoundryRecipeInput(itemHandler.getStackInSlot(INPUT_SLOT)), level);
     }
 

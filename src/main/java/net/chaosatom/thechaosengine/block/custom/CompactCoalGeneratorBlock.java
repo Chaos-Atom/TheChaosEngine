@@ -1,7 +1,7 @@
 package net.chaosatom.thechaosengine.block.custom;
 
 import com.mojang.serialization.MapCodec;
-import net.chaosatom.thechaosengine.block.entity.ModBlockEntities;
+import net.chaosatom.thechaosengine.block.entity.ChaosEngineBlockEntities;
 import net.chaosatom.thechaosengine.block.entity.custom.CompactCoalGeneratorBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -110,7 +110,7 @@ public class CompactCoalGeneratorBlock extends BaseEntityBlock {
         if (pLevel.isClientSide()) {
             return null;
         }
-        return createTickerHelper(pBlockEntityType, ModBlockEntities.COMPACT_COAL_GENERATOR_BE.get(),
+        return createTickerHelper(pBlockEntityType, ChaosEngineBlockEntities.COMPACT_COAL_GENERATOR_BE.get(),
                 ((level, blockPos, blockState, coalGeneratorBlockEntity) -> coalGeneratorBlockEntity.tick(level, blockPos, blockState)));
     }
 

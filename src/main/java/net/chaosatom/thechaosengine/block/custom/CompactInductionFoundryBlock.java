@@ -1,7 +1,7 @@
 package net.chaosatom.thechaosengine.block.custom;
 
 import com.mojang.serialization.MapCodec;
-import net.chaosatom.thechaosengine.block.entity.ModBlockEntities;
+import net.chaosatom.thechaosengine.block.entity.ChaosEngineBlockEntities;
 import net.chaosatom.thechaosengine.block.entity.custom.CompactInductionFoundryBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -113,7 +113,7 @@ public class CompactInductionFoundryBlock extends BaseEntityBlock {
             return null;
         }
 
-        return createTickerHelper(blockEntityType, ModBlockEntities.COMPACT_INDUCTION_FOUNDRY_BE.get(),
+        return createTickerHelper(blockEntityType, ChaosEngineBlockEntities.COMPACT_INDUCTION_FOUNDRY_BE.get(),
                 (level1, blockPos, blockState, compactInductionFoundryBlockEntity)
                         -> compactInductionFoundryBlockEntity.tick(level1, blockPos, blockState));
     }

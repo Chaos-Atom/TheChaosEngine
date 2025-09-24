@@ -1,6 +1,6 @@
 package net.chaosatom.thechaosengine;
 
-import net.chaosatom.thechaosengine.block.entity.ModBlockEntities;
+import net.chaosatom.thechaosengine.block.entity.ChaosEngineBlockEntities;
 import net.chaosatom.thechaosengine.block.entity.custom.AtmosphericCondenserBlockEntity;
 import net.chaosatom.thechaosengine.block.entity.custom.CompactCoalGeneratorBlockEntity;
 import net.chaosatom.thechaosengine.block.entity.custom.CompactInductionFoundryBlockEntity;
@@ -14,25 +14,25 @@ import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
 
 @EventBusSubscriber(modid = TheChaosEngine.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
-public class ModBusEvents {
+public class ChaosEngineBusEvents {
     @SubscribeEvent
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {
-        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ModBlockEntities.COMPACT_COAL_GENERATOR_BE.get(),
+        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ChaosEngineBlockEntities.COMPACT_COAL_GENERATOR_BE.get(),
                 CompactCoalGeneratorBlockEntity::getEnergyStorage);
-        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ModBlockEntities.COMPACT_PULVERIZER_BE.get(),
+        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ChaosEngineBlockEntities.COMPACT_PULVERIZER_BE.get(),
                 CompactPulverizerBlockEntity::getEnergyStorage);
-        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ModBlockEntities.COMPACT_INDUCTION_FOUNDRY_BE.get(),
+        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ChaosEngineBlockEntities.COMPACT_INDUCTION_FOUNDRY_BE.get(),
                 CompactInductionFoundryBlockEntity::getEnergyStorage);
-        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ModBlockEntities.ATMOSPHERIC_CONDENSER_BE.get(),
+        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ChaosEngineBlockEntities.ATMOSPHERIC_CONDENSER_BE.get(),
                 AtmosphericCondenserBlockEntity::getEnergyStorage);
 
-        event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, ModBlockEntities.ATMOSPHERIC_CONDENSER_BE.get(),
+        event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, ChaosEngineBlockEntities.ATMOSPHERIC_CONDENSER_BE.get(),
                 AtmosphericCondenserBlockEntity::getTank);
 
         /* Checks that the input side of the generator is a valid item pusher, accepts items from that side only
         * I am unsure if this is okay to but this logic in here...
         */
-        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntities.COMPACT_COAL_GENERATOR_BE.get(),
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ChaosEngineBlockEntities.COMPACT_COAL_GENERATOR_BE.get(),
                 (blockEntity, side) -> {
                     Direction facing = blockEntity.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
                     Direction leftSide = facing.getCounterClockWise();
@@ -43,9 +43,9 @@ public class ModBusEvents {
                     return null;
                 });
 
-        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntities.COMPACT_PULVERIZER_BE.get(),
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ChaosEngineBlockEntities.COMPACT_PULVERIZER_BE.get(),
                 SidedInvWrapper::new);
-        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntities.COMPACT_INDUCTION_FOUNDRY_BE.get(),
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ChaosEngineBlockEntities.COMPACT_INDUCTION_FOUNDRY_BE.get(),
                 SidedInvWrapper::new);
     }
 }

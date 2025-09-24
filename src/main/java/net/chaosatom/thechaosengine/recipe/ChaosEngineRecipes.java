@@ -8,7 +8,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-public class ModRecipes {
+public class ChaosEngineRecipes {
     public static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS =
             DeferredRegister.create(Registries.RECIPE_SERIALIZER, TheChaosEngine.MOD_ID);
     public static final DeferredRegister<RecipeType<?>> TYPES =

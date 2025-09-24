@@ -2,10 +2,8 @@ package net.chaosatom.thechaosengine.block.custom;
 
 import com.mojang.serialization.MapCodec;
 import net.chaosatom.thechaosengine.TheChaosEngine;
-import net.chaosatom.thechaosengine.block.ModBlocks;
-import net.chaosatom.thechaosengine.block.entity.ModBlockEntities;
+import net.chaosatom.thechaosengine.block.entity.ChaosEngineBlockEntities;
 import net.chaosatom.thechaosengine.block.entity.custom.AtmosphericCondenserBlockEntity;
-import net.chaosatom.thechaosengine.block.entity.custom.CompactPulverizerBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -229,7 +227,7 @@ public class AtmosphericCondenserBlock extends BaseEntityBlock implements Entity
             return null;
         }
 
-        return createTickerHelper(blockEntityType, ModBlockEntities.ATMOSPHERIC_CONDENSER_BE.get(),
+        return createTickerHelper(blockEntityType, ChaosEngineBlockEntities.ATMOSPHERIC_CONDENSER_BE.get(),
                 (level1, blockPos, blockState, atmosphericCondenserBlockEntity)
                         -> atmosphericCondenserBlockEntity.tick(level1, blockPos, blockState));
     }

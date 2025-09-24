@@ -14,7 +14,7 @@ import net.neoforged.neoforge.network.IContainerFactory;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-public class ModMenuTypes {
+public class ChaosEngineMenuTypes {
     public static final DeferredRegister<MenuType<?>> MENUS =
             DeferredRegister.create(Registries.MENU, TheChaosEngine.MOD_ID);
 

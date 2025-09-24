@@ -1,2 +1,7 @@
-// 1.21.1	2025-09-14T05:02:46.026741	Tags for minecraft:item mod id thechaosengine
+// 1.21.1	2025-09-24T06:09:45.2775528	Tags for minecraft:item mod id thechaosengine
+94d385947c0f5da8948b50334e0e78bf2c7833e7 data/c/tags/item/dusts/coal.json
+508817e59747e52beb96972073dce0b6719302c3 data/c/tags/item/dusts/copper.json
+07ae5aec0d018970c46a5515c30b7c32070f6413 data/c/tags/item/dusts/gold.json
+5c6069a8e944c4596e5e7fff0d010c4ae2f53860 data/c/tags/item/dusts/iron.json
+9783a184dd6afa4284fd788b6c855c8742dd2908 data/c/tags/item/dusts/lapis.json
 c2a61a17a9119f86f90d1a868805f727d3b2ab4f data/thechaosengine/tags/item/coal_generator_fuel.json

@@ -1,9 +1,7 @@
-package net.chaosatom.thechaosengine.block.entity.energy;
+package net.chaosatom.thechaosengine.util.energy;
 
-import net.neoforged.neoforge.energy.EnergyStorage;
-
-public abstract class ModEnergyStorage extends EnergyStorage {
-    public ModEnergyStorage(int capacity, int maxTransfer) {
+public abstract class EnergyStorage extends net.neoforged.neoforge.energy.EnergyStorage {
+    public EnergyStorage(int capacity, int maxTransfer) {
         super(capacity, maxTransfer);
     }
 

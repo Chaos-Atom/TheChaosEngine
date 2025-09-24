@@ -1,4 +1,4 @@
-package net.chaosatom.thechaosengine.block.entity.energy;
+package net.chaosatom.thechaosengine.util.energy;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
@@ -6,7 +6,7 @@ import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 
 // 100% of this comes from Kaupenjoe's tutorials, huge thanks to him.
-public class ModEnergyUtil {
+public class EnergyUtil {
     public static boolean moveEnergy(BlockPos giverPos, BlockPos receiverPos, int amount, Level level) {
         IEnergyStorage giverStorage = level.getCapability(Capabilities.EnergyStorage.BLOCK, giverPos, null);
         IEnergyStorage receiverStorage = level.getCapability(Capabilities.EnergyStorage.BLOCK, receiverPos, null);
