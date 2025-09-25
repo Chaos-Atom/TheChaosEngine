@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_bauxite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "thechaosengine:bauxite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:polished_bauxite_slab_from_bauxite_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_bauxite"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:polished_bauxite_slab_from_bauxite_stonecutting"
+    ]
+  }
+}

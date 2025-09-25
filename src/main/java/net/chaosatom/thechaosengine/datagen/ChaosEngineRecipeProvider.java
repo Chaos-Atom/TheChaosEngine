@@ -43,25 +43,55 @@ public class ChaosEngineRecipeProvider extends RecipeProvider implements ICondit
                 .pattern("CCC")
                 .define('C', ChaosEngineItems.COPPER_DUST.get())
                 .unlockedBy("has_copper_dust", has(ChaosEngineItems.COPPER_DUST.get())).save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ChaosEngineBlocks.POLISHED_BAUXITE.get())
                 .pattern("BB")
                 .pattern("BB")
                 .define('B', ChaosEngineBlocks.BAUXITE.get())
                 .unlockedBy("has_bauxite_block", has(ChaosEngineBlocks.BAUXITE.get())).save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ChaosEngineBlocks.BAUXITE_BRICKS.get())
+                .pattern("PP")
+                .pattern("PP")
+                .define('P', ChaosEngineBlocks.POLISHED_BAUXITE.get())
+                .unlockedBy("has_bauxite_block", has(ChaosEngineBlocks.POLISHED_BAUXITE.get())).save(recipeOutput);
 
         // Stairs
         stairBuilder(ChaosEngineBlocks.BAUXITE_STAIRS.get(), Ingredient.of(ChaosEngineBlocks.BAUXITE.get())).group("bauxite")
                 .unlockedBy("has_bauxite", has(ChaosEngineBlocks.BAUXITE.get())).save(recipeOutput);
         stairBuilder(ChaosEngineBlocks.POLISHED_BAUXITE_STAIRS.get(), Ingredient.of(ChaosEngineBlocks.POLISHED_BAUXITE.get())).group("bauxite")
-                .unlockedBy("has_bauxite", has(ChaosEngineBlocks.POLISHED_BAUXITE.get())).save(recipeOutput);
+                .unlockedBy("has_polished_bauxite", has(ChaosEngineBlocks.POLISHED_BAUXITE.get())).save(recipeOutput);
+        stairBuilder(ChaosEngineBlocks.BAUXITE_BRICK_STAIRS.get(), Ingredient.of(ChaosEngineBlocks.BAUXITE_BRICKS.get())).group("bauxite")
+                .unlockedBy("has_bauxite_bricks", has(ChaosEngineBlocks.BAUXITE_BRICKS.get())).save(recipeOutput);
 
         // Slabs
         slab(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ChaosEngineBlocks.BAUXITE_SLAB.get(), ChaosEngineBlocks.BAUXITE);
         slab(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ChaosEngineBlocks.POLISHED_BAUXITE_SLAB.get(), ChaosEngineBlocks.POLISHED_BAUXITE);
+        slab(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ChaosEngineBlocks.BAUXITE_BRICK_SLAB.get(), ChaosEngineBlocks.BAUXITE_BRICKS);
 
         // Walls
         wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ChaosEngineBlocks.BAUXITE_WALL.get(), ChaosEngineBlocks.BAUXITE);
         wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ChaosEngineBlocks.POLISHED_BAUXITE_WALL.get(), ChaosEngineBlocks.POLISHED_BAUXITE);
+        wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ChaosEngineBlocks.BAUXITE_BRICK_WALL.get(), ChaosEngineBlocks.BAUXITE_BRICKS);
+
+        // Stonecutter Recipes
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ChaosEngineBlocks.BAUXITE_STAIRS.get(), ChaosEngineBlocks.BAUXITE.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ChaosEngineBlocks.BAUXITE_SLAB.get(), ChaosEngineBlocks.BAUXITE.get(), 2);
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ChaosEngineBlocks.BAUXITE_WALL.get(), ChaosEngineBlocks.BAUXITE.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ChaosEngineBlocks.POLISHED_BAUXITE_STAIRS.get(), ChaosEngineBlocks.BAUXITE.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ChaosEngineBlocks.POLISHED_BAUXITE_SLAB.get(), ChaosEngineBlocks.BAUXITE.get(), 2);
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ChaosEngineBlocks.POLISHED_BAUXITE_WALL.get(), ChaosEngineBlocks.BAUXITE.get());
+
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ChaosEngineBlocks.BAUXITE_BRICK_STAIRS.get(), ChaosEngineBlocks.BAUXITE_BRICKS.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ChaosEngineBlocks.BAUXITE_BRICK_SLAB.get(), ChaosEngineBlocks.BAUXITE_BRICKS.get(), 2);
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ChaosEngineBlocks.BAUXITE_BRICK_WALL.get(), ChaosEngineBlocks.BAUXITE_BRICKS.get());
+
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ChaosEngineBlocks.POLISHED_BAUXITE_STAIRS.get(), ChaosEngineBlocks.POLISHED_BAUXITE.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ChaosEngineBlocks.POLISHED_BAUXITE_SLAB.get(), ChaosEngineBlocks.POLISHED_BAUXITE.get(), 2);
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ChaosEngineBlocks.POLISHED_BAUXITE_WALL.get(), ChaosEngineBlocks.POLISHED_BAUXITE.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ChaosEngineBlocks.BAUXITE_BRICKS.get(), ChaosEngineBlocks.POLISHED_BAUXITE.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ChaosEngineBlocks.BAUXITE_BRICK_STAIRS.get(), ChaosEngineBlocks.POLISHED_BAUXITE.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ChaosEngineBlocks.BAUXITE_BRICK_SLAB.get(), ChaosEngineBlocks.POLISHED_BAUXITE.get(), 2);
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ChaosEngineBlocks.BAUXITE_BRICK_WALL.get(), ChaosEngineBlocks.POLISHED_BAUXITE.get());
 
         // Shapeless Recipes
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ChaosEngineItems.IRON_DUST.get(), 9)

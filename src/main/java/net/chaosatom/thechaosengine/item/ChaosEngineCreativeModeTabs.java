@@ -52,15 +52,20 @@ public class ChaosEngineCreativeModeTabs {
                         output.accept(ChaosEngineBlocks.COPPER_DUST_BLOCK);
                         output.accept(ChaosEngineBlocks.BAUXITE);
                         output.accept(ChaosEngineBlocks.POLISHED_BAUXITE);
+                        output.accept(ChaosEngineBlocks.BAUXITE_BRICKS);
 
-                        // Partial Blocks (Stairs, Slabs, etc.)
-                        output.accept(ChaosEngineBlocks.BAUXITE_SLAB);
+                        // Partial Blocks (Stairs, Slabs, Walls)
                         output.accept(ChaosEngineBlocks.BAUXITE_STAIRS);
+                        output.accept(ChaosEngineBlocks.BAUXITE_SLAB);
                         output.accept(ChaosEngineBlocks.BAUXITE_WALL);
-                        output.accept(ChaosEngineBlocks.POLISHED_BAUXITE_SLAB);
+
                         output.accept(ChaosEngineBlocks.POLISHED_BAUXITE_STAIRS);
+                        output.accept(ChaosEngineBlocks.POLISHED_BAUXITE_SLAB);
                         output.accept(ChaosEngineBlocks.POLISHED_BAUXITE_WALL);
 
+                        output.accept(ChaosEngineBlocks.BAUXITE_BRICK_STAIRS);
+                        output.accept(ChaosEngineBlocks.BAUXITE_BRICK_SLAB);
+                        output.accept(ChaosEngineBlocks.BAUXITE_BRICK_WALL);
 
                         // Machine Blocks (Single)
                         output.accept(ChaosEngineBlocks.COMPACT_COAL_GENERATOR);

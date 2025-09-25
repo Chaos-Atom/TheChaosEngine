@@ -3,8 +3,14 @@
     "thechaosengine:bauxite",
     "thechaosengine:bauxite_stairs",
     "thechaosengine:bauxite_slab",
+    "thechaosengine:bauxite_wall",
     "thechaosengine:polished_bauxite",
     "thechaosengine:polished_bauxite_stairs",
-    "thechaosengine:polished_bauxite_slab"
+    "thechaosengine:polished_bauxite_slab",
+    "thechaosengine:polished_bauxite_wall",
+    "thechaosengine:bauxite_bricks",
+    "thechaosengine:bauxite_brick_stairs",
+    "thechaosengine:bauxite_brick_slab",
+    "thechaosengine:bauxite_brick_wall"
   ]
 }

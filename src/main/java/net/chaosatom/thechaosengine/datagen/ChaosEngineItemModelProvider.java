@@ -41,6 +41,7 @@ public class ChaosEngineItemModelProvider extends ItemModelProvider {
 
         wallItem(ChaosEngineBlocks.BAUXITE_WALL, ChaosEngineBlocks.BAUXITE);
         wallItem(ChaosEngineBlocks.POLISHED_BAUXITE_WALL, ChaosEngineBlocks.POLISHED_BAUXITE);
+        wallItem(ChaosEngineBlocks.BAUXITE_BRICK_WALL, ChaosEngineBlocks.BAUXITE_BRICKS);
     }
 
     public void wallItem(DeferredBlock<Block> block, DeferredBlock<Block> baseBlock) {

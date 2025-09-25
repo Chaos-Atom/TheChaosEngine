@@ -20,6 +20,7 @@ public class ChaosEngineBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         blockWithItem(ChaosEngineBlocks.POLISHED_BAUXITE);
+        blockWithItem(ChaosEngineBlocks.BAUXITE_BRICKS);
 
         stairsBlock(((StairBlock) ChaosEngineBlocks.BAUXITE_STAIRS.get()), blockTexture(ChaosEngineBlocks.BAUXITE.get()));
         slabBlock(((SlabBlock) ChaosEngineBlocks.BAUXITE_SLAB.get()), blockTexture(ChaosEngineBlocks.BAUXITE.get()), blockTexture(ChaosEngineBlocks.BAUXITE.get()));
@@ -29,10 +30,18 @@ public class ChaosEngineBlockStateProvider extends BlockStateProvider {
         slabBlock(((SlabBlock) ChaosEngineBlocks.POLISHED_BAUXITE_SLAB.get()), blockTexture(ChaosEngineBlocks.POLISHED_BAUXITE.get()), blockTexture(ChaosEngineBlocks.POLISHED_BAUXITE.get()));
         wallBlock(((WallBlock) ChaosEngineBlocks.POLISHED_BAUXITE_WALL.get()), blockTexture(ChaosEngineBlocks.POLISHED_BAUXITE.get()));
 
+        stairsBlock(((StairBlock) ChaosEngineBlocks.BAUXITE_BRICK_STAIRS.get()), blockTexture(ChaosEngineBlocks.BAUXITE_BRICKS.get()));
+        slabBlock(((SlabBlock) ChaosEngineBlocks.BAUXITE_BRICK_SLAB.get()), blockTexture(ChaosEngineBlocks.BAUXITE_BRICKS.get()), blockTexture(ChaosEngineBlocks.BAUXITE_BRICKS.get()));
+        wallBlock(((WallBlock) ChaosEngineBlocks.BAUXITE_BRICK_WALL.get()), blockTexture(ChaosEngineBlocks.BAUXITE_BRICKS.get()));
+
         blockItem(ChaosEngineBlocks.BAUXITE_STAIRS);
         blockItem(ChaosEngineBlocks.BAUXITE_SLAB);
+
         blockItem(ChaosEngineBlocks.POLISHED_BAUXITE_STAIRS);
         blockItem(ChaosEngineBlocks.POLISHED_BAUXITE_SLAB);
+
+        blockItem(ChaosEngineBlocks.BAUXITE_BRICK_STAIRS);
+        blockItem(ChaosEngineBlocks.BAUXITE_BRICK_SLAB);
     }
 
     private void blockWithItem(DeferredBlock<Block> deferredBlock) {

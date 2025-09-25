@@ -57,8 +57,6 @@ public class ChaosEngineBlocks {
     public static final DeferredBlock<Block> BAUXITE_WALL = registerBlock("bauxite_wall",
             () -> new WallBlock(BlockBehaviour.Properties.of().strength(1.35f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
 
-
-
     public static final DeferredBlock<Block> POLISHED_BAUXITE = registerBlock("polished_bauxite",
             () -> new Block(BlockBehaviour.Properties.of().strength(1.35f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
     public static final DeferredBlock<Block> POLISHED_BAUXITE_STAIRS = registerBlock("polished_bauxite_stairs",
@@ -66,6 +64,15 @@ public class ChaosEngineBlocks {
     public static final DeferredBlock<Block> POLISHED_BAUXITE_SLAB = registerBlock("polished_bauxite_slab",
             () -> new SlabBlock(BlockBehaviour.Properties.of().strength(1.35f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
     public static final DeferredBlock<Block> POLISHED_BAUXITE_WALL = registerBlock("polished_bauxite_wall",
+            () -> new WallBlock(BlockBehaviour.Properties.of().strength(1.35f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+
+    public static final DeferredBlock<Block> BAUXITE_BRICKS = registerBlock("bauxite_bricks",
+            () -> new Block(BlockBehaviour.Properties.of().strength(1.35f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> BAUXITE_BRICK_STAIRS = registerBlock("bauxite_brick_stairs",
+            () -> new StairBlock(ChaosEngineBlocks.BAUXITE_BRICKS.get().defaultBlockState() ,BlockBehaviour.Properties.of().strength(1.35f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> BAUXITE_BRICK_SLAB = registerBlock("bauxite_brick_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.of().strength(1.35f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> BAUXITE_BRICK_WALL = registerBlock("bauxite_brick_wall",
             () -> new WallBlock(BlockBehaviour.Properties.of().strength(1.35f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
 
     // Complex Blocks

@@ -41,6 +41,11 @@
   "block.thechaosengine.polished_bauxite_slab": "Polished Bauxite Slab",
   "block.thechaosengine.polished_bauxite_wall": "Polished Bauxite Wall",
 
+  "block.thechaosengine.bauxite_bricks": "Bauxite Bricks",
+  "block.thechaosengine.bauxite_brick_stairs": "Bauxite Brick Stairs",
+  "block.thechaosengine.bauxite_brick_slab": "Bauxite Brick Slab",
+  "block.thechaosengine.bauxite_brick_wall": "Bauxite Brick Wall",
+
   "block.thechaosengine.compact_coal_generator": "Compact Coal Generator",
   "block.thechaosengine.compact_pulverizer": "Compact Pulverizer",
   "block.thechaosengine.compact_induction_foundry": "Compact Induction Foundry",

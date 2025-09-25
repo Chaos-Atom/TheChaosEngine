@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "thechaosengine:polished_bauxite"
+  },
+  "result": {
+    "count": 1,
+    "id": "thechaosengine:bauxite_bricks"
+  }
+}

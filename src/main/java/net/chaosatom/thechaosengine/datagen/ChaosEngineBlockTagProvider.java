@@ -27,12 +27,19 @@ public class ChaosEngineBlockTagProvider extends BlockTagsProvider {
                 .add(ChaosEngineBlocks.BAUXITE.get())
                 .add(ChaosEngineBlocks.BAUXITE_STAIRS.get())
                 .add(ChaosEngineBlocks.BAUXITE_SLAB.get())
+                .add(ChaosEngineBlocks.BAUXITE_WALL.get())
                 .add(ChaosEngineBlocks.POLISHED_BAUXITE.get())
                 .add(ChaosEngineBlocks.POLISHED_BAUXITE_STAIRS.get())
-                .add(ChaosEngineBlocks.POLISHED_BAUXITE_SLAB.get());
+                .add(ChaosEngineBlocks.POLISHED_BAUXITE_SLAB.get())
+                .add(ChaosEngineBlocks.POLISHED_BAUXITE_WALL.get())
+                .add(ChaosEngineBlocks.BAUXITE_BRICKS.get())
+                .add(ChaosEngineBlocks.BAUXITE_BRICK_STAIRS.get())
+                .add(ChaosEngineBlocks.BAUXITE_BRICK_SLAB.get())
+                .add(ChaosEngineBlocks.BAUXITE_BRICK_WALL.get());
 
         this.tag(BlockTags.WALLS)
                 .add(ChaosEngineBlocks.BAUXITE_WALL.get())
-                .add(ChaosEngineBlocks.POLISHED_BAUXITE_WALL.get());
+                .add(ChaosEngineBlocks.POLISHED_BAUXITE_WALL.get())
+                .add(ChaosEngineBlocks.BAUXITE_BRICK_WALL.get());
     }
 }
