@@ -25,6 +25,7 @@ public class ChaosEngineTags {
         public static final TagKey<Item> DUSTS_COPPER = commonNeoForgeTag("dusts/copper");
         public static final TagKey<Item> DUSTS_COAL = commonNeoForgeTag("dusts/coal");
         public static final TagKey<Item> DUSTS_LAPIS = commonNeoForgeTag("dusts/lapis");
+        public static final TagKey<Item> DUSTS_CHARCOAL = commonNeoForgeTag("dusts/charcoal");
 
         private static TagKey<Item> createTag(String name) {
             return ItemTags.create(ResourceLocation.fromNamespaceAndPath(TheChaosEngine.MOD_ID, name));

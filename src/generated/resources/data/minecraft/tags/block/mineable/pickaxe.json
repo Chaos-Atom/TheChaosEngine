@@ -11,6 +11,10 @@
     "thechaosengine:bauxite_bricks",
     "thechaosengine:bauxite_brick_stairs",
     "thechaosengine:bauxite_brick_slab",
-    "thechaosengine:bauxite_brick_wall"
+    "thechaosengine:bauxite_brick_wall",
+    "thechaosengine:bauxite_tiles",
+    "thechaosengine:bauxite_tile_stairs",
+    "thechaosengine:bauxite_tile_slab",
+    "thechaosengine:bauxite_tile_wall"
   ]
 }

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "thechaosengine:bauxite"
+  },
+  "result": {
+    "count": 1,
+    "id": "thechaosengine:bauxite_tile_wall"
+  }
+}

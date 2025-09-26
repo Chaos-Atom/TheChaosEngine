@@ -1,11 +1,13 @@
 {
-  "creativetab.thechaosengine.the_chaos_engine_items": "The Chaos Engine",
+  "creativetab.thechaosengine.the_chaos_engine_main": "The Chaos Engine",
+  "creativetab.thechaosengine.the_chaos_engine_decorations": "The Chaos Engine Decorations",
 
   "item.thechaosengine.iron_dust": "Iron Dust",
   "item.thechaosengine.gold_dust": "Gold Dust",
   "item.thechaosengine.copper_dust": "Copper Dust",
   "item.thechaosengine.coal_dust": "Coal Dust",
   "item.thechaosengine.lapis_lazuli_dust": "Lapis Lazuli Dust",
+  "item.thechaosengine.charcoal_dust": "Charcoal Dust",
 
   "item.thechaosengine.iron_chunk": "Iron Chunk",
   "item.thechaosengine.gold_chunk": "Gold Chunk",
@@ -27,6 +29,8 @@
   "item.thechaosengine.gold_nanoparticle": "Gold Nanoparticle",
   "item.thechaosengine.copper_nanoparticle": "Copper Nanoparticle",
 
+  "item.thechaosengine.lapis_suspension_fluid_bucket": "Bucket of Lapis Suspension",
+
   "block.thechaosengine.iron_dust_block": "Block of Iron Dust",
   "block.thechaosengine.gold_dust_block": "Block of Gold Dust",
   "block.thechaosengine.copper_dust_block": "Block of Copper Dust",
@@ -45,6 +49,11 @@
   "block.thechaosengine.bauxite_brick_stairs": "Bauxite Brick Stairs",
   "block.thechaosengine.bauxite_brick_slab": "Bauxite Brick Slab",
   "block.thechaosengine.bauxite_brick_wall": "Bauxite Brick Wall",
+
+  "block.thechaosengine.bauxite_tiles": "Bauxite Tiles",
+  "block.thechaosengine.bauxite_tile_stairs": "Bauxite Tile Stairs",
+  "block.thechaosengine.bauxite_tile_slab": "Bauxite Tile Slab",
+  "block.thechaosengine.bauxite_tile_wall": "Bauxite Tile Wall",
 
   "block.thechaosengine.compact_coal_generator": "Compact Coal Generator",
   "block.thechaosengine.compact_pulverizer": "Compact Pulverizer",

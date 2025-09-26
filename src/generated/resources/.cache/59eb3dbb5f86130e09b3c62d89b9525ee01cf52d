@@ -1,4 +1,4 @@
-// 1.21.1	2025-09-25T17:36:29.1893714	Loot Tables
+// 1.21.1	2025-09-25T20:23:17.8978682	Loot Tables
 be49550e8c0e6eefda3555b6961ec21a3c62204b data/thechaosengine/loot_table/blocks/atmospheric_condenser.json
 f08028a5b0cb145fdbb0ea171a555ce16e0ffb6b data/thechaosengine/loot_table/blocks/bauxite.json
 5f189c2d1fd54359eef919bdb2a6995343a12860 data/thechaosengine/loot_table/blocks/bauxite_bricks.json
@@ -7,6 +7,10 @@ f08028a5b0cb145fdbb0ea171a555ce16e0ffb6b data/thechaosengine/loot_table/blocks/b
 4df43825d38200579e837dfd2882ff1a4cc20324 data/thechaosengine/loot_table/blocks/bauxite_brick_wall.json
 fc3f621d7ab24578bc3a420aec5a0351668236f1 data/thechaosengine/loot_table/blocks/bauxite_slab.json
 5c36468318cd63e0150b405a2c8b7742fdc4db03 data/thechaosengine/loot_table/blocks/bauxite_stairs.json
+ce00fcd3598041c762492dbed6ffb807cc6c89b6 data/thechaosengine/loot_table/blocks/bauxite_tiles.json
+0fadb169dc3bdfbb00116a7cc75568f9f18b3795 data/thechaosengine/loot_table/blocks/bauxite_tile_slab.json
+783fc6a3993704137c93283bef249567e3e0a8cf data/thechaosengine/loot_table/blocks/bauxite_tile_stairs.json
+896068aedffae7574250407cf6adfec422c98c3d data/thechaosengine/loot_table/blocks/bauxite_tile_wall.json
 8761db9603aa5d284dfddc67fdded05fc4774e79 data/thechaosengine/loot_table/blocks/bauxite_wall.json
 58f9d92e79e4e2e482fd2a2db5c6ca449997281e data/thechaosengine/loot_table/blocks/compact_coal_generator.json
 ba145ac9c9172bde2104371715314fa3d46ae4f6 data/thechaosengine/loot_table/blocks/compact_induction_foundry.json

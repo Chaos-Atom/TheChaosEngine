@@ -13,9 +13,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
 
-public class ChaosEngineItemTagProvider extends ItemTagsProvider {
-    public ChaosEngineItemTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider,
-                                      CompletableFuture<TagLookup<Block>> blockTags, @Nullable ExistingFileHelper existingFileHelper) {
+public class ChaosEngineItemTagsProvider extends ItemTagsProvider {
+    public ChaosEngineItemTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider,
+                                       CompletableFuture<TagLookup<Block>> blockTags, @Nullable ExistingFileHelper existingFileHelper) {
         super(output, lookupProvider, blockTags, TheChaosEngine.MOD_ID, existingFileHelper);
     }
 
@@ -25,12 +25,14 @@ public class ChaosEngineItemTagProvider extends ItemTagsProvider {
                 .add(Items.COAL)
                 .add(Items.CHARCOAL)
                 .add(Items.COAL_BLOCK)
-                .add(ChaosEngineItems.COAL_DUST.get());
+                .add(ChaosEngineItems.COAL_DUST.get())
+                .add(ChaosEngineItems.CHARCOAL_DUST.get());
 
         tag(ChaosEngineTags.Items.DUSTS_IRON).add(ChaosEngineItems.IRON_DUST.get());
         tag(ChaosEngineTags.Items.DUSTS_GOLD).add(ChaosEngineItems.GOLD_DUST.get());
         tag(ChaosEngineTags.Items.DUSTS_COPPER).add(ChaosEngineItems.COPPER_DUST.get());
         tag(ChaosEngineTags.Items.DUSTS_COAL).add(ChaosEngineItems.COAL_DUST.get());
         tag(ChaosEngineTags.Items.DUSTS_LAPIS).add(ChaosEngineItems.LAPIS_LAZULI_DUST.get());
+        tag(ChaosEngineTags.Items.DUSTS_CHARCOAL).add(ChaosEngineItems.CHARCOAL_DUST.get());
     }
 }

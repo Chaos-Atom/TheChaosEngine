@@ -11,8 +11,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
 
-public class ChaosEngineBlockTagProvider extends BlockTagsProvider {
-    public ChaosEngineBlockTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
+public class ChaosEngineBlockTagsProvider extends BlockTagsProvider {
+    public ChaosEngineBlockTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
         super(output, lookupProvider, TheChaosEngine.MOD_ID, existingFileHelper);
     }
 
@@ -35,11 +35,16 @@ public class ChaosEngineBlockTagProvider extends BlockTagsProvider {
                 .add(ChaosEngineBlocks.BAUXITE_BRICKS.get())
                 .add(ChaosEngineBlocks.BAUXITE_BRICK_STAIRS.get())
                 .add(ChaosEngineBlocks.BAUXITE_BRICK_SLAB.get())
-                .add(ChaosEngineBlocks.BAUXITE_BRICK_WALL.get());
+                .add(ChaosEngineBlocks.BAUXITE_BRICK_WALL.get())
+                .add(ChaosEngineBlocks.BAUXITE_TILES.get())
+                .add(ChaosEngineBlocks.BAUXITE_TILE_STAIRS.get())
+                .add(ChaosEngineBlocks.BAUXITE_TILE_SLAB.get())
+                .add(ChaosEngineBlocks.BAUXITE_TILE_WALL.get());
 
         this.tag(BlockTags.WALLS)
                 .add(ChaosEngineBlocks.BAUXITE_WALL.get())
                 .add(ChaosEngineBlocks.POLISHED_BAUXITE_WALL.get())
-                .add(ChaosEngineBlocks.BAUXITE_BRICK_WALL.get());
+                .add(ChaosEngineBlocks.BAUXITE_BRICK_WALL.get())
+                .add(ChaosEngineBlocks.BAUXITE_TILE_WALL.get());
     }
 }

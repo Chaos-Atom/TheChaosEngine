@@ -52,6 +52,12 @@ public class ChaosEngineBlockLootTableProvider extends BlockLootSubProvider {
         this.add(ChaosEngineBlocks.BAUXITE_BRICK_SLAB.get(),
                 block -> createSlabItemTable(ChaosEngineBlocks.BAUXITE_BRICK_SLAB.get()));
         dropSelf(ChaosEngineBlocks.BAUXITE_BRICK_WALL.get());
+
+        dropSelf(ChaosEngineBlocks.BAUXITE_TILES.get());
+        dropSelf(ChaosEngineBlocks.BAUXITE_TILE_STAIRS.get());
+        this.add(ChaosEngineBlocks.BAUXITE_TILE_SLAB.get(),
+                block -> createSlabItemTable(ChaosEngineBlocks.BAUXITE_TILE_SLAB.get()));
+        dropSelf(ChaosEngineBlocks.BAUXITE_TILE_WALL.get());
     }
 
     // Modified version of createCopperOreDrops to be more generic

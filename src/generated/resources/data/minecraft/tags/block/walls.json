@@ -2,6 +2,7 @@
   "values": [
     "thechaosengine:bauxite_wall",
     "thechaosengine:polished_bauxite_wall",
-    "thechaosengine:bauxite_brick_wall"
+    "thechaosengine:bauxite_brick_wall",
+    "thechaosengine:bauxite_tile_wall"
   ]
 }

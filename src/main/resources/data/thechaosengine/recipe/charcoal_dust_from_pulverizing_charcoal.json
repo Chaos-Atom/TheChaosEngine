@@ -1,0 +1,12 @@
+{
+  "type": "thechaosengine:pulverizing",
+  "ingredient": {
+    "item": "minecraft:charcoal"
+  },
+  "result": {
+    "id": "thechaosengine:charcoal_dust",
+    "count": 1
+  },
+  "processtime": 43,
+  "energy": 1
+}

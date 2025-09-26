@@ -21,6 +21,8 @@ public class ChaosEngineItems {
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> LAPIS_LAZULI_DUST = ITEMS.register("lapis_lazuli_dust",
             () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> CHARCOAL_DUST = ITEMS.register("charcoal_dust",
+            () -> new Item(new Item.Properties()));
 
     // Tier 2 General Ore Processing
     public static final DeferredItem<Item> IRON_CHUNK = ITEMS.register("iron_chunk",

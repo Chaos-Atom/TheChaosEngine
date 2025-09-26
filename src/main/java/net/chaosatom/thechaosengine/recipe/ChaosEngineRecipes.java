@@ -34,6 +34,16 @@ public class ChaosEngineRecipes {
                 }
             });
 
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<SuspensionMixerRecipe>> SUSPENSION_MIXER_SERIALIZER =
+            SERIALIZERS.register("suspension_mixing", SuspensionMixerRecipe.Serializer::new);
+    public static final DeferredHolder<RecipeType<?>, RecipeType<SuspensionMixerRecipe>> SUSPENSION_MIXER_TYPE =
+            TYPES.register("suspension_mixing", () -> new RecipeType<SuspensionMixerRecipe>() {
+                @Override
+                public String toString() {
+                    return "suspension_mixing";
+                }
+            });
+
     public static void register(IEventBus eventBus) {
         SERIALIZERS.register(eventBus);
         TYPES.register(eventBus);

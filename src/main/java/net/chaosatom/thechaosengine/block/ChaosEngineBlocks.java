@@ -75,6 +75,15 @@ public class ChaosEngineBlocks {
     public static final DeferredBlock<Block> BAUXITE_BRICK_WALL = registerBlock("bauxite_brick_wall",
             () -> new WallBlock(BlockBehaviour.Properties.of().strength(1.35f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
 
+    public static final DeferredBlock<Block> BAUXITE_TILES = registerBlock("bauxite_tiles",
+            () -> new Block(BlockBehaviour.Properties.of().strength(1.35f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> BAUXITE_TILE_STAIRS = registerBlock("bauxite_tile_stairs",
+            () -> new StairBlock(ChaosEngineBlocks.BAUXITE_TILES.get().defaultBlockState() ,BlockBehaviour.Properties.of().strength(1.35f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> BAUXITE_TILE_SLAB = registerBlock("bauxite_tile_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.of().strength(1.35f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> BAUXITE_TILE_WALL = registerBlock("bauxite_tile_wall",
+            () -> new WallBlock(BlockBehaviour.Properties.of().strength(1.35f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+
     // Complex Blocks
     public static  final DeferredBlock<Block> COMPACT_COAL_GENERATOR = registerBlock("compact_coal_generator",
             () -> new CompactCoalGeneratorBlock(BlockBehaviour.Properties.of().noOcclusion().strength(3f)));

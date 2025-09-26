@@ -4,7 +4,6 @@
     "minecraft:charcoal",
     "minecraft:coal_block",
     "thechaosengine:coal_dust",
-
-    "minecraft:nether_star"
+    "thechaosengine:charcoal_dust"
   ]
 }

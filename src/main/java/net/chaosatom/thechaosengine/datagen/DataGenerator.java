@@ -30,10 +30,11 @@ public class DataGenerator {
                 List.of(new LootTableProvider.SubProviderEntry(ChaosEngineBlockLootTableProvider::new,
                         LootContextParamSets.BLOCK)), lookupProvider));
 
-        BlockTagsProvider blockTagsProvider = new ChaosEngineBlockTagProvider(packOutput, lookupProvider, existingFileHelper);
+        BlockTagsProvider blockTagsProvider = new ChaosEngineBlockTagsProvider(packOutput, lookupProvider, existingFileHelper);
         generator.addProvider(event.includeServer(), blockTagsProvider);
         generator.addProvider(event.includeServer(),
-                new ChaosEngineItemTagProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter(), existingFileHelper));
+                new ChaosEngineItemTagsProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter(), existingFileHelper));
+        generator.addProvider(event.includeServer(), new ChaosEngineFluidTagProvider(packOutput, lookupProvider, existingFileHelper));
         generator.addProvider(event.includeServer(), new ChaosEngineBiomeTagProvider(packOutput, lookupProvider, existingFileHelper));
 
         generator.addProvider(event.includeClient(), new ChaosEngineItemModelProvider(packOutput, existingFileHelper));

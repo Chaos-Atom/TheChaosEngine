@@ -2,6 +2,7 @@ package net.chaosatom.thechaosengine.datagen;
 
 import net.chaosatom.thechaosengine.TheChaosEngine;
 import net.chaosatom.thechaosengine.block.ChaosEngineBlocks;
+import net.chaosatom.thechaosengine.fluid.ChaosEngineFluids;
 import net.chaosatom.thechaosengine.item.ChaosEngineItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -22,6 +23,7 @@ public class ChaosEngineItemModelProvider extends ItemModelProvider {
         basicItem(ChaosEngineItems.COPPER_DUST.get());
         basicItem(ChaosEngineItems.COAL_DUST.get());
         basicItem(ChaosEngineItems.LAPIS_LAZULI_DUST.get());
+        basicItem(ChaosEngineItems.CHARCOAL_DUST.get());
 
         basicItem(ChaosEngineItems.IRON_CHUNK.get());
         basicItem(ChaosEngineItems.GOLD_CHUNK.get());
@@ -39,9 +41,12 @@ public class ChaosEngineItemModelProvider extends ItemModelProvider {
         basicItem(ChaosEngineItems.CRYSTAL_GOLD.get());
         basicItem(ChaosEngineItems.CRYSTAL_COPPER.get());
 
+        basicItem(ChaosEngineFluids.LAPIS_SUSPENSION_FLUID_BUCKET.get());
+
         wallItem(ChaosEngineBlocks.BAUXITE_WALL, ChaosEngineBlocks.BAUXITE);
         wallItem(ChaosEngineBlocks.POLISHED_BAUXITE_WALL, ChaosEngineBlocks.POLISHED_BAUXITE);
         wallItem(ChaosEngineBlocks.BAUXITE_BRICK_WALL, ChaosEngineBlocks.BAUXITE_BRICKS);
+        wallItem(ChaosEngineBlocks.BAUXITE_TILE_WALL, ChaosEngineBlocks.BAUXITE_TILES);
     }
 
     public void wallItem(DeferredBlock<Block> block, DeferredBlock<Block> baseBlock) {

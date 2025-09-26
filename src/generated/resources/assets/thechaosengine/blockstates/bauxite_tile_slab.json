@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "thechaosengine:block/bauxite_tile_slab"
+    },
+    "type=double": {
+      "model": "thechaosengine:block/bauxite_tiles"
+    },
+    "type=top": {
+      "model": "thechaosengine:block/bauxite_tile_slab_top"
+    }
+  }
+}

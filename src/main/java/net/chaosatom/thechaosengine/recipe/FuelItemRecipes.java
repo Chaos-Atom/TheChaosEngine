@@ -18,6 +18,7 @@ public class FuelItemRecipes {
         FUEL_STATS.put(Items.CHARCOAL, new FuelData(110, 1));
         FUEL_STATS.put(Items.COAL_BLOCK, new FuelData(1100, 1));
         FUEL_STATS.put(ChaosEngineItems.COAL_DUST.get(), new FuelData(65, 2));
+        FUEL_STATS.put(ChaosEngineItems.CHARCOAL_DUST.get(), new FuelData(65, 2));
 
         FUEL_STATS.put(Items.NETHER_STAR, new FuelData(640, 50)); // Debugging Purpose
     }
