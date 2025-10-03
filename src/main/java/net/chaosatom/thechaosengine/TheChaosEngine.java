@@ -5,8 +5,6 @@ import net.chaosatom.thechaosengine.block.entity.ChaosEngineBlockEntities;
 import net.chaosatom.thechaosengine.client.renderer.AtmosphericCondenserBlockEntityRenderer;
 import net.chaosatom.thechaosengine.client.renderer.CompactInductionFoundryBlockEntityRenderer;
 import net.chaosatom.thechaosengine.client.renderer.SuspensionMixerBlockEntityRenderer;
-import net.chaosatom.thechaosengine.fluid.BaseFluidType;
-import net.chaosatom.thechaosengine.fluid.ChaosEngineFluidTypes;
 import net.chaosatom.thechaosengine.fluid.ChaosEngineFluids;
 import net.chaosatom.thechaosengine.item.ChaosEngineCreativeModeTabs;
 import net.chaosatom.thechaosengine.item.ChaosEngineItems;
@@ -17,7 +15,6 @@ import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
-import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -62,7 +59,6 @@ public class TheChaosEngine {
 
         ChaosEngineRecipes.register(modEventBus);
 
-        ChaosEngineFluidTypes.register(modEventBus);
         ChaosEngineFluids.register(modEventBus);
 
         // Register the item to a creative tab
@@ -88,20 +84,14 @@ public class TheChaosEngine {
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
-    @EventBusSubscriber(modid = MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    @EventBusSubscriber(modid = MOD_ID, value = Dist.CLIENT)
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             event.enqueueWork(() -> {
-                    ItemBlockRenderTypes.setRenderLayer(ChaosEngineFluids.SOURCE_LAPIS_SUSPENSION_FLUID.get(), RenderType.translucent());
-                    ItemBlockRenderTypes.setRenderLayer(ChaosEngineFluids.FLOWING_LAPIS_SUSPENSION_FLUID.get(), RenderType.translucent());
+                    ItemBlockRenderTypes.setRenderLayer(ChaosEngineFluids.LAPIS_SUSPENSION_SOURCE.get(), RenderType.translucent());
+                    ItemBlockRenderTypes.setRenderLayer(ChaosEngineFluids.LAPIS_SUSPENSION_FLOWING.get(), RenderType.translucent());
             });
-        }
-
-        @SubscribeEvent
-        public static void onClientExtensions(RegisterClientExtensionsEvent event) {
-            event.registerFluidType(((BaseFluidType) ChaosEngineFluidTypes.LAPIS_SUSPENSION_FLUID_TYPE.get()).getClientFluidTypeExtensions(),
-                    ChaosEngineFluidTypes.LAPIS_SUSPENSION_FLUID_TYPE.get());
         }
 
         @SubscribeEvent

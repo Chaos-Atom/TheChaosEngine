@@ -1,9 +1,13 @@
 package net.chaosatom.thechaosengine.item;
 
 import net.chaosatom.thechaosengine.TheChaosEngine;
+import net.chaosatom.thechaosengine.fluid.ChaosEngineFluids;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -61,6 +65,9 @@ public class ChaosEngineItems {
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> COPPER_NANOPARTICLE = ITEMS.register("copper_nanoparticle",
             () -> new Item(new Item.Properties()));
+
+    public static final DeferredHolder<Item, BucketItem> LAPIS_SUSPENSION_BUCKET = ITEMS.register("lapis_suspension_bucket",
+            () -> new BucketItem(ChaosEngineFluids.LAPIS_SUSPENSION_SOURCE.get(), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
 
     // Misc. Ore Items
 

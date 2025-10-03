@@ -29,7 +29,7 @@
   "item.thechaosengine.gold_nanoparticle": "Gold Nanoparticle",
   "item.thechaosengine.copper_nanoparticle": "Copper Nanoparticle",
 
-  "item.thechaosengine.lapis_suspension_fluid_bucket": "Bucket of Lapis Suspension",
+  "item.thechaosengine.lapis_suspension_bucket": "Bucket of Lapis Suspension",
 
   "block.thechaosengine.iron_dust_block": "Block of Iron Dust",
   "block.thechaosengine.gold_dust_block": "Block of Gold Dust",
@@ -68,6 +68,8 @@
   "blockentity.thechaosengine.compact_induction_foundry": "Compact Induction Foundry",
   "blockentity.thechaosengine.atmospheric_condenser": "Atmospheric Condenser",
   "blockentity.thechaosengine.suspension_mixer": "Suspension Mixer",
+
+  "fluid_type.thechaosengine.lapis_suspension": "Lapis Suspension",
 
   "tooltip.thechaosengine.compact_coal_generator_stickynote": "§7Sticky Note§r",
 

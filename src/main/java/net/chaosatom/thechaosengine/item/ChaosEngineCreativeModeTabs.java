@@ -8,6 +8,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.ItemLike;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -49,7 +50,7 @@ public class ChaosEngineCreativeModeTabs {
                         output.accept(ChaosEngineItems.GOLD_NANOPARTICLE);
                         output.accept(ChaosEngineItems.COPPER_NANOPARTICLE);
 
-                        output.accept(ChaosEngineFluids.LAPIS_SUSPENSION_FLUID_BUCKET);
+                        output.accept((ItemLike) ChaosEngineItems.LAPIS_SUSPENSION_BUCKET);
 
                         // Full Blocks
                         output.accept(ChaosEngineBlocks.IRON_DUST_BLOCK);

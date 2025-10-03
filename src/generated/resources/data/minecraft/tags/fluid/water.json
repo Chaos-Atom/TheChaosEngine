@@ -1,6 +1,6 @@
 {
   "values": [
-    "thechaosengine:source_lapis_suspension",
-    "thechaosengine:flowing_lapis_suspension"
+    "thechaosengine:lapis_suspension_source",
+    "thechaosengine:lapis_suspension_flowing"
   ]
 }

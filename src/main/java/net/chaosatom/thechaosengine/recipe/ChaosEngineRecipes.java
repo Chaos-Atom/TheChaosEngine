@@ -17,7 +17,7 @@ public class ChaosEngineRecipes {
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<PulverizerRecipe>> PULVERIZER_SERIALIZER =
             SERIALIZERS.register("pulverizing", PulverizerRecipe.Serializer::new);
     public static final DeferredHolder<RecipeType<?>, RecipeType<PulverizerRecipe>> PULVERIZER_TYPE =
-            TYPES.register("pulverizing", () -> new RecipeType<PulverizerRecipe>() {
+            TYPES.register("pulverizing", () -> new RecipeType<>() {
                 @Override
                 public String toString() {
                     return "pulverizing";
@@ -27,7 +27,7 @@ public class ChaosEngineRecipes {
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<InductionFoundryRecipe>> INDUCTION_FOUNDRY_SERIALIZER =
             SERIALIZERS.register("induction_smelting", InductionFoundryRecipe.Serializer::new);
     public static final DeferredHolder<RecipeType<?>, RecipeType<InductionFoundryRecipe>> INDUCTION_FOUNDRY_TYPE =
-            TYPES.register("induction_smelting", () -> new RecipeType<InductionFoundryRecipe>() {
+            TYPES.register("induction_smelting", () -> new RecipeType<>() {
                 @Override
                 public String toString() {
                     return "induction_smelting";
@@ -37,7 +37,7 @@ public class ChaosEngineRecipes {
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<SuspensionMixerRecipe>> SUSPENSION_MIXER_SERIALIZER =
             SERIALIZERS.register("suspension_mixing", SuspensionMixerRecipe.Serializer::new);
     public static final DeferredHolder<RecipeType<?>, RecipeType<SuspensionMixerRecipe>> SUSPENSION_MIXER_TYPE =
-            TYPES.register("suspension_mixing", () -> new RecipeType<SuspensionMixerRecipe>() {
+            TYPES.register("suspension_mixing", () -> new RecipeType<>() {
                 @Override
                 public String toString() {
                     return "suspension_mixing";

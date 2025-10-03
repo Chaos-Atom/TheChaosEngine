@@ -19,7 +19,7 @@ public class ChaosEngineFluidTagProvider extends FluidTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         tag(FluidTags.WATER)
-                .add(ChaosEngineFluids.SOURCE_LAPIS_SUSPENSION_FLUID.get())
-                .add(ChaosEngineFluids.FLOWING_LAPIS_SUSPENSION_FLUID.get());
+                .add(ChaosEngineFluids.LAPIS_SUSPENSION_SOURCE.get())
+                .add(ChaosEngineFluids.LAPIS_SUSPENSION_FLOWING.get());
     }
 }

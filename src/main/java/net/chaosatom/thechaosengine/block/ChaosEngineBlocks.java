@@ -3,6 +3,7 @@ package net.chaosatom.thechaosengine.block;
 import com.mojang.serialization.MapCodec;
 import net.chaosatom.thechaosengine.TheChaosEngine;
 import net.chaosatom.thechaosengine.block.custom.*;
+import net.chaosatom.thechaosengine.fluid.ChaosEngineFluids;
 import net.chaosatom.thechaosengine.item.ChaosEngineItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -11,6 +12,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
@@ -92,6 +94,10 @@ public class ChaosEngineBlocks {
             () -> new AtmosphericCondenserBlock(BlockBehaviour.Properties.of().noOcclusion().strength(3f)));
     public static final DeferredBlock<Block> SUSPENSION_MIXER = registerBlock("suspension_mixer",
             () -> new SuspensionMixerBlock(BlockBehaviour.Properties.of().noOcclusion().strength(3f)));
+
+    // Fluid Blocks
+    public static final DeferredHolder<Block, LiquidBlock> LAPIS_SUSPENSION_BLOCK = BLOCKS.register("lapis_suspension_block",
+            () -> new LiquidBlock(ChaosEngineFluids.LAPIS_SUSPENSION_SOURCE.get(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER)));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

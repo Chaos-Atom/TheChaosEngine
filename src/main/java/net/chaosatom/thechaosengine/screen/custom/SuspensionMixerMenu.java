@@ -14,7 +14,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.items.SlotItemHandler;
-import org.jetbrains.annotations.Nullable;
 
 public class SuspensionMixerMenu extends AbstractContainerMenu {
     public final SuspensionMixerBlockEntity blockEntity;
@@ -47,7 +46,7 @@ public class SuspensionMixerMenu extends AbstractContainerMenu {
     }
 
     public FluidStack getOutputFluid() {
-        return new FluidStack(ChaosEngineFluids.SOURCE_LAPIS_SUSPENSION_FLUID.get(), this.data.get(3));
+        return new FluidStack(ChaosEngineFluids.LAPIS_SUSPENSION_SOURCE.get(), this.data.get(3));
     }
 
     public int getScaledArrowProgress(int arrowPixelWidth) {

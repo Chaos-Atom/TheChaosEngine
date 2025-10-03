@@ -1,4 +1,4 @@
-// 1.21.1	2025-09-26T01:24:13.3828131	Item Models: thechaosengine
+// 1.21.1	2025-10-03T02:38:08.6151645	Item Models: thechaosengine
 a4498cc5c73b50a615f54cef601a707c4fdf4ca3 assets/thechaosengine/models/item/bauxite_brick_wall.json
 1f385b92b5d5015f63e00b322c438202ee995b36 assets/thechaosengine/models/item/bauxite_tile_wall.json
 ae9eba2710c3dcb2364973b0e60551a6800cc7f0 assets/thechaosengine/models/item/bauxite_wall.json
@@ -17,7 +17,7 @@ bca5d9dd32b4bc0336af2600f2d9473f847df69c assets/thechaosengine/models/item/gold_
 c59af63fd258598d788d94efe720034f03d72786 assets/thechaosengine/models/item/iron_chunk.json
 0daa3448d6f08c061d244601c47bf636ff21cf23 assets/thechaosengine/models/item/iron_dust.json
 b30f6c349f893add39273beab0dbc4475fb6d838 assets/thechaosengine/models/item/lapis_lazuli_dust.json
-3dcb64f6118fc37e6eba5a8b837f3eb93dbbec8e assets/thechaosengine/models/item/lapis_suspension_fluid_bucket.json
+98efd736b8d9c20184d682bd163f8dc904e0909d assets/thechaosengine/models/item/lapis_suspension_bucket.json
 0eefbebd28f0fc4143ed9f13f61e1198d1443d44 assets/thechaosengine/models/item/polished_bauxite_wall.json
 2d90455c87a92ae251789a31c4b574e1c1b515e9 assets/thechaosengine/models/item/purified_crystal_copper.json
 e2e9039c716af9c19b1a30a8dd25ed1fefdf2ba5 assets/thechaosengine/models/item/purified_crystal_gold.json

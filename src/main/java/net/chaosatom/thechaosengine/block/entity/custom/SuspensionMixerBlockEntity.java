@@ -3,7 +3,6 @@ package net.chaosatom.thechaosengine.block.entity.custom;
 import net.chaosatom.thechaosengine.block.entity.ChaosEngineBlockEntities;
 import net.chaosatom.thechaosengine.recipe.ChaosEngineRecipes;
 import net.chaosatom.thechaosengine.recipe.SuspensionMixerRecipe;
-import net.chaosatom.thechaosengine.recipe.SuspensionMixerRecipeInput;
 import net.chaosatom.thechaosengine.screen.custom.SuspensionMixerMenu;
 import net.chaosatom.thechaosengine.util.energy.EnergyStorage;
 import net.minecraft.core.BlockPos;
@@ -50,7 +49,7 @@ public class SuspensionMixerBlockEntity extends BlockEntity implements GeoBlockE
     private static final int INPUT_SLOT = 0;
     private final ContainerData data;
     private int progress = 0;
-    private int maxProgress = 0;
+    private int maxProgress;
     private static final int FLUID_TRANSFER_AMOUNT = 500;
 
     // Capabilities
@@ -206,52 +205,49 @@ public class SuspensionMixerBlockEntity extends BlockEntity implements GeoBlockE
 
             if (this.deployTime <= 0) {
                 this.animState = AnimationState.DEPLOYED;
-                setChanged();
+                setChanged(level, blockPos, blockState);
             }
         } else if (this.animState == AnimationState.RETRACTING) {
             this.retractTime--;
 
             if (this.retractTime <= 0) {
                 this.animState = AnimationState.UNDEPLOYED;
-                setChanged();
+                setChanged(level, blockPos, blockState);
             }
         }
-        if (level.isClientSide() || this.animState != AnimationState.DEPLOYED) {
+        if (level.isClientSide()) {
             return;
         }
 
-        if (hasRecipe()) {
-            level.setBlock(blockPos, blockState.setValue(BlockStateProperties.LIT, true), 3);
-            this.animState = AnimationState.WORKING;
-            this.progress++;
-            setChanged();
+        if (this.animState == AnimationState.DEPLOYED || this.animState == AnimationState.WORKING) {
+            Optional<RecipeHolder<SuspensionMixerRecipe>> recipe = getCurrentRecipe();
+            if (recipe.isPresent() && hasResources(recipe.get().value())) {
+                SuspensionMixerRecipe currentRecipe = recipe.get().value();
+                this.animState = AnimationState.WORKING;
 
-            if (this.progress >= this.maxProgress) {
-                craftItem();
+                this.ENERGY_STORAGE.extractEnergy(currentRecipe.energy(), false);
+                this.progress++;
+                setChanged(level, blockPos, blockState);
+                System.out.println(" --- tick() Method Check --- ");
+                System.out.println("Current progress value: " + this.progress);
+                System.out.println("Recipe maxProgress: " + this.maxProgress);
+                if (this.progress >= this.maxProgress) {
+                    System.out.println("Fluid Crafted: " + this.FLUID_TANK_OUTPUT.getFluid());
+                    craftItem(recipe.get());
+                    resetProgress();
+                }
+            } else {
                 resetProgress();
-                level.setBlock(blockPos, blockState.setValue(BlockStateProperties.LIT, false), 3);
+                this.animState = AnimationState.DEPLOYED;
             }
-        } else {
-            resetProgress();
         }
-    }
-
-    /* General Block Entity Methods */
-    public void drops() {
-        SimpleContainer inventory = new SimpleContainer(itemHandler.getSlots());
-        for (int i = 0; i < itemHandler.getSlots(); i++) {
-            inventory.setItem(i, itemHandler.getStackInSlot(i));
-        }
-        assert this.level != null;
-        Containers.dropContents(this.level, this.worldPosition, inventory);
+        boolean isLit = this.animState == AnimationState.WORKING;
+        level.setBlock(blockPos, blockState.setValue(BlockStateProperties.LIT, isLit), 3);
     }
 
     /* Custom Crafting Logic via Helper methods */
 
     private Optional<RecipeHolder<SuspensionMixerRecipe>> getCurrentRecipe() {
-        System.out.println("Checking for recipe. Input Item: " + this.itemHandler.getStackInSlot(INPUT_SLOT));
-        System.out.println("Input Fluid: " + this.FLUID_TANK_INPUT.getFluid().getFluid()
-                + " | Amount: " + this.FLUID_TANK_INPUT.getFluidAmount());
         assert this.level != null;
         return this.level.getRecipeManager()
                 .getAllRecipesFor(ChaosEngineRecipes.SUSPENSION_MIXER_TYPE.get()).stream().filter(
@@ -262,42 +258,39 @@ public class SuspensionMixerBlockEntity extends BlockEntity implements GeoBlockE
                             // Checks if fluid in fluid tank matches
                             boolean fluidMatches = this.FLUID_TANK_INPUT.getFluid().is(recipe.fluidIngredient().getFluid()) &&
                                  this.FLUID_TANK_INPUT.getFluidAmount() >= recipe.fluidIngredient().getAmount();
-                            System.out.println("RECIPE FOUND: " + recipeHolder.id() + " ---");
-                            System.out.println("Item in slot matches recipe? -> " + itemMatches);
-                            System.out.println("Fluid in tank matches recipe? -> " + fluidMatches);
                             return itemMatches && fluidMatches;
                         }).findFirst();
     }
 
-    private boolean hasRecipe() {
-        Optional<RecipeHolder<SuspensionMixerRecipe>> recipe = getCurrentRecipe();
-        if (recipe.isEmpty()) {
-            return false;
-        }
-        SuspensionMixerRecipe currentRecipe = recipe.get().value();
-        this.maxProgress = currentRecipe.processTime();
-
-        boolean hasEnoughEnergy = this.ENERGY_STORAGE.getEnergyStored() >= currentRecipe.energy() * maxProgress;
-        boolean hasSpaceInOutput = this.FLUID_TANK_OUTPUT.fill(currentRecipe.output(),
-                IFluidHandler.FluidAction.SIMULATE) == currentRecipe.output().getAmount();
+    private boolean hasResources(SuspensionMixerRecipe recipe) {
+        boolean hasEnoughEnergy = this.ENERGY_STORAGE.getEnergyStored() >= recipe.energy();
+        boolean hasSpaceInOutput = this.FLUID_TANK_OUTPUT.fill(recipe.output(), IFluidHandler.FluidAction.SIMULATE) ==
+                recipe.output().getAmount();
+        this.maxProgress = recipe.processTime();
 
         return hasEnoughEnergy && hasSpaceInOutput;
     }
 
-    private void craftItem() {
-        Optional<RecipeHolder<SuspensionMixerRecipe>> recipe = getCurrentRecipe();
-        if (recipe.isEmpty()) {
-            return;
-        }
-        SuspensionMixerRecipe currentRecipe = recipe.get().value();
-        this.ENERGY_STORAGE.extractEnergy(currentRecipe.energy(), false);
-        this.itemHandler.extractItem(INPUT_SLOT, currentRecipe.itemIngredient().getItems()[INPUT_SLOT].getCount(), false);
-        this.FLUID_TANK_INPUT.drain(currentRecipe.fluidIngredient().getAmount(), IFluidHandler.FluidAction.EXECUTE);
-        this.FLUID_TANK_OUTPUT.fill(currentRecipe.output(), IFluidHandler.FluidAction.EXECUTE);
+    private void craftItem(RecipeHolder<SuspensionMixerRecipe> recipeHolder) {
+        SuspensionMixerRecipe recipe = recipeHolder.value();
+
+        this.itemHandler.extractItem(INPUT_SLOT, 1, false);
+        this.FLUID_TANK_INPUT.drain(recipe.fluidIngredient().getAmount(), IFluidHandler.FluidAction.EXECUTE);
+        this.FLUID_TANK_OUTPUT.fill(recipe.output(), IFluidHandler.FluidAction.EXECUTE);
     }
 
     private void resetProgress() {
         this.progress = 0;
+    }
+
+    /* General Block Entity Methods */
+    public void drops() {
+        SimpleContainer inventory = new SimpleContainer(itemHandler.getSlots());
+        for (int i = 0; i < itemHandler.getSlots(); i++) {
+            inventory.setItem(i, itemHandler.getStackInSlot(i));
+        }
+        assert this.level != null;
+        Containers.dropContents(this.level, this.worldPosition, inventory);
     }
 
     @Override
@@ -371,57 +364,65 @@ public class SuspensionMixerBlockEntity extends BlockEntity implements GeoBlockE
 
     @Override
     public int[] getSlotsForFace(Direction direction) {
-        return new int[0];
+        return new int[]{INPUT_SLOT};
     }
 
     @Override
-    public boolean canPlaceItemThroughFace(int i, ItemStack itemStack, @Nullable Direction direction) {
-        return false;
+    public boolean canPlaceItemThroughFace(int slotIndex, ItemStack itemStack, @Nullable Direction direction) {
+        Direction facing = getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
+        if (direction != facing.getOpposite()) {
+            return false;
+        }
+        return slotIndex == INPUT_SLOT;
     }
 
     @Override
-    public boolean canTakeItemThroughFace(int i, ItemStack itemStack, Direction direction) {
-        return false;
+    public boolean canTakeItemThroughFace(int slotIndex, ItemStack itemStack, Direction direction) {
+        return false; // Has no item outputs to take from
     }
 
     @Override
     public int getContainerSize() {
-        return 0;
+        return itemHandler.getSlots();
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return this.itemHandler.getStackInSlot(INPUT_SLOT).isEmpty();
     }
 
     @Override
-    public ItemStack getItem(int i) {
-        return null;
+    public ItemStack getItem(int slotIndex) {
+        return itemHandler.getStackInSlot(slotIndex);
     }
 
     @Override
-    public ItemStack removeItem(int i, int i1) {
-        return null;
+    public ItemStack removeItem(int slotIndex, int count) {
+        return this.itemHandler.extractItem(slotIndex, count, false);
     }
 
     @Override
-    public ItemStack removeItemNoUpdate(int i) {
-        return null;
+    public ItemStack removeItemNoUpdate(int slotIndex) {
+        ItemStack stack = itemHandler.getStackInSlot(slotIndex);
+        itemHandler.setStackInSlot(slotIndex, ItemStack.EMPTY);
+        return stack;
     }
 
     @Override
-    public void setItem(int i, ItemStack itemStack) {
-
+    public void setItem(int slotIndex, ItemStack itemStack) {
+        itemHandler.setStackInSlot(slotIndex, itemStack);
     }
 
     @Override
     public boolean stillValid(Player player) {
-        return false;
+        return player.distanceToSqr(this.worldPosition.getX() + 0.5, this.worldPosition.getY() + 0.5, this.worldPosition.getZ() + 0.5) <= 64.0;
     }
 
     @Override
     public void clearContent() {
-
+        for (int i = 0; i < itemHandler.getSlots(); i++) {
+            itemHandler.setStackInSlot(i, ItemStack.EMPTY);
+        }
     }
 
     @Override

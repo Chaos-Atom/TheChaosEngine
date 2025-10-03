@@ -41,7 +41,7 @@ public class ChaosEngineItemModelProvider extends ItemModelProvider {
         basicItem(ChaosEngineItems.CRYSTAL_GOLD.get());
         basicItem(ChaosEngineItems.CRYSTAL_COPPER.get());
 
-        basicItem(ChaosEngineFluids.LAPIS_SUSPENSION_FLUID_BUCKET.get());
+        basicItem(ChaosEngineItems.LAPIS_SUSPENSION_BUCKET.get());
 
         wallItem(ChaosEngineBlocks.BAUXITE_WALL, ChaosEngineBlocks.BAUXITE);
         wallItem(ChaosEngineBlocks.POLISHED_BAUXITE_WALL, ChaosEngineBlocks.POLISHED_BAUXITE);
