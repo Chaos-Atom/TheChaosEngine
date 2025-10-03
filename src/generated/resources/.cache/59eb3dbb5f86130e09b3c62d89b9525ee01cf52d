@@ -1,4 +1,4 @@
-// 1.21.1	2025-09-25T20:23:17.8978682	Loot Tables
+// 1.21.1	2025-09-29T01:57:57.914843	Loot Tables
 be49550e8c0e6eefda3555b6961ec21a3c62204b data/thechaosengine/loot_table/blocks/atmospheric_condenser.json
 f08028a5b0cb145fdbb0ea171a555ce16e0ffb6b data/thechaosengine/loot_table/blocks/bauxite.json
 5f189c2d1fd54359eef919bdb2a6995343a12860 data/thechaosengine/loot_table/blocks/bauxite_bricks.json
@@ -22,3 +22,4 @@ bd17a921b1223d5a17b26575f3074ad3edabf11c data/thechaosengine/loot_table/blocks/p
 86505fab69932c9bb45f4676257ace884e3341ef data/thechaosengine/loot_table/blocks/polished_bauxite_slab.json
 107053bd44913c240763f616780bd3c8816ea17c data/thechaosengine/loot_table/blocks/polished_bauxite_stairs.json
 87f0b56edb476fe2eb2cbb749fe99e5c8e03ca81 data/thechaosengine/loot_table/blocks/polished_bauxite_wall.json
+dc79a03a9a121e9dbdda4ee3d0494631c6a75b18 data/thechaosengine/loot_table/blocks/suspension_mixer.json

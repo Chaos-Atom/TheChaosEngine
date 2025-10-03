@@ -4,6 +4,7 @@ import net.chaosatom.thechaosengine.block.ChaosEngineBlocks;
 import net.chaosatom.thechaosengine.block.entity.ChaosEngineBlockEntities;
 import net.chaosatom.thechaosengine.client.renderer.AtmosphericCondenserBlockEntityRenderer;
 import net.chaosatom.thechaosengine.client.renderer.CompactInductionFoundryBlockEntityRenderer;
+import net.chaosatom.thechaosengine.client.renderer.SuspensionMixerBlockEntityRenderer;
 import net.chaosatom.thechaosengine.fluid.BaseFluidType;
 import net.chaosatom.thechaosengine.fluid.ChaosEngineFluidTypes;
 import net.chaosatom.thechaosengine.fluid.ChaosEngineFluids;
@@ -11,10 +12,7 @@ import net.chaosatom.thechaosengine.item.ChaosEngineCreativeModeTabs;
 import net.chaosatom.thechaosengine.item.ChaosEngineItems;
 import net.chaosatom.thechaosengine.recipe.ChaosEngineRecipes;
 import net.chaosatom.thechaosengine.screen.ChaosEngineMenuTypes;
-import net.chaosatom.thechaosengine.screen.custom.AtmosphericCondenserScreen;
-import net.chaosatom.thechaosengine.screen.custom.CompactCoalGeneratorScreen;
-import net.chaosatom.thechaosengine.screen.custom.CompactInductionFoundryScreen;
-import net.chaosatom.thechaosengine.screen.custom.CompactPulverizerScreen;
+import net.chaosatom.thechaosengine.screen.custom.*;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
@@ -110,6 +108,7 @@ public class TheChaosEngine {
         public static void registerBlockEntityRenderer(EntityRenderersEvent.RegisterRenderers event) {
             event.registerBlockEntityRenderer(ChaosEngineBlockEntities.COMPACT_INDUCTION_FOUNDRY_BE.get(), CompactInductionFoundryBlockEntityRenderer::new);
             event.registerBlockEntityRenderer(ChaosEngineBlockEntities.ATMOSPHERIC_CONDENSER_BE.get(), AtmosphericCondenserBlockEntityRenderer::new);
+            event.registerBlockEntityRenderer(ChaosEngineBlockEntities.SUSPENSION_MIXER_BE.get(), SuspensionMixerBlockEntityRenderer::new);
         }
 
         @SubscribeEvent
@@ -118,6 +117,7 @@ public class TheChaosEngine {
             event.register(ChaosEngineMenuTypes.COMPACT_PULVERIZER_MENU.get(), CompactPulverizerScreen::new);
             event.register(ChaosEngineMenuTypes.COMPACT_INDUCTION_FOUNDRY_MENU.get(), CompactInductionFoundryScreen::new);
             event.register(ChaosEngineMenuTypes.ATMOSPHERIC_CONDENSER_MENU.get(), AtmosphericCondenserScreen::new);
+            event.register(ChaosEngineMenuTypes.SUSPENSION_MIXER_MENU.get(), SuspensionMixerScreen::new);
         }
     }
 }

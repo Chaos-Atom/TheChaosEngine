@@ -59,13 +59,15 @@
   "block.thechaosengine.compact_pulverizer": "Compact Pulverizer",
   "block.thechaosengine.compact_induction_foundry": "Compact Induction Foundry",
   "block.thechaosengine.atmospheric_condenser": "Atmospheric Condenser",
+  "block.thechaosengine.suspension_mixer": "Suspension Mixer",
 
-  "block.thechaosengine.atmospheric_condenser.tooltip": "§7Currently not deployed, place on ground and right-click to deploy.§r",
+  "block.thechaosengine.deployable_machine.tooltip": "§7Currently not deployed, place on ground and right-click to deploy.§r",
 
   "blockentity.thechaosengine.compact_coal_generator": "Compact Coal Generator",
   "blockentity.thechaosengine.compact_pulverizer": "Compact Pulverizer",
   "blockentity.thechaosengine.compact_induction_foundry": "Compact Induction Foundry",
   "blockentity.thechaosengine.atmospheric_condenser": "Atmospheric Condenser",
+  "blockentity.thechaosengine.suspension_mixer": "Suspension Mixer",
 
   "tooltip.thechaosengine.compact_coal_generator_stickynote": "§7Sticky Note§r",
 
@@ -73,5 +75,8 @@
   "tooltip.thechaosengine.liquid.amount": "%s mB",
 
   "message.thechaosengine.condenser_no_room": "Not enough space to place the Atmospheric Condenser.",
-  "message.thechaosengine.condenser_obstructed": "Atmospheric Condenser is obstructed and cannot deploy."
+  "message.thechaosengine.condenser_obstructed": "Atmospheric Condenser is obstructed and cannot deploy.",
+  "message.thechaosengine.mixer_no_room": "Not enough space to place the Suspension Mixer.",
+  "message.thechaosengine.mixer_obstructed": "Suspension Mixer is obstructed and cannot deploy."
+
 }

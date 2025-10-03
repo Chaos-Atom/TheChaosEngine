@@ -2,10 +2,7 @@ package net.chaosatom.thechaosengine.block.entity;
 
 import net.chaosatom.thechaosengine.TheChaosEngine;
 import net.chaosatom.thechaosengine.block.ChaosEngineBlocks;
-import net.chaosatom.thechaosengine.block.entity.custom.AtmosphericCondenserBlockEntity;
-import net.chaosatom.thechaosengine.block.entity.custom.CompactCoalGeneratorBlockEntity;
-import net.chaosatom.thechaosengine.block.entity.custom.CompactInductionFoundryBlockEntity;
-import net.chaosatom.thechaosengine.block.entity.custom.CompactPulverizerBlockEntity;
+import net.chaosatom.thechaosengine.block.entity.custom.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.IEventBus;
@@ -32,6 +29,10 @@ public class ChaosEngineBlockEntities {
     public static final Supplier<BlockEntityType<AtmosphericCondenserBlockEntity>> ATMOSPHERIC_CONDENSER_BE =
             BLOCK_ENTITIES.register("atmospheric_condenesr_be", () -> BlockEntityType.Builder.of(
                     AtmosphericCondenserBlockEntity::new, ChaosEngineBlocks.ATMOSPHERIC_CONDENSER.get()).build(null));
+
+    public static final Supplier<BlockEntityType<SuspensionMixerBlockEntity>> SUSPENSION_MIXER_BE =
+            BLOCK_ENTITIES.register("suspension_mixer_be", () -> BlockEntityType.Builder.of(
+                    SuspensionMixerBlockEntity::new, ChaosEngineBlocks.SUSPENSION_MIXER.get()).build(null));
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

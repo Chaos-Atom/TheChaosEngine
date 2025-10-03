@@ -116,7 +116,7 @@ public class AtmosphericCondenserBlockEntity extends BlockEntity implements GeoB
         UNDEPLOYED,
         DEPLOYING,
         DEPLOYED,
-        RETRACTING;
+        RETRACTING
     }
 
     private AnimationState animState = AnimationState.UNDEPLOYED;
@@ -199,6 +199,7 @@ public class AtmosphericCondenserBlockEntity extends BlockEntity implements GeoB
 
     /* Main Machine Logic */
     public void tick(Level level, BlockPos blockPos, BlockState blockState) {
+        boolean isWorking;
         if (this.animState == AnimationState.DEPLOYING) {
             this.deployTime--;
 
@@ -215,6 +216,7 @@ public class AtmosphericCondenserBlockEntity extends BlockEntity implements GeoB
             }
         }
         if (level.isClientSide() || this.animState != AnimationState.DEPLOYED) {
+            isWorking = false;
             return;
         }
 
@@ -224,7 +226,7 @@ public class AtmosphericCondenserBlockEntity extends BlockEntity implements GeoB
 
         if (this.effectivenessUpdateCooldown <= 0) {
             this.effectivenessUpdateCooldown = EFFECTIVE_UPDATE_INTERVAL;
-            updatedEffectiveness(level, blockPos);
+            updateEffectiveness(level, blockPos);
         } else {
             this.effectivenessUpdateCooldown--;
         }
@@ -238,8 +240,10 @@ public class AtmosphericCondenserBlockEntity extends BlockEntity implements GeoB
         int waterAmount = getWaterAmount();
 
         if (canGenerate() && waterAmount > 0) {
+            isWorking = true;
             this.ENERGY_STORAGE.extractEnergy(ENERGY_REQUIREMENT, false);
             this.FLUID_TANK.fill(new FluidStack(Fluids.WATER, waterAmount), IFluidHandler.FluidAction.EXECUTE);
+            level.setBlock(blockPos, blockState.setValue(BlockStateProperties.LIT, isWorking), 3);
             setChanged();
         }
         pushFluidToOutputSides();
@@ -266,7 +270,7 @@ public class AtmosphericCondenserBlockEntity extends BlockEntity implements GeoB
         return this.ENERGY_STORAGE.getEnergyStored() >= ENERGY_REQUIREMENT && this.FLUID_TANK.getSpace() > 0;
     }
 
-    private void updatedEffectiveness(Level level, BlockPos pos) {
+    private void updateEffectiveness(Level level, BlockPos pos) {
         double effectivenessMultiplier = 1.0;
         Holder<Biome> biome = level.getBiome(pos);
 
@@ -290,11 +294,11 @@ public class AtmosphericCondenserBlockEntity extends BlockEntity implements GeoB
 
         // Adds (or subtracts) a bonus based on the vertical position of the condenser
         int heightDifference = SEA_LEVEL - pos.getY();
-        double heightModifier = 0.0;
-        if (heightModifier > 0) {
-            heightModifier = heightDifference * BONUS_PER_BLOCK_DOWN;
+        double heightModifier;
+        if (heightDifference > 0) {
+            heightModifier = heightDifference * BONUS_PER_BLOCK_DOWN; // Decreasing effectiveness bonus above sea level
         } else {
-            heightModifier = heightDifference * PENALTY_PER_BLOCK_UP;
+            heightModifier = heightDifference * PENALTY_PER_BLOCK_UP; // Increasing effectiveness bonus below sea level
         }
         heightModifier = Math.max(-MAX_HEIGHT_PENALTY, Math.min(MAX_HEIGHT_BONUS, heightModifier));
         effectivenessMultiplier += heightModifier;
@@ -397,6 +401,7 @@ public class AtmosphericCondenserBlockEntity extends BlockEntity implements GeoB
 
         tag.putInt("atmospheric_condenser.animation_state", this.animState.ordinal());
         tag.putInt("atmospheric_condenser.deploy_time", this.deployTime);
+        tag.putInt("atmospheric_condenser.retract_time", this.retractTime);
 
         super.saveAdditional(tag, registries);
     }
@@ -414,6 +419,7 @@ public class AtmosphericCondenserBlockEntity extends BlockEntity implements GeoB
 
         this.animState = AnimationState.values()[tag.getInt("atmospheric_condenser.animation_state")];
         this.deployTime = tag.getInt("atmospheric_condenser.deploy_time");
+        this.retractTime = tag.getInt("atmospheric_condenser.retract_time");
 
         super.loadAdditional(tag, registries);
     }
@@ -517,7 +523,8 @@ public class AtmosphericCondenserBlockEntity extends BlockEntity implements GeoB
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, "loop_controller", 0, state -> switch (state.getAnimatable().animState) {
+        controllers.add(new AnimationController<>(this, "loop_controller",
+                0, state -> switch (state.getAnimatable().animState) {
             case UNDEPLOYED ->  state.setAndContinue(UNDEPLOYED_LOOP);
             case DEPLOYING -> state.setAndContinue(DEPLOY_SEQUENCE);
             case DEPLOYED -> state.setAndContinue(DEPLOYED_LOOP);

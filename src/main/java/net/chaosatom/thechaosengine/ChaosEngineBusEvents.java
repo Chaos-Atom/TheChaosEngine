@@ -1,10 +1,7 @@
 package net.chaosatom.thechaosengine;
 
 import net.chaosatom.thechaosengine.block.entity.ChaosEngineBlockEntities;
-import net.chaosatom.thechaosengine.block.entity.custom.AtmosphericCondenserBlockEntity;
-import net.chaosatom.thechaosengine.block.entity.custom.CompactCoalGeneratorBlockEntity;
-import net.chaosatom.thechaosengine.block.entity.custom.CompactInductionFoundryBlockEntity;
-import net.chaosatom.thechaosengine.block.entity.custom.CompactPulverizerBlockEntity;
+import net.chaosatom.thechaosengine.block.entity.custom.*;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -25,12 +22,29 @@ public class ChaosEngineBusEvents {
                 CompactInductionFoundryBlockEntity::getEnergyStorage);
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ChaosEngineBlockEntities.ATMOSPHERIC_CONDENSER_BE.get(),
                 AtmosphericCondenserBlockEntity::getEnergyStorage);
+        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ChaosEngineBlockEntities.SUSPENSION_MIXER_BE.get(),
+                SuspensionMixerBlockEntity::getEnergyStorage);
 
         event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, ChaosEngineBlockEntities.ATMOSPHERIC_CONDENSER_BE.get(),
                 AtmosphericCondenserBlockEntity::getTank);
+        event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, ChaosEngineBlockEntities.SUSPENSION_MIXER_BE.get(),
+                (blockEntity, side) -> {
+            Direction facing = blockEntity.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
+            Direction inputSide = facing.getCounterClockWise();
+            Direction outputSide = facing.getClockWise();
+
+            if (side == inputSide) {
+                return blockEntity.getInputTank(side);
+            }
+
+            if (side == outputSide) {
+                return blockEntity.getOutputTank(side);
+            }
+            return null;
+        });
 
         /* Checks that the input side of the generator is a valid item pusher, accepts items from that side only
-        * I am unsure if this is okay to but this logic in here...
+        * I am unsure if this is okay to put this logic in here...
         */
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ChaosEngineBlockEntities.COMPACT_COAL_GENERATOR_BE.get(),
                 (blockEntity, side) -> {

@@ -3,7 +3,7 @@ package net.chaosatom.thechaosengine.block.custom;
 import com.mojang.serialization.MapCodec;
 import net.chaosatom.thechaosengine.TheChaosEngine;
 import net.chaosatom.thechaosengine.block.entity.ChaosEngineBlockEntities;
-import net.chaosatom.thechaosengine.block.entity.custom.AtmosphericCondenserBlockEntity;
+import net.chaosatom.thechaosengine.block.entity.custom.SuspensionMixerBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -35,21 +35,33 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class AtmosphericCondenserBlock extends BaseEntityBlock implements EntityBlock {
+public class SuspensionMixerBlock extends BaseEntityBlock implements EntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
     public static final BooleanProperty DEPLOYED = BooleanProperty.create("deployed");
 
-    public static final VoxelShape SHAPE_UNDEPLOYED = Block.box(0,0,0,16,11,16);
-    public static final VoxelShape SHAPE_BASE = Block.box(0,0,0,16,16,16);
-    public static final VoxelShape SHAPE_TOWER_MAIN = Block.box(2,16,2,14,30,14);
-    public static final VoxelShape SHAPE_COMMON = Shapes.or(SHAPE_BASE, SHAPE_TOWER_MAIN).optimize();
-    public static final VoxelShape SHAPE_TOP = Block.box(1,30,1,15,32,15);
-    public static final VoxelShape SHAPE_DEPLOYED = Shapes.or(SHAPE_COMMON, SHAPE_TOP).optimize();
+    public static final VoxelShape SHAPE_UNDEPLOYED_BODY;
+    public static final VoxelShape SHAPE_UNDEPLOYED_ARM_NORTH;
+    public static final VoxelShape SHAPE_UNDEPLOYED_NORTH;
+    public static final VoxelShape SHAPE_BASIN;
+    public static final VoxelShape SHAPE_DEPLOYED_ARM_NORTH;
+    public static final VoxelShape SHAPE_DEPLOYED_NORTH;
+    public static final VoxelShape SHAPE_UNDEPLOYED_ARM_EAST;
+    public static final VoxelShape SHAPE_UNDEPLOYED_EAST;
+    public static final VoxelShape SHAPE_DEPLOYED_ARM_EAST;
+    public static final VoxelShape SHAPE_DEPLOYED_EAST;
+    public static final VoxelShape SHAPE_UNDEPLOYED_ARM_SOUTH;
+    public static final VoxelShape SHAPE_UNDEPLOYED_SOUTH;
+    public static final VoxelShape SHAPE_DEPLOYED_ARM_SOUTH;
+    public static final VoxelShape SHAPE_DEPLOYED_SOUTH;
+    public static final VoxelShape SHAPE_UNDEPLOYED_ARM_WEST;
+    public static final VoxelShape SHAPE_UNDEPLOYED_WEST;
+    public static final VoxelShape SHAPE_DEPLOYED_ARM_WEST;
+    public static final VoxelShape SHAPE_DEPLOYED_WEST;
 
-    public static final MapCodec<AtmosphericCondenserBlock> CODEC = simpleCodec(AtmosphericCondenserBlock::new);
+    public static MapCodec<SuspensionMixerBlock> CODEC = simpleCodec(SuspensionMixerBlock::new);
 
-    public AtmosphericCondenserBlock(Properties properties) {
+    public SuspensionMixerBlock(Properties properties) {
         super(properties);
 
         this.registerDefaultState(this.getStateDefinition().any()
@@ -63,14 +75,51 @@ public class AtmosphericCondenserBlock extends BaseEntityBlock implements Entity
         return CODEC;
     }
 
-    /* Voxel Shape related */
+    /* Voxel Shape Methods */
+
+    @Override
+    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        if (state.getValue(DEPLOYED)) {
+            return switch (state.getValue(FACING)) {
+                case EAST -> SHAPE_DEPLOYED_EAST;
+                case SOUTH -> SHAPE_DEPLOYED_SOUTH;
+                case WEST -> SHAPE_DEPLOYED_WEST;
+                default -> SHAPE_DEPLOYED_NORTH;
+            };
+        } else {
+            return switch (state.getValue(FACING)) {
+                case EAST -> SHAPE_UNDEPLOYED_EAST;
+                case SOUTH -> SHAPE_UNDEPLOYED_SOUTH;
+                case WEST -> SHAPE_UNDEPLOYED_WEST;
+                default -> SHAPE_UNDEPLOYED_NORTH;
+            };
+        }
+    }
 
     @Override
     protected VoxelShape getOcclusionShape(BlockState state, BlockGetter level, BlockPos pos) {
         if (state.getValue(DEPLOYED)) {
-            return SHAPE_DEPLOYED;
+            return SHAPE_DEPLOYED_NORTH;
         } else {
-            return SHAPE_UNDEPLOYED;
+            return SHAPE_UNDEPLOYED_NORTH;
+        }
+    }
+
+    @Override
+    protected VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        if (state.getValue(DEPLOYED)) {
+            return SHAPE_DEPLOYED_NORTH;
+        } else {
+            return SHAPE_UNDEPLOYED_NORTH;
+        }
+    }
+
+    @Override
+    protected VoxelShape getInteractionShape(BlockState state, BlockGetter level, BlockPos pos) {
+        if (state.getValue(DEPLOYED)) {
+            return SHAPE_DEPLOYED_NORTH;
+        } else {
+            return SHAPE_UNDEPLOYED_NORTH;
         }
     }
 
@@ -79,35 +128,7 @@ public class AtmosphericCondenserBlock extends BaseEntityBlock implements Entity
         return true;
     }
 
-    @Override
-    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        if (state.getValue(DEPLOYED)) {
-            return SHAPE_DEPLOYED;
-        } else {
-            return SHAPE_UNDEPLOYED;
-        }
-
-    }
-
-    @Override
-    protected VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        if (state.getValue(DEPLOYED)) {
-            return SHAPE_DEPLOYED;
-        } else {
-            return SHAPE_UNDEPLOYED;
-        }
-    }
-
-    @Override
-    protected VoxelShape getInteractionShape(BlockState state, BlockGetter level, BlockPos pos) {
-        if (state.getValue(DEPLOYED)) {
-            return SHAPE_DEPLOYED;
-        } else {
-            return SHAPE_UNDEPLOYED;
-        }
-    }
-
-    /* FACING */
+    /* Facing Methods */
 
     @Override
     protected BlockState rotate(BlockState state, Rotation rotation) {
@@ -119,9 +140,11 @@ public class AtmosphericCondenserBlock extends BaseEntityBlock implements Entity
         return state.rotate(mirror.getRotation(state.getValue(FACING)));
     }
 
+    /* BlockState Methods */
+
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING, LIT, DEPLOYED);
+        builder.add(FACING,LIT,DEPLOYED);
     }
 
     @Override
@@ -132,7 +155,7 @@ public class AtmosphericCondenserBlock extends BaseEntityBlock implements Entity
             Player player = context.getPlayer();
 
             if (player != null && !context.getLevel().isClientSide()) {
-                player.displayClientMessage(Component.translatable("message.thechaosengine.condenser_no_room"), true);
+                player.displayClientMessage(Component.translatable("message.thechaosengine.mixer_no_room"), true);
             }
             return null;
         }
@@ -146,7 +169,7 @@ public class AtmosphericCondenserBlock extends BaseEntityBlock implements Entity
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new AtmosphericCondenserBlockEntity(blockPos, blockState);
+        return new SuspensionMixerBlockEntity(blockPos, blockState);
     }
 
     @Override
@@ -158,8 +181,8 @@ public class AtmosphericCondenserBlock extends BaseEntityBlock implements Entity
     protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
         if (state.getBlock() != newState.getBlock()) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
-            if (blockEntity instanceof AtmosphericCondenserBlockEntity atmosphericCondenserBlockEntity) {
-                atmosphericCondenserBlockEntity.drops();
+            if (blockEntity instanceof SuspensionMixerBlockEntity suspensionMixerBlockEntity) {
+                suspensionMixerBlockEntity.drops();
             }
         }
 
@@ -171,18 +194,18 @@ public class AtmosphericCondenserBlock extends BaseEntityBlock implements Entity
                                               InteractionHand hand, BlockHitResult hitResult) {
         if (!state.getValue(DEPLOYED)) {
 
-            // Checks if the block about the condenser is an air block so it's free to expand upwards.
+            // Checks if the block about the mixer is an air block so it's free to expand upwards.
             if (level.getBlockState(pos.above()).isAir()) {
                 level.setBlock(pos, state.setValue(DEPLOYED, true), 3); // Sets state to Deployed
 
-                if (level.getBlockEntity(pos) instanceof AtmosphericCondenserBlockEntity atmosphericCondenserBlockEntity) {
-                    atmosphericCondenserBlockEntity.startDeployment();
+                if (level.getBlockEntity(pos) instanceof SuspensionMixerBlockEntity blockEntity) {
+                    blockEntity.startMixerDeployment();
                 }
                 return ItemInteractionResult.sidedSuccess(level.isClientSide());
             } else {
-                // If there is a solid block, do not change state / does not deploy condenser
+                // If there is a solid block, do not change state / does not deploy mixer, send message to player
                 if (!level.isClientSide()) {
-                    player.displayClientMessage(Component.translatable("message.thechaosengine.condenser_obstructed"), true);
+                    player.displayClientMessage(Component.translatable("message.thechaosengine.mixer_obstructed"), true);
                 }
                 return ItemInteractionResult.FAIL;
             }
@@ -192,9 +215,9 @@ public class AtmosphericCondenserBlock extends BaseEntityBlock implements Entity
             BlockEntity entity = level.getBlockEntity(pos);
 
             if (state.getValue(DEPLOYED)) {
-                if (entity instanceof AtmosphericCondenserBlockEntity atmosphericCondenserBlockEntity) {
-                    ((ServerPlayer) player).openMenu(new SimpleMenuProvider(atmosphericCondenserBlockEntity,
-                            Component.translatable("block.thechaosengine.atmospheric_condenser")), pos);
+                if (entity instanceof SuspensionMixerBlockEntity suspensionMixerBlockEntity) {
+                    ((ServerPlayer) player).openMenu(new SimpleMenuProvider(suspensionMixerBlockEntity,
+                            Component.translatable("block.thechaosengine.suspension_mixer")), pos);
                 } else {
                     throw new IllegalStateException("Our Container provider is missing!");
                 }
@@ -205,19 +228,18 @@ public class AtmosphericCondenserBlock extends BaseEntityBlock implements Entity
 
     @Override
     protected void neighborChanged(BlockState state, Level level, BlockPos pos, Block neighborBlock, BlockPos neighborPos, boolean movedByPiston) {
-        // Checks if the new block placed is aboved a deployed (activated) condenser
+        // Checks if the new block placed is above a deployed (activated) mixer
         if (neighborPos.equals(pos.above()) && state.getValue(DEPLOYED)) {
 
             // Checks if that new block is not an air block (is a solid block)
             if (!level.getBlockState(pos.above()).isAir()) {
                 level.setBlock(pos, state.setValue(DEPLOYED, false), 3);
 
-                if (level.getBlockEntity(pos) instanceof AtmosphericCondenserBlockEntity blockEntity) {
-                    blockEntity.startRetraction();
+                if (level.getBlockEntity(pos) instanceof SuspensionMixerBlockEntity blockEntity) {
+                    blockEntity.startMixerRetraction();
                 }
             }
         }
-
         super.neighborChanged(state, level, pos, neighborBlock, neighborPos, movedByPiston);
     }
 
@@ -227,9 +249,9 @@ public class AtmosphericCondenserBlock extends BaseEntityBlock implements Entity
             return null;
         }
 
-        return createTickerHelper(blockEntityType, ChaosEngineBlockEntities.ATMOSPHERIC_CONDENSER_BE.get(),
-                (level1, blockPos, blockState, atmosphericCondenserBlockEntity)
-                        -> atmosphericCondenserBlockEntity.tick(level1, blockPos, blockState));
+        return createTickerHelper(blockEntityType, ChaosEngineBlockEntities.SUSPENSION_MIXER_BE.get(),
+                (level1, blockPos, blockState, suspensionMixerBlockEntity)
+                        -> suspensionMixerBlockEntity.tick(level1, blockPos, blockState));
     }
 
     /* TOOLTIPS */
@@ -239,5 +261,34 @@ public class AtmosphericCondenserBlock extends BaseEntityBlock implements Entity
         tooltip.add(Component.translatable("block." + TheChaosEngine.MOD_ID + ".deployable_machine.tooltip"));
 
         super.appendHoverText(stack, context, tooltip, tooltipFlag);
+    }
+
+    static {
+        SHAPE_UNDEPLOYED_BODY = Block.box(0,0,0,16,9,16);
+        SHAPE_BASIN = Block.box(0,0,0, 16,16,16); // Deployed main body
+
+        // NORTH (Default) Direction
+        SHAPE_UNDEPLOYED_ARM_NORTH = Block.box(6,9,0,10,14,11);
+        SHAPE_UNDEPLOYED_NORTH = Shapes.or(SHAPE_UNDEPLOYED_BODY, SHAPE_UNDEPLOYED_ARM_NORTH).optimize();
+        SHAPE_DEPLOYED_ARM_NORTH = Block.box(6,16,7, 10,32,15);
+        SHAPE_DEPLOYED_NORTH = Shapes.or(SHAPE_BASIN, SHAPE_DEPLOYED_ARM_NORTH).optimize();
+
+        // EAST
+        SHAPE_UNDEPLOYED_ARM_EAST = Block.box(5, 9, 6, 16, 14, 10);
+        SHAPE_UNDEPLOYED_EAST = Shapes.or(SHAPE_UNDEPLOYED_BODY, SHAPE_UNDEPLOYED_ARM_EAST).optimize();
+        SHAPE_DEPLOYED_ARM_EAST = Block.box(1, 16, 6, 9, 32, 10);
+        SHAPE_DEPLOYED_EAST = Shapes.or(SHAPE_BASIN, SHAPE_DEPLOYED_ARM_EAST).optimize();
+
+        // SOUTH
+        SHAPE_UNDEPLOYED_ARM_SOUTH = Block.box(6, 9, 5, 10, 14, 16);
+        SHAPE_UNDEPLOYED_SOUTH = Shapes.or(SHAPE_UNDEPLOYED_BODY, SHAPE_UNDEPLOYED_ARM_SOUTH).optimize();
+        SHAPE_DEPLOYED_ARM_SOUTH = Block.box(6, 16, 1, 10, 32, 9);
+        SHAPE_DEPLOYED_SOUTH = Shapes.or(SHAPE_BASIN, SHAPE_DEPLOYED_ARM_SOUTH).optimize();
+
+        // WEST
+        SHAPE_UNDEPLOYED_ARM_WEST = Block.box(0, 9, 6, 11, 14, 10);
+        SHAPE_UNDEPLOYED_WEST = Shapes.or(SHAPE_UNDEPLOYED_BODY, SHAPE_UNDEPLOYED_ARM_WEST).optimize();
+        SHAPE_DEPLOYED_ARM_WEST = Block.box(7, 16, 6, 15, 32, 10);
+        SHAPE_DEPLOYED_WEST = Shapes.or(SHAPE_BASIN, SHAPE_DEPLOYED_ARM_WEST).optimize();
     }
 }

@@ -7,8 +7,8 @@
     "id": "minecraft:water",
     "amount": 500
   },
-  "output": {
-    "id": "thechaosengine:lapis_suspension",
+  "result": {
+    "id": "thechaosengine:lapis_suspension_fluid",
     "amount": 500
   },
   "processtime": 100,

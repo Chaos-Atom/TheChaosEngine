@@ -21,7 +21,7 @@ public class ChaosEngineFluidTypes {
     public static final DeferredRegister<FluidType> FLUID_TYPES =
             DeferredRegister.create(NeoForgeRegistries.Keys.FLUID_TYPES, TheChaosEngine.MOD_ID);
 
-    public static final Supplier<FluidType> LAPIS_SUSPENSION_FLUID_TYPE = registerFluidType("lapis_suspension",
+    public static final Supplier<FluidType> LAPIS_SUSPENSION_FLUID_TYPE = registerFluidType("lapis_suspension_fluid",
             new BaseFluidType(SUSPENSION_FLUID_STILL, SUSPENSION_FLUID_FLOWING, SUSPENSION_FLUID_OVERLAY, 0xEF345EC3,
                     new Vector3f(52f / 255f, 94f / 255f, 195f / 255f), 1f , 4f,
                     FluidType.Properties.create().canSwim(true).canDrown(true).canPushEntity(true)

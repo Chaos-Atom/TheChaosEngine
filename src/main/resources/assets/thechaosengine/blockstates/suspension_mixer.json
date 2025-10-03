@@ -1,0 +1,51 @@
+{
+  "variants": {
+    "facing=north,deployed=false": {
+      "model": "thechaosengine:block/suspension_mixer"
+    },
+    "facing=east,deployed=false":  {
+      "model": "thechaosengine:block/suspension_mixer",
+      "y": 90
+    },
+    "facing=south,deployed=false": {
+      "model": "thechaosengine:block/suspension_mixer",
+      "y": 180
+    },
+    "facing=west,deployed=false":  {
+      "model": "thechaosengine:block/suspension_mixer",
+      "y": 270
+    },
+
+    "facing=north,deployed=true,lit=false": {
+      "model": "thechaosengine:block/suspension_mixer"
+    },
+    "facing=east,deployed=true,lit=false":  {
+      "model": "thechaosengine:block/suspension_mixer",
+      "y": 90
+    },
+    "facing=south,deployed=true,lit=false": {
+      "model": "thechaosengine:block/suspension_mixer",
+      "y": 180
+    },
+    "facing=west,deployed=true,lit=false":  {
+      "model": "thechaosengine:block/suspension_mixer",
+      "y": 270
+    },
+
+    "facing=north,deployed=true,lit=true": {
+      "model": "thechaosengine:block/suspension_mixer"
+    },
+    "facing=east,deployed=true,lit=true":  {
+      "model": "thechaosengine:block/suspension_mixer",
+      "y": 90
+    },
+    "facing=south,deployed=true,lit=true": {
+      "model": "thechaosengine:block/suspension_mixer",
+      "y": 180
+    },
+    "facing=west,deployed=true,lit=true":  {
+      "model": "thechaosengine:block/suspension_mixer",
+      "y": 270
+    }
+  }
+}

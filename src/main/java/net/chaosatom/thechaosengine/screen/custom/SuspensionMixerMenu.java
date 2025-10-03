@@ -1,7 +1,8 @@
 package net.chaosatom.thechaosengine.screen.custom;
 
 import net.chaosatom.thechaosengine.block.ChaosEngineBlocks;
-import net.chaosatom.thechaosengine.block.entity.custom.CompactInductionFoundryBlockEntity;
+import net.chaosatom.thechaosengine.block.entity.custom.SuspensionMixerBlockEntity;
+import net.chaosatom.thechaosengine.fluid.ChaosEngineFluids;
 import net.chaosatom.thechaosengine.screen.ChaosEngineMenuTypes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
@@ -10,21 +11,23 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.material.Fluids;
+import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.items.SlotItemHandler;
+import org.jetbrains.annotations.Nullable;
 
-public class CompactInductionFoundryMenu extends AbstractContainerMenu {
-    public final CompactInductionFoundryBlockEntity blockEntity;
+public class SuspensionMixerMenu extends AbstractContainerMenu {
+    public final SuspensionMixerBlockEntity blockEntity;
     private final Level level;
     private final ContainerData data;
-    private final static double threshold = 0.4; // How much progress (%) till the second progress meter starts
 
-    public CompactInductionFoundryMenu(int containerId, Inventory inventory, FriendlyByteBuf extraData) {
-        this(containerId, inventory, inventory.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
+    public SuspensionMixerMenu(int containerId, Inventory inventory, FriendlyByteBuf extraData) {
+        this(containerId, inventory, inventory.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(4));
     }
 
-    public CompactInductionFoundryMenu(int containerId, Inventory inventory, BlockEntity entity, ContainerData data) {
-        super(ChaosEngineMenuTypes.COMPACT_INDUCTION_FOUNDRY_MENU.get(), containerId);
-        blockEntity = ((CompactInductionFoundryBlockEntity) entity);
+    public SuspensionMixerMenu(int containerId, Inventory inventory, BlockEntity entity, ContainerData data) {
+        super(ChaosEngineMenuTypes.SUSPENSION_MIXER_MENU.get(), containerId);
+        this.blockEntity = (SuspensionMixerBlockEntity) entity;
         this.level = inventory.player.level();
         this.data = data;
 
@@ -32,54 +35,40 @@ public class CompactInductionFoundryMenu extends AbstractContainerMenu {
         addPlayerInventory(inventory);
         addPlayerHotbar(inventory);
 
-        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 0, 49, 37));
-        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 1, 111, 37));
+        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 0, 80, 47));
     }
 
-    public boolean isCrafting() {
+    public boolean isMixing() {
         return data.get(0) > 0;
     }
 
-    /* Basically, these two methods creates a two-stage progress bar, one fills up to the set threshold value (0.5 is 50%)
-    *  Then the first progress meter stays filled while the second one begins filling up
-     */
-    public int getScaledCoilProgress(int coilPixelSize) {
+    public FluidStack getInputFluid() {
+        return new FluidStack(Fluids.WATER, this.data.get(2));
+    }
+
+    public FluidStack getOutputFluid() {
+        return new FluidStack(ChaosEngineFluids.SOURCE_LAPIS_SUSPENSION_FLUID.get(), this.data.get(3));
+    }
+
+    public int getScaledArrowProgress(int arrowPixelWidth) {
         int progress = this.data.get(0);
         int maxProgress = this.data.get(1);
 
-        if (maxProgress == 0 || progress == 0) {
-            return 0;
-        }
-
-        double progressPercent = (double)progress / (double)maxProgress;
-
-        if (progressPercent <= threshold) {
-            double coilPercent = progressPercent / threshold;
-            return (int)(coilPercent * coilPixelSize);
-        } else {
-            return coilPixelSize;
-        }
+        return maxProgress != 0 && progress != 0 ? progress * arrowPixelWidth / maxProgress : 0;
     }
 
-    public int getScaledArrowProgress(int arrowPixelSize) {
+    public int getScaledMixerProgress(int progressTextureHeight) {
         int progress = this.data.get(0);
         int maxProgress = this.data.get(1);
-        if (maxProgress == 0 || progress == 0) {
-            return 0;
-        }
-
         double progressPercent = (double)progress / (double)maxProgress;
 
-        if (progressPercent > threshold) {
-            double smeltingProgress = progressPercent - threshold;
-            double smeltingTotal = 1.0 - threshold;
-            double arrowPercent = smeltingProgress / smeltingTotal;
-            return (int)(arrowPercent * arrowPixelSize);
+        if (progressPercent <= 0.413) {
+            double mixerPercent = progressPercent / 0.413;
+            return (int) (mixerPercent * progressTextureHeight);
         } else {
-            return 0;
+            return progressTextureHeight;
         }
     }
-
 
     // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons
     // must assign a slot number to each of the slots used by the GUI.
@@ -97,7 +86,7 @@ public class CompactInductionFoundryMenu extends AbstractContainerMenu {
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
     // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 2;  // must be the number of slots you have!
+    private static final int TE_INVENTORY_SLOT_COUNT = 1;  // must be the number of slots you have!
     @Override
     public ItemStack quickMoveStack(Player playerIn, int pIndex) {
         Slot sourceSlot = slots.get(pIndex);
@@ -134,20 +123,20 @@ public class CompactInductionFoundryMenu extends AbstractContainerMenu {
     @Override
     public boolean stillValid(Player player) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                player, ChaosEngineBlocks.COMPACT_INDUCTION_FOUNDRY.get());
+                player, ChaosEngineBlocks.SUSPENSION_MIXER.get());
     }
 
     private void addPlayerInventory(Inventory playerInventory) {
         for (int i = 0; i < 3; i++) {
             for (int l = 0; l < 9; l++) {
-                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 84 + i * 18));
+                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 104 + i * 18));
             }
         }
     }
 
     private void addPlayerHotbar(Inventory playerHotBar) {
         for (int i = 0; i < 9; i++) {
-            this.addSlot(new Slot(playerHotBar, i, 8 + i * 18, 142));
+            this.addSlot(new Slot(playerHotBar, i, 8 + i * 18, 162));
         }
     }
 }

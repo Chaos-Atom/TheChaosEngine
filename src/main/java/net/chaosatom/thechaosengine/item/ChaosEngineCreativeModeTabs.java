@@ -61,6 +61,7 @@ public class ChaosEngineCreativeModeTabs {
                         output.accept(ChaosEngineBlocks.COMPACT_PULVERIZER);
                         output.accept(ChaosEngineBlocks.COMPACT_INDUCTION_FOUNDRY);
                         output.accept(ChaosEngineBlocks.ATMOSPHERIC_CONDENSER);
+                        output.accept(ChaosEngineBlocks.SUSPENSION_MIXER);
                     }).build());
 
     public static final Supplier<CreativeModeTab> THE_CHAOS_ENGINE_DECORATIONS_TAB =
