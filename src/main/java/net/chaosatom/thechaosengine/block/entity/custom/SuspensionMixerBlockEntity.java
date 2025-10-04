@@ -131,7 +131,7 @@ public class SuspensionMixerBlockEntity extends BlockEntity implements GeoBlockE
             .thenPlay("suspension_mixer.retracting")
             .thenLoop("suspension_mixer.undeployed");
 
-    private enum AnimationState {
+    public enum AnimationState {
         DEPLOYING,
         DEPLOYED,
         UNDEPLOYED,
@@ -144,6 +144,10 @@ public class SuspensionMixerBlockEntity extends BlockEntity implements GeoBlockE
     private static final int DEPLOY_ANIMATION_LENGTH = 125; // 6.25 seconds
     private int retractTime = 0;
     private static final int RETRACT_ANIMATION_LENGTH = 45; // 2.25 seconds
+
+    public AnimationState getAnimState() {
+        return this.animState;
+    }
 
     /* UTILITY */
     public SuspensionMixerBlockEntity(BlockPos pos, BlockState state) {
@@ -228,11 +232,7 @@ public class SuspensionMixerBlockEntity extends BlockEntity implements GeoBlockE
                 this.ENERGY_STORAGE.extractEnergy(currentRecipe.energy(), false);
                 this.progress++;
                 setChanged(level, blockPos, blockState);
-                System.out.println(" --- tick() Method Check --- ");
-                System.out.println("Current progress value: " + this.progress);
-                System.out.println("Recipe maxProgress: " + this.maxProgress);
                 if (this.progress >= this.maxProgress) {
-                    System.out.println("Fluid Crafted: " + this.FLUID_TANK_OUTPUT.getFluid());
                     craftItem(recipe.get());
                     resetProgress();
                 }

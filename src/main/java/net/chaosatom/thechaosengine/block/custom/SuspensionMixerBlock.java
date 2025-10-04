@@ -6,8 +6,11 @@ import net.chaosatom.thechaosengine.block.entity.ChaosEngineBlockEntities;
 import net.chaosatom.thechaosengine.block.entity.custom.SuspensionMixerBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ItemParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.SimpleMenuProvider;
@@ -261,6 +264,41 @@ public class SuspensionMixerBlock extends BaseEntityBlock implements EntityBlock
         tooltip.add(Component.translatable("block." + TheChaosEngine.MOD_ID + ".deployable_machine.tooltip"));
 
         super.appendHoverText(stack, context, tooltip, tooltipFlag);
+    }
+
+    /* SOUNDS & PARTICLES */
+    @Override
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+        if (!state.getValue(LIT)) {
+            return;
+        }
+        double xPos = (double)pos.getX() + (double)0.5F;
+        double yPos = (double)pos.getY() + (double)1.05F;
+        double zPos = (double)pos.getZ() + (double)0.5F;
+        /* TODO: Add custom sounds to Suspension Mixer
+        if (random.nextDouble() < 0.1) {
+            // Plays sounds at a specific spot
+            level.playLocalSound(xPos, yPos, zPos, SoundEvents.STONE_BREAK, SoundSource.BLOCKS,
+                    0.85F, 1F,
+                    true);
+        }
+         */
+
+        double spread = 0.54; // Higher values gives greater spread about origin
+        double jump = 0.17; // Higher the value, the further the particles will spawn from origin
+        double xOffset = random.nextDouble() * spread - 0.25;
+        double yOffset =  Math.abs(random.nextDouble() * jump);
+        double zOffset = random.nextDouble() * spread - 0.25;
+        double wiggle = random.nextDouble() * 0.15; // Adds randomness to speed
+        if (level.getBlockEntity(pos) instanceof SuspensionMixerBlockEntity suspensionMixerBlockEntity
+                && !suspensionMixerBlockEntity.itemHandler.getStackInSlot(0).isEmpty()) {
+            level.addParticle(ParticleTypes.SPLASH,
+                    xPos + xOffset, yPos + yOffset, zPos + zOffset,
+                    (double)0.0F, (double)0.01F, (double)0.0F);
+            level.addParticle(new ItemParticleOption(ParticleTypes.ITEM, suspensionMixerBlockEntity.itemHandler.getStackInSlot(0)),
+                    xPos + xOffset, yPos + yOffset, zPos + zOffset,
+                    (double)0.0F, (double)0.02F + wiggle, (double)0.0F);
+        }
     }
 
     static {

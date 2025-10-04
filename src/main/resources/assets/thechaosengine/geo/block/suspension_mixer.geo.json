@@ -815,6 +815,25 @@
 					]
 				},
 				{
+					"name": "Item Bone",
+					"parent": "Extend",
+					"pivot": [0, 16.5, -9],
+					"cubes": [
+						{
+							"origin": [-0.5, 16, -20],
+							"size": [1, 1, 1],
+							"uv": {
+								"north": {"uv": [54, 73], "uv_size": [2, 2]},
+								"east": {"uv": [52, 73], "uv_size": [2, 2]},
+								"south": {"uv": [58, 73], "uv_size": [2, 2]},
+								"west": {"uv": [56, 73], "uv_size": [2, 2]},
+								"up": {"uv": [54, 71], "uv_size": [2, 2]},
+								"down": {"uv": [56, 73], "uv_size": [2, -2]}
+							}
+						}
+					]
+				},
+				{
 					"name": "Mixer Arms B",
 					"parent": "2nd Arm",
 					"pivot": [0, 10.5, -2],

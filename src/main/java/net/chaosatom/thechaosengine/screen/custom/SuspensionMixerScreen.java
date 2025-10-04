@@ -20,7 +20,7 @@ public class SuspensionMixerScreen extends AbstractContainerScreen<SuspensionMix
     private static final ResourceLocation GUI_TEXTURE =
             ResourceLocation.fromNamespaceAndPath(TheChaosEngine.MOD_ID, "textures/gui/suspension_mixer/suspension_mixer_gui.png");
     private static final ResourceLocation MAIN_PROGRESS_ARROW =
-            ResourceLocation.fromNamespaceAndPath(TheChaosEngine.MOD_ID, "textures/gui/suspension_mixer/long_interupted_arrow.png");
+            ResourceLocation.fromNamespaceAndPath(TheChaosEngine.MOD_ID, "textures/gui/suspension_mixer/long_intersect_arrow.png");
     private static final ResourceLocation MIXER_PROGRESS =
             ResourceLocation.fromNamespaceAndPath(TheChaosEngine.MOD_ID, "textures/gui/suspension_mixer/mixer_progress.png");
 
@@ -78,17 +78,17 @@ public class SuspensionMixerScreen extends AbstractContainerScreen<SuspensionMix
         }
     }
 
-    private void renderMixerProgressArrow(GuiGraphics guiGraphics, int x, int y) {
+    private void renderHorizontalProgressArrow(GuiGraphics guiGraphics, int x, int y) {
         if (menu.isMixing()) {
-            guiGraphics.blit(MAIN_PROGRESS_ARROW, x + 72, y + 39, 0, 0, menu.getScaledArrowProgress(92),
-                    12, 92, 12);
+            guiGraphics.blit(MAIN_PROGRESS_ARROW, x + 40, y + 46, 0, 0, menu.getScaledArrowProgress(92),
+                    18, 92, 18);
         }
     }
 
     private void renderMixerIconProgress(GuiGraphics guiGraphics, int x, int y) {
         if (menu.isMixing()) {
             guiGraphics.blit(MIXER_PROGRESS, x + 79, y + 28, 0, 0, 18,
-                    menu.getScaledMixerProgress(60), 18, 60);
+                    menu.getScaledMixerProgress(50), 18, 50);
         }
     }
 
@@ -103,9 +103,6 @@ public class SuspensionMixerScreen extends AbstractContainerScreen<SuspensionMix
                 vertFluidInputBarLocX, vertFluidInputBarLocY, fluidRenderer);
         renderFluidTooltipArea(guiGraphics, mouseX, mouseY, x, y, menu.getOutputFluid(),
                 vertFluidOutputBarLocX, vertFluidOutputBarLocY, fluidRenderer);
-
-        renderMixerProgressArrow(guiGraphics, x, y);
-        renderMixerIconProgress(guiGraphics, x, y);
     }
 
     @Override
@@ -121,6 +118,9 @@ public class SuspensionMixerScreen extends AbstractContainerScreen<SuspensionMix
         energyInfoArea.render(guiGraphics);
         fluidRenderer.render(guiGraphics, x + vertFluidInputBarLocX, y + vertFluidInputBarLocY, menu.getInputFluid());
         fluidRenderer.render(guiGraphics, x + vertFluidOutputBarLocX, y + vertFluidOutputBarLocY, menu.getOutputFluid());
+
+        renderHorizontalProgressArrow(guiGraphics, x, y);
+        renderMixerIconProgress(guiGraphics, x, y);
     }
 
     @Override

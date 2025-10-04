@@ -20,6 +20,7 @@ public class SuspensionMixerMenu extends AbstractContainerMenu {
     private final Level level;
     private final ContainerData data;
 
+
     public SuspensionMixerMenu(int containerId, Inventory inventory, FriendlyByteBuf extraData) {
         this(containerId, inventory, inventory.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(4));
     }
@@ -53,20 +54,14 @@ public class SuspensionMixerMenu extends AbstractContainerMenu {
         int progress = this.data.get(0);
         int maxProgress = this.data.get(1);
 
-        return maxProgress != 0 && progress != 0 ? progress * arrowPixelWidth / maxProgress : 0;
+        return maxProgress != 0 && progress != 0 ? (progress * arrowPixelWidth) / maxProgress : 0;
     }
 
-    public int getScaledMixerProgress(int progressTextureHeight) {
+    public int getScaledMixerProgress(int mixerTextureHeight) {
         int progress = this.data.get(0);
         int maxProgress = this.data.get(1);
-        double progressPercent = (double)progress / (double)maxProgress;
 
-        if (progressPercent <= 0.413) {
-            double mixerPercent = progressPercent / 0.413;
-            return (int) (mixerPercent * progressTextureHeight);
-        } else {
-            return progressTextureHeight;
-        }
+        return maxProgress != 0 && progress != 0 ? (progress * mixerTextureHeight) / maxProgress : 0;
     }
 
     // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons
