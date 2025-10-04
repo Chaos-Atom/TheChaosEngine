@@ -12,7 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 
-public record PulverizerRecipe(Ingredient inputItem, ItemStack output, int processTime, int energy) implements Recipe<PulverizerRecipeInput> {
+public record PulverizerRecipe(Ingredient inputItem, ItemStack output, int processTime, int energy) implements Recipe<SingleItemRecipeInput> {
     @Override
     public NonNullList<Ingredient> getIngredients() {
         NonNullList<Ingredient> list = NonNullList.create();
@@ -21,7 +21,7 @@ public record PulverizerRecipe(Ingredient inputItem, ItemStack output, int proce
     }
 
     @Override
-    public boolean matches(PulverizerRecipeInput recipeInput, Level level) {
+    public boolean matches(SingleItemRecipeInput recipeInput, Level level) {
         if (level.isClientSide()) {
             return false;
         }
@@ -31,7 +31,7 @@ public record PulverizerRecipe(Ingredient inputItem, ItemStack output, int proce
     }
 
     @Override
-    public ItemStack assemble(PulverizerRecipeInput recipeInput, HolderLookup.Provider provider) {
+    public ItemStack assemble(SingleItemRecipeInput recipeInput, HolderLookup.Provider provider) {
         return output.copy();
     }
 

@@ -1,11 +1,11 @@
 package net.chaosatom.thechaosengine.block.entity.custom;
 
 import net.chaosatom.thechaosengine.block.entity.ChaosEngineBlockEntities;
-import net.chaosatom.thechaosengine.util.energy.EnergyStorage;
 import net.chaosatom.thechaosengine.recipe.ChaosEngineRecipes;
 import net.chaosatom.thechaosengine.recipe.PulverizerRecipe;
-import net.chaosatom.thechaosengine.recipe.PulverizerRecipeInput;
+import net.chaosatom.thechaosengine.recipe.SingleItemRecipeInput;
 import net.chaosatom.thechaosengine.screen.custom.CompactPulverizerMenu;
+import net.chaosatom.thechaosengine.util.energy.EnergyStorage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -207,7 +207,7 @@ public class CompactPulverizerBlockEntity extends BlockEntity implements MenuPro
 
     private Optional<RecipeHolder<PulverizerRecipe>> getCurrentRecipe() {
         return this.level.getRecipeManager()
-                .getRecipeFor(ChaosEngineRecipes.PULVERIZER_TYPE.get(), new PulverizerRecipeInput(itemHandler.getStackInSlot(INPUT_SLOT)), level);
+                .getRecipeFor(ChaosEngineRecipes.PULVERIZER_TYPE.get(), new SingleItemRecipeInput(itemHandler.getStackInSlot(INPUT_SLOT)), level);
     }
 
     private boolean canInsertItemInputIntoOutputSlot(ItemStack output) {

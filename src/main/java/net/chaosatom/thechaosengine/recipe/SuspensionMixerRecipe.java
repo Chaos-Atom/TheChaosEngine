@@ -18,7 +18,7 @@ public record SuspensionMixerRecipe(
         FluidStack fluidIngredient,
         FluidStack output,
         int processTime,
-        int energy) implements Recipe<SuspensionMixerRecipeInput> {
+        int energy) implements Recipe<SingleItemRecipeInput> {
 
     @Override
     public NonNullList<Ingredient> getIngredients() {
@@ -28,7 +28,7 @@ public record SuspensionMixerRecipe(
     }
 
     @Override
-    public boolean matches(SuspensionMixerRecipeInput input, Level level) {
+    public boolean matches(SingleItemRecipeInput input, Level level) {
         if(level.isClientSide()) {
             return false;
         }
@@ -36,7 +36,7 @@ public record SuspensionMixerRecipe(
     }
 
     @Override
-    public ItemStack assemble(SuspensionMixerRecipeInput suspensionMixerRecipeInput, HolderLookup.Provider provider) {
+    public ItemStack assemble(SingleItemRecipeInput recipeInput, HolderLookup.Provider provider) {
         return ItemStack.EMPTY; // No item is the output, only a FluidStack
     }
 

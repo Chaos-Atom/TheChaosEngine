@@ -12,7 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 
-public record InductionFoundryRecipe(Ingredient inputItem, ItemStack output, int processTime, int energy) implements Recipe<InductionFoundryRecipeInput> {
+public record InductionFoundryRecipe(Ingredient inputItem, ItemStack output, int processTime, int energy) implements Recipe<SingleItemRecipeInput> {
     @Override
     public NonNullList<Ingredient> getIngredients() {
         NonNullList<Ingredient> list = NonNullList.create();
@@ -21,7 +21,7 @@ public record InductionFoundryRecipe(Ingredient inputItem, ItemStack output, int
     }
 
     @Override
-    public boolean matches(InductionFoundryRecipeInput recipeInput, Level level) {
+    public boolean matches(SingleItemRecipeInput recipeInput, Level level) {
         if (level.isClientSide()) {
             return false;
         }
@@ -29,7 +29,7 @@ public record InductionFoundryRecipe(Ingredient inputItem, ItemStack output, int
     }
 
     @Override
-    public ItemStack assemble(InductionFoundryRecipeInput recipeInput, HolderLookup.Provider provider) {
+    public ItemStack assemble(SingleItemRecipeInput recipeInput, HolderLookup.Provider provider) {
         return output.copy();
     }
 

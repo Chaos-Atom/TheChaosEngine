@@ -2,9 +2,9 @@ package net.chaosatom.thechaosengine;
 
 import net.chaosatom.thechaosengine.block.ChaosEngineBlocks;
 import net.chaosatom.thechaosengine.block.entity.ChaosEngineBlockEntities;
-import net.chaosatom.thechaosengine.client.renderer.AtmosphericCondenserBlockEntityRenderer;
-import net.chaosatom.thechaosengine.client.renderer.CompactInductionFoundryBlockEntityRenderer;
-import net.chaosatom.thechaosengine.client.renderer.SuspensionMixerBlockEntityRenderer;
+import net.chaosatom.thechaosengine.client.renderer.block.AtmosphericCondenserBlockEntityRenderer;
+import net.chaosatom.thechaosengine.client.renderer.block.CompactInductionFoundryBlockEntityRenderer;
+import net.chaosatom.thechaosengine.client.renderer.block.SuspensionMixerBlockEntityRenderer;
 import net.chaosatom.thechaosengine.fluid.ChaosEngineFluids;
 import net.chaosatom.thechaosengine.item.ChaosEngineCreativeModeTabs;
 import net.chaosatom.thechaosengine.item.ChaosEngineItems;

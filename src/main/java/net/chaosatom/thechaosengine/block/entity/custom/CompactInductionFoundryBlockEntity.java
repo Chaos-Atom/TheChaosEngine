@@ -206,7 +206,7 @@ public class CompactInductionFoundryBlockEntity extends BlockEntity implements M
     private Optional<RecipeHolder<InductionFoundryRecipe>> getCurrentRecipe() {
         return this.level.getRecipeManager()
                 .getRecipeFor(ChaosEngineRecipes.INDUCTION_FOUNDRY_TYPE.get(),
-                        new InductionFoundryRecipeInput(itemHandler.getStackInSlot(INPUT_SLOT)), level);
+                        new SingleItemRecipeInput(itemHandler.getStackInSlot(INPUT_SLOT)), level);
     }
 
     private boolean canInsertItemInputIntoOutputSlot(ItemStack output) {

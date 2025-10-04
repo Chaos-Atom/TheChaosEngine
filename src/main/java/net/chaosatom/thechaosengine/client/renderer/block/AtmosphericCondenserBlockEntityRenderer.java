@@ -1,4 +1,4 @@
-package net.chaosatom.thechaosengine.client.renderer;
+package net.chaosatom.thechaosengine.client.renderer.block;
 
 import net.chaosatom.thechaosengine.block.custom.AtmosphericCondenserBlock;
 import net.chaosatom.thechaosengine.block.entity.custom.AtmosphericCondenserBlockEntity;
