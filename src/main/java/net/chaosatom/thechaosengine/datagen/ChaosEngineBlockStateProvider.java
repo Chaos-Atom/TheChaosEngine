@@ -23,6 +23,11 @@ public class ChaosEngineBlockStateProvider extends BlockStateProvider {
         blockWithItem(ChaosEngineBlocks.BAUXITE_BRICKS);
         blockWithItem(ChaosEngineBlocks.BAUXITE_TILES);
 
+        blockWithItem(ChaosEngineBlocks.ALUMINA_BRONZE_BLOCK);
+        blockWithItem(ChaosEngineBlocks.ORNATE_ALUMINA_BRONZE);
+        blockWithItem(ChaosEngineBlocks.ALUMINA_BRONZE_PANELS);
+        blockWithItem(ChaosEngineBlocks.CUBIC_ALUMINA_BRONZE);
+
         stairsBlock(((StairBlock) ChaosEngineBlocks.BAUXITE_STAIRS.get()), blockTexture(ChaosEngineBlocks.BAUXITE.get()));
         slabBlock(((SlabBlock) ChaosEngineBlocks.BAUXITE_SLAB.get()), blockTexture(ChaosEngineBlocks.BAUXITE.get()), blockTexture(ChaosEngineBlocks.BAUXITE.get()));
         wallBlock(((WallBlock) ChaosEngineBlocks.BAUXITE_WALL.get()), blockTexture(ChaosEngineBlocks.BAUXITE.get()));
@@ -59,4 +64,10 @@ public class ChaosEngineBlockStateProvider extends BlockStateProvider {
     private void blockItem(DeferredBlock<Block> deferredBlock) {
         simpleBlockItem(deferredBlock.get(), new ModelFile.UncheckedModelFile("thechaosengine:block/" + deferredBlock.getId().getPath()));
     }
+
+    // Attempt at better categorizing related blocks, have to premake the new texture directory first
+//    private void blockItemCustomFilepath(DeferredBlock<Block> deferredBlock, String customDirectory) {
+//        simpleBlockItem(deferredBlock.get(), new ModelFile.UncheckedModelFile("thechaosengine:block/" +
+//                customDirectory + "/" + deferredBlock.getId().getPath()));
+//    }
 }

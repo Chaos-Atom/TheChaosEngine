@@ -55,6 +55,11 @@
   "block.thechaosengine.bauxite_tile_slab": "Bauxite Tile Slab",
   "block.thechaosengine.bauxite_tile_wall": "Bauxite Tile Wall",
 
+  "block.thechaosengine.alumina_bronze_block": "Block of Alumina Bronze",
+  "block.thechaosengine.ornate_alumina_bronze": "Ornate Alumina Bronze",
+  "block.thechaosengine.alumina_bronze_panels": "Alumina Bronze Large Panels",
+  "block.thechaosengine.cubic_alumina_bronze": "Cubic Alumina Bronze",
+
   "block.thechaosengine.compact_coal_generator": "Compact Coal Generator",
   "block.thechaosengine.compact_pulverizer": "Compact Pulverizer",
   "block.thechaosengine.compact_induction_foundry": "Compact Induction Foundry",

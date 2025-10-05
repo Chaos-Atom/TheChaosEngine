@@ -44,21 +44,37 @@ public class ChaosEngineRecipeProvider extends RecipeProvider implements ICondit
                 .define('C', ChaosEngineItems.COPPER_DUST.get())
                 .unlockedBy("has_copper_dust", has(ChaosEngineItems.COPPER_DUST.get())).save(recipeOutput);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ChaosEngineBlocks.POLISHED_BAUXITE.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ChaosEngineBlocks.POLISHED_BAUXITE.get(), 4)
                 .pattern("BB")
                 .pattern("BB")
                 .define('B', ChaosEngineBlocks.BAUXITE.get())
                 .unlockedBy("has_bauxite_block", has(ChaosEngineBlocks.BAUXITE.get())).save(recipeOutput);
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ChaosEngineBlocks.BAUXITE_BRICKS.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ChaosEngineBlocks.BAUXITE_BRICKS.get(), 4)
                 .pattern("PP")
                 .pattern("PP")
                 .define('P', ChaosEngineBlocks.POLISHED_BAUXITE.get())
                 .unlockedBy("has_bauxite_block", has(ChaosEngineBlocks.POLISHED_BAUXITE.get())).save(recipeOutput);
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ChaosEngineBlocks.BAUXITE_TILES.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ChaosEngineBlocks.BAUXITE_TILES.get(), 4)
                 .pattern("BB")
                 .pattern("BB")
                 .define('B', ChaosEngineBlocks.BAUXITE_BRICKS.get())
                 .unlockedBy("has_bauxite_block", has(ChaosEngineBlocks.BAUXITE_BRICKS.get())).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ChaosEngineBlocks.ORNATE_ALUMINA_BRONZE.get(), 2)
+                .pattern(" A")
+                .pattern("A ")
+                .define('A', ChaosEngineBlocks.ALUMINA_BRONZE_BLOCK.get())
+                .unlockedBy("has_bauxite_block", has(ChaosEngineBlocks.ALUMINA_BRONZE_BLOCK.get())).save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ChaosEngineBlocks.ALUMINA_BRONZE_PANELS.get(), 2)
+                .pattern("A")
+                .pattern("A")
+                .define('A', ChaosEngineBlocks.ALUMINA_BRONZE_BLOCK.get())
+                .unlockedBy("has_bauxite_block", has(ChaosEngineBlocks.ALUMINA_BRONZE_BLOCK.get())).save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ChaosEngineBlocks.CUBIC_ALUMINA_BRONZE.get(), 2)
+                .pattern("A")
+                .pattern("A")
+                .define('A', ChaosEngineBlocks.ALUMINA_BRONZE_PANELS.get())
+                .unlockedBy("has_bauxite_block", has(ChaosEngineBlocks.ALUMINA_BRONZE_PANELS.get())).save(recipeOutput);
 
         // Stairs
         stairBuilder(ChaosEngineBlocks.BAUXITE_STAIRS.get(), Ingredient.of(ChaosEngineBlocks.BAUXITE.get())).group("bauxite")

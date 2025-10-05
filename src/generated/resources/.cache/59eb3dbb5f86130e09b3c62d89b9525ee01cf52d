@@ -1,4 +1,6 @@
-// 1.21.1	2025-09-29T01:57:57.914843	Loot Tables
+// 1.21.1	2025-10-04T23:12:56.7548938	Loot Tables
+848cf83019519d9256ebc2ddcfd1dfbf58392ca8 data/thechaosengine/loot_table/blocks/alumina_bronze_block.json
+8496cde4672e673406a119f3ce5e33641190ca3d data/thechaosengine/loot_table/blocks/alumina_bronze_panels.json
 be49550e8c0e6eefda3555b6961ec21a3c62204b data/thechaosengine/loot_table/blocks/atmospheric_condenser.json
 f08028a5b0cb145fdbb0ea171a555ce16e0ffb6b data/thechaosengine/loot_table/blocks/bauxite.json
 5f189c2d1fd54359eef919bdb2a6995343a12860 data/thechaosengine/loot_table/blocks/bauxite_bricks.json
@@ -16,8 +18,10 @@ ce00fcd3598041c762492dbed6ffb807cc6c89b6 data/thechaosengine/loot_table/blocks/b
 ba145ac9c9172bde2104371715314fa3d46ae4f6 data/thechaosengine/loot_table/blocks/compact_induction_foundry.json
 851d6593a82a9190935e41ece71d500b9ed4320e data/thechaosengine/loot_table/blocks/compact_pulverizer.json
 bce4cb0b016f2448c7822e82c30f2d4af3b81dd2 data/thechaosengine/loot_table/blocks/copper_dust_block.json
+b939582cfa66ec034d9696d88d1af5b3aab6717d data/thechaosengine/loot_table/blocks/cubic_alumina_bronze.json
 1db54654c07919615218ed033911eefb8e0df2fe data/thechaosengine/loot_table/blocks/gold_dust_block.json
 6175a6d57ea01c15d4759f6ca444b6fed90179e5 data/thechaosengine/loot_table/blocks/iron_dust_block.json
+b968a6f5263dcb1e7b2e9614a5891c4dced6bbfb data/thechaosengine/loot_table/blocks/ornate_alumina_bronze.json
 bd17a921b1223d5a17b26575f3074ad3edabf11c data/thechaosengine/loot_table/blocks/polished_bauxite.json
 86505fab69932c9bb45f4676257ace884e3341ef data/thechaosengine/loot_table/blocks/polished_bauxite_slab.json
 107053bd44913c240763f616780bd3c8816ea17c data/thechaosengine/loot_table/blocks/polished_bauxite_stairs.json

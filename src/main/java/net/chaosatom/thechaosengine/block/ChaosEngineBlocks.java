@@ -47,6 +47,7 @@ public class ChaosEngineBlocks {
             });
 
     // General Blocks
+    // Bauxite-related
     public static final DeferredBlock<Block> BAUXITE = registerBlock("bauxite",
             () -> new Block(BlockBehaviour.Properties.of().strength(1.35f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
     public static final DeferredBlock<Block> BAUXITE_STAIRS = registerBlock("bauxite_stairs",
@@ -82,6 +83,20 @@ public class ChaosEngineBlocks {
             () -> new SlabBlock(BlockBehaviour.Properties.of().strength(1.35f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
     public static final DeferredBlock<Block> BAUXITE_TILE_WALL = registerBlock("bauxite_tile_wall",
             () -> new WallBlock(BlockBehaviour.Properties.of().strength(1.35f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+
+    // Alumina Bronze
+    public static final DeferredBlock<Block> ALUMINA_BRONZE_BLOCK = registerBlock("alumina_bronze_block",
+            () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops()
+                    .strength(4.5f, 5.0f).sound(SoundType.METAL)));
+    public static final DeferredBlock<Block> ORNATE_ALUMINA_BRONZE = registerBlock("ornate_alumina_bronze",
+            () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops()
+                    .strength(4.5f, 5.0f).sound(SoundType.METAL)));
+    public static final DeferredBlock<Block> ALUMINA_BRONZE_PANELS = registerBlock("alumina_bronze_panels",
+            () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops()
+                    .strength(4.5f, 5.0f).sound(SoundType.METAL)));
+    public static final DeferredBlock<Block> CUBIC_ALUMINA_BRONZE = registerBlock("cubic_alumina_bronze",
+            () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops()
+                    .strength(4.5f, 5.0f).sound(SoundType.METAL)));
 
     // Complex Blocks
     public static  final DeferredBlock<Block> COMPACT_COAL_GENERATOR = registerBlock("compact_coal_generator",

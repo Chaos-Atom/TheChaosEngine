@@ -46,9 +46,9 @@ public class SuspensionMixerScreen extends AbstractContainerScreen<SuspensionMix
     @Override
     protected void init() {
         super.init();
-        this.titleLabelX = 8;
+        this.titleLabelX = 46;
         this.titleLabelY = 8;
-        this.inventoryLabelY = this.imageHeight / 2;
+        this.inventoryLabelY = (this.imageHeight / 2) - 1;
 
         assignEnergyInfoArea();
         assignFluidRenderer();

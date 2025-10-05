@@ -34,6 +34,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -74,14 +75,14 @@ public class SuspensionMixerBlock extends BaseEntityBlock implements EntityBlock
     }
 
     @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
+    protected @NotNull MapCodec<? extends BaseEntityBlock> codec() {
         return CODEC;
     }
 
     /* Voxel Shape Methods */
 
     @Override
-    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+    protected @NotNull VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         if (state.getValue(DEPLOYED)) {
             return switch (state.getValue(FACING)) {
                 case EAST -> SHAPE_DEPLOYED_EAST;
@@ -100,29 +101,59 @@ public class SuspensionMixerBlock extends BaseEntityBlock implements EntityBlock
     }
 
     @Override
-    protected VoxelShape getOcclusionShape(BlockState state, BlockGetter level, BlockPos pos) {
+    protected @NotNull VoxelShape getOcclusionShape(BlockState state, BlockGetter level, BlockPos pos) {
         if (state.getValue(DEPLOYED)) {
-            return SHAPE_DEPLOYED_NORTH;
+            return switch (state.getValue(FACING)) {
+                case EAST -> SHAPE_DEPLOYED_EAST;
+                case SOUTH -> SHAPE_DEPLOYED_SOUTH;
+                case WEST -> SHAPE_DEPLOYED_WEST;
+                default -> SHAPE_DEPLOYED_NORTH;
+            };
         } else {
-            return SHAPE_UNDEPLOYED_NORTH;
+            return switch (state.getValue(FACING)) {
+                case EAST -> SHAPE_UNDEPLOYED_EAST;
+                case SOUTH -> SHAPE_UNDEPLOYED_SOUTH;
+                case WEST -> SHAPE_UNDEPLOYED_WEST;
+                default -> SHAPE_UNDEPLOYED_NORTH;
+            };
         }
     }
 
     @Override
-    protected VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+    protected @NotNull VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         if (state.getValue(DEPLOYED)) {
-            return SHAPE_DEPLOYED_NORTH;
+            return switch (state.getValue(FACING)) {
+                case EAST -> SHAPE_DEPLOYED_EAST;
+                case SOUTH -> SHAPE_DEPLOYED_SOUTH;
+                case WEST -> SHAPE_DEPLOYED_WEST;
+                default -> SHAPE_DEPLOYED_NORTH;
+            };
         } else {
-            return SHAPE_UNDEPLOYED_NORTH;
+            return switch (state.getValue(FACING)) {
+                case EAST -> SHAPE_UNDEPLOYED_EAST;
+                case SOUTH -> SHAPE_UNDEPLOYED_SOUTH;
+                case WEST -> SHAPE_UNDEPLOYED_WEST;
+                default -> SHAPE_UNDEPLOYED_NORTH;
+            };
         }
     }
 
     @Override
-    protected VoxelShape getInteractionShape(BlockState state, BlockGetter level, BlockPos pos) {
+    protected @NotNull VoxelShape getInteractionShape(BlockState state, BlockGetter level, BlockPos pos) {
         if (state.getValue(DEPLOYED)) {
-            return SHAPE_DEPLOYED_NORTH;
+            return switch (state.getValue(FACING)) {
+                case EAST -> SHAPE_DEPLOYED_EAST;
+                case SOUTH -> SHAPE_DEPLOYED_SOUTH;
+                case WEST -> SHAPE_DEPLOYED_WEST;
+                default -> SHAPE_DEPLOYED_NORTH;
+            };
         } else {
-            return SHAPE_UNDEPLOYED_NORTH;
+            return switch (state.getValue(FACING)) {
+                case EAST -> SHAPE_UNDEPLOYED_EAST;
+                case SOUTH -> SHAPE_UNDEPLOYED_SOUTH;
+                case WEST -> SHAPE_UNDEPLOYED_WEST;
+                default -> SHAPE_UNDEPLOYED_NORTH;
+            };
         }
     }
 
@@ -134,12 +165,12 @@ public class SuspensionMixerBlock extends BaseEntityBlock implements EntityBlock
     /* Facing Methods */
 
     @Override
-    protected BlockState rotate(BlockState state, Rotation rotation) {
+    protected @NotNull BlockState rotate(BlockState state, Rotation rotation) {
         return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
     }
 
     @Override
-    protected BlockState mirror(BlockState state, Mirror mirror) {
+    protected @NotNull BlockState mirror(BlockState state, Mirror mirror) {
         return state.rotate(mirror.getRotation(state.getValue(FACING)));
     }
 
@@ -176,7 +207,7 @@ public class SuspensionMixerBlock extends BaseEntityBlock implements EntityBlock
     }
 
     @Override
-    protected RenderShape getRenderShape(BlockState state) {
+    protected @NotNull RenderShape getRenderShape(BlockState state) {
         return RenderShape.ENTITYBLOCK_ANIMATED;
     }
 
@@ -193,8 +224,8 @@ public class SuspensionMixerBlock extends BaseEntityBlock implements EntityBlock
     }
 
     @Override
-    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player,
-                                              InteractionHand hand, BlockHitResult hitResult) {
+    protected @NotNull ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player,
+                                                       InteractionHand hand, BlockHitResult hitResult) {
         if (!state.getValue(DEPLOYED)) {
 
             // Checks if the block about the mixer is an air block so it's free to expand upwards.
@@ -306,25 +337,25 @@ public class SuspensionMixerBlock extends BaseEntityBlock implements EntityBlock
         SHAPE_BASIN = Block.box(0,0,0, 16,16,16); // Deployed main body
 
         // NORTH (Default) Direction
-        SHAPE_UNDEPLOYED_ARM_NORTH = Block.box(6,9,0,10,14,11);
+        SHAPE_UNDEPLOYED_ARM_NORTH = Block.box(6,9,0,10,15,11);
         SHAPE_UNDEPLOYED_NORTH = Shapes.or(SHAPE_UNDEPLOYED_BODY, SHAPE_UNDEPLOYED_ARM_NORTH).optimize();
         SHAPE_DEPLOYED_ARM_NORTH = Block.box(6,16,7, 10,32,15);
         SHAPE_DEPLOYED_NORTH = Shapes.or(SHAPE_BASIN, SHAPE_DEPLOYED_ARM_NORTH).optimize();
 
         // EAST
-        SHAPE_UNDEPLOYED_ARM_EAST = Block.box(5, 9, 6, 16, 14, 10);
+        SHAPE_UNDEPLOYED_ARM_EAST = Block.box(5, 9, 6, 16, 15, 10);
         SHAPE_UNDEPLOYED_EAST = Shapes.or(SHAPE_UNDEPLOYED_BODY, SHAPE_UNDEPLOYED_ARM_EAST).optimize();
         SHAPE_DEPLOYED_ARM_EAST = Block.box(1, 16, 6, 9, 32, 10);
         SHAPE_DEPLOYED_EAST = Shapes.or(SHAPE_BASIN, SHAPE_DEPLOYED_ARM_EAST).optimize();
 
         // SOUTH
-        SHAPE_UNDEPLOYED_ARM_SOUTH = Block.box(6, 9, 5, 10, 14, 16);
+        SHAPE_UNDEPLOYED_ARM_SOUTH = Block.box(6, 9, 5, 10, 15, 16);
         SHAPE_UNDEPLOYED_SOUTH = Shapes.or(SHAPE_UNDEPLOYED_BODY, SHAPE_UNDEPLOYED_ARM_SOUTH).optimize();
         SHAPE_DEPLOYED_ARM_SOUTH = Block.box(6, 16, 1, 10, 32, 9);
         SHAPE_DEPLOYED_SOUTH = Shapes.or(SHAPE_BASIN, SHAPE_DEPLOYED_ARM_SOUTH).optimize();
 
         // WEST
-        SHAPE_UNDEPLOYED_ARM_WEST = Block.box(0, 9, 6, 11, 14, 10);
+        SHAPE_UNDEPLOYED_ARM_WEST = Block.box(0, 9, 6, 11, 15, 10);
         SHAPE_UNDEPLOYED_WEST = Shapes.or(SHAPE_UNDEPLOYED_BODY, SHAPE_UNDEPLOYED_ARM_WEST).optimize();
         SHAPE_DEPLOYED_ARM_WEST = Block.box(7, 16, 6, 15, 32, 10);
         SHAPE_DEPLOYED_WEST = Shapes.or(SHAPE_BASIN, SHAPE_DEPLOYED_ARM_WEST).optimize();

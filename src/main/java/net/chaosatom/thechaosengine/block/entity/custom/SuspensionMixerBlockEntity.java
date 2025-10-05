@@ -143,7 +143,7 @@ public class SuspensionMixerBlockEntity extends BlockEntity implements GeoBlockE
     private int deployTime = 0;
     private static final int DEPLOY_ANIMATION_LENGTH = 125; // 6.25 seconds
     private int retractTime = 0;
-    private static final int RETRACT_ANIMATION_LENGTH = 45; // 2.25 seconds
+    private static final int RETRACT_ANIMATION_LENGTH = 55; // 2.25 seconds
 
     public AnimationState getAnimState() {
         return this.animState;

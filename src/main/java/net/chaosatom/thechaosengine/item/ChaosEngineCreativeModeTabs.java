@@ -77,6 +77,11 @@ public class ChaosEngineCreativeModeTabs {
                         output.accept(ChaosEngineBlocks.BAUXITE_BRICKS);
                         output.accept(ChaosEngineBlocks.BAUXITE_TILES);
 
+                        output.accept(ChaosEngineBlocks.ALUMINA_BRONZE_BLOCK);
+                        output.accept(ChaosEngineBlocks.ORNATE_ALUMINA_BRONZE);
+                        output.accept(ChaosEngineBlocks.ALUMINA_BRONZE_PANELS);
+                        output.accept(ChaosEngineBlocks.CUBIC_ALUMINA_BRONZE);
+
                         // Partial Blocks (Stairs, Slabs, Walls)
                         output.accept(ChaosEngineBlocks.BAUXITE_STAIRS);
                         output.accept(ChaosEngineBlocks.BAUXITE_SLAB);

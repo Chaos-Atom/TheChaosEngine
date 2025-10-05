@@ -21,7 +21,7 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.fluids.FluidStack;
-import software.bernie.geckolib.animation.AnimationState;
+import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.renderer.GeoBlockRenderer;
 import software.bernie.geckolib.renderer.layer.AutoGlowingGeoLayer;
 
@@ -89,7 +89,7 @@ public class SuspensionMixerBlockEntityRenderer extends GeoBlockRenderer<Suspens
     }
 
     @Override
-    public AABB getRenderBoundingBox(SuspensionMixerBlockEntity blockEntity) {
+    public @NotNull AABB getRenderBoundingBox(SuspensionMixerBlockEntity blockEntity) {
         BlockPos pos = blockEntity.getBlockPos();
         BlockState state = blockEntity.getBlockState();
         if (state.getValue(SuspensionMixerBlock.DEPLOYED)) {

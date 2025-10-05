@@ -15,6 +15,10 @@
     "thechaosengine:bauxite_tiles",
     "thechaosengine:bauxite_tile_stairs",
     "thechaosengine:bauxite_tile_slab",
-    "thechaosengine:bauxite_tile_wall"
+    "thechaosengine:bauxite_tile_wall",
+    "thechaosengine:alumina_bronze_block",
+    "thechaosengine:ornate_alumina_bronze",
+    "thechaosengine:alumina_bronze_panels",
+    "thechaosengine:cubic_alumina_bronze"
   ]
 }
