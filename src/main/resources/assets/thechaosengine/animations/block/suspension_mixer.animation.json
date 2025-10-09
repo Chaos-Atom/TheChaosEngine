@@ -390,7 +390,7 @@
 				}
 			}
 		},
-		"suspension_mixer.idle": {
+		"suspension_mixer.active": {
 			"loop": true,
 			"animation_length": 1,
 			"bones": {

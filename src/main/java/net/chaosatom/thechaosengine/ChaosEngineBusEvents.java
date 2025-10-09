@@ -14,24 +14,47 @@ import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
 public class ChaosEngineBusEvents {
     @SubscribeEvent
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {
+        /* Energy Capabilities */
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ChaosEngineBlockEntities.COMPACT_COAL_GENERATOR_BE.get(),
-                CompactCoalGeneratorBlockEntity::getEnergyStorage);
+                (blockEntity, side) -> {
+            Direction facing = blockEntity.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
+            return (side == facing.getClockWise()) ? blockEntity.getEnergyStorage(side) : null;
+        });
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ChaosEngineBlockEntities.COMPACT_PULVERIZER_BE.get(),
-                CompactPulverizerBlockEntity::getEnergyStorage);
+                (blockEntity, side) -> {
+            Direction facing = blockEntity.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
+            boolean isValidSide = side == facing.getOpposite() || side == Direction.DOWN || side == facing;
+            return isValidSide ? blockEntity.getEnergyStorage(side) : null;
+        });
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ChaosEngineBlockEntities.COMPACT_INDUCTION_FOUNDRY_BE.get(),
-                CompactInductionFoundryBlockEntity::getEnergyStorage);
+                (blockEntity, side) -> {
+            Direction facing = blockEntity.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
+            boolean isValidSide = side == facing.getOpposite() || side == Direction.DOWN || side == facing;
+            return isValidSide ? blockEntity.getEnergyStorage(side) : null;
+        });
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ChaosEngineBlockEntities.ATMOSPHERIC_CONDENSER_BE.get(),
-                AtmosphericCondenserBlockEntity::getEnergyStorage);
+                (blockEntity, side) -> {
+            Direction facing = blockEntity.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
+            return (side == facing.getOpposite() || side == Direction.DOWN) ? blockEntity.getEnergyStorage(side) : null;
+        });
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ChaosEngineBlockEntities.SUSPENSION_MIXER_BE.get(),
-                SuspensionMixerBlockEntity::getEnergyStorage);
+                (blockEntity, side) -> {
+            Direction facing = blockEntity.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
+            return (side == Direction.DOWN || side == facing) ? blockEntity.getEnergyStorage(side) : null;
+        });
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ChaosEngineBlockEntities.DEPLOYABLE_SOLAR_BE.get(),
                 (blockEntity, side) -> {
             Direction facing = blockEntity.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
             return (side == Direction.DOWN || side == facing.getOpposite()) ? blockEntity.getEnergyStorage(side) : null;
-                });
+        });
+
+        /* Fluid Capabilities */
 
         event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, ChaosEngineBlockEntities.ATMOSPHERIC_CONDENSER_BE.get(),
-                AtmosphericCondenserBlockEntity::getTank);
+                (blockEntity, side) -> {
+            Direction facing = blockEntity.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
+            return (side == facing.getClockWise() || side == facing.getCounterClockWise()) ? blockEntity.getTank(side): null;
+                });
         event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, ChaosEngineBlockEntities.SUSPENSION_MIXER_BE.get(),
                 (blockEntity, side) -> {
             Direction facing = blockEntity.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
@@ -48,9 +71,7 @@ public class ChaosEngineBusEvents {
             return null;
         });
 
-        /* Checks that the input side of the generator is a valid item pusher, accepts items from that side only
-        * I am unsure if this is okay to put this logic in here...
-        */
+        /* Item Capabilities */
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ChaosEngineBlockEntities.COMPACT_COAL_GENERATOR_BE.get(),
                 (blockEntity, side) -> {
                     Direction facing = blockEntity.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
