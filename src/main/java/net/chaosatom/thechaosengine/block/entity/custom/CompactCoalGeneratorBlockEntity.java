@@ -144,10 +144,10 @@ public class CompactCoalGeneratorBlockEntity extends BlockEntity implements Menu
         if (blockState.getValue(BlockStateProperties.LIT) != isLit) {
             level.setBlock(blockPos, blockState.setValue(BlockStateProperties.LIT, isLit), 3);
         }
-        pushEnergyToOutputSide();
+        pushEnergyToOutputSide(level);
     }
 
-    private void pushEnergyToOutputSide() {
+    private void pushEnergyToOutputSide(Level level) {
         if (this.ENERGY_STORAGE.getEnergyStored() <= 0) {
             return;
         }

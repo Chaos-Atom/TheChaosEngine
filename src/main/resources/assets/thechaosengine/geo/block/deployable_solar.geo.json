@@ -1,0 +1,803 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.deployable_solar",
+				"texture_width": 128,
+				"texture_height": 128,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 2.5,
+				"visible_bounds_offset": [0, 0.75, 0]
+			},
+			"bones": [
+				{
+					"name": "bb_main",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{
+							"origin": [-8, 0, -8],
+							"size": [16, 2, 16],
+							"uv": {
+								"north": {"uv": [51, 42], "uv_size": [16, 2]},
+								"east": {"uv": [51, 44], "uv_size": [16, 2]},
+								"south": {"uv": [54, 7], "uv_size": [16, 2]},
+								"west": {"uv": [54, 9], "uv_size": [16, 2]},
+								"up": {"uv": [0, 0], "uv_size": [16, 16]},
+								"down": {"uv": [0, 32], "uv_size": [16, -16]}
+							}
+						},
+						{
+							"origin": [4, 2, -7],
+							"size": [3, 2, 3],
+							"uv": {
+								"north": {"uv": [29, 61], "uv_size": [3, 2]},
+								"east": {"uv": [13, 62], "uv_size": [3, 2]},
+								"south": {"uv": [16, 62], "uv_size": [3, 2]},
+								"west": {"uv": [19, 62], "uv_size": [3, 2]}
+							}
+						},
+						{
+							"origin": [4, 2, 4],
+							"size": [3, 2, 3],
+							"uv": {
+								"north": {"uv": [38, 62], "uv_size": [3, 2]},
+								"east": {"uv": [50, 62], "uv_size": [3, 2]},
+								"south": {"uv": [61, 62], "uv_size": [3, 2]},
+								"west": {"uv": [63, 4], "uv_size": [3, 2]}
+							}
+						},
+						{
+							"origin": [-7, 2, 4],
+							"size": [3, 2, 3],
+							"uv": {
+								"north": {"uv": [7, 63], "uv_size": [3, 2]},
+								"east": {"uv": [10, 63], "uv_size": [3, 2]},
+								"south": {"uv": [29, 63], "uv_size": [3, 2]},
+								"west": {"uv": [63, 46], "uv_size": [3, 2]}
+							}
+						},
+						{
+							"origin": [-7, 2, -7],
+							"size": [3, 2, 3],
+							"uv": {
+								"north": {"uv": [64, 11], "uv_size": [3, 2]},
+								"east": {"uv": [13, 64], "uv_size": [3, 2]},
+								"south": {"uv": [16, 64], "uv_size": [3, 2]},
+								"west": {"uv": [19, 64], "uv_size": [3, 2]}
+							}
+						}
+					]
+				},
+				{
+					"name": "Panel Housing",
+					"pivot": [0, 2, 0],
+					"cubes": [
+						{
+							"origin": [-3, 3, 4],
+							"size": [6, 1, 3],
+							"uv": {
+								"north": {"uv": [48, 66], "uv_size": [6, 1]},
+								"east": {"uv": [68, 34], "uv_size": [3, 1]},
+								"south": {"uv": [60, 66], "uv_size": [6, 1]},
+								"west": {"uv": [68, 35], "uv_size": [3, 1]},
+								"up": {"uv": [54, 11], "uv_size": [6, 3]}
+							}
+						},
+						{
+							"origin": [-8, 2, -8],
+							"size": [16, 1, 16],
+							"uv": {
+								"north": {"uv": [55, 14], "uv_size": [16, 1]},
+								"east": {"uv": [55, 15], "uv_size": [16, 1]},
+								"south": {"uv": [55, 16], "uv_size": [16, 1]},
+								"west": {"uv": [55, 17], "uv_size": [16, 1]},
+								"up": {"uv": [16, 0], "uv_size": [16, 16]},
+								"down": {"uv": [16, 32], "uv_size": [16, -16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "Platform",
+					"parent": "Panel Housing",
+					"pivot": [0, 3, 0],
+					"cubes": [
+						{
+							"origin": [-2, 3, -6],
+							"size": [4, 1, 9],
+							"uv": {
+								"north": {"uv": [38, 64], "uv_size": [4, 1]},
+								"east": {"uv": [59, 37], "uv_size": [9, 1]},
+								"south": {"uv": [46, 67], "uv_size": [4, 1]},
+								"west": {"uv": [59, 49], "uv_size": [9, 1]},
+								"up": {"uv": [29, 52], "uv_size": [4, 9]}
+							}
+						},
+						{
+							"origin": [-1, 4, -6],
+							"size": [2, 1, 1],
+							"uv": {
+								"north": {"uv": [68, 37], "uv_size": [2, 1]},
+								"east": {"uv": [3, 69], "uv_size": [1, 1]},
+								"south": {"uv": [41, 68], "uv_size": [2, 1]},
+								"west": {"uv": [4, 69], "uv_size": [1, 1]},
+								"up": {"uv": [43, 68], "uv_size": [2, 1]}
+							}
+						},
+						{
+							"origin": [-3, 3, -2],
+							"size": [1, 1, 4],
+							"uv": {
+								"north": {"uv": [42, 59], "uv_size": [1, 1]},
+								"east": {"uv": [50, 67], "uv_size": [4, 1]},
+								"south": {"uv": [60, 63], "uv_size": [1, 1]},
+								"up": {"uv": [31, 40], "uv_size": [1, 4]}
+							}
+						},
+						{
+							"origin": [2, 3, -2],
+							"size": [1, 1, 4],
+							"uv": {
+								"north": {"uv": [53, 68], "uv_size": [1, 1]},
+								"south": {"uv": [68, 67], "uv_size": [1, 1]},
+								"west": {"uv": [60, 67], "uv_size": [4, 1]},
+								"up": {"uv": [28, 66], "uv_size": [1, 4]}
+							}
+						}
+					]
+				},
+				{
+					"name": "Support Arm",
+					"parent": "Platform",
+					"pivot": [0, 4, 3],
+					"cubes": [
+						{
+							"origin": [-1, 4, -5],
+							"size": [2, 1, 8],
+							"uv": {
+								"north": {"uv": [68, 49], "uv_size": [2, 1]},
+								"east": {"uv": [61, 18], "uv_size": [8, 1]},
+								"south": {"uv": [51, 68], "uv_size": [2, 1]},
+								"west": {"uv": [61, 19], "uv_size": [8, 1]},
+								"up": {"uv": [26, 54], "uv_size": [2, 8]},
+								"down": {"uv": [55, 26], "uv_size": [2, -8]}
+							}
+						}
+					]
+				},
+				{
+					"name": "Support Arm 2",
+					"parent": "Support Arm",
+					"pivot": [0, 5, -5],
+					"cubes": [
+						{
+							"origin": [-1, 5, -5],
+							"size": [2, 1, 6],
+							"uv": {
+								"north": {"uv": [68, 55], "uv_size": [2, 1]},
+								"east": {"uv": [66, 64], "uv_size": [6, 1]},
+								"south": {"uv": [56, 68], "uv_size": [2, 1]},
+								"west": {"uv": [66, 65], "uv_size": [6, 1]},
+								"up": {"uv": [59, 31], "uv_size": [2, 6]},
+								"down": {"uv": [36, 65], "uv_size": [2, -6]}
+							}
+						},
+						{
+							"origin": [-1, 5, -6],
+							"size": [2, 1, 1],
+							"pivot": [0, 6, -5],
+							"rotation": [27.5, 0, 0],
+							"uv": {
+								"north": {"uv": [68, 59], "uv_size": [2, 1]},
+								"east": {"uv": [69, 19], "uv_size": [1, 1]},
+								"south": {"uv": [60, 68], "uv_size": [2, 1]},
+								"west": {"uv": [36, 69], "uv_size": [1, 1]},
+								"up": {"uv": [68, 60], "uv_size": [2, 1]},
+								"down": {"uv": [62, 69], "uv_size": [2, -1]}
+							}
+						},
+						{
+							"origin": [-1, 4.90363, 0.87993],
+							"size": [2, 1, 1],
+							"pivot": [0, 5.40363, 1.37993],
+							"rotation": [-12.5, 0, 0],
+							"uv": {
+								"north": {"uv": [68, 56], "uv_size": [2, 1]},
+								"east": {"uv": [18, 69], "uv_size": [1, 1]},
+								"south": {"uv": [68, 57], "uv_size": [2, 1]},
+								"west": {"uv": [69, 18], "uv_size": [1, 1]},
+								"up": {"uv": [58, 68], "uv_size": [2, 1]},
+								"down": {"uv": [68, 59], "uv_size": [2, -1]}
+							}
+						}
+					]
+				},
+				{
+					"name": "Solar Arm 1",
+					"parent": "Platform",
+					"pivot": [0, 4.5, -5.5],
+					"rotation": [5, 0, 0],
+					"cubes": [
+						{
+							"origin": [-2, 4, -6],
+							"size": [1, 1, 12],
+							"uv": {
+								"north": {"uv": [68, 68], "uv_size": [1, 1]},
+								"east": {"uv": [59, 0], "uv_size": [12, 1]},
+								"south": {"uv": [0, 69], "uv_size": [1, 1]},
+								"west": {"uv": [59, 1], "uv_size": [12, 1]},
+								"up": {"uv": [28, 54], "uv_size": [1, 12]},
+								"down": {"uv": [33, 71], "uv_size": [1, -12]}
+							}
+						},
+						{
+							"origin": [1, 4, -6],
+							"size": [1, 1, 12],
+							"uv": {
+								"north": {"uv": [1, 69], "uv_size": [1, 1]},
+								"east": {"uv": [59, 2], "uv_size": [12, 1]},
+								"south": {"uv": [2, 69], "uv_size": [1, 1]},
+								"west": {"uv": [59, 3], "uv_size": [12, 1]},
+								"up": {"uv": [34, 59], "uv_size": [1, 12]},
+								"down": {"uv": [35, 71], "uv_size": [1, -12]}
+							}
+						}
+					]
+				},
+				{
+					"name": "Solar Arm 2",
+					"parent": "Solar Arm 1",
+					"pivot": [0, 4.5, 5.5],
+					"rotation": [-17.5, 0, 0],
+					"cubes": [
+						{
+							"origin": [-1, 4, -1],
+							"size": [2, 1, 7],
+							"uv": {
+								"north": {"uv": [45, 68], "uv_size": [2, 1]},
+								"east": {"uv": [61, 20], "uv_size": [7, 1]},
+								"south": {"uv": [47, 68], "uv_size": [2, 1]},
+								"west": {"uv": [61, 21], "uv_size": [7, 1]},
+								"up": {"uv": [57, 31], "uv_size": [2, 7]},
+								"down": {"uv": [58, 60], "uv_size": [2, -7]}
+							}
+						}
+					]
+				},
+				{
+					"name": "Solar Panels",
+					"parent": "Solar Arm 2",
+					"pivot": [0, 4.5, 0],
+					"rotation": [12.5, 0, 0],
+					"cubes": [
+						{
+							"origin": [-7, 5.5, -7],
+							"size": [6, 1, 14],
+							"uv": {
+								"north": {"uv": [61, 61], "uv_size": [6, 1]},
+								"east": {"uv": [55, 50], "uv_size": [14, 1]},
+								"south": {"uv": [7, 62], "uv_size": [6, 1]},
+								"west": {"uv": [55, 51], "uv_size": [14, 1]},
+								"up": {"uv": [32, 16], "uv_size": [6, 14]},
+								"down": {"uv": [32, 44], "uv_size": [6, -14]}
+							}
+						},
+						{
+							"origin": [1, 5.5, -7],
+							"size": [6, 1, 14],
+							"uv": {
+								"north": {"uv": [63, 6], "uv_size": [6, 1]},
+								"east": {"uv": [55, 52], "uv_size": [14, 1]},
+								"south": {"uv": [63, 48], "uv_size": [6, 1]},
+								"west": {"uv": [57, 30], "uv_size": [14, 1]},
+								"up": {"uv": [38, 16], "uv_size": [6, 14]},
+								"down": {"uv": [38, 44], "uv_size": [6, -14]}
+							}
+						},
+						{
+							"origin": [-1, 4.5, -2],
+							"size": [2, 2, 4],
+							"uv": {
+								"north": {"uv": [49, 28], "uv_size": [2, 2]},
+								"east": {"uv": [50, 60], "uv_size": [4, 2]},
+								"south": {"uv": [55, 26], "uv_size": [2, 2]},
+								"west": {"uv": [60, 53], "uv_size": [4, 2]},
+								"up": {"uv": [29, 40], "uv_size": [2, 4]},
+								"down": {"uv": [54, 64], "uv_size": [2, -4]}
+							}
+						},
+						{
+							"origin": [-2, 3.5, -1],
+							"size": [1, 2, 2],
+							"uv": {
+								"north": {"uv": [43, 44], "uv_size": [1, 2]},
+								"east": {"uv": [64, 67], "uv_size": [2, 2]},
+								"south": {"uv": [48, 14], "uv_size": [1, 2]},
+								"west": {"uv": [66, 67], "uv_size": [2, 2]},
+								"down": {"uv": [41, 64], "uv_size": [1, -2]}
+							}
+						},
+						{
+							"origin": [1, 3.5, -1],
+							"size": [1, 2, 2],
+							"uv": {
+								"north": {"uv": [53, 62], "uv_size": [1, 2]},
+								"east": {"uv": [7, 68], "uv_size": [2, 2]},
+								"south": {"uv": [49, 68], "uv_size": [1, 2]},
+								"west": {"uv": [9, 68], "uv_size": [2, 2]},
+								"down": {"uv": [50, 70], "uv_size": [1, -2]}
+							}
+						}
+					]
+				},
+				{
+					"name": "FoldOut Panels N",
+					"parent": "Solar Panels",
+					"pivot": [4, 5.5, -7],
+					"cubes": [
+						{
+							"origin": [2, 4.5, -7],
+							"size": [5, 1, 7],
+							"uv": {
+								"north": {"uv": [67, 12], "uv_size": [5, 1]},
+								"east": {"uv": [61, 31], "uv_size": [7, 1]},
+								"south": {"uv": [17, 67], "uv_size": [5, 1]},
+								"west": {"uv": [61, 32], "uv_size": [7, 1]},
+								"up": {"uv": [33, 52], "uv_size": [5, 7]},
+								"down": {"uv": [38, 59], "uv_size": [5, -7]}
+							}
+						},
+						{
+							"origin": [1, 4.5, -7],
+							"size": [1, 1, 6],
+							"uv": {
+								"north": {"uv": [69, 6], "uv_size": [1, 1]},
+								"east": {"uv": [64, 63], "uv_size": [6, 1]},
+								"south": {"uv": [11, 69], "uv_size": [1, 1]},
+								"west": {"uv": [7, 65], "uv_size": [6, 1]},
+								"up": {"uv": [32, 61], "uv_size": [1, 6]},
+								"down": {"uv": [26, 68], "uv_size": [1, -6]}
+							}
+						}
+					]
+				},
+				{
+					"name": "FoldOut_Panels S",
+					"parent": "Solar Panels",
+					"pivot": [4, 5.5, 7],
+					"cubes": [
+						{
+							"origin": [2, 4.5, 0],
+							"size": [5, 1, 7],
+							"uv": {
+								"north": {"uv": [36, 67], "uv_size": [5, 1]},
+								"east": {"uv": [61, 33], "uv_size": [7, 1]},
+								"south": {"uv": [41, 67], "uv_size": [5, 1]},
+								"west": {"uv": [61, 34], "uv_size": [7, 1]},
+								"up": {"uv": [43, 53], "uv_size": [5, 7]},
+								"down": {"uv": [48, 60], "uv_size": [5, -7]}
+							}
+						},
+						{
+							"origin": [1, 4.5, 1],
+							"size": [1, 1, 6],
+							"uv": {
+								"north": {"uv": [12, 69], "uv_size": [1, 1]},
+								"east": {"uv": [36, 65], "uv_size": [6, 1]},
+								"south": {"uv": [13, 69], "uv_size": [1, 1]},
+								"west": {"uv": [42, 65], "uv_size": [6, 1]},
+								"up": {"uv": [27, 62], "uv_size": [1, 6]},
+								"down": {"uv": [29, 71], "uv_size": [1, -6]}
+							}
+						}
+					]
+				},
+				{
+					"name": "FoldOut Panels W",
+					"parent": "Solar Panels",
+					"pivot": [7, 6.5, 0],
+					"rotation": [0, 0, -180],
+					"cubes": [
+						{
+							"origin": [1, 6.5, -7],
+							"size": [6, 1, 14],
+							"pivot": [7, 6.5, 0],
+							"rotation": [0, 0, -180],
+							"uv": {
+								"north": {"uv": [64, 13], "uv_size": [6, 1]},
+								"east": {"uv": [57, 38], "uv_size": [14, 1]},
+								"south": {"uv": [50, 64], "uv_size": [6, 1]},
+								"west": {"uv": [57, 39], "uv_size": [14, 1]},
+								"up": {"uv": [0, 40], "uv_size": [6, 14]},
+								"down": {"uv": [6, 54], "uv_size": [6, -14]}
+							}
+						}
+					]
+				},
+				{
+					"name": "Foldout NW",
+					"parent": "FoldOut Panels W",
+					"pivot": [10, 5.5, -7],
+					"rotation": [180, 0, 0],
+					"cubes": [
+						{
+							"origin": [7, 5.5, -14],
+							"size": [6, 1, 7],
+							"uv": {
+								"north": {"uv": [64, 53], "uv_size": [6, 1]},
+								"east": {"uv": [61, 26], "uv_size": [7, 1]},
+								"south": {"uv": [64, 54], "uv_size": [6, 1]},
+								"west": {"uv": [61, 27], "uv_size": [7, 1]},
+								"up": {"uv": [43, 46], "uv_size": [6, 7]},
+								"down": {"uv": [48, 7], "uv_size": [6, -7]}
+							}
+						}
+					]
+				},
+				{
+					"name": "Foldout SW",
+					"parent": "FoldOut Panels W",
+					"pivot": [10, 5.5, 7],
+					"rotation": [180, 0, 0],
+					"cubes": [
+						{
+							"origin": [7, 5.5, 7],
+							"size": [6, 1, 7],
+							"uv": {
+								"north": {"uv": [60, 64], "uv_size": [6, 1]},
+								"east": {"uv": [61, 28], "uv_size": [7, 1]},
+								"south": {"uv": [64, 62], "uv_size": [6, 1]},
+								"west": {"uv": [61, 29], "uv_size": [7, 1]},
+								"up": {"uv": [48, 7], "uv_size": [6, 7]},
+								"down": {"uv": [49, 21], "uv_size": [6, -7]}
+							}
+						}
+					]
+				},
+				{
+					"name": "FoldOut_Panels_N3",
+					"parent": "Solar Panels",
+					"pivot": [-4, 5.5, -7],
+					"cubes": [
+						{
+							"origin": [-7, 4.5, -7],
+							"size": [5, 1, 7],
+							"uv": {
+								"north": {"uv": [67, 42], "uv_size": [5, 1]},
+								"east": {"uv": [61, 35], "uv_size": [7, 1]},
+								"south": {"uv": [67, 43], "uv_size": [5, 1]},
+								"west": {"uv": [61, 36], "uv_size": [7, 1]},
+								"up": {"uv": [53, 53], "uv_size": [5, 7]},
+								"down": {"uv": [0, 61], "uv_size": [5, -7]}
+							}
+						},
+						{
+							"origin": [-2, 4.5, -7],
+							"size": [1, 1, 6],
+							"uv": {
+								"north": {"uv": [14, 69], "uv_size": [1, 1]},
+								"east": {"uv": [48, 65], "uv_size": [6, 1]},
+								"south": {"uv": [15, 69], "uv_size": [1, 1]},
+								"west": {"uv": [60, 65], "uv_size": [6, 1]},
+								"up": {"uv": [30, 65], "uv_size": [1, 6]},
+								"down": {"uv": [31, 71], "uv_size": [1, -6]}
+							}
+						}
+					]
+				},
+				{
+					"name": "FoldOut_Panels_S2",
+					"parent": "Solar Panels",
+					"pivot": [-4, 5.5, 7],
+					"cubes": [
+						{
+							"origin": [-7, 4.5, 0],
+							"size": [5, 1, 7],
+							"uv": {
+								"north": {"uv": [67, 44], "uv_size": [5, 1]},
+								"east": {"uv": [61, 55], "uv_size": [7, 1]},
+								"south": {"uv": [67, 45], "uv_size": [5, 1]},
+								"west": {"uv": [61, 56], "uv_size": [7, 1]},
+								"up": {"uv": [54, 0], "uv_size": [5, 7]},
+								"down": {"uv": [5, 61], "uv_size": [5, -7]}
+							}
+						},
+						{
+							"origin": [-2, 4.5, 1],
+							"size": [1, 1, 6],
+							"uv": {
+								"north": {"uv": [16, 69], "uv_size": [1, 1]},
+								"east": {"uv": [66, 4], "uv_size": [6, 1]},
+								"south": {"uv": [17, 69], "uv_size": [1, 1]},
+								"west": {"uv": [66, 5], "uv_size": [6, 1]},
+								"up": {"uv": [54, 65], "uv_size": [1, 6]},
+								"down": {"uv": [55, 71], "uv_size": [1, -6]}
+							}
+						}
+					]
+				},
+				{
+					"name": "FoldOut_Panels_E",
+					"parent": "Solar Panels",
+					"pivot": [-7, 6.5, 0],
+					"rotation": [0, 0, 180],
+					"cubes": [
+						{
+							"origin": [-7, 6.5, -7],
+							"size": [6, 1, 14],
+							"pivot": [-7, 6.5, 0],
+							"rotation": [0, 0, 180],
+							"uv": {
+								"north": {"uv": [7, 66], "uv_size": [6, 1]},
+								"east": {"uv": [57, 40], "uv_size": [14, 1]},
+								"south": {"uv": [13, 66], "uv_size": [6, 1]},
+								"west": {"uv": [57, 41], "uv_size": [14, 1]},
+								"up": {"uv": [12, 40], "uv_size": [6, 14]},
+								"down": {"uv": [18, 54], "uv_size": [6, -14]}
+							}
+						}
+					]
+				},
+				{
+					"name": "Foldout_NE",
+					"parent": "FoldOut_Panels_E",
+					"pivot": [-10, 5.5, -7],
+					"rotation": [180, 0, 0],
+					"cubes": [
+						{
+							"origin": [-13, 5.5, -14],
+							"size": [6, 1, 7],
+							"uv": {
+								"north": {"uv": [36, 66], "uv_size": [6, 1]},
+								"east": {"uv": [61, 57], "uv_size": [7, 1]},
+								"south": {"uv": [42, 66], "uv_size": [6, 1]},
+								"west": {"uv": [61, 58], "uv_size": [7, 1]},
+								"up": {"uv": [49, 21], "uv_size": [6, 7]},
+								"down": {"uv": [49, 53], "uv_size": [6, -7]}
+							}
+						}
+					]
+				},
+				{
+					"name": "Foldout_SE",
+					"parent": "FoldOut_Panels_E",
+					"pivot": [-10, 5.5, 7],
+					"rotation": [180, 0, 0],
+					"cubes": [
+						{
+							"origin": [-13, 5.5, 7],
+							"size": [6, 1, 7],
+							"uv": {
+								"north": {"uv": [66, 46], "uv_size": [6, 1]},
+								"east": {"uv": [61, 59], "uv_size": [7, 1]},
+								"south": {"uv": [66, 47], "uv_size": [6, 1]},
+								"west": {"uv": [61, 60], "uv_size": [7, 1]},
+								"up": {"uv": [51, 28], "uv_size": [6, 7]},
+								"down": {"uv": [51, 42], "uv_size": [6, -7]}
+							}
+						}
+					]
+				},
+				{
+					"name": "Shell E",
+					"parent": "Panel Housing",
+					"pivot": [8, 3, 0],
+					"cubes": [
+						{
+							"origin": [7, 3, -8],
+							"size": [1, 8, 16],
+							"uv": {
+								"north": {"uv": [60, 55], "uv_size": [1, 8]},
+								"east": {"uv": [0, 32], "uv_size": [16, 8]},
+								"south": {"uv": [56, 60], "uv_size": [1, 8]},
+								"west": {"uv": [32, 0], "uv_size": [16, 8]},
+								"up": {"uv": [22, 54], "uv_size": [1, 16]},
+								"down": {"uv": [23, 70], "uv_size": [1, -16]}
+							}
+						},
+						{
+							"origin": [4, 3, -8],
+							"size": [3, 8, 1],
+							"uv": {
+								"north": {"uv": [10, 54], "uv_size": [3, 8]},
+								"east": {"uv": [57, 60], "uv_size": [1, 8]},
+								"south": {"uv": [13, 54], "uv_size": [3, 8]},
+								"west": {"uv": [58, 60], "uv_size": [1, 8]},
+								"up": {"uv": [7, 61], "uv_size": [3, 1]},
+								"down": {"uv": [19, 67], "uv_size": [3, -1]}
+							}
+						},
+						{
+							"origin": [0, 3, -8],
+							"size": [4, 3, 1],
+							"uv": {
+								"north": {"uv": [59, 4], "uv_size": [4, 3]},
+								"east": {"uv": [26, 68], "uv_size": [1, 3]},
+								"south": {"uv": [38, 59], "uv_size": [4, 3]},
+								"west": {"uv": [27, 68], "uv_size": [1, 3]},
+								"up": {"uv": [68, 21], "uv_size": [4, 1]},
+								"down": {"uv": [68, 23], "uv_size": [4, -1]}
+							}
+						},
+						{
+							"origin": [0, 10, -8],
+							"size": [4, 1, 1],
+							"uv": {
+								"north": {"uv": [68, 23], "uv_size": [4, 1]},
+								"east": {"uv": [37, 69], "uv_size": [1, 1]},
+								"south": {"uv": [68, 24], "uv_size": [4, 1]},
+								"west": {"uv": [38, 69], "uv_size": [1, 1]},
+								"up": {"uv": [68, 25], "uv_size": [4, 1]},
+								"down": {"uv": [68, 27], "uv_size": [4, -1]}
+							}
+						},
+						{
+							"origin": [0, 3, 7],
+							"size": [7, 8, 1],
+							"uv": {
+								"north": {"uv": [29, 44], "uv_size": [7, 8]},
+								"east": {"uv": [1, 61], "uv_size": [1, 8]},
+								"south": {"uv": [44, 30], "uv_size": [7, 8]},
+								"west": {"uv": [2, 61], "uv_size": [1, 8]},
+								"up": {"uv": [61, 22], "uv_size": [7, 1]},
+								"down": {"uv": [61, 24], "uv_size": [7, -1]}
+							}
+						},
+						{
+							"origin": [2, 10, -7],
+							"size": [5, 1, 14],
+							"uv": {
+								"up": {"uv": [24, 40], "uv_size": [5, 14]}
+							}
+						},
+						{
+							"origin": [0, 10, -7],
+							"size": [2, 1, 5],
+							"uv": {
+								"east": {"uv": [7, 67], "uv_size": [5, 1]},
+								"up": {"uv": [44, 60], "uv_size": [2, 5]}
+							}
+						},
+						{
+							"origin": [0, 10, 2],
+							"size": [2, 1, 5],
+							"uv": {
+								"east": {"uv": [67, 11], "uv_size": [5, 1]},
+								"up": {"uv": [46, 60], "uv_size": [2, 5]}
+							}
+						}
+					]
+				},
+				{
+					"name": "Screen Half W",
+					"parent": "Shell E",
+					"pivot": [4, 8, -7.5],
+					"cubes": [
+						{
+							"origin": [0, 6, -8],
+							"size": [4, 4, 1],
+							"uv": {
+								"north": {"uv": [57, 22], "uv_size": [4, 4]},
+								"east": {"uv": [20, 68], "uv_size": [1, 4]},
+								"south": {"uv": [57, 26], "uv_size": [4, 4]},
+								"west": {"uv": [21, 68], "uv_size": [1, 4]},
+								"up": {"uv": [68, 32], "uv_size": [4, 1]},
+								"down": {"uv": [68, 34], "uv_size": [4, -1]}
+							}
+						}
+					]
+				},
+				{
+					"name": "Shell_E2",
+					"parent": "Panel Housing",
+					"pivot": [-8, 3, 0],
+					"cubes": [
+						{
+							"origin": [-8, 3, -8],
+							"size": [1, 8, 16],
+							"uv": {
+								"north": {"uv": [59, 60], "uv_size": [1, 8]},
+								"east": {"uv": [32, 8], "uv_size": [16, 8]},
+								"south": {"uv": [0, 61], "uv_size": [1, 8]},
+								"west": {"uv": [16, 32], "uv_size": [16, 8]},
+								"up": {"uv": [24, 54], "uv_size": [1, 16]},
+								"down": {"uv": [25, 70], "uv_size": [1, -16]}
+							}
+						},
+						{
+							"origin": [-4, 10, -8],
+							"size": [4, 1, 1],
+							"uv": {
+								"north": {"uv": [67, 61], "uv_size": [4, 1]},
+								"east": {"uv": [5, 69], "uv_size": [1, 1]},
+								"south": {"uv": [11, 68], "uv_size": [4, 1]},
+								"west": {"uv": [6, 69], "uv_size": [1, 1]},
+								"up": {"uv": [15, 68], "uv_size": [4, 1]},
+								"down": {"uv": [68, 21], "uv_size": [4, -1]}
+							}
+						},
+						{
+							"origin": [-7, 3, 7],
+							"size": [7, 8, 1],
+							"uv": {
+								"north": {"uv": [36, 44], "uv_size": [7, 8]},
+								"east": {"uv": [3, 61], "uv_size": [1, 8]},
+								"south": {"uv": [44, 38], "uv_size": [7, 8]},
+								"west": {"uv": [4, 61], "uv_size": [1, 8]},
+								"up": {"uv": [61, 24], "uv_size": [7, 1]},
+								"down": {"uv": [61, 26], "uv_size": [7, -1]}
+							}
+						},
+						{
+							"origin": [-2, 10, 2],
+							"size": [2, 1, 5],
+							"uv": {
+								"west": {"uv": [66, 66], "uv_size": [5, 1]},
+								"up": {"uv": [42, 60], "uv_size": [2, 5]}
+							}
+						},
+						{
+							"origin": [-7, 10, -7],
+							"size": [5, 1, 14],
+							"uv": {
+								"up": {"uv": [44, 16], "uv_size": [5, 14]}
+							}
+						},
+						{
+							"origin": [-2, 10, -7],
+							"size": [2, 1, 5],
+							"uv": {
+								"west": {"uv": [12, 67], "uv_size": [5, 1]},
+								"up": {"uv": [48, 60], "uv_size": [2, 5]}
+							}
+						},
+						{
+							"origin": [-7, 3, -8],
+							"size": [3, 8, 1],
+							"uv": {
+								"north": {"uv": [16, 54], "uv_size": [3, 8]},
+								"east": {"uv": [5, 61], "uv_size": [1, 8]},
+								"south": {"uv": [19, 54], "uv_size": [3, 8]},
+								"west": {"uv": [6, 61], "uv_size": [1, 8]},
+								"up": {"uv": [36, 68], "uv_size": [3, 1]},
+								"down": {"uv": [68, 37], "uv_size": [3, -1]}
+							}
+						},
+						{
+							"origin": [-4, 3, -8],
+							"size": [4, 3, 1],
+							"uv": {
+								"north": {"uv": [59, 46], "uv_size": [4, 3]},
+								"east": {"uv": [39, 68], "uv_size": [1, 3]},
+								"south": {"uv": [60, 11], "uv_size": [4, 3]},
+								"west": {"uv": [40, 68], "uv_size": [1, 3]},
+								"up": {"uv": [68, 29], "uv_size": [4, 1]},
+								"down": {"uv": [68, 32], "uv_size": [4, -1]}
+							}
+						}
+					]
+				},
+				{
+					"name": "Screen Half E",
+					"parent": "Shell_E2",
+					"pivot": [-4, 8, -7.5],
+					"cubes": [
+						{
+							"origin": [-4, 6, -8],
+							"size": [4, 4, 1],
+							"uv": {
+								"north": {"uv": [55, 46], "uv_size": [4, 4]},
+								"east": {"uv": [32, 67], "uv_size": [1, 4]},
+								"south": {"uv": [57, 18], "uv_size": [4, 4]},
+								"west": {"uv": [19, 68], "uv_size": [1, 4]},
+								"up": {"uv": [68, 27], "uv_size": [4, 1]},
+								"down": {"uv": [68, 29], "uv_size": [4, -1]}
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}

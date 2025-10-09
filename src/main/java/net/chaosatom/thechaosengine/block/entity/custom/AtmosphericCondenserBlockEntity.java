@@ -97,7 +97,7 @@ public class AtmosphericCondenserBlockEntity extends BlockEntity implements GeoB
     private static final double MAX_HEIGHT_PENALTY = 0.65;
 
     private int effectivenessUpdateCooldown = 0;
-    private static final int EFFECTIVE_UPDATE_INTERVAL = 200; // Every 30 seconds, run a check to update effectiveness
+    private static final int EFFECTIVE_UPDATE_INTERVAL = 200; // Every 10 seconds, run a check to update effectiveness
 
     // GeckoLib Animation Setup
 
@@ -216,7 +216,6 @@ public class AtmosphericCondenserBlockEntity extends BlockEntity implements GeoB
             }
         }
         if (level.isClientSide() || this.animState != AnimationState.DEPLOYED) {
-            isWorking = false;
             return;
         }
 
@@ -327,9 +326,9 @@ public class AtmosphericCondenserBlockEntity extends BlockEntity implements GeoB
     private void pushFluidToOutputSides() {
         if (this.FLUID_TANK.getFluidAmount() <= 0) { return; }
 
-        List<IFluidHandler> validNeighbors = new ArrayList<>();
+        List<IFluidHandler> validNeighbors = new ArrayList<>(); // Create new array list ready for valid input neighbors
         Direction facing = this.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
-        Direction[] outputSides = { facing.getClockWise(), facing.getCounterClockWise() };
+        Direction[] outputSides = { facing.getClockWise(), facing.getCounterClockWise() }; // Only the left and right side of machine will push liquids
         for (Direction side : outputSides) {
             BlockPos neighborPos = worldPosition.relative(side);
             IFluidHandler neighborFluidHandler = level.getCapability(Capabilities.FluidHandler.BLOCK, neighborPos, side.getOpposite());

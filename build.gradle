@@ -155,15 +155,6 @@ dependencies {
 
     implementation "software.bernie.geckolib:geckolib-neoforge-${minecraft_version}:${geckolib_version}"
 
-    /*
-    implementation "curse.maven:oritech-1030830:6807350"
-    implementation "curse.maven:owo-lib-532610:6785734"
-    implementation "curse.maven:athena-841890:6669522"
-    implementation "curse.maven:architectury-api-419699:5786327"
-
-     */
-
-
     // Example mod dependency using a file as dependency
     // implementation files("libs/coolmod-${mc_version}-${coolmod_version}.jar")
 

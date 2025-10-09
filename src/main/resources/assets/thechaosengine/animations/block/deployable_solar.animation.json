@@ -1,0 +1,724 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"deployable_solar.deploying": {
+			"loop": "hold_on_last_frame",
+			"animation_length": 4,
+			"bones": {
+				"Panel Housing": {
+					"position": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"1.0": {
+							"vector": [0, 2, 0],
+							"easing": "easeInBounce",
+							"easingArgs": [0.055]
+						}
+					}
+				},
+				"Solar Arm 1": {
+					"rotation": {
+						"0.8333": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [45, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.65]
+						}
+					}
+				},
+				"Solar Arm 2": {
+					"rotation": {
+						"0.8333": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [-110, 0, 0],
+							"easing": "easeInOutQuint"
+						}
+					}
+				},
+				"Solar Panels": {
+					"rotation": {
+						"0.8333": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [65, 0, 0],
+							"easing": "easeInOutQuint"
+						}
+					}
+				},
+				"FoldOut Panels N": {
+					"rotation": {
+						"2.9167": {
+							"vector": [0, 0, 0]
+						},
+						"3.9167": {
+							"vector": [-180, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						}
+					}
+				},
+				"FoldOut_Panels S": {
+					"rotation": {
+						"2.9167": {
+							"vector": [0, 0, 0]
+						},
+						"3.9167": {
+							"vector": [180, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						}
+					}
+				},
+				"FoldOut Panels W": {
+					"rotation": {
+						"2.0": {
+							"vector": [0, 0, 0]
+						},
+						"3.0": {
+							"vector": [0, 0, 180],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.55]
+						}
+					}
+				},
+				"Foldout NW": {
+					"rotation": {
+						"2.9167": {
+							"vector": [0, 0, 0]
+						},
+						"3.9167": {
+							"vector": [-180, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						}
+					}
+				},
+				"Foldout SW": {
+					"rotation": {
+						"2.9167": {
+							"vector": [0, 0, 0]
+						},
+						"3.9167": {
+							"vector": [180, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						}
+					}
+				},
+				"FoldOut_Panels_N3": {
+					"rotation": {
+						"2.9167": {
+							"vector": [0, 0, 0]
+						},
+						"3.9167": {
+							"vector": [-180, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						}
+					}
+				},
+				"FoldOut_Panels_S2": {
+					"rotation": {
+						"2.9167": {
+							"vector": [0, 0, 0]
+						},
+						"3.9167": {
+							"vector": [180, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						}
+					}
+				},
+				"FoldOut_Panels_E": {
+					"rotation": {
+						"2.0": {
+							"vector": [0, 0, 0]
+						},
+						"3.0": {
+							"vector": [0, 0, -180],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.55]
+						}
+					}
+				},
+				"Foldout_NE": {
+					"rotation": {
+						"2.9167": {
+							"vector": [0, 0, 0]
+						},
+						"3.9167": {
+							"vector": [-180, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						}
+					}
+				},
+				"Foldout_SE": {
+					"rotation": {
+						"2.9167": {
+							"vector": [0, 0, 0]
+						},
+						"3.9167": {
+							"vector": [180, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						}
+					}
+				},
+				"Shell E": {
+					"rotation": {
+						"0.375": {
+							"vector": [0, 0, 0]
+						},
+						"1.5": {
+							"vector": [0, 0, 110],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.65]
+						},
+						"2.25": {
+							"vector": [0, 0, 110]
+						},
+						"3.5": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						}
+					}
+				},
+				"Shell_E2": {
+					"rotation": {
+						"0.375": {
+							"vector": [0, 0, 0]
+						},
+						"1.5": {
+							"vector": [0, 0, -110],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.65]
+						},
+						"2.25": {
+							"vector": [0, 0, -110]
+						},
+						"3.5": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						}
+					}
+				},
+				"Support Arm": {
+					"rotation": {
+						"0.8333": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [-57.5, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.55]
+						}
+					}
+				},
+				"Support Arm 2": {
+					"rotation": {
+						"0.8333": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [142.5, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						}
+					}
+				},
+				"Screen Half E": {
+					"rotation": {
+						"1.4167": {
+							"vector": [0, 0, 0]
+						},
+						"2.125": {
+							"vector": [-200, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.7]
+						}
+					},
+					"position": {
+						"1.4583": {
+							"vector": [0, 0, 0]
+						},
+						"2.125": {
+							"vector": [0, 0, -0.7],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						}
+					}
+				},
+				"Screen Half W": {
+					"rotation": {
+						"1.4167": {
+							"vector": [0, 0, 0]
+						},
+						"2.125": {
+							"vector": [-200, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.7]
+						}
+					},
+					"position": {
+						"1.4583": {
+							"vector": [0, 0, 0]
+						},
+						"2.125": {
+							"vector": [0, 0, -0.7],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						}
+					}
+				}
+			}
+		},
+		"deployable_solar.retracting": {
+			"loop": "hold_on_last_frame",
+			"animation_length": 1.75,
+			"bones": {
+				"Panel Housing": {
+					"position": {
+						"1.0": {
+							"vector": [0, 2, 0]
+						},
+						"1.5417": {
+							"vector": [0, 0, 0],
+							"easing": "easeInBack",
+							"easingArgs": [0.55]
+						}
+					}
+				},
+				"Solar Arm 1": {
+					"rotation": {
+						"0.25": {
+							"vector": [45, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.65]
+						},
+						"1.5": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						}
+					}
+				},
+				"Solar Arm 2": {
+					"rotation": {
+						"0.25": {
+							"vector": [-110, 0, 0],
+							"easing": "easeInOutQuint"
+						},
+						"1.5": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						}
+					}
+				},
+				"Solar Panels": {
+					"rotation": {
+						"0.25": {
+							"vector": [65, 0, 0]
+						},
+						"1.5": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						}
+					}
+				},
+				"FoldOut Panels N": {
+					"rotation": {
+						"0.0": {
+							"vector": [-180, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						},
+						"1.0833": {
+							"vector": [0, 0, 0],
+							"easing": "easeInQuad"
+						}
+					}
+				},
+				"FoldOut_Panels S": {
+					"rotation": {
+						"0.0": {
+							"vector": [180, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						},
+						"1.0833": {
+							"vector": [0, 0, 0],
+							"easing": "easeInQuad"
+						}
+					}
+				},
+				"FoldOut Panels W": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 180],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.55]
+						},
+						"1.25": {
+							"vector": [0, 0, 0],
+							"easing": "easeInQuad"
+						}
+					}
+				},
+				"Foldout NW": {
+					"rotation": {
+						"0.0": {
+							"vector": [-180, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						},
+						"1.1667": {
+							"vector": [0, 0, 0],
+							"easing": "easeInQuad"
+						}
+					}
+				},
+				"Foldout SW": {
+					"rotation": {
+						"0.0": {
+							"vector": [180, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						},
+						"1.1667": {
+							"vector": [0, 0, 0],
+							"easing": "easeInQuad"
+						}
+					}
+				},
+				"FoldOut_Panels_N3": {
+					"rotation": {
+						"0.0": {
+							"vector": [-180, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						},
+						"1.0833": {
+							"vector": [0, 0, 0],
+							"easing": "easeInQuad"
+						}
+					}
+				},
+				"FoldOut_Panels_S2": {
+					"rotation": {
+						"0.0": {
+							"vector": [180, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						},
+						"1.0833": {
+							"vector": [0, 0, 0],
+							"easing": "easeInQuad"
+						}
+					}
+				},
+				"FoldOut_Panels_E": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, -180],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.55]
+						},
+						"1.25": {
+							"vector": [0, 0, 0],
+							"easing": "easeInQuad"
+						}
+					}
+				},
+				"Foldout_NE": {
+					"rotation": {
+						"0.0": {
+							"vector": [-180, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						},
+						"1.1667": {
+							"vector": [0, 0, 0],
+							"easing": "easeInQuad"
+						}
+					}
+				},
+				"Foldout_SE": {
+					"rotation": {
+						"0.0": {
+							"vector": [180, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						},
+						"1.1667": {
+							"vector": [0, 0, 0],
+							"easing": "easeInQuad"
+						}
+					}
+				},
+				"Shell E": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.7917": {
+							"vector": [0, 0, 110],
+							"easing": "easeInOutSine"
+						},
+						"1.5": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutSine"
+						}
+					}
+				},
+				"Shell_E2": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.7917": {
+							"vector": [0, 0, -110],
+							"easing": "easeInOutSine"
+						},
+						"1.5": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutSine"
+						}
+					}
+				},
+				"Support Arm": {
+					"rotation": {
+						"0.25": {
+							"vector": [-57.5, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.55]
+						},
+						"1.5": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.35]
+						}
+					}
+				},
+				"Support Arm 2": {
+					"rotation": {
+						"0.25": {
+							"vector": [142.5, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						},
+						"1.5": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.35]
+						}
+					}
+				},
+				"Screen Half W": {
+					"rotation": {
+						"0.0": {
+							"vector": [-200, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.7]
+						},
+						"1.0": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutQuad"
+						}
+					},
+					"position": {
+						"0.0": {
+							"vector": [0, 0, -0.7],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						},
+						"1.0": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutQuad"
+						}
+					}
+				},
+				"Screen Half E": {
+					"rotation": {
+						"0.0": {
+							"vector": [-200, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.7]
+						},
+						"1.0": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutQuad"
+						}
+					},
+					"position": {
+						"0.0": {
+							"vector": [0, 0, -0.7],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						},
+						"1.0": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutQuad"
+						}
+					}
+				}
+			}
+		},
+		"deployable_solar.active": {
+			"loop": "hold_on_last_frame",
+			"animation_length": 1,
+			"bones": {
+				"Panel Housing": {
+					"position": {
+						"vector": [0, 2, 0]
+					}
+				},
+				"Solar Arm 1": {
+					"rotation": {
+						"vector": [45, 0, 0],
+						"easing": "easeInOutBack",
+						"easingArgs": [0.65]
+					}
+				},
+				"Solar Arm 2": {
+					"rotation": {
+						"vector": [-110, 0, 0],
+						"easing": "easeInOutQuint"
+					}
+				},
+				"Solar Panels": {
+					"rotation": {
+						"vector": [65, 0, 0]
+					}
+				},
+				"FoldOut Panels N": {
+					"rotation": {
+						"vector": [-180, 0, 0],
+						"easing": "easeInOutBack",
+						"easingArgs": [0.45]
+					}
+				},
+				"FoldOut_Panels S": {
+					"rotation": {
+						"vector": [180, 0, 0],
+						"easing": "easeInOutBack",
+						"easingArgs": [0.45]
+					}
+				},
+				"FoldOut Panels W": {
+					"rotation": {
+						"vector": [0, 0, 180],
+						"easing": "easeInOutBack",
+						"easingArgs": [0.55]
+					}
+				},
+				"Foldout NW": {
+					"rotation": {
+						"vector": [-180, 0, 0],
+						"easing": "easeInOutBack",
+						"easingArgs": [0.45]
+					}
+				},
+				"Foldout SW": {
+					"rotation": {
+						"vector": [180, 0, 0],
+						"easing": "easeInOutBack",
+						"easingArgs": [0.45]
+					}
+				},
+				"FoldOut_Panels_N3": {
+					"rotation": {
+						"vector": [-180, 0, 0],
+						"easing": "easeInOutBack",
+						"easingArgs": [0.45]
+					}
+				},
+				"FoldOut_Panels_S2": {
+					"rotation": {
+						"vector": [180, 0, 0],
+						"easing": "easeInOutBack",
+						"easingArgs": [0.45]
+					}
+				},
+				"FoldOut_Panels_E": {
+					"rotation": {
+						"vector": [0, 0, -180],
+						"easing": "easeInOutBack",
+						"easingArgs": [0.55]
+					}
+				},
+				"Foldout_NE": {
+					"rotation": {
+						"vector": [-180, 0, 0],
+						"easing": "easeInOutBack",
+						"easingArgs": [0.45]
+					}
+				},
+				"Foldout_SE": {
+					"rotation": {
+						"vector": [180, 0, 0],
+						"easing": "easeInOutBack",
+						"easingArgs": [0.45]
+					}
+				},
+				"Support Arm": {
+					"rotation": {
+						"vector": [-57.5, 0, 0],
+						"easing": "easeInOutBack",
+						"easingArgs": [0.55]
+					}
+				},
+				"Support Arm 2": {
+					"rotation": {
+						"vector": [142.5, 0, 0],
+						"easing": "easeInOutBack",
+						"easingArgs": [0.45]
+					}
+				},
+				"Platform": {
+					"rotation": {
+						"vector": [0, 0, 0]
+					}
+				},
+				"Screen Half W": {
+					"rotation": {
+						"vector": [-200, 0, 0],
+						"easing": "easeInOutBack",
+						"easingArgs": [0.7]
+					},
+					"position": {
+						"vector": [0, 0, -0.7],
+						"easing": "easeInOutBack",
+						"easingArgs": [0.45]
+					}
+				},
+				"Screen Half E": {
+					"rotation": {
+						"vector": [-200, 0, 0],
+						"easing": "easeInOutBack",
+						"easingArgs": [0.7]
+					},
+					"position": {
+						"vector": [0, 0, -0.7],
+						"easing": "easeInOutBack",
+						"easingArgs": [0.45]
+					}
+				}
+			}
+		},
+		"deployable_solar.undeployed": {
+			"loop": "hold_on_last_frame"
+		}
+	},
+	"geckolib_format_version": 2
+}

@@ -34,6 +34,10 @@ public class ChaosEngineBlockEntities {
             BLOCK_ENTITIES.register("suspension_mixer_be", () -> BlockEntityType.Builder.of(
                     SuspensionMixerBlockEntity::new, ChaosEngineBlocks.SUSPENSION_MIXER.get()).build(null));
 
+    public static final Supplier<BlockEntityType<DeployableSolarBlockEntity>> DEPLOYABLE_SOLAR_BE =
+            BLOCK_ENTITIES.register("deployable_solar_be", () -> BlockEntityType.Builder.of(
+                    DeployableSolarBlockEntity::new, ChaosEngineBlocks.DEPLOYABLE_SOLAR.get()).build(null));
+
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
     }

@@ -35,6 +35,7 @@ public class ChaosEngineBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ChaosEngineBlocks.COMPACT_INDUCTION_FOUNDRY.get());
         dropSelf(ChaosEngineBlocks.ATMOSPHERIC_CONDENSER.get());
         dropSelf(ChaosEngineBlocks.SUSPENSION_MIXER.get());
+        dropSelf(ChaosEngineBlocks.DEPLOYABLE_SOLAR.get());
 
         dropSelf(ChaosEngineBlocks.BAUXITE.get());
         dropSelf(ChaosEngineBlocks.BAUXITE_STAIRS.get());

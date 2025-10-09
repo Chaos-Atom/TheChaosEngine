@@ -30,6 +30,9 @@ public class ChaosEngineMenuTypes {
     public static final DeferredHolder<MenuType<?>, MenuType<SuspensionMixerMenu>> SUSPENSION_MIXER_MENU =
             registerMenuType("suspension_mixer_menu", SuspensionMixerMenu::new);
 
+    public static final DeferredHolder<MenuType<?>, MenuType<DeployableSolarMenu>> DEPLOYABLE_SOLAR_MENU =
+            registerMenuType("deployable_solar_menu", DeployableSolarMenu::new);
+
     private static <T extends AbstractContainerMenu>DeferredHolder<MenuType<?>,
             MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {
         return MENUS.register(name, () -> IMenuTypeExtension.create(factory));

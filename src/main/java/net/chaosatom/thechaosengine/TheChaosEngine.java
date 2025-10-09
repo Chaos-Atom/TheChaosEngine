@@ -2,8 +2,10 @@ package net.chaosatom.thechaosengine;
 
 import net.chaosatom.thechaosengine.block.ChaosEngineBlocks;
 import net.chaosatom.thechaosengine.block.entity.ChaosEngineBlockEntities;
+import net.chaosatom.thechaosengine.block.entity.custom.DeployableSolarBlockEntity;
 import net.chaosatom.thechaosengine.client.renderer.block.AtmosphericCondenserBlockEntityRenderer;
 import net.chaosatom.thechaosengine.client.renderer.block.CompactInductionFoundryBlockEntityRenderer;
+import net.chaosatom.thechaosengine.client.renderer.block.DeployableSolarBlockEntityRenderer;
 import net.chaosatom.thechaosengine.client.renderer.block.SuspensionMixerBlockEntityRenderer;
 import net.chaosatom.thechaosengine.fluid.ChaosEngineFluids;
 import net.chaosatom.thechaosengine.item.ChaosEngineCreativeModeTabs;
@@ -13,6 +15,8 @@ import net.chaosatom.thechaosengine.screen.ChaosEngineMenuTypes;
 import net.chaosatom.thechaosengine.screen.custom.*;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import org.slf4j.Logger;
@@ -31,6 +35,7 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import software.bernie.geckolib.loading.math.MolangQueries;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(TheChaosEngine.MOD_ID)
@@ -69,7 +74,6 @@ public class TheChaosEngine {
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
-
     }
 
     // Add the example block item to the building blocks tab
@@ -88,6 +92,12 @@ public class TheChaosEngine {
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
+            // Unused due to inability to get working properly, left here in case of revisit
+            /*
+            MolangQueries.<DeployableSolarBlockEntity>setActorVariable("query.chaosengine_solar_rotate_to_sun",
+                    actor -> actor.animatable().getSunFacingAngle());
+             */
+
             event.enqueueWork(() -> {
                     ItemBlockRenderTypes.setRenderLayer(ChaosEngineFluids.LAPIS_SUSPENSION_SOURCE.get(), RenderType.translucent());
                     ItemBlockRenderTypes.setRenderLayer(ChaosEngineFluids.LAPIS_SUSPENSION_FLOWING.get(), RenderType.translucent());
@@ -99,6 +109,7 @@ public class TheChaosEngine {
             event.registerBlockEntityRenderer(ChaosEngineBlockEntities.COMPACT_INDUCTION_FOUNDRY_BE.get(), CompactInductionFoundryBlockEntityRenderer::new);
             event.registerBlockEntityRenderer(ChaosEngineBlockEntities.ATMOSPHERIC_CONDENSER_BE.get(), AtmosphericCondenserBlockEntityRenderer::new);
             event.registerBlockEntityRenderer(ChaosEngineBlockEntities.SUSPENSION_MIXER_BE.get(), SuspensionMixerBlockEntityRenderer::new);
+            event.registerBlockEntityRenderer(ChaosEngineBlockEntities.DEPLOYABLE_SOLAR_BE.get(), DeployableSolarBlockEntityRenderer::new);
         }
 
         @SubscribeEvent
@@ -108,6 +119,7 @@ public class TheChaosEngine {
             event.register(ChaosEngineMenuTypes.COMPACT_INDUCTION_FOUNDRY_MENU.get(), CompactInductionFoundryScreen::new);
             event.register(ChaosEngineMenuTypes.ATMOSPHERIC_CONDENSER_MENU.get(), AtmosphericCondenserScreen::new);
             event.register(ChaosEngineMenuTypes.SUSPENSION_MIXER_MENU.get(), SuspensionMixerScreen::new);
+            event.register(ChaosEngineMenuTypes.DEPLOYABLE_SOLAR_MENU.get(), DeployableSolarScreen::new);
         }
     }
 }

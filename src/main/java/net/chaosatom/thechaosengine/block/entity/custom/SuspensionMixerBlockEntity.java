@@ -52,7 +52,38 @@ public class SuspensionMixerBlockEntity extends BlockEntity implements GeoBlockE
     private int maxProgress;
     private static final int FLUID_TRANSFER_AMOUNT = 500;
 
-    // Capabilities
+    public SuspensionMixerBlockEntity(BlockPos pos, BlockState state) {
+        super(ChaosEngineBlockEntities.SUSPENSION_MIXER_BE.get(), pos, state);
+        this.data = new ContainerData() {
+            @Override
+            public int get(int index) {
+                return switch (index) {
+                    case 0 -> SuspensionMixerBlockEntity.this.progress;
+                    case 1 -> SuspensionMixerBlockEntity.this.maxProgress;
+                    case 2 -> SuspensionMixerBlockEntity.this.FLUID_TANK_INPUT.getFluidAmount();
+                    case 3 -> SuspensionMixerBlockEntity.this.FLUID_TANK_OUTPUT.getFluidAmount();
+                    default -> 0;
+                };
+            }
+
+            @Override
+            public void set(int index, int value) {
+                switch (index) {
+                    case 0: SuspensionMixerBlockEntity.this.progress = value; break;
+                    case 1: SuspensionMixerBlockEntity.this.maxProgress = value; break;
+                    case 2: break;
+                    case 3: break;
+                }
+            }
+
+            @Override
+            public int getCount() {
+                return 4;
+            }
+        };
+    }
+
+    /* Capabilities */
     public final ItemStackHandler itemHandler = new ItemStackHandler(1) {
         @Override
         protected void onContentsChanged(int slot) {
@@ -120,9 +151,10 @@ public class SuspensionMixerBlockEntity extends BlockEntity implements GeoBlockE
 
     /* GeckoLib Animation Setup */
     private static final RawAnimation DEPLOY_SEQUENCE = RawAnimation.begin()
-            .thenPlay("suspension_mixer.deploying").thenLoop("suspension_mixer.idle");
+            .thenPlay("suspension_mixer.deploying")
+            .thenLoop("suspension_mixer.active");
     private static final RawAnimation DEPLOYED_LOOP = RawAnimation.begin()
-            .thenLoop("suspension_mixer.idle");
+            .thenLoop("suspension_mixer.active");
     private static final RawAnimation UNDEPLOYED_LOOP = RawAnimation.begin()
             .thenLoop("suspension_mixer.undeployed");
     private static final RawAnimation WORKING_LOOP = RawAnimation.begin()
@@ -149,39 +181,7 @@ public class SuspensionMixerBlockEntity extends BlockEntity implements GeoBlockE
         return this.animState;
     }
 
-    /* UTILITY */
-    public SuspensionMixerBlockEntity(BlockPos pos, BlockState state) {
-        super(ChaosEngineBlockEntities.SUSPENSION_MIXER_BE.get(), pos, state);
-        this.data = new ContainerData() {
-            @Override
-            public int get(int index) {
-                return switch (index) {
-                    case 0 -> SuspensionMixerBlockEntity.this.progress;
-                    case 1 -> SuspensionMixerBlockEntity.this.maxProgress;
-                    case 2 -> SuspensionMixerBlockEntity.this.FLUID_TANK_INPUT.getFluidAmount();
-                    case 3 -> SuspensionMixerBlockEntity.this.FLUID_TANK_OUTPUT.getFluidAmount();
-                    default -> 0;
-                };
-            }
-
-            @Override
-            public void set(int index, int value) {
-                switch (index) {
-                    case 0: SuspensionMixerBlockEntity.this.progress = value; break;
-                    case 1: SuspensionMixerBlockEntity.this.maxProgress = value; break;
-                    case 2: break;
-                    case 3: break;
-                }
-            }
-
-            @Override
-            public int getCount() {
-                return 4;
-            }
-        };
-    }
-
-    /* Animationed Related Helper Methods */
+    // Animation Related Helper Methods
     public void startMixerDeployment() {
         // If the current animation state is undeployed...
         if (this.animState == AnimationState.UNDEPLOYED) {
@@ -424,6 +424,8 @@ public class SuspensionMixerBlockEntity extends BlockEntity implements GeoBlockE
             itemHandler.setStackInSlot(i, ItemStack.EMPTY);
         }
     }
+
+    /* GeckoLib Animatable Block Entity Methods */
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {

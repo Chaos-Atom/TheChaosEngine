@@ -24,6 +24,11 @@ public class ChaosEngineBusEvents {
                 AtmosphericCondenserBlockEntity::getEnergyStorage);
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ChaosEngineBlockEntities.SUSPENSION_MIXER_BE.get(),
                 SuspensionMixerBlockEntity::getEnergyStorage);
+        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ChaosEngineBlockEntities.DEPLOYABLE_SOLAR_BE.get(),
+                (blockEntity, side) -> {
+            Direction facing = blockEntity.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
+            return (side == Direction.DOWN || side == facing.getOpposite()) ? blockEntity.getEnergyStorage(side) : null;
+                });
 
         event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, ChaosEngineBlockEntities.ATMOSPHERIC_CONDENSER_BE.get(),
                 AtmosphericCondenserBlockEntity::getTank);

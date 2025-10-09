@@ -80,6 +80,7 @@ public class SuspensionMixerBlock extends BaseEntityBlock implements EntityBlock
     }
 
     /* Voxel Shape Methods */
+    // Note to self, asymmetrical models means verbose voxel shapes
 
     @Override
     protected @NotNull VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
@@ -288,8 +289,7 @@ public class SuspensionMixerBlock extends BaseEntityBlock implements EntityBlock
                         -> suspensionMixerBlockEntity.tick(level1, blockPos, blockState));
     }
 
-    /* TOOLTIPS */
-
+    /* Tooltips */
     @Override
     public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag tooltipFlag) {
         tooltip.add(Component.translatable("block." + TheChaosEngine.MOD_ID + ".deployable_machine.tooltip"));
@@ -297,7 +297,7 @@ public class SuspensionMixerBlock extends BaseEntityBlock implements EntityBlock
         super.appendHoverText(stack, context, tooltip, tooltipFlag);
     }
 
-    /* SOUNDS & PARTICLES */
+    /* Sounds & Particles */
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
         if (!state.getValue(LIT)) {

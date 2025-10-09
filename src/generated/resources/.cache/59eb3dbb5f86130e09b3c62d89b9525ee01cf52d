@@ -1,4 +1,4 @@
-// 1.21.1	2025-10-04T23:12:56.7548938	Loot Tables
+// 1.21.1	2025-10-07T01:53:39.5382252	Loot Tables
 848cf83019519d9256ebc2ddcfd1dfbf58392ca8 data/thechaosengine/loot_table/blocks/alumina_bronze_block.json
 8496cde4672e673406a119f3ce5e33641190ca3d data/thechaosengine/loot_table/blocks/alumina_bronze_panels.json
 be49550e8c0e6eefda3555b6961ec21a3c62204b data/thechaosengine/loot_table/blocks/atmospheric_condenser.json
@@ -19,6 +19,7 @@ ba145ac9c9172bde2104371715314fa3d46ae4f6 data/thechaosengine/loot_table/blocks/c
 851d6593a82a9190935e41ece71d500b9ed4320e data/thechaosengine/loot_table/blocks/compact_pulverizer.json
 bce4cb0b016f2448c7822e82c30f2d4af3b81dd2 data/thechaosengine/loot_table/blocks/copper_dust_block.json
 b939582cfa66ec034d9696d88d1af5b3aab6717d data/thechaosengine/loot_table/blocks/cubic_alumina_bronze.json
+23a242be4556e3721161d54bc7c18735c3ca2405 data/thechaosengine/loot_table/blocks/deployable_solar.json
 1db54654c07919615218ed033911eefb8e0df2fe data/thechaosengine/loot_table/blocks/gold_dust_block.json
 6175a6d57ea01c15d4759f6ca444b6fed90179e5 data/thechaosengine/loot_table/blocks/iron_dust_block.json
 b968a6f5263dcb1e7b2e9614a5891c4dced6bbfb data/thechaosengine/loot_table/blocks/ornate_alumina_bronze.json
