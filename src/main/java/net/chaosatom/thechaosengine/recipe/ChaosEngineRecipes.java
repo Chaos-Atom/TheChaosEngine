@@ -44,6 +44,16 @@ public class ChaosEngineRecipes {
                 }
             });
 
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<RefineryRecipe>> REFINERY_SERIALIZER =
+            SERIALIZERS.register("refining", RefineryRecipe.Serializer::new);
+    public static final DeferredHolder<RecipeType<?>, RecipeType<RefineryRecipe>> REFINERY_TYPE =
+            TYPES.register("refining", () -> new RecipeType<RefineryRecipe>() {
+                @Override
+                public String toString() {
+                    return "refining";
+                }
+            });
+
     public static void register(IEventBus eventBus) {
         SERIALIZERS.register(eventBus);
         TYPES.register(eventBus);

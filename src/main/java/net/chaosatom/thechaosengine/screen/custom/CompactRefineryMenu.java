@@ -1,8 +1,7 @@
 package net.chaosatom.thechaosengine.screen.custom;
 
 import net.chaosatom.thechaosengine.block.ChaosEngineBlocks;
-import net.chaosatom.thechaosengine.block.entity.custom.SuspensionMixerBlockEntity;
-import net.chaosatom.thechaosengine.fluid.ChaosEngineFluids;
+import net.chaosatom.thechaosengine.block.entity.custom.CompactRefineryBlockEntity;
 import net.chaosatom.thechaosengine.screen.ChaosEngineMenuTypes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
@@ -11,24 +10,22 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.material.Fluids;
-import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.items.SlotItemHandler;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-public class SuspensionMixerMenu extends AbstractContainerMenu {
-    public final SuspensionMixerBlockEntity blockEntity;
+public class CompactRefineryMenu extends AbstractContainerMenu {
+    public final CompactRefineryBlockEntity blockEntity;
     private final Level level;
     private final ContainerData data;
 
-
-    public SuspensionMixerMenu(int containerId, Inventory inventory, FriendlyByteBuf extraData) {
-        this(containerId, inventory, inventory.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(4));
+    public CompactRefineryMenu(int containerId, Inventory inventory, FriendlyByteBuf extraData) {
+        this(containerId, inventory, inventory.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(3));
     }
 
-    public SuspensionMixerMenu(int containerId, Inventory inventory, BlockEntity entity, ContainerData data) {
-        super(ChaosEngineMenuTypes.SUSPENSION_MIXER_MENU.get(), containerId);
-        this.blockEntity = (SuspensionMixerBlockEntity) entity;
+    public CompactRefineryMenu(int containerId, Inventory inventory, BlockEntity entity, ContainerData data) {
+        super(ChaosEngineMenuTypes.COMPACT_REFINERY_MENU.get(), containerId);
+        this.blockEntity = (CompactRefineryBlockEntity) entity;
         this.level = inventory.player.level();
         this.data = data;
 
@@ -36,42 +33,12 @@ public class SuspensionMixerMenu extends AbstractContainerMenu {
         addPlayerInventory(inventory);
         addPlayerHotbar(inventory);
 
+        // TODO: Change to Proper Coordinates when GUI is Completed
         this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 0, 80, 47));
-    }
-
-    public boolean isMixing() {
-        return data.get(0) > 0;
-    }
-
-    public FluidStack getInputFluid() {
-        return new FluidStack(Fluids.WATER, this.data.get(2));
-    }
-
-    public FluidStack getOutputFluid() {
-        return new FluidStack(ChaosEngineFluids.LAPIS_SUSPENSION_SOURCE.get(), this.data.get(3));
-    }
-
-    public int getScaledArrowProgress(int arrowPixelWidth) {
-        int progress = this.data.get(0);
-        int maxProgress = this.data.get(1);
-
-        return maxProgress != 0 && progress != 0 ? (progress * arrowPixelWidth) / maxProgress : 0;
-    }
-
-    public int getScaledMixerProgress(int mixerTextureHeight) {
-        int progress = this.data.get(0);
-        int maxProgress = this.data.get(1);
-
-        return maxProgress != 0 && progress != 0 ? (progress * mixerTextureHeight) / maxProgress : 0;
+        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 1, 80, 67));
     }
 
     // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons
-    // must assign a slot number to each of the slots used by the GUI.
-    // For this container, we can see both the tile inventory's slots as well as the player inventory slots and the hotbar.
-    // Each time we add a Slot to the container, it automatically increases the slotIndex, which means
-    //  0 - 8 = hotbar slots (which will map to the InventoryPlayer slot numbers 0 - 8)
-    //  9 - 35 = player inventory slots (which map to the InventoryPlayer slot numbers 9 - 35)
-    //  36 - 44 = TileInventory slots, which map to our TileEntity slot numbers 0 - 8)
     private static final int HOTBAR_SLOT_COUNT = 9;
     private static final int PLAYER_INVENTORY_ROW_COUNT = 3;
     private static final int PLAYER_INVENTORY_COLUMN_COUNT = 9;
@@ -80,8 +47,7 @@ public class SuspensionMixerMenu extends AbstractContainerMenu {
     private static final int VANILLA_FIRST_SLOT_INDEX = 0;
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
-    // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 1;  // must be the number of slots you have!
+    private static final int TE_INVENTORY_SLOT_COUNT = 2;  // must be the number of slots you have!
     @Override
     public @NotNull ItemStack quickMoveStack(Player playerIn, int pIndex) {
         Slot sourceSlot = slots.get(pIndex);
@@ -95,11 +61,6 @@ public class SuspensionMixerMenu extends AbstractContainerMenu {
             if (!moveItemStackTo(sourceStack, TE_INVENTORY_FIRST_SLOT_INDEX, TE_INVENTORY_FIRST_SLOT_INDEX
                     + TE_INVENTORY_SLOT_COUNT, false)) {
                 return ItemStack.EMPTY;  // EMPTY_ITEM
-            }
-        } else if (pIndex < TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT) {
-            // This is a TE slot so merge the stack into the players inventory
-            if (!moveItemStackTo(sourceStack, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false)) {
-                return ItemStack.EMPTY;
             }
         } else {
             System.out.println("Invalid slotIndex:" + pIndex);
@@ -118,7 +79,7 @@ public class SuspensionMixerMenu extends AbstractContainerMenu {
     @Override
     public boolean stillValid(Player player) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                player, ChaosEngineBlocks.SUSPENSION_MIXER.get());
+                player, ChaosEngineBlocks.COMPACT_REFINERY.get());
     }
 
     private void addPlayerInventory(Inventory playerInventory) {

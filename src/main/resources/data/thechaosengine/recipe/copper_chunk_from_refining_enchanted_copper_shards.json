@@ -1,0 +1,15 @@
+{
+  "type": "thechaosengine:refining",
+  "item_ingredient": {
+    "item": "thechaosengine:enchanted_copper_shards"
+  },
+  "fluid_ingredient": {
+    "id": "thechaosengine:lapis_suspension_source",
+    "amount": 100
+  },
+  "result": {
+    "id": "thechaosengine:copper_chunk"
+  },
+  "processTime": 55,
+  "energy": 1
+}

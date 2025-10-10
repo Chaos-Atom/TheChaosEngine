@@ -61,6 +61,8 @@ public class ChaosEngineCreativeModeTabs {
                         output.accept(ChaosEngineBlocks.COMPACT_COAL_GENERATOR);
                         output.accept(ChaosEngineBlocks.COMPACT_PULVERIZER);
                         output.accept(ChaosEngineBlocks.COMPACT_INDUCTION_FOUNDRY);
+                        output.accept(ChaosEngineBlocks.COMPACT_REFINERY);
+
                         output.accept(ChaosEngineBlocks.ATMOSPHERIC_CONDENSER);
                         output.accept(ChaosEngineBlocks.SUSPENSION_MIXER);
                     }).build());

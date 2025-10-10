@@ -1,0 +1,15 @@
+{
+  "type": "thechaosengine:refining",
+  "item_ingredient": {
+    "item": "thechaosengine:enchanted_iron_shards"
+  },
+  "fluid_ingredient": {
+    "id": "thechaosengine:lapis_suspension_source",
+    "amount": 100
+  },
+  "result": {
+    "id": "thechaosengine:iron_chunk"
+  },
+  "processTime": 55,
+  "energy": 1
+}

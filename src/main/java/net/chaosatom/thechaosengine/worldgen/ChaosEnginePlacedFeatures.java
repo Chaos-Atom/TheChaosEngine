@@ -23,10 +23,10 @@ public class ChaosEnginePlacedFeatures {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 
         register(context, BAUXITE_ORE_PLACED_UPPER_KEY, configuredFeatures.getOrThrow(ChaosEngineConfiguredFeatures.OVERWORLD_BAUXITE_ORE_KEY),
-                ChaosEngineOrePlacements.commonOrePlacement(3,
+                ChaosEngineOrePlacements.commonOrePlacement(5,
                         HeightRangePlacement.triangle(VerticalAnchor.absolute(48), VerticalAnchor.absolute(180))));
         register(context, BAUXITE_ORE_PLACED_LOWER_KEY, configuredFeatures.getOrThrow(ChaosEngineConfiguredFeatures.OVERWORLD_BAUXITE_ORE_KEY),
-                ChaosEngineOrePlacements.rareOrePlacement(2, HeightRangePlacement.triangle(VerticalAnchor.absolute(32), VerticalAnchor.absolute(96))));
+                ChaosEngineOrePlacements.rareOrePlacement(3, HeightRangePlacement.triangle(VerticalAnchor.absolute(32), VerticalAnchor.absolute(96))));
     }
 
     private static ResourceKey<PlacedFeature> registerKey (String name) {

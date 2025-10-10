@@ -3,6 +3,7 @@ package net.chaosatom.thechaosengine.block;
 import com.mojang.serialization.MapCodec;
 import net.chaosatom.thechaosengine.TheChaosEngine;
 import net.chaosatom.thechaosengine.block.custom.*;
+import net.chaosatom.thechaosengine.block.custom.CompactRefineryBlock;
 import net.chaosatom.thechaosengine.fluid.ChaosEngineFluids;
 import net.chaosatom.thechaosengine.item.ChaosEngineItems;
 import net.minecraft.world.item.BlockItem;
@@ -105,6 +106,9 @@ public class ChaosEngineBlocks {
             () -> new CompactPulverizerBlock(BlockBehaviour.Properties.of().noOcclusion().strength(3f)));
     public static final DeferredBlock<Block> COMPACT_INDUCTION_FOUNDRY = registerBlock("compact_induction_foundry",
             () -> new CompactInductionFoundryBlock(BlockBehaviour.Properties.of().noOcclusion().strength(3f)));
+    public static final DeferredBlock<Block> COMPACT_REFINERY = registerBlock("compact_refinery",
+            () -> new CompactRefineryBlock(BlockBehaviour.Properties.of().noOcclusion().strength(3f)));
+
     public static final DeferredBlock<Block> ATMOSPHERIC_CONDENSER = registerBlock("atmospheric_condenser",
             () -> new AtmosphericCondenserBlock(BlockBehaviour.Properties.of().noOcclusion().strength(3f)));
     public static final DeferredBlock<Block> SUSPENSION_MIXER = registerBlock("suspension_mixer",

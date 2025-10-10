@@ -306,8 +306,8 @@ public class SuspensionMixerBlockEntity extends BlockEntity implements GeoBlockE
         tag.put("suspension_mixer.output_tank", outputTankTag);
 
 
-        tag.putInt("suspension_mixer.progress", progress);
-        tag.putInt("suspension_mixer.max_progress", maxProgress);
+        tag.putInt("suspension_mixer.progress", this.progress);
+        tag.putInt("suspension_mixer.max_progress", this.maxProgress);
 
         tag.putInt("suspension_mixer.animation_state", this.animState.ordinal());
         tag.putInt("suspension_mixer.deploy_time", this.deployTime);

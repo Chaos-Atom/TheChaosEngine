@@ -27,7 +27,7 @@ public class ChaosEngineConfiguredFeatures {
                 OreConfiguration.target(stoneReplaceables, ChaosEngineBlocks.BAUXITE.get().defaultBlockState()),
                 OreConfiguration.target(deepslateReplaceables, ChaosEngineBlocks.BAUXITE.get().defaultBlockState()));
 
-        register(context, OVERWORLD_BAUXITE_ORE_KEY, Feature.ORE, new OreConfiguration(overworldBauxiteOre, 24));
+        register(context, OVERWORLD_BAUXITE_ORE_KEY, Feature.ORE, new OreConfiguration(overworldBauxiteOre, 34));
     }
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {

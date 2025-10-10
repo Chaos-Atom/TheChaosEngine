@@ -71,7 +71,7 @@ public record PulverizerRecipe(Ingredient inputItem, ItemStack output, int proce
                 .apply(inst, PulverizerRecipe::new)); // Defines how to create the object
 
         // Serializes and deserializes data into packets to send to server. Enables client-server communication
-        public static final StreamCodec<RegistryFriendlyByteBuf, PulverizerRecipe> STREAM_CODEC =
+        private static final StreamCodec<RegistryFriendlyByteBuf, PulverizerRecipe> STREAM_CODEC =
                 StreamCodec.composite(
                         Ingredient.CONTENTS_STREAM_CODEC, PulverizerRecipe::inputItem,
                         ItemStack.STREAM_CODEC, PulverizerRecipe::output,

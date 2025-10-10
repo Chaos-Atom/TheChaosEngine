@@ -1,0 +1,35 @@
+{
+  "variants": {
+    "facing=north,lit=false": {
+      "model": "thechaosengine:block/compact_refinery"
+    },
+    "facing=east,lit=false":  {
+      "model": "thechaosengine:block/compact_refinery",
+      "y": 90
+    },
+    "facing=south,lit=false": {
+      "model": "thechaosengine:block/compact_refinery",
+      "y": 180
+    },
+    "facing=west,lit=false":  {
+      "model": "thechaosengine:block/compact_refinery",
+      "y": 270
+    },
+
+    "facing=north,lit=true": {
+      "model": "thechaosengine:block/compact_refinery"
+    },
+    "facing=east,lit=true":  {
+      "model": "thechaosengine:block/compact_refinery",
+      "y": 90
+    },
+    "facing=south,lit=true": {
+      "model": "thechaosengine:block/compact_refinery",
+      "y": 180
+    },
+    "facing=west,lit=true":  {
+      "model": "thechaosengine:block/compact_refinery",
+      "y": 270
+    }
+  }
+}

@@ -63,6 +63,8 @@
   "block.thechaosengine.compact_coal_generator": "Compact Coal Generator",
   "block.thechaosengine.compact_pulverizer": "Compact Pulverizer",
   "block.thechaosengine.compact_induction_foundry": "Compact Induction Foundry",
+  "block.thechaosengine.compact_refinery": "Compact Refinery",
+
   "block.thechaosengine.atmospheric_condenser": "Atmospheric Condenser",
   "block.thechaosengine.suspension_mixer": "Suspension Mixer",
   "block.thechaosengine.deployable_solar": "Deployable Solar Panel",
@@ -72,6 +74,8 @@
   "blockentity.thechaosengine.compact_coal_generator": "Compact Coal Generator",
   "blockentity.thechaosengine.compact_pulverizer": "Compact Pulverizer",
   "blockentity.thechaosengine.compact_induction_foundry": "Compact Induction Foundry",
+  "blockentity.thechaosengine.compact_refinery": "Compact Refinery",
+
   "blockentity.thechaosengine.atmospheric_condenser": "Atmospheric Condenser",
   "blockentity.thechaosengine.suspension_mixer": "Suspension Mixer",
   "blockentity.thechaosengine.deployable_solar": "Deployable Solar Panel",
