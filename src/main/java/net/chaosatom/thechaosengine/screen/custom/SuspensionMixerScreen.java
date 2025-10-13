@@ -24,6 +24,14 @@ public class SuspensionMixerScreen extends AbstractContainerScreen<SuspensionMix
     private static final ResourceLocation MIXER_PROGRESS =
             ResourceLocation.fromNamespaceAndPath(TheChaosEngine.MOD_ID, "textures/gui/suspension_mixer/mixer_progress.png");
 
+    // Meter Locations (for ease of testing)
+    private static final int vertEnergyBarLocX = 156;
+    private static final int vertEnergyBarLocY = 26;
+    private static final int vertFluidInputBarLocX = 30;
+    private static final int vertFluidInputBarLocY = 26;
+    private static final int vertFluidOutputBarLocX = 138;
+    private static final int vertFluidOutputBarLocY = 26;
+
     private FluidTankRenderer fluidRenderer;
     private EnergyDisplayTooltipArea energyInfoArea;
 
@@ -34,14 +42,6 @@ public class SuspensionMixerScreen extends AbstractContainerScreen<SuspensionMix
         this.imageWidth = 176;
         this.imageHeight = 186;
     }
-
-    // Meter Locations (for ease of testing)
-    private static final int vertEnergyBarLocX = 156;
-    private static final int vertEnergyBarLocY = 26;
-    private static final int vertFluidInputBarLocX = 30;
-    private static final int vertFluidInputBarLocY = 26;
-    private static final int vertFluidOutputBarLocX = 138;
-    private static final int vertFluidOutputBarLocY = 26;
 
     @Override
     protected void init() {

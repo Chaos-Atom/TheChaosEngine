@@ -3,7 +3,6 @@ package net.chaosatom.thechaosengine.datagen;
 import net.chaosatom.thechaosengine.TheChaosEngine;
 import net.chaosatom.thechaosengine.block.ChaosEngineBlocks;
 import net.chaosatom.thechaosengine.item.ChaosEngineItems;
-import net.chaosatom.thechaosengine.worldgen.ChaosEngineBiomeModifiers;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;

@@ -512,7 +512,7 @@ public class AtmosphericCondenserBlockEntity extends BlockEntity implements GeoB
 
     @Override
     public void clearContent() {
-        // Empties output slot of items during extraction
+        // Empties result slot of items during extraction
         for (int i = 0; i < itemHandler.getSlots(); i++) {
             itemHandler.setStackInSlot(i, ItemStack.EMPTY);
         }

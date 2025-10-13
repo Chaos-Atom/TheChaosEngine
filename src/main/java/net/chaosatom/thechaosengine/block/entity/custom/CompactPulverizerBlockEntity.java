@@ -170,7 +170,7 @@ public class CompactPulverizerBlockEntity extends BlockEntity implements MenuPro
         if (recipe.isEmpty()) {
             return;
         }
-        ItemStack output = recipe.get().value().output();
+        ItemStack output = recipe.get().value().result();
 
         itemHandler.extractItem(INPUT_SLOT, 1, false);
         itemHandler.setStackInSlot(OUTPUT_SLOT, new ItemStack(output.getItem(),
@@ -194,7 +194,7 @@ public class CompactPulverizerBlockEntity extends BlockEntity implements MenuPro
             return false;
         }
 
-        ItemStack output = recipe.get().value().output();
+        ItemStack output = recipe.get().value().result();
         this.maxProgress = recipe.get().value().processTime();
 
         return canInsertAmountIntoOutputSlot(output.getCount()) && canInsertItemInputIntoOutputSlot(output) &&
@@ -331,7 +331,7 @@ public class CompactPulverizerBlockEntity extends BlockEntity implements MenuPro
 
     @Override
     public void clearContent() {
-        // Empties output slot of items during extraction
+        // Empties result slot of items during extraction
         for (int i = 0; i < itemHandler.getSlots(); i++) {
             itemHandler.setStackInSlot(i, ItemStack.EMPTY);
         }
@@ -348,7 +348,7 @@ public class CompactPulverizerBlockEntity extends BlockEntity implements MenuPro
         Direction facing = this.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
         Direction[] outputDirections = { Direction.DOWN, facing.getClockWise() }; // Bottom & Right side of block
 
-        // For each output side, check if neighbor is a block entity
+        // For each result side, check if neighbor is a block entity
         for (Direction direction : outputDirections) {
             BlockEntity neighbor = level.getBlockEntity(worldPosition.relative(direction));
             if (neighbor == null) {
@@ -362,11 +362,11 @@ public class CompactPulverizerBlockEntity extends BlockEntity implements MenuPro
 
             if (neighborHandler != null) {
                 // If current checked block has ItemHandler Capability...
-                // First check through ItemHandlerHelper that the ItemStack from our output can be inserted
+                // First check through ItemHandlerHelper that the ItemStack from our result can be inserted
                 ItemStack remainder = ItemHandlerHelper.insertItem(neighborHandler, outputStack, false);
 
                 // Obtains the remainder of what cannot be inserted
-                // // In that case, the output slot is updated to match the remainder (as remaining items to be pushed)
+                // // In that case, the result slot is updated to match the remainder (as remaining items to be pushed)
                 if (remainder.getCount() < outputStack.getCount()) {
                     itemHandler.setStackInSlot(OUTPUT_SLOT, remainder);
                     setChanged();

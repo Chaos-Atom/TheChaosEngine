@@ -2,6 +2,7 @@ package net.chaosatom.thechaosengine.screen.custom;
 
 import net.chaosatom.thechaosengine.block.ChaosEngineBlocks;
 import net.chaosatom.thechaosengine.block.entity.custom.CompactRefineryBlockEntity;
+import net.chaosatom.thechaosengine.fluid.ChaosEngineFluids;
 import net.chaosatom.thechaosengine.screen.ChaosEngineMenuTypes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
@@ -10,6 +11,7 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.items.SlotItemHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -33,9 +35,23 @@ public class CompactRefineryMenu extends AbstractContainerMenu {
         addPlayerInventory(inventory);
         addPlayerHotbar(inventory);
 
-        // TODO: Change to Proper Coordinates when GUI is Completed
-        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 0, 80, 47));
-        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 1, 80, 67));
+        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 0, 53, 37));
+        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 1, 107, 37));
+    }
+
+    public boolean isRefining() {
+        return data.get(0) > 0;
+    }
+
+    public FluidStack getFluid() {
+        return new FluidStack(ChaosEngineFluids.LAPIS_SUSPENSION_SOURCE.get(), this.data.get(2));
+    }
+
+    public int getScaledProgress(int progressPixelWidth) {
+        int progress = this.data.get(0);
+        int maxProgress = this.data.get(1);
+
+        return maxProgress != 0 && progress != 0 ? (progress * progressPixelWidth) / maxProgress : 0;
     }
 
     // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons
@@ -62,6 +78,11 @@ public class CompactRefineryMenu extends AbstractContainerMenu {
                     + TE_INVENTORY_SLOT_COUNT, false)) {
                 return ItemStack.EMPTY;  // EMPTY_ITEM
             }
+        } else if (pIndex < TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT) {
+            // This is a TE slot so merge the stack into the players inventory
+            if (!moveItemStackTo(sourceStack, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false)) {
+                return ItemStack.EMPTY;
+            }
         } else {
             System.out.println("Invalid slotIndex:" + pIndex);
             return ItemStack.EMPTY;
@@ -85,14 +106,14 @@ public class CompactRefineryMenu extends AbstractContainerMenu {
     private void addPlayerInventory(Inventory playerInventory) {
         for (int i = 0; i < 3; i++) {
             for (int l = 0; l < 9; l++) {
-                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 104 + i * 18));
+                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 84 + i * 18));
             }
         }
     }
 
     private void addPlayerHotbar(Inventory playerHotBar) {
         for (int i = 0; i < 9; i++) {
-            this.addSlot(new Slot(playerHotBar, i, 8 + i * 18, 162));
+            this.addSlot(new Slot(playerHotBar, i, 8 + i * 18, 142));
         }
     }
 }

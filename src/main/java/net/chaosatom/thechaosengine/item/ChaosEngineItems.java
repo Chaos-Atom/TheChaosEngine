@@ -70,6 +70,8 @@ public class ChaosEngineItems {
             () -> new BucketItem(ChaosEngineFluids.LAPIS_SUSPENSION_SOURCE.get(), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
 
     // Misc. Ore Items
+    public static final DeferredItem<Item> BAUXITE_CHUNK = ITEMS.register("bauxite_chunk",
+            () -> new Item(new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

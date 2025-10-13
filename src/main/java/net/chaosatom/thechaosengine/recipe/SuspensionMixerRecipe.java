@@ -37,7 +37,7 @@ public record SuspensionMixerRecipe(
 
     @Override
     public ItemStack assemble(SingleItemRecipeInput recipeInput, HolderLookup.Provider provider) {
-        return ItemStack.EMPTY; // No item is the output, only a FluidStack
+        return ItemStack.EMPTY; // No item is the result, only a FluidStack
     }
 
     @Override
@@ -71,7 +71,7 @@ public record SuspensionMixerRecipe(
                         Ingredient.CODEC_NONEMPTY.fieldOf("item_ingredient").forGetter(SuspensionMixerRecipe::itemIngredient),
                         FluidStack.CODEC.fieldOf("fluid_ingredient").forGetter(SuspensionMixerRecipe::fluidIngredient),
                         FluidStack.CODEC.fieldOf("result").forGetter(SuspensionMixerRecipe::output),
-                        Codec.INT.fieldOf("processtime").forGetter(SuspensionMixerRecipe::processTime),
+                        Codec.INT.fieldOf("process_time").forGetter(SuspensionMixerRecipe::processTime),
                         Codec.INT.fieldOf("energy").forGetter(SuspensionMixerRecipe::energy))
                         .apply(instance, SuspensionMixerRecipe::new));
 

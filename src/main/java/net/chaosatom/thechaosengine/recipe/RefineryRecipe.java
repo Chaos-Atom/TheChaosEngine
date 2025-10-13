@@ -67,7 +67,7 @@ public record RefineryRecipe(Ingredient itemIngredient, FluidStack fluidIngredie
                         Ingredient.CODEC_NONEMPTY.fieldOf("item_ingredient").forGetter(RefineryRecipe::itemIngredient),
                         FluidStack.CODEC.fieldOf("fluid_ingredient").forGetter(RefineryRecipe::fluidIngredient),
                         ItemStack.CODEC.fieldOf("result").forGetter(RefineryRecipe::output),
-                        Codec.INT.fieldOf("processtime").forGetter(RefineryRecipe::processTime),
+                        Codec.INT.fieldOf("process_time").forGetter(RefineryRecipe::processTime),
                         Codec.INT.fieldOf("energy").forGetter(RefineryRecipe::energy))
                         .apply(inst, RefineryRecipe::new));
 

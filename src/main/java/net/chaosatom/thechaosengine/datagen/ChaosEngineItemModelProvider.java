@@ -29,6 +29,8 @@ public class ChaosEngineItemModelProvider extends ItemModelProvider {
         basicItem(ChaosEngineItems.GOLD_CHUNK.get());
         basicItem(ChaosEngineItems.COPPER_CHUNK.get());
 
+        basicItem(ChaosEngineItems.BAUXITE_CHUNK.get());
+
         basicItem(ChaosEngineItems.ENCHANTED_IRON_SHARDS.get());
         basicItem(ChaosEngineItems.ENCHANTED_GOLD_SHARDS.get());
         basicItem(ChaosEngineItems.ENCHANTED_COPPER_SHARDS.get());

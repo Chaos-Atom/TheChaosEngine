@@ -1,12 +1,12 @@
 {
   "type": "thechaosengine:pulverizing",
   "ingredient": {
-    "item": "minecraft:iron_ore"
+    "item": "thechaosengine:iron_chunk"
   },
   "result": {
     "id": "thechaosengine:iron_dust",
-    "count": 2
+    "count": 1
   },
-  "process_time": 65,
+  "process_time": 55,
   "energy": 1
 }

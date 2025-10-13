@@ -48,6 +48,12 @@ public class ChaosEngineBusEvents {
             return (side == Direction.DOWN || side == facing.getOpposite()) ? blockEntity.getEnergyStorage(side) : null;
         });
 
+        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ChaosEngineBlockEntities.COMPACT_REFINERY_BE.get(),
+                (blockEntity, side) -> {
+            Direction facing = blockEntity.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
+            return (side == facing.getOpposite() || side == Direction.DOWN) ? blockEntity.getEnergyStorage(side) : null;
+                });
+
         /* Fluid Capabilities */
 
         event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, ChaosEngineBlockEntities.ATMOSPHERIC_CONDENSER_BE.get(),
@@ -55,6 +61,7 @@ public class ChaosEngineBusEvents {
             Direction facing = blockEntity.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
             return (side == facing.getClockWise() || side == facing.getCounterClockWise()) ? blockEntity.getTank(side): null;
                 });
+
         event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, ChaosEngineBlockEntities.SUSPENSION_MIXER_BE.get(),
                 (blockEntity, side) -> {
             Direction facing = blockEntity.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
@@ -71,7 +78,13 @@ public class ChaosEngineBusEvents {
             return null;
         });
 
+        event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, ChaosEngineBlockEntities.COMPACT_REFINERY_BE.get(),
+                (blockEntity, side) -> {
+            return (side == Direction.UP) ? blockEntity.getTank(side) : null;
+                });
+
         /* Item Capabilities */
+        // TODO: Update to use Worldly Containers
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ChaosEngineBlockEntities.COMPACT_COAL_GENERATOR_BE.get(),
                 (blockEntity, side) -> {
                     Direction facing = blockEntity.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
@@ -88,6 +101,8 @@ public class ChaosEngineBusEvents {
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ChaosEngineBlockEntities.COMPACT_INDUCTION_FOUNDRY_BE.get(),
                 SidedInvWrapper::new);
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ChaosEngineBlockEntities.SUSPENSION_MIXER_BE.get(),
+                SidedInvWrapper::new);
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ChaosEngineBlockEntities.COMPACT_REFINERY_BE.get(),
                 SidedInvWrapper::new);
     }
 }

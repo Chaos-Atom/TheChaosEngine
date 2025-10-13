@@ -120,6 +120,7 @@ public class TheChaosEngine {
             event.register(ChaosEngineMenuTypes.ATMOSPHERIC_CONDENSER_MENU.get(), AtmosphericCondenserScreen::new);
             event.register(ChaosEngineMenuTypes.SUSPENSION_MIXER_MENU.get(), SuspensionMixerScreen::new);
             event.register(ChaosEngineMenuTypes.DEPLOYABLE_SOLAR_MENU.get(), DeployableSolarScreen::new);
+            event.register(ChaosEngineMenuTypes.COMPACT_REFINERY_MENU.get(), CompactRefineryScreen::new);
         }
     }
 }

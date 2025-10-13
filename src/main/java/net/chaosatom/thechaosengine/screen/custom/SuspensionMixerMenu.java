@@ -4,6 +4,7 @@ import net.chaosatom.thechaosengine.block.ChaosEngineBlocks;
 import net.chaosatom.thechaosengine.block.entity.custom.SuspensionMixerBlockEntity;
 import net.chaosatom.thechaosengine.fluid.ChaosEngineFluids;
 import net.chaosatom.thechaosengine.screen.ChaosEngineMenuTypes;
+import net.chaosatom.thechaosengine.util.ChaosEngineTags;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -43,6 +44,7 @@ public class SuspensionMixerMenu extends AbstractContainerMenu {
         return data.get(0) > 0;
     }
 
+    // TODO: Replace hardcoded getters with a more dynamic setup
     public FluidStack getInputFluid() {
         return new FluidStack(Fluids.WATER, this.data.get(2));
     }

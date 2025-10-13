@@ -1,14 +1,15 @@
 {
   "type": "thechaosengine:refining",
   "item_ingredient": {
-    "item": "thechaosengine:enchanted_iron_shards"
+    "item": "minecraft:iron_ore"
   },
   "fluid_ingredient": {
     "id": "thechaosengine:lapis_suspension_source",
-    "amount": 100
+    "amount": 125
   },
   "result": {
-    "id": "thechaosengine:iron_chunk"
+    "id": "thechaosengine:iron_chunk",
+    "count": 3
   },
   "process_time": 80,
   "energy": 1

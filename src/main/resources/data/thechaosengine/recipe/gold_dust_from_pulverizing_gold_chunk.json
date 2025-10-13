@@ -1,12 +1,12 @@
 {
   "type": "thechaosengine:pulverizing",
   "ingredient": {
-    "item": "minecraft:lapis_lazuli"
+    "item": "thechaosengine:gold_chunk"
   },
   "result": {
-    "id": "thechaosengine:lapis_lazuli_dust",
+    "id": "thechaosengine:gold_dust",
     "count": 1
   },
-  "process_time": 48,
+  "process_time": 80,
   "energy": 1
 }

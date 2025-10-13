@@ -34,6 +34,8 @@ public class ChaosEngineCreativeModeTabs {
                         output.accept(ChaosEngineItems.GOLD_CHUNK);
                         output.accept(ChaosEngineItems.COPPER_CHUNK);
 
+                        output.accept(ChaosEngineItems.BAUXITE_CHUNK);
+
                         output.accept(ChaosEngineItems.ENCHANTED_IRON_SHARDS);
                         output.accept(ChaosEngineItems.ENCHANTED_GOLD_SHARDS);
                         output.accept(ChaosEngineItems.ENCHANTED_COPPER_SHARDS);

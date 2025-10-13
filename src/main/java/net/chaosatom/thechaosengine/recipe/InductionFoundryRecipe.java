@@ -62,7 +62,7 @@ public record InductionFoundryRecipe(Ingredient inputItem, ItemStack output, int
                 instance.group(
                         Ingredient.CODEC_NONEMPTY.fieldOf("ingredient").forGetter(InductionFoundryRecipe::inputItem),
                         ItemStack.CODEC.fieldOf("result").forGetter(InductionFoundryRecipe::output),
-                        Codec.INT.fieldOf("processtime").forGetter(InductionFoundryRecipe::processTime),
+                        Codec.INT.fieldOf("process_time").forGetter(InductionFoundryRecipe::processTime),
                         Codec.INT.fieldOf("energy").forGetter(InductionFoundryRecipe::energy))
                         .apply(instance, InductionFoundryRecipe::new));
 

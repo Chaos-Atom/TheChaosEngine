@@ -11,10 +11,11 @@ import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
-public record PulverizerRecipe(Ingredient inputItem, ItemStack output, int processTime, int energy) implements Recipe<SingleItemRecipeInput> {
+public record PulverizerRecipe(Ingredient inputItem, ItemStack result, int processTime, int energy) implements Recipe<SingleItemRecipeInput> {
     @Override
-    public NonNullList<Ingredient> getIngredients() {
+    public @NotNull NonNullList<Ingredient> getIngredients() {
         NonNullList<Ingredient> list = NonNullList.create();
         list.add(inputItem);
         return list;
@@ -31,8 +32,8 @@ public record PulverizerRecipe(Ingredient inputItem, ItemStack output, int proce
     }
 
     @Override
-    public ItemStack assemble(SingleItemRecipeInput recipeInput, HolderLookup.Provider provider) {
-        return output.copy();
+    public @NotNull ItemStack assemble(SingleItemRecipeInput recipeInput, HolderLookup.Provider provider) {
+        return result.copy();
     }
 
     @Override
@@ -41,17 +42,17 @@ public record PulverizerRecipe(Ingredient inputItem, ItemStack output, int proce
     }
 
     @Override
-    public ItemStack getResultItem(HolderLookup.Provider provider) {
-        return output;
+    public @NotNull ItemStack getResultItem(HolderLookup.Provider provider) {
+        return result;
     }
 
     @Override
-    public RecipeSerializer<?> getSerializer() {
+    public @NotNull RecipeSerializer<?> getSerializer() {
         return ChaosEngineRecipes.PULVERIZER_SERIALIZER.get();
     }
 
     @Override
-    public RecipeType<?> getType() {
+    public @NotNull RecipeType<?> getType() {
         return ChaosEngineRecipes.PULVERIZER_TYPE.get();
     }
 
@@ -65,8 +66,8 @@ public record PulverizerRecipe(Ingredient inputItem, ItemStack output, int proce
         private static final MapCodec<PulverizerRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> // Given an instance...
                 inst.group( // Defines the fields within the instance
                 Ingredient.CODEC_NONEMPTY.fieldOf("ingredient").forGetter(PulverizerRecipe::inputItem), // First field, an ItemStack as the ingredient...thing?
-                ItemStack.CODEC.fieldOf("result").forGetter(PulverizerRecipe::output), // Second field, an ItemStack as an output item
-                Codec.INT.fieldOf("processtime").forGetter(PulverizerRecipe::processTime),
+                ItemStack.CODEC.fieldOf("result").forGetter(PulverizerRecipe::result), // Second field, an ItemStack as an result item
+                Codec.INT.fieldOf("process_time").forGetter(PulverizerRecipe::processTime),
                 Codec.INT.fieldOf("energy").forGetter(PulverizerRecipe::energy))
                 .apply(inst, PulverizerRecipe::new)); // Defines how to create the object
 
@@ -74,7 +75,7 @@ public record PulverizerRecipe(Ingredient inputItem, ItemStack output, int proce
         private static final StreamCodec<RegistryFriendlyByteBuf, PulverizerRecipe> STREAM_CODEC =
                 StreamCodec.composite(
                         Ingredient.CONTENTS_STREAM_CODEC, PulverizerRecipe::inputItem,
-                        ItemStack.STREAM_CODEC, PulverizerRecipe::output,
+                        ItemStack.STREAM_CODEC, PulverizerRecipe::result,
                         ByteBufCodecs.VAR_INT, PulverizerRecipe::processTime,
                         ByteBufCodecs.VAR_INT, PulverizerRecipe::energy,
                         PulverizerRecipe::new);

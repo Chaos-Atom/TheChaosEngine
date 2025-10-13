@@ -9,6 +9,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.material.Fluid;
 
 public class ChaosEngineTags {
     public static class Blocks {
@@ -36,20 +37,26 @@ public class ChaosEngineTags {
         }
     }
 
-    public class Biomes {
+    public static class Biomes {
         // Used by Atmospheric Condenser for effectiveness rating
-        public static final TagKey<Biome> EXTREMELY_WET = create("extremely_wet");
-        public static final TagKey<Biome> VERY_WET = create("very_wet");
-        public static final TagKey<Biome> WET = create("wet");
-        public static final TagKey<Biome> TEMPERATE = create("temperate");
-        public static final TagKey<Biome> DRY = create("dry");
-        public static final TagKey<Biome> ARID = create("arid");
+        public static final TagKey<Biome> EXTREMELY_WET = createTag("extremely_wet");
+        public static final TagKey<Biome> VERY_WET = createTag("very_wet");
+        public static final TagKey<Biome> WET = createTag("wet");
+        public static final TagKey<Biome> TEMPERATE = createTag("temperate");
+        public static final TagKey<Biome> DRY = createTag("dry");
+        public static final TagKey<Biome> ARID = createTag("arid");
 
         // For Bauxite Ore Generation
-        public static final TagKey<Biome> BAUXITE_BIOMES = create("bauxite_biomes");
+        public static final TagKey<Biome> BAUXITE_BIOMES = createTag("bauxite_biomes");
 
-        private static TagKey<Biome> create(String name) {
+        private static TagKey<Biome> createTag(String name) {
             return TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(TheChaosEngine.MOD_ID, name));
         }
+    }
+
+    public static class Fluids {
+    }
+    private static TagKey<Fluid> createTag(String name) {
+        return TagKey.create(Registries.FLUID, ResourceLocation.fromNamespaceAndPath(TheChaosEngine.MOD_ID, name));
     }
 }

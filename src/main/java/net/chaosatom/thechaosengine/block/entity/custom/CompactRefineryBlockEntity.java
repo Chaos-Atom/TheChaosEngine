@@ -2,6 +2,10 @@ package net.chaosatom.thechaosengine.block.entity.custom;
 
 import net.chaosatom.thechaosengine.block.entity.ChaosEngineBlockEntities;
 import net.chaosatom.thechaosengine.fluid.ChaosEngineFluids;
+import net.chaosatom.thechaosengine.recipe.ChaosEngineRecipes;
+import net.chaosatom.thechaosengine.recipe.RefineryRecipe;
+import net.chaosatom.thechaosengine.recipe.SuspensionMixerRecipe;
+import net.chaosatom.thechaosengine.screen.custom.CompactRefineryMenu;
 import net.chaosatom.thechaosengine.util.energy.EnergyStorage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -21,15 +25,21 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import net.neoforged.neoforge.items.ItemStackHandler;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.sql.Ref;
+import java.util.Optional;
 
 public class CompactRefineryBlockEntity extends BlockEntity implements MenuProvider, WorldlyContainer {
     private final ContainerData data;
@@ -37,6 +47,7 @@ public class CompactRefineryBlockEntity extends BlockEntity implements MenuProvi
     private static final int OUTPUT_SLOT = 1;
     private int progress = 0;
     private int maxProgress;
+    private static final int DEFAULT_MAX_PROGRESS = 75;
     private static final int FLUID_TRANSFER_AMOUNT = 500;
 
     public CompactRefineryBlockEntity(BlockPos pos, BlockState blockState) {
@@ -120,7 +131,118 @@ public class CompactRefineryBlockEntity extends BlockEntity implements MenuProvi
 
     /* Main Machine Logic */
     public void tick(Level level, BlockPos blockPos, BlockState blockState) {
+        Optional<RecipeHolder<RefineryRecipe>> recipe = getCurrentRecipe();
+        boolean wasWorkingThisTick;
 
+        if (recipe.isEmpty() || !isOutputSlotEmptyOrReceivable()) {
+            setChanged(level, blockPos, blockState);
+            resetProgress();
+            return;
+        }
+
+        if (hasResource() && hasRecipe()) {
+            wasWorkingThisTick = true;
+            useEnergyForCrafting();
+            this.progress++;
+            setChanged(level, blockPos, blockState);
+
+            if (hasCraftingFinished(recipe.get().value())) {
+                craftItem(recipe.get());
+                resetProgress();
+                wasWorkingThisTick = canStillWork();
+            }
+        } else {
+            resetProgress();
+            wasWorkingThisTick = false;
+        }
+
+        boolean isLit = wasWorkingThisTick;
+        if (blockState.getValue(BlockStateProperties.LIT) != isLit) {
+            level.setBlock(blockPos, blockState.setValue(BlockStateProperties.LIT, isLit), 3);
+        }
+    }
+
+    /* Custom Crafting Logic via Helper Methods */
+    private Optional<RecipeHolder<RefineryRecipe>> getCurrentRecipe() {
+        assert this.level != null;
+        return this.level.getRecipeManager()
+                .getAllRecipesFor(ChaosEngineRecipes.REFINERY_TYPE.get()).stream().filter(
+                        recipeHolder -> {
+                            RefineryRecipe recipe = recipeHolder.value();
+                            boolean itemMatches = recipe.itemIngredient().test(this.itemHandler.getStackInSlot(INPUT_SLOT));
+                            boolean fluidMatches = this.FLUID_TANK.getFluid().is(recipe.fluidIngredient().getFluid()) &&
+                                    this.FLUID_TANK.getFluidAmount() >= recipe.fluidIngredient().getAmount();
+                            return itemMatches && fluidMatches;
+                        }).findFirst();
+    }
+
+    private boolean hasResource() {
+        Optional<RecipeHolder<RefineryRecipe>> recipe = getCurrentRecipe();
+        boolean hasEnoughEnergy = this.ENERGY_STORAGE.getEnergyStored() >= recipe.get().value().energy();
+        boolean hasEnoughFluid = this.FLUID_TANK.getFluidAmount() >= recipe.get().value().fluidIngredient().getAmount();
+
+        return hasEnoughEnergy && hasEnoughFluid;
+    }
+
+    private boolean hasRecipe() {
+        Optional<RecipeHolder<RefineryRecipe>> recipe = getCurrentRecipe();
+        if (recipe.isEmpty()) {
+            return false;
+        }
+
+        ItemStack output = recipe.get().value().output();
+        this.maxProgress = recipe.get().value().processTime();
+
+        return canInsertAmountIntoOutputSlot(output.getCount()) && canInsertItemInputIntoOutputSlot(output) &&
+                this.ENERGY_STORAGE.getEnergyStored() >= recipe.get().value().energy();
+    }
+
+    private void craftItem(RecipeHolder<RefineryRecipe> recipeHolder) {
+        RefineryRecipe recipe = recipeHolder.value();
+
+        this.itemHandler.extractItem(INPUT_SLOT, 1, false);
+        this.FLUID_TANK.drain(recipe.fluidIngredient().getAmount(), IFluidHandler.FluidAction.EXECUTE);
+
+        ItemStack output = recipe.output();
+        this.itemHandler.setStackInSlot(OUTPUT_SLOT, new ItemStack(output.getItem(),
+                itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() + output.getCount()));
+    }
+
+    private void useEnergyForCrafting() {
+        Optional<RecipeHolder<RefineryRecipe>> recipe = getCurrentRecipe();
+        int specificEnergyCost = recipe.get().value().energy();
+        this.ENERGY_STORAGE.extractEnergy(specificEnergyCost, false);
+    }
+
+    private boolean hasCraftingFinished(RefineryRecipe recipe) {
+        int specificProgress = recipe.processTime();
+        return this.progress >= specificProgress;
+    }
+
+    private boolean isOutputSlotEmptyOrReceivable() {
+        return this.itemHandler.getStackInSlot(OUTPUT_SLOT).isEmpty() ||
+                this.itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() < this.itemHandler.getStackInSlot(OUTPUT_SLOT).getMaxStackSize();
+    }
+
+    private boolean canInsertItemInputIntoOutputSlot(ItemStack output) {
+        return this.itemHandler.getStackInSlot(OUTPUT_SLOT).isEmpty() ||
+                itemHandler.getStackInSlot(OUTPUT_SLOT).getItem() == output.getItem();
+    }
+
+    private boolean canInsertAmountIntoOutputSlot(int count) {
+        int maxCount = itemHandler.getStackInSlot(OUTPUT_SLOT).isEmpty() ? 64 : itemHandler.getStackInSlot(OUTPUT_SLOT).getMaxStackSize();
+        int currentCount = itemHandler.getStackInSlot(OUTPUT_SLOT).getCount();
+
+        return maxCount >= currentCount + currentCount;
+    }
+
+    private void resetProgress() {
+        this.progress = 0;
+        this.maxProgress = DEFAULT_MAX_PROGRESS;
+    }
+
+    private boolean canStillWork() {
+        return itemHandler.getStackInSlot(INPUT_SLOT).getCount() > 0 && hasRecipe();
     }
 
     /* General Block Entity Methods */
@@ -184,64 +306,69 @@ public class CompactRefineryBlockEntity extends BlockEntity implements MenuProvi
     }
 
     @Override
-    public @Nullable AbstractContainerMenu createMenu(int i, Inventory inventory, Player player) {
-        return null;
+    public @Nullable AbstractContainerMenu createMenu(int containerId, Inventory playerInventory, Player player) {
+        return new CompactRefineryMenu(containerId, playerInventory, this, this.data);
     }
 
     /* Worldly Container Methods */
 
     @Override
-    public int[] getSlotsForFace(Direction direction) {
-        return new int[0];
+    public int @NotNull [] getSlotsForFace(Direction direction) {
+        return new int[]{INPUT_SLOT, OUTPUT_SLOT};
     }
 
     @Override
-    public boolean canPlaceItemThroughFace(int i, ItemStack itemStack, @Nullable Direction direction) {
-        return false;
+    public boolean canPlaceItemThroughFace(int slotIndex, ItemStack itemStack, @Nullable Direction direction) {
+        Direction facing = getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
+        return direction != facing && slotIndex == INPUT_SLOT;
     }
 
     @Override
-    public boolean canTakeItemThroughFace(int i, ItemStack itemStack, Direction direction) {
-        return false;
+    public boolean canTakeItemThroughFace(int slotIndex, ItemStack itemStack, Direction direction) {
+        return slotIndex == OUTPUT_SLOT;
     }
 
     @Override
     public int getContainerSize() {
-        return 0;
+        return this.itemHandler.getSlots();
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return this.itemHandler.getStackInSlot(INPUT_SLOT).isEmpty() && this.itemHandler.getStackInSlot(OUTPUT_SLOT).isEmpty();
     }
 
     @Override
-    public ItemStack getItem(int i) {
-        return null;
+    public @NotNull ItemStack getItem(int slotIndex) {
+        return this.itemHandler.getStackInSlot(slotIndex);
     }
 
     @Override
-    public ItemStack removeItem(int i, int i1) {
-        return null;
+    public @NotNull ItemStack removeItem(int slotIndex, int count) {
+        return this.itemHandler.extractItem(slotIndex, count, false);
     }
 
     @Override
-    public ItemStack removeItemNoUpdate(int i) {
-        return null;
+    public @NotNull ItemStack removeItemNoUpdate(int slotIndex) {
+        ItemStack stack = this.itemHandler.getStackInSlot(slotIndex);
+        itemHandler.setStackInSlot(slotIndex, ItemStack.EMPTY);
+        return stack;
     }
 
     @Override
-    public void setItem(int i, ItemStack itemStack) {
-
+    public void setItem(int slotIndex, ItemStack itemStack) {
+        itemHandler.setStackInSlot(slotIndex,  itemStack);
     }
 
     @Override
     public boolean stillValid(Player player) {
-        return false;
+        return player.distanceToSqr(this.worldPosition.getX() + 0.5, this.worldPosition.getY() + 0.5, this.worldPosition.getZ() + 0.5) <= 64.0;
     }
 
     @Override
     public void clearContent() {
-
+        for (int i = 0; i < itemHandler.getSlots(); i++) {
+            itemHandler.setStackInSlot(i, ItemStack.EMPTY);
+        }
     }
 }
