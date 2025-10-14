@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_bauxite_bricks": {
+    "has_bauxite_tiles": {
       "conditions": {
         "items": [
           {
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_bauxite_bricks"
+      "has_bauxite_tiles"
     ]
   ],
   "rewards": {

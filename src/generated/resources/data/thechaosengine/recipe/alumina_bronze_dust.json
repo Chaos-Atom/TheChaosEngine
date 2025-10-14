@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "thechaosengine:alumina_dust"
+    },
+    "C": {
+      "item": "thechaosengine:copper_dust"
+    }
+  },
+  "pattern": [
+    "ACC",
+    "CCC",
+    "CCC"
+  ],
+  "result": {
+    "count": 9,
+    "id": "thechaosengine:alumina_bronze_dust"
+  }
+}

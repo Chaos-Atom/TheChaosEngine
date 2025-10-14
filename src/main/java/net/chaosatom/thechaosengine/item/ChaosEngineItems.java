@@ -23,10 +23,6 @@ public class ChaosEngineItems {
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> COAL_DUST = ITEMS.register("coal_dust",
             () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> LAPIS_LAZULI_DUST = ITEMS.register("lapis_lazuli_dust",
-            () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> CHARCOAL_DUST = ITEMS.register("charcoal_dust",
-            () -> new Item(new Item.Properties()));
 
     // Tier 2 General Ore Processing
     public static final DeferredItem<Item> IRON_CHUNK = ITEMS.register("iron_chunk",
@@ -70,7 +66,27 @@ public class ChaosEngineItems {
             () -> new BucketItem(ChaosEngineFluids.LAPIS_SUSPENSION_SOURCE.get(), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
 
     // Misc. Ore Items
+    public static final DeferredItem<Item> LAPIS_LAZULI_DUST = ITEMS.register("lapis_lazuli_dust",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> CHARCOAL_DUST = ITEMS.register("charcoal_dust",
+            () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> ALUMINA_DUST = ITEMS.register("alumina_dust",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> ALUMINA_BRONZE_DUST = ITEMS.register("alumina_bronze_dust",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> ALUMINA_BRONZE_INGOT = ITEMS.register("alumina_bronze_ingot",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> ALUMINIUM_INGOT = ITEMS.register("aluminium_ingot",
+            () -> new Item(new Item.Properties()));
+
     public static final DeferredItem<Item> BAUXITE_CHUNK = ITEMS.register("bauxite_chunk",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> BAUXITE_DUST = ITEMS.register("bauxite_dust",
+            () -> new Item(new Item.Properties()));
+
+    // Various Crafting Components
+    public static final DeferredItem<Item> SIMPLE_LOGIC_BOARD = ITEMS.register("simple_logic_board",
             () -> new Item(new Item.Properties()));
 
     public static void register(IEventBus eventBus) {

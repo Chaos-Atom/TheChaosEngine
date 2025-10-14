@@ -44,7 +44,9 @@ public class ChaosEngineBlockTagsProvider extends BlockTagsProvider {
                 .add(ChaosEngineBlocks.ALUMINA_BRONZE_BLOCK.get())
                 .add(ChaosEngineBlocks.ORNATE_ALUMINA_BRONZE.get())
                 .add(ChaosEngineBlocks.ALUMINA_BRONZE_PANELS.get())
-                .add(ChaosEngineBlocks.CUBIC_ALUMINA_BRONZE.get());
+                .add(ChaosEngineBlocks.CUBIC_ALUMINA_BRONZE.get())
+
+                .add(ChaosEngineBlocks.ALUMINIUM_BLOCK.get());
 
         this.tag(BlockTags.WALLS)
                 .add(ChaosEngineBlocks.BAUXITE_WALL.get())

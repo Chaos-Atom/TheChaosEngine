@@ -2,7 +2,7 @@
 	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "thechaosengine:block/compact_machine_bottom",
+		"0": "thechaosengine:block/compact_machine_chassis",
 		"1": "thechaosengine:block/compact_refinery/compact_refinery_body",
 		"2": "thechaosengine:block/compact_refinery/compact_refinery_screen_on",
 		"3": "thechaosengine:block/compact_refinery/compact_refinery_top",

@@ -4,7 +4,7 @@
 	"textures": {
 		"1": "thechaosengine:block/compact_pulverizer/compact_pulverizer_sides",
 		"2": "thechaosengine:block/compact_pulverizer/compact_pulverizer_top",
-		"3": "thechaosengine:block/compact_machine_bottom",
+		"3": "thechaosengine:block/compact_machine_chassis",
 		"4": "thechaosengine:block/compact_pulverizer/compact_pulverizer_smallpanels",
 		"5": "thechaosengine:block/compact_pulverizer/compact_pulverizer_drum",
 		"6": "thechaosengine:block/compact_pulverizer/compact_pulverizer_screen",

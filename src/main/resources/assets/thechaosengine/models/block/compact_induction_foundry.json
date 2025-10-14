@@ -2,14 +2,14 @@
 	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "thechaosengine:block/compact_machine_bottom",
+		"0": "thechaosengine:block/compact_machine_chassis",
 		"1": "thechaosengine:block/compact_induction_foundry/compact_induction_foundry_top",
 		"2": "thechaosengine:block/compact_induction_foundry/compact_induction_foundry_sides",
 		"3": "thechaosengine:block/compact_induction_foundry/compact_induction_foundry_front",
 		"4": "thechaosengine:block/compact_induction_foundry/compact_induction_foundry_slopedpanel",
 		"6": "thechaosengine:block/compact_induction_foundry/compact_induction_foundry_interior",
 		"7": "thechaosengine:block/compact_induction_foundry/compact_induction_foundry_coils",
-		"particle": "thechaosengine:block/compact_machine_bottom"
+		"particle": "thechaosengine:block/compact_machine_chassis"
 	},
 	"render_type": "minecraft:cutout",
 	"elements": [

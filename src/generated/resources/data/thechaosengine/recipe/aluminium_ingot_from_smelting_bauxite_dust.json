@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 480,
+  "experience": 0.7,
+  "group": "aluminium_ingot",
+  "ingredient": {
+    "item": "thechaosengine:bauxite_dust"
+  },
+  "result": {
+    "count": 1,
+    "id": "thechaosengine:aluminium_ingot"
+  }
+}

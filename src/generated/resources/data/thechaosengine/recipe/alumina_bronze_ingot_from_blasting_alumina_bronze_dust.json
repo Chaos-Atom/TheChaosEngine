@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 90,
+  "experience": 0.7,
+  "group": "alumina_bronze_ingot",
+  "ingredient": {
+    "item": "thechaosengine:alumina_bronze_dust"
+  },
+  "result": {
+    "count": 1,
+    "id": "thechaosengine:alumina_bronze_ingot"
+  }
+}

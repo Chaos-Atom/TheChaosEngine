@@ -22,6 +22,7 @@ public class ChaosEngineCreativeModeTabs {
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ChaosEngineBlocks.COMPACT_COAL_GENERATOR.get()))
                     .title(Component.translatable("creativetab.thechaosengine.the_chaos_engine_main"))
                     .displayItems((parameters, output) -> {
+                        /* ITEMS */
                         // Ores
                         output.accept(ChaosEngineItems.IRON_DUST);
                         output.accept(ChaosEngineItems.GOLD_DUST);
@@ -30,11 +31,17 @@ public class ChaosEngineCreativeModeTabs {
                         output.accept(ChaosEngineItems.LAPIS_LAZULI_DUST);
                         output.accept(ChaosEngineItems.CHARCOAL_DUST);
 
+                        output.accept(ChaosEngineItems.ALUMINA_DUST);
+                        output.accept(ChaosEngineItems.ALUMINIUM_INGOT);
+                        output.accept(ChaosEngineItems.ALUMINA_BRONZE_DUST);
+                        output.accept(ChaosEngineItems.ALUMINA_BRONZE_INGOT);
+
                         output.accept(ChaosEngineItems.IRON_CHUNK);
                         output.accept(ChaosEngineItems.GOLD_CHUNK);
                         output.accept(ChaosEngineItems.COPPER_CHUNK);
 
                         output.accept(ChaosEngineItems.BAUXITE_CHUNK);
+                        output.accept(ChaosEngineItems.BAUXITE_DUST);
 
                         output.accept(ChaosEngineItems.ENCHANTED_IRON_SHARDS);
                         output.accept(ChaosEngineItems.ENCHANTED_GOLD_SHARDS);
@@ -52,14 +59,24 @@ public class ChaosEngineCreativeModeTabs {
                         output.accept(ChaosEngineItems.GOLD_NANOPARTICLE);
                         output.accept(ChaosEngineItems.COPPER_NANOPARTICLE);
 
+                        // Fluid Buckets
                         output.accept((ItemLike) ChaosEngineItems.LAPIS_SUSPENSION_BUCKET);
 
+                        // Crafting Components
+                        output.accept(ChaosEngineItems.SIMPLE_LOGIC_BOARD);
+
+                        /* BLOCKS */
                         // Full Blocks
                         output.accept(ChaosEngineBlocks.IRON_DUST_BLOCK);
                         output.accept(ChaosEngineBlocks.GOLD_DUST_BLOCK);
                         output.accept(ChaosEngineBlocks.COPPER_DUST_BLOCK);
+                        output.accept(ChaosEngineBlocks.ALUMINA_BRONZE_DUST_BLOCK);
+
+                        output.accept(ChaosEngineBlocks.ALUMINIUM_BLOCK);
 
                         // Machine Blocks (Single)
+                        output.accept(ChaosEngineBlocks.COMPACT_MACHINE_CHASSIS);
+
                         output.accept(ChaosEngineBlocks.COMPACT_COAL_GENERATOR);
                         output.accept(ChaosEngineBlocks.COMPACT_PULVERIZER);
                         output.accept(ChaosEngineBlocks.COMPACT_INDUCTION_FOUNDRY);

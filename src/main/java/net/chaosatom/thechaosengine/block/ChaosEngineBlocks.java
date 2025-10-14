@@ -46,8 +46,19 @@ public class ChaosEngineBlocks {
                     return null;
                 }
             });
+    public static final DeferredBlock<Block> ALUMINA_BRONZE_DUST_BLOCK = registerBlock("alumina_bronze_dust_block",
+            () -> new FallingBlock(BlockBehaviour.Properties.of().mapColor(MapColor.SAND).strength(1f).sound(SoundType.SAND))
+            {
+                @Override
+                protected MapCodec<? extends FallingBlock> codec() {
+                    return null;
+                }
+            });
 
     // General Blocks
+    public static final DeferredBlock<Block> COMPACT_MACHINE_CHASSIS = registerBlock("compact_machine_chassis",
+            () -> new Block(BlockBehaviour.Properties.of().strength(3f)));
+
     // Bauxite-related
     public static final DeferredBlock<Block> BAUXITE = registerBlock("bauxite",
             () -> new Block(BlockBehaviour.Properties.of().strength(1.35f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
@@ -84,6 +95,11 @@ public class ChaosEngineBlocks {
             () -> new SlabBlock(BlockBehaviour.Properties.of().strength(1.35f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
     public static final DeferredBlock<Block> BAUXITE_TILE_WALL = registerBlock("bauxite_tile_wall",
             () -> new WallBlock(BlockBehaviour.Properties.of().strength(1.35f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+
+    // Aluminium-related
+    public static final DeferredBlock<Block> ALUMINIUM_BLOCK = registerBlock("aluminium_block",
+            () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops()
+                    .strength(4.5f, 5.0f).sound(SoundType.METAL)));
 
     // Alumina Bronze
     public static final DeferredBlock<Block> ALUMINA_BRONZE_BLOCK = registerBlock("alumina_bronze_block",

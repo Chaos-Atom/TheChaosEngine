@@ -1,0 +1,12 @@
+{
+  "type": "thechaosengine:pulverizing",
+  "ingredient": {
+    "item": "thechaosengine:bauxite"
+  },
+  "result": {
+    "id": "thechaosengine:bauxite_chunk",
+    "count": 2
+  },
+  "process_time": 160,
+  "energy": 1
+}

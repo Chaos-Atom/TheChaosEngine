@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "thechaosengine:block/compact_machine_chassis"
+    }
+  }
+}

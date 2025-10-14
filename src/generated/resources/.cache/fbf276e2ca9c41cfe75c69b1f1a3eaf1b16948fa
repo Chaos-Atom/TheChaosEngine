@@ -1,6 +1,11 @@
-// 1.21.1	2025-10-13T00:15:03.3157745	Item Models: thechaosengine
+// 1.21.1	2025-10-14T02:56:53.9811455	Item Models: thechaosengine
+75c147a3bfd4458bf2cb6c8406875d7e347be698 assets/thechaosengine/models/item/alumina_bronze_dust.json
+432f63fb1dc0778e6f8000b81ad0a5e932e9fcec assets/thechaosengine/models/item/alumina_bronze_ingot.json
+78a143aad3d220606a404aedc0b46d3c9f698f91 assets/thechaosengine/models/item/alumina_dust.json
+b6634975647a1494fe1ad2120c243ab07b6702c3 assets/thechaosengine/models/item/aluminium_ingot.json
 a4498cc5c73b50a615f54cef601a707c4fdf4ca3 assets/thechaosengine/models/item/bauxite_brick_wall.json
 9e74ee5acd9f562266e9d52641710a601759e4fb assets/thechaosengine/models/item/bauxite_chunk.json
+591803085f7e873f29bbcd75a248a17fc2713b7b assets/thechaosengine/models/item/bauxite_dust.json
 1f385b92b5d5015f63e00b322c438202ee995b36 assets/thechaosengine/models/item/bauxite_tile_wall.json
 ae9eba2710c3dcb2364973b0e60551a6800cc7f0 assets/thechaosengine/models/item/bauxite_wall.json
 544ecd6d8659d09067ae72eadda7860231062218 assets/thechaosengine/models/item/charcoal_dust.json
@@ -23,3 +28,4 @@ b30f6c349f893add39273beab0dbc4475fb6d838 assets/thechaosengine/models/item/lapis
 2d90455c87a92ae251789a31c4b574e1c1b515e9 assets/thechaosengine/models/item/purified_crystal_copper.json
 e2e9039c716af9c19b1a30a8dd25ed1fefdf2ba5 assets/thechaosengine/models/item/purified_crystal_gold.json
 8105d79cad824ee6b1bf9c870c56ae3dba567a54 assets/thechaosengine/models/item/purified_crystal_iron.json
+36fc2853c20db66a5c62873737386fad462a0535 assets/thechaosengine/models/item/simple_logic_board.json

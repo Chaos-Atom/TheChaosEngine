@@ -23,7 +23,8 @@ public class ChaosEngineRecipeProvider extends RecipeProvider implements ICondit
     protected void buildRecipes(RecipeOutput recipeOutput) {
         // List<ItemLike> BAUXITE_STONE_SMELTABLES = List.of()
 
-        // Shaped Recipes
+        /* SHAPED RECIPES */
+        // Dust-to-Block
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ChaosEngineBlocks.IRON_DUST_BLOCK.get())
                 .pattern("III")
                 .pattern("III")
@@ -42,7 +43,23 @@ public class ChaosEngineRecipeProvider extends RecipeProvider implements ICondit
                 .pattern("CCC")
                 .define('C', ChaosEngineItems.COPPER_DUST.get())
                 .unlockedBy("has_copper_dust", has(ChaosEngineItems.COPPER_DUST.get())).save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ChaosEngineBlocks.ALUMINA_BRONZE_DUST_BLOCK.get())
+                .pattern("AAA")
+                .pattern("AAA")
+                .pattern("AAA")
+                .define('A', ChaosEngineItems.ALUMINA_BRONZE_DUST.get())
+                .unlockedBy("has_alumina_bronze_dust", has(ChaosEngineItems.ALUMINA_BRONZE_DUST.get())).save(recipeOutput);
 
+        // Dust-to-Dust (alloying)
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ChaosEngineItems.ALUMINA_BRONZE_DUST.get(), 9)
+                .pattern("ACC")
+                .pattern("CCC")
+                .pattern("CCC")
+                .define('C', ChaosEngineItems.COPPER_DUST.get())
+                .define('A', ChaosEngineItems.ALUMINA_DUST.get())
+                .unlockedBy("has_copper_dust", has(ChaosEngineItems.COPPER_DUST.get())).save(recipeOutput);
+
+        // Bauxite Block Variants
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ChaosEngineBlocks.POLISHED_BAUXITE.get(), 4)
                 .pattern("BB")
                 .pattern("BB")
@@ -52,28 +69,37 @@ public class ChaosEngineRecipeProvider extends RecipeProvider implements ICondit
                 .pattern("PP")
                 .pattern("PP")
                 .define('P', ChaosEngineBlocks.POLISHED_BAUXITE.get())
-                .unlockedBy("has_bauxite_block", has(ChaosEngineBlocks.POLISHED_BAUXITE.get())).save(recipeOutput);
+                .unlockedBy("has_polished_bauxite", has(ChaosEngineBlocks.POLISHED_BAUXITE.get())).save(recipeOutput);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ChaosEngineBlocks.BAUXITE_TILES.get(), 4)
                 .pattern("BB")
                 .pattern("BB")
                 .define('B', ChaosEngineBlocks.BAUXITE_BRICKS.get())
-                .unlockedBy("has_bauxite_block", has(ChaosEngineBlocks.BAUXITE_BRICKS.get())).save(recipeOutput);
+                .unlockedBy("has_bauxite_bricks", has(ChaosEngineBlocks.BAUXITE_BRICKS.get())).save(recipeOutput);
 
+        // Aluminium Block Variants
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ChaosEngineBlocks.ALUMINIUM_BLOCK.get(), 1)
+                .pattern("AAA")
+                .pattern("AAA")
+                .pattern("AAA")
+                .define('A', ChaosEngineItems.ALUMINIUM_INGOT.get())
+                .unlockedBy("has_aluminium_ingot", has(ChaosEngineItems.ALUMINIUM_INGOT.get())).save(recipeOutput);
+
+        // Alumina-Bronze Block Variants
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ChaosEngineBlocks.ORNATE_ALUMINA_BRONZE.get(), 2)
                 .pattern(" A")
                 .pattern("A ")
                 .define('A', ChaosEngineBlocks.ALUMINA_BRONZE_BLOCK.get())
-                .unlockedBy("has_bauxite_block", has(ChaosEngineBlocks.ALUMINA_BRONZE_BLOCK.get())).save(recipeOutput);
+                .unlockedBy("has_alumina_bronze_block", has(ChaosEngineBlocks.ALUMINA_BRONZE_BLOCK.get())).save(recipeOutput);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ChaosEngineBlocks.ALUMINA_BRONZE_PANELS.get(), 2)
                 .pattern("A")
                 .pattern("A")
                 .define('A', ChaosEngineBlocks.ALUMINA_BRONZE_BLOCK.get())
-                .unlockedBy("has_bauxite_block", has(ChaosEngineBlocks.ALUMINA_BRONZE_BLOCK.get())).save(recipeOutput);
+                .unlockedBy("has_alumina_bronze_block", has(ChaosEngineBlocks.ALUMINA_BRONZE_BLOCK.get())).save(recipeOutput);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ChaosEngineBlocks.CUBIC_ALUMINA_BRONZE.get(), 2)
                 .pattern("A")
                 .pattern("A")
                 .define('A', ChaosEngineBlocks.ALUMINA_BRONZE_PANELS.get())
-                .unlockedBy("has_bauxite_block", has(ChaosEngineBlocks.ALUMINA_BRONZE_PANELS.get())).save(recipeOutput);
+                .unlockedBy("has_alumina_bronze_block", has(ChaosEngineBlocks.ALUMINA_BRONZE_PANELS.get())).save(recipeOutput);
 
         // Stairs
         stairBuilder(ChaosEngineBlocks.BAUXITE_STAIRS.get(), Ingredient.of(ChaosEngineBlocks.BAUXITE.get())).group("bauxite")
@@ -83,7 +109,7 @@ public class ChaosEngineRecipeProvider extends RecipeProvider implements ICondit
         stairBuilder(ChaosEngineBlocks.BAUXITE_BRICK_STAIRS.get(), Ingredient.of(ChaosEngineBlocks.BAUXITE_BRICKS.get())).group("bauxite")
                 .unlockedBy("has_bauxite_bricks", has(ChaosEngineBlocks.BAUXITE_BRICKS.get())).save(recipeOutput);
         stairBuilder(ChaosEngineBlocks.BAUXITE_TILE_STAIRS.get(), Ingredient.of(ChaosEngineBlocks.BAUXITE_TILES.get())).group("bauxite")
-                .unlockedBy("has_bauxite_bricks", has(ChaosEngineBlocks.BAUXITE_TILES.get())).save(recipeOutput);
+                .unlockedBy("has_bauxite_tiles", has(ChaosEngineBlocks.BAUXITE_TILES.get())).save(recipeOutput);
 
         // Slabs
         slab(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ChaosEngineBlocks.BAUXITE_SLAB.get(), ChaosEngineBlocks.BAUXITE);
@@ -130,10 +156,10 @@ public class ChaosEngineRecipeProvider extends RecipeProvider implements ICondit
                 .unlockedBy("has_iron_dust_block", has(ChaosEngineBlocks.IRON_DUST_BLOCK.get())).save(recipeOutput);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ChaosEngineItems.GOLD_DUST.get(), 9)
                 .requires(ChaosEngineBlocks.GOLD_DUST_BLOCK.get())
-                .unlockedBy("has_iron_dust_block", has(ChaosEngineBlocks.GOLD_DUST_BLOCK.get())).save(recipeOutput);
+                .unlockedBy("has_gold_dust_block", has(ChaosEngineBlocks.GOLD_DUST_BLOCK.get())).save(recipeOutput);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ChaosEngineItems.COPPER_DUST.get(), 9)
                 .requires(ChaosEngineBlocks.COPPER_DUST_BLOCK.get())
-                .unlockedBy("has_iron_dust_block", has(ChaosEngineBlocks.COPPER_DUST_BLOCK.get())).save(recipeOutput);
+                .unlockedBy("has_copper_dust_block", has(ChaosEngineBlocks.COPPER_DUST_BLOCK.get())).save(recipeOutput);
 
         // Ore Smelting
         oreSmeltingSingle(recipeOutput, ChaosEngineItems.IRON_DUST.get(), RecipeCategory.MISC, Items.IRON_INGOT,
@@ -142,6 +168,10 @@ public class ChaosEngineRecipeProvider extends RecipeProvider implements ICondit
                 0.7f, 180, "gold_ingot");
         oreSmeltingSingle(recipeOutput, ChaosEngineItems.COPPER_DUST.get(), RecipeCategory.MISC, Items.COPPER_INGOT,
                 0.7f, 180, "copper_ingot");
+        oreSmeltingSingle(recipeOutput, ChaosEngineItems.BAUXITE_DUST.get(), RecipeCategory.MISC, ChaosEngineItems.ALUMINIUM_INGOT,
+                0.7f, 480, "aluminium_ingot");
+        oreSmeltingSingle(recipeOutput, ChaosEngineItems.ALUMINA_BRONZE_DUST.get(), RecipeCategory.MISC, ChaosEngineItems.ALUMINA_BRONZE_INGOT,
+                0.7f, 180, "alumina_bronze_ingot");
 
         // Ore Blasting
         oreBlastingSingle(recipeOutput, ChaosEngineItems.IRON_DUST.get(), RecipeCategory.MISC, Items.IRON_INGOT,
@@ -150,6 +180,10 @@ public class ChaosEngineRecipeProvider extends RecipeProvider implements ICondit
                 0.7f, 90, "gold_ingot");
         oreBlastingSingle(recipeOutput, ChaosEngineItems.COPPER_DUST.get(), RecipeCategory.MISC, Items.COPPER_INGOT,
                 0.7f, 90, "copper_ingot");
+        oreBlastingSingle(recipeOutput, ChaosEngineItems.BAUXITE_DUST.get(), RecipeCategory.MISC, ChaosEngineItems.ALUMINIUM_INGOT,
+                0.7f, 240, "aluminium_ingot");
+        oreBlastingSingle(recipeOutput, ChaosEngineItems.ALUMINA_BRONZE_DUST.get(), RecipeCategory.MISC, ChaosEngineItems.ALUMINA_BRONZE_INGOT,
+                0.7f, 90, "alumina_bronze_ingot");
 
         // Ore Pulverizing
 

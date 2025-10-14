@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_alumina_bronze_dust": {
+      "conditions": {
+        "items": [
+          {
+            "items": "thechaosengine:alumina_bronze_dust"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "thechaosengine:alumina_bronze_ingot_from_blasting_alumina_bronze_dust"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_alumina_bronze_dust"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "thechaosengine:alumina_bronze_ingot_from_blasting_alumina_bronze_dust"
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "thechaosengine:induction_smelting",
+  "ingredient": {
+    "item": "thechaosengine:alumina_bronze_dust"
+  },
+  "result": {
+    "id": "thechaosengine:alumina_bronze_ingot",
+    "count": 1
+  },
+  "process_time": 240,
+  "energy": 1
+}

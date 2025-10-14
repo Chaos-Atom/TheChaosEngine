@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "thechaosengine:item/simple_logic_board"
+  }
+}

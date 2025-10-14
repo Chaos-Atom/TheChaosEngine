@@ -28,6 +28,10 @@ public class ChaosEngineBlockStateProvider extends BlockStateProvider {
         blockWithItem(ChaosEngineBlocks.ALUMINA_BRONZE_PANELS);
         blockWithItem(ChaosEngineBlocks.CUBIC_ALUMINA_BRONZE);
 
+        blockWithItem(ChaosEngineBlocks.ALUMINIUM_BLOCK);
+
+        blockWithItem(ChaosEngineBlocks.COMPACT_MACHINE_CHASSIS);
+
         stairsBlock(((StairBlock) ChaosEngineBlocks.BAUXITE_STAIRS.get()), blockTexture(ChaosEngineBlocks.BAUXITE.get()));
         slabBlock(((SlabBlock) ChaosEngineBlocks.BAUXITE_SLAB.get()), blockTexture(ChaosEngineBlocks.BAUXITE.get()), blockTexture(ChaosEngineBlocks.BAUXITE.get()));
         wallBlock(((WallBlock) ChaosEngineBlocks.BAUXITE_WALL.get()), blockTexture(ChaosEngineBlocks.BAUXITE.get()));

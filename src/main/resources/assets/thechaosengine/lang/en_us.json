@@ -2,18 +2,24 @@
   "creativetab.thechaosengine.the_chaos_engine_main": "The Chaos Engine",
   "creativetab.thechaosengine.the_chaos_engine_decorations": "The Chaos Engine Decorations",
 
+  "item.thechaosengine.aluminium_ingot": "Aluminium Ingot",
+  "item.thechaosengine.alumina_bronze_ingot": "Alumina-Bronze Ingot",
+
   "item.thechaosengine.iron_dust": "Iron Dust",
   "item.thechaosengine.gold_dust": "Gold Dust",
   "item.thechaosengine.copper_dust": "Copper Dust",
   "item.thechaosengine.coal_dust": "Coal Dust",
   "item.thechaosengine.lapis_lazuli_dust": "Lapis Lazuli Dust",
   "item.thechaosengine.charcoal_dust": "Charcoal Dust",
+  "item.thechaosengine.alumina_dust": "Alumina Dust",
+  "item.thechaosengine.alumina_bronze_dust": "Alumina-Bronze Dust",
 
   "item.thechaosengine.iron_chunk": "Iron Chunk",
   "item.thechaosengine.gold_chunk": "Gold Chunk",
   "item.thechaosengine.copper_chunk": "Copper Chunk",
 
   "item.thechaosengine.bauxite_chunk": "Bauxite Chunk",
+  "item.thechaosengine.bauxite_dust": "Bauxite Dust",
 
   "item.thechaosengine.enchanted_iron_shards": "Enchanted Iron Shards",
   "item.thechaosengine.enchanted_gold_shards": "Enchanted Gold Shards",
@@ -33,9 +39,12 @@
 
   "item.thechaosengine.lapis_suspension_bucket": "Bucket of Lapis Suspension",
 
+  "item.thechaosengine.simple_logic_board": "Simple Logic Board",
+
   "block.thechaosengine.iron_dust_block": "Block of Iron Dust",
   "block.thechaosengine.gold_dust_block": "Block of Gold Dust",
   "block.thechaosengine.copper_dust_block": "Block of Copper Dust",
+  "block.thechaosengine.alumina_bronze_dust_block": "Block of Alumina-Bronze Dust",
 
   "block.thechaosengine.bauxite": "Bauxite",
   "block.thechaosengine.bauxite_stairs": "Bauxite Stairs",
@@ -57,10 +66,14 @@
   "block.thechaosengine.bauxite_tile_slab": "Bauxite Tile Slab",
   "block.thechaosengine.bauxite_tile_wall": "Bauxite Tile Wall",
 
+  "block.thechaosengine.aluminium_block": "Block of Aluminium",
+
   "block.thechaosengine.alumina_bronze_block": "Block of Alumina Bronze",
   "block.thechaosengine.ornate_alumina_bronze": "Ornate Alumina Bronze",
   "block.thechaosengine.alumina_bronze_panels": "Alumina Bronze Large Panels",
   "block.thechaosengine.cubic_alumina_bronze": "Cubic Alumina Bronze",
+
+  "block.thechaosengine.compact_machine_chassis": "Compact Machine Chassis",
 
   "block.thechaosengine.compact_coal_generator": "Compact Coal Generator",
   "block.thechaosengine.compact_pulverizer": "Compact Pulverizer",

@@ -25,11 +25,17 @@ public class ChaosEngineItemModelProvider extends ItemModelProvider {
         basicItem(ChaosEngineItems.LAPIS_LAZULI_DUST.get());
         basicItem(ChaosEngineItems.CHARCOAL_DUST.get());
 
+        basicItem(ChaosEngineItems.ALUMINA_DUST.get());
+        basicItem(ChaosEngineItems.ALUMINIUM_INGOT.get());
+        basicItem(ChaosEngineItems.ALUMINA_BRONZE_DUST.get());
+        basicItem(ChaosEngineItems.ALUMINA_BRONZE_INGOT.get());
+
         basicItem(ChaosEngineItems.IRON_CHUNK.get());
         basicItem(ChaosEngineItems.GOLD_CHUNK.get());
         basicItem(ChaosEngineItems.COPPER_CHUNK.get());
 
         basicItem(ChaosEngineItems.BAUXITE_CHUNK.get());
+        basicItem(ChaosEngineItems.BAUXITE_DUST.get());
 
         basicItem(ChaosEngineItems.ENCHANTED_IRON_SHARDS.get());
         basicItem(ChaosEngineItems.ENCHANTED_GOLD_SHARDS.get());
@@ -44,6 +50,8 @@ public class ChaosEngineItemModelProvider extends ItemModelProvider {
         basicItem(ChaosEngineItems.CRYSTAL_COPPER.get());
 
         basicItem(ChaosEngineItems.LAPIS_SUSPENSION_BUCKET.get());
+
+        basicItem(ChaosEngineItems.SIMPLE_LOGIC_BOARD.get());
 
         wallItem(ChaosEngineBlocks.BAUXITE_WALL, ChaosEngineBlocks.BAUXITE);
         wallItem(ChaosEngineBlocks.POLISHED_BAUXITE_WALL, ChaosEngineBlocks.POLISHED_BAUXITE);
