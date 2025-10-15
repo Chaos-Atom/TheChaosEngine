@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "thechaosengine:assembly_housing"
+    },
+    "D": {
+      "item": "minecraft:redstone"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "L": {
+      "item": "thechaosengine:simple_logic_board"
+    }
+  },
+  "pattern": [
+    "GLD",
+    " A "
+  ],
+  "result": {
+    "count": 1,
+    "id": "thechaosengine:logic_assembly"
+  }
+}

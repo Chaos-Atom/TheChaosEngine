@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    "GIG",
+    "GIG",
+    "GIG"
+  ],
+  "result": {
+    "count": 2,
+    "id": "thechaosengine:gold_coils"
+  }
+}

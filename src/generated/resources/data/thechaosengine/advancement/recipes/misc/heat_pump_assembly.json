@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_assembly_housing": {
+      "conditions": {
+        "items": [
+          {
+            "items": "thechaosengine:assembly_housing"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "thechaosengine:heat_pump_assembly"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_assembly_housing"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "thechaosengine:heat_pump_assembly"
+    ]
+  }
+}

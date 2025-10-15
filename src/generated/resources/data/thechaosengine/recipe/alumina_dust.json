@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "thechaosengine:bauxite_dust"
+    },
+    "W": {
+      "item": "minecraft:bone_meal"
+    }
+  },
+  "pattern": [
+    "WB",
+    "BB"
+  ],
+  "result": {
+    "count": 3,
+    "id": "thechaosengine:alumina_dust"
+  }
+}

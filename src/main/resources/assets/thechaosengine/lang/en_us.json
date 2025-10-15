@@ -39,7 +39,16 @@
 
   "item.thechaosengine.lapis_suspension_bucket": "Bucket of Lapis Suspension",
 
+  "item.thechaosengine.empty_board": "Empty Board",
   "item.thechaosengine.simple_logic_board": "Simple Logic Board",
+  "item.thechaosengine.assembly_housing": "Assembly Housing",
+  "item.thechaosengine.logic_assembly": "Logic Assembly",
+  "item.thechaosengine.deployment_assembly": "Deployment Assembly",
+  "item.thechaosengine.heat_pump_assembly": "Heat Pump Assembly",
+  "item.thechaosengine.copper_coils": "Copper Coils",
+  "item.thechaosengine.gold_coils": "Gold Coils",
+  "item.thechaosengine.basic_machine_panel": "Basic Machine Panel",
+  "item.thechaosengine.solar_panel_unit": "Solar Panel Unit",
 
   "block.thechaosengine.iron_dust_block": "Block of Iron Dust",
   "block.thechaosengine.gold_dust_block": "Block of Gold Dust",
@@ -82,7 +91,7 @@
 
   "block.thechaosengine.atmospheric_condenser": "Atmospheric Condenser",
   "block.thechaosengine.suspension_mixer": "Suspension Mixer",
-  "block.thechaosengine.deployable_solar": "Deployable Solar Panel",
+  "block.thechaosengine.deployable_solar": "Deployable Solar Generator",
 
   "block.thechaosengine.deployable_machine.tooltip": "§7Currently not deployed, place on ground and right-click to deploy.§r",
 

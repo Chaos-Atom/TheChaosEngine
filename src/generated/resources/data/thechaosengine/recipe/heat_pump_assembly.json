@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "thechaosengine:assembly_housing"
+    },
+    "C": {
+      "item": "thechaosengine:copper_coils"
+    },
+    "D": {
+      "item": "minecraft:redstone"
+    },
+    "L": {
+      "item": "thechaosengine:simple_logic_board"
+    }
+  },
+  "pattern": [
+    "CLC",
+    "DAD"
+  ],
+  "result": {
+    "count": 1,
+    "id": "thechaosengine:heat_pump_assembly"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_empty_board": {
+      "conditions": {
+        "items": [
+          {
+            "items": "thechaosengine:empty_board"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "thechaosengine:simple_logic_board"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_empty_board"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "thechaosengine:simple_logic_board"
+    ]
+  }
+}

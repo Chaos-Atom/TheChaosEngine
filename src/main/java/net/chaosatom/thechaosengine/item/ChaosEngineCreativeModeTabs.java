@@ -2,7 +2,6 @@ package net.chaosatom.thechaosengine.item;
 
 import net.chaosatom.thechaosengine.TheChaosEngine;
 import net.chaosatom.thechaosengine.block.ChaosEngineBlocks;
-import net.chaosatom.thechaosengine.fluid.ChaosEngineFluids;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -63,7 +62,16 @@ public class ChaosEngineCreativeModeTabs {
                         output.accept((ItemLike) ChaosEngineItems.LAPIS_SUSPENSION_BUCKET);
 
                         // Crafting Components
+                        output.accept(ChaosEngineItems.EMPTY_BOARD);
                         output.accept(ChaosEngineItems.SIMPLE_LOGIC_BOARD);
+                        output.accept(ChaosEngineItems.ASSEMBLY_HOUSING);
+                        output.accept(ChaosEngineItems.LOGIC_ASSEMBLY);
+                        output.accept(ChaosEngineItems.DEPLOYMENT_ASSEMBLY);
+                        output.accept(ChaosEngineItems.HEAT_PUMP_ASSEMBLY);
+                        output.accept(ChaosEngineItems.COPPER_COILS);
+                        output.accept(ChaosEngineItems.GOLD_COILS);
+                        output.accept(ChaosEngineItems.BASIC_MACHINE_PANEL);
+                        output.accept(ChaosEngineItems.SOLAR_PANEL_UNIT);
 
                         /* BLOCKS */
                         // Full Blocks
@@ -82,6 +90,7 @@ public class ChaosEngineCreativeModeTabs {
                         output.accept(ChaosEngineBlocks.COMPACT_INDUCTION_FOUNDRY);
                         output.accept(ChaosEngineBlocks.COMPACT_REFINERY);
 
+                        output.accept(ChaosEngineBlocks.ATMOSPHERIC_CONDENSER);
                         output.accept(ChaosEngineBlocks.ATMOSPHERIC_CONDENSER);
                         output.accept(ChaosEngineBlocks.SUSPENSION_MIXER);
                     }).build());

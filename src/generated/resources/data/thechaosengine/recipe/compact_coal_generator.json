@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "F": {
+      "item": "minecraft:furnace"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "L": {
+      "item": "thechaosengine:logic_assembly"
+    },
+    "W": {
+      "item": "minecraft:water_bucket"
+    },
+    "X": {
+      "item": "thechaosengine:compact_machine_chassis"
+    }
+  },
+  "pattern": [
+    "I I",
+    "WXL",
+    "IFI"
+  ],
+  "result": {
+    "count": 1,
+    "id": "thechaosengine:compact_coal_generator"
+  }
+}

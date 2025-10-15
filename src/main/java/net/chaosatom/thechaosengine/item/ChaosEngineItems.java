@@ -86,7 +86,25 @@ public class ChaosEngineItems {
             () -> new Item(new Item.Properties()));
 
     // Various Crafting Components
+    public static final DeferredItem<Item> EMPTY_BOARD = ITEMS.register("empty_board",
+            () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> SIMPLE_LOGIC_BOARD = ITEMS.register("simple_logic_board",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> ASSEMBLY_HOUSING = ITEMS.register("assembly_housing",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> LOGIC_ASSEMBLY = ITEMS.register("logic_assembly",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> DEPLOYMENT_ASSEMBLY = ITEMS.register("deployment_assembly",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> HEAT_PUMP_ASSEMBLY = ITEMS.register("heat_pump_assembly",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> COPPER_COILS = ITEMS.register("copper_coils",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> GOLD_COILS = ITEMS.register("gold_coils",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> BASIC_MACHINE_PANEL = ITEMS.register("basic_machine_panel",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> SOLAR_PANEL_UNIT = ITEMS.register("solar_panel_unit",
             () -> new Item(new Item.Properties()));
 
     public static void register(IEventBus eventBus) {

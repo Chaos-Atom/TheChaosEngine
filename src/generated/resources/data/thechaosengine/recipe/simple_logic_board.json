@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:copper_ingot"
+    },
+    "E": {
+      "item": "thechaosengine:empty_board"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "X": {
+      "item": "minecraft:comparator"
+    }
+  },
+  "pattern": [
+    " X ",
+    "IEC"
+  ],
+  "result": {
+    "count": 1,
+    "id": "thechaosengine:simple_logic_board"
+  }
+}

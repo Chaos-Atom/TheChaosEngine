@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "item": "thechaosengine:deployment_assembly"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "S": {
+      "item": "thechaosengine:solar_panel_unit"
+    },
+    "X": {
+      "item": "thechaosengine:compact_machine_chassis"
+    }
+  },
+  "pattern": [
+    "S S",
+    "SDS",
+    "RXR"
+  ],
+  "result": {
+    "count": 1,
+    "id": "thechaosengine:deployable_solar"
+  }
+}

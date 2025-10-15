@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "thechaosengine:lapis_lazuli_dust"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:blue_dye"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "P": {
+      "item": "thechaosengine:basic_machine_panel"
+    }
+  },
+  "pattern": [
+    "IPI",
+    "P P",
+    "IPI"
+  ],
+  "result": {
+    "count": 1,
+    "id": "thechaosengine:compact_machine_chassis"
+  }
+}

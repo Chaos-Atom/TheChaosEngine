@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "thechaosengine:aluminium_ingot"
+    }
+  },
+  "pattern": [
+    "A A",
+    "AAA"
+  ],
+  "result": {
+    "count": 4,
+    "id": "thechaosengine:assembly_housing"
+  }
+}

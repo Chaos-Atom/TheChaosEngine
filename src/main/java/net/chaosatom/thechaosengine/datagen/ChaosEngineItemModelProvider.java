@@ -2,7 +2,6 @@ package net.chaosatom.thechaosengine.datagen;
 
 import net.chaosatom.thechaosengine.TheChaosEngine;
 import net.chaosatom.thechaosengine.block.ChaosEngineBlocks;
-import net.chaosatom.thechaosengine.fluid.ChaosEngineFluids;
 import net.chaosatom.thechaosengine.item.ChaosEngineItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -51,7 +50,16 @@ public class ChaosEngineItemModelProvider extends ItemModelProvider {
 
         basicItem(ChaosEngineItems.LAPIS_SUSPENSION_BUCKET.get());
 
+        basicItem(ChaosEngineItems.EMPTY_BOARD.get());
         basicItem(ChaosEngineItems.SIMPLE_LOGIC_BOARD.get());
+        basicItem(ChaosEngineItems.ASSEMBLY_HOUSING.get());
+        basicItem(ChaosEngineItems.LOGIC_ASSEMBLY.get());
+        basicItem(ChaosEngineItems.DEPLOYMENT_ASSEMBLY.get());
+        basicItem(ChaosEngineItems.HEAT_PUMP_ASSEMBLY.get());
+        basicItem(ChaosEngineItems.COPPER_COILS.get());
+        basicItem(ChaosEngineItems.GOLD_COILS.get());
+        basicItem(ChaosEngineItems.BASIC_MACHINE_PANEL.get());
+        basicItem(ChaosEngineItems.SOLAR_PANEL_UNIT.get());
 
         wallItem(ChaosEngineBlocks.BAUXITE_WALL, ChaosEngineBlocks.BAUXITE);
         wallItem(ChaosEngineBlocks.POLISHED_BAUXITE_WALL, ChaosEngineBlocks.POLISHED_BAUXITE);

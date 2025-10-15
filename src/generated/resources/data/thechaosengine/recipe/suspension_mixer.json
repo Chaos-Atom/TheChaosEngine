@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:cauldron"
+    },
+    "D": {
+      "item": "thechaosengine:deployment_assembly"
+    },
+    "L": {
+      "item": "thechaosengine:logic_assembly"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "X": {
+      "item": "thechaosengine:compact_machine_chassis"
+    }
+  },
+  "pattern": [
+    "DXL",
+    "RCR"
+  ],
+  "result": {
+    "count": 1,
+    "id": "thechaosengine:suspension_mixer"
+  }
+}

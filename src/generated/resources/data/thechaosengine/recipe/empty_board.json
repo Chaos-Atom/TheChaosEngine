@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:copper_ingot"
+    },
+    "G": {
+      "item": "minecraft:green_dye"
+    },
+    "L": {
+      "item": "thechaosengine:lapis_lazuli_dust"
+    }
+  },
+  "pattern": [
+    "LGL",
+    "CCC"
+  ],
+  "result": {
+    "count": 3,
+    "id": "thechaosengine:empty_board"
+  }
+}

@@ -1,14 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
+  "category": "building",
   "key": {
     "A": {
       "item": "thechaosengine:alumina_bronze_block"
     }
   },
   "pattern": [
-    " A",
-    "A "
+    "AA"
   ],
   "result": {
     "count": 2,

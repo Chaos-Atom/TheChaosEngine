@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "thechaosengine:assembly_housing"
+    },
+    "D": {
+      "item": "minecraft:redstone"
+    },
+    "L": {
+      "item": "thechaosengine:simple_logic_board"
+    },
+    "P": {
+      "item": "minecraft:piston"
+    },
+    "R": {
+      "item": "minecraft:redstone_torch"
+    }
+  },
+  "pattern": [
+    "PLR",
+    "DAD"
+  ],
+  "result": {
+    "count": 1,
+    "id": "thechaosengine:deployment_assembly"
+  }
+}
