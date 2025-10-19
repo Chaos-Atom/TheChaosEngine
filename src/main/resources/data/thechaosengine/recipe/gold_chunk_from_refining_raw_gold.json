@@ -1,16 +1,16 @@
 {
   "type": "thechaosengine:refining",
   "item_ingredient": {
-    "item": "minecraft:deepslate_copper_ore"
+    "item": "minecraft:raw_gold"
   },
   "fluid_ingredient": {
     "id": "thechaosengine:lapis_suspension_source",
     "amount": 125
   },
   "result": {
-    "id": "thechaosengine:copper_chunk",
+    "id": "thechaosengine:gold_chunk",
     "count": 3
   },
-  "process_time": 90,
+  "process_time": 80,
   "energy": 1
 }

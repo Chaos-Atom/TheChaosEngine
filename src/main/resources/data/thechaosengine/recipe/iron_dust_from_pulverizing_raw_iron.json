@@ -1,12 +1,12 @@
 {
   "type": "thechaosengine:pulverizing",
   "ingredient": {
-    "item": "minecraft:deepslate_copper_ore"
+    "item": "minecraft:raw_iron"
   },
   "result": {
-    "id": "thechaosengine:copper_dust",
+    "id": "thechaosengine:iron_dust",
     "count": 2
   },
-  "process_time": 84,
+  "process_time": 65,
   "energy": 1
 }

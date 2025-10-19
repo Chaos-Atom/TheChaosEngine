@@ -1,16 +1,16 @@
 {
   "type": "thechaosengine:refining",
   "item_ingredient": {
-    "item": "minecraft:deepslate_iron_ore"
+    "item": "minecraft:raw_copper"
   },
   "fluid_ingredient": {
     "id": "thechaosengine:lapis_suspension_source",
     "amount": 125
   },
   "result": {
-    "id": "thechaosengine:iron_chunk",
+    "id": "thechaosengine:copper_chunk",
     "count": 3
   },
-  "process_time": 90,
+  "process_time": 80,
   "energy": 1
 }

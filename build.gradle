@@ -150,9 +150,6 @@ dependencies {
     // The group id is ignored when searching -- in this case, it is "blank"
     // implementation "blank:coolmod-${mc_version}:${coolmod_version}"
 
-    implementation "curse.maven:mekanism-268560:6895130" // Intermod Energy Capability Testing
-    implementation "curse.maven:mekanism-generators-268566:6895133" // Intermod Energy Capability Testing
-
     implementation "software.bernie.geckolib:geckolib-neoforge-${minecraft_version}:${geckolib_version}"
 
     // Example mod dependency using a file as dependency

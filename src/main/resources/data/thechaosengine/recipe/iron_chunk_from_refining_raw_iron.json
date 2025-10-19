@@ -1,7 +1,7 @@
 {
   "type": "thechaosengine:refining",
   "item_ingredient": {
-    "item": "minecraft:iron_ore"
+    "item": "minecraft:raw_iron"
   },
   "fluid_ingredient": {
     "id": "thechaosengine:lapis_suspension_source",

@@ -1,12 +1,12 @@
 {
   "type": "thechaosengine:pulverizing",
   "ingredient": {
-    "item": "minecraft:iron_ore"
+    "item": "minecraft:raw_gold"
   },
   "result": {
-    "id": "thechaosengine:iron_dust",
+    "id": "thechaosengine:gold_dust",
     "count": 2
   },
-  "process_time": 65,
+  "process_time": 160,
   "energy": 1
 }
