@@ -82,6 +82,9 @@ public class ChaosEngineCreativeModeTabs {
 
                         output.accept(ChaosEngineBlocks.ALUMINIUM_BLOCK);
 
+                        // Scrap Piles
+                        output.accept(ChaosEngineBlocks.SMALL_ELECTRONIC_SCRAP_PILE);
+
                         // Machine Blocks (Single)
                         output.accept(ChaosEngineBlocks.COMPACT_MACHINE_CHASSIS);
 
@@ -91,7 +94,7 @@ public class ChaosEngineCreativeModeTabs {
                         output.accept(ChaosEngineBlocks.COMPACT_REFINERY);
 
                         output.accept(ChaosEngineBlocks.ATMOSPHERIC_CONDENSER);
-                        output.accept(ChaosEngineBlocks.ATMOSPHERIC_CONDENSER);
+                        output.accept(ChaosEngineBlocks.DEPLOYABLE_SOLAR);
                         output.accept(ChaosEngineBlocks.SUSPENSION_MIXER);
                     }).build());
 

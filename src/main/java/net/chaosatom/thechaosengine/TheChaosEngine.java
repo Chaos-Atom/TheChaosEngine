@@ -2,7 +2,6 @@ package net.chaosatom.thechaosengine;
 
 import net.chaosatom.thechaosengine.block.ChaosEngineBlocks;
 import net.chaosatom.thechaosengine.block.entity.ChaosEngineBlockEntities;
-import net.chaosatom.thechaosengine.block.entity.custom.DeployableSolarBlockEntity;
 import net.chaosatom.thechaosengine.client.renderer.block.AtmosphericCondenserBlockEntityRenderer;
 import net.chaosatom.thechaosengine.client.renderer.block.CompactInductionFoundryBlockEntityRenderer;
 import net.chaosatom.thechaosengine.client.renderer.block.DeployableSolarBlockEntityRenderer;
@@ -15,8 +14,6 @@ import net.chaosatom.thechaosengine.screen.ChaosEngineMenuTypes;
 import net.chaosatom.thechaosengine.screen.custom.*;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.core.Direction;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import org.slf4j.Logger;
@@ -35,7 +32,6 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
-import software.bernie.geckolib.loading.math.MolangQueries;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(TheChaosEngine.MOD_ID)

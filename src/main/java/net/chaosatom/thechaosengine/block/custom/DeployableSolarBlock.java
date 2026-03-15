@@ -215,8 +215,4 @@ public class DeployableSolarBlock extends BaseEntityBlock implements EntityBlock
 
         super.appendHoverText(stack, context, tooltip, tooltipFlag);
     }
-
-    static {
-        // TODO: Add Shape Voxel setup
-    }
 }

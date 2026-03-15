@@ -115,7 +115,11 @@ public class ChaosEngineBlocks {
             () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops()
                     .strength(4.5f, 5.0f).sound(SoundType.METAL)));
 
-    // Complex Blocks
+    // Scrap Pile Blocks
+    public static final DeferredBlock<Block> SMALL_ELECTRONIC_SCRAP_PILE = registerBlock("small_electronic_scrap_pile",
+            () -> new ScrapPileBlock(BlockBehaviour.Properties.of().noOcclusion().requiresCorrectToolForDrops().strength(1.25f)));
+
+    // Machine Blocks
     public static  final DeferredBlock<Block> COMPACT_COAL_GENERATOR = registerBlock("compact_coal_generator",
             () -> new CompactCoalGeneratorBlock(BlockBehaviour.Properties.of().noOcclusion().strength(3f)));
     public static final DeferredBlock<Block> COMPACT_PULVERIZER = registerBlock("compact_pulverizer",
