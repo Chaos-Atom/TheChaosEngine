@@ -30,10 +30,13 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.ItemHandlerHelper;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -160,6 +163,7 @@ public class CompactRefineryBlockEntity extends BlockEntity implements MenuProvi
         if (blockState.getValue(BlockStateProperties.LIT) != isLit) {
             level.setBlock(blockPos, blockState.setValue(BlockStateProperties.LIT, isLit), 3);
         }
+        pushOutputs();
     }
 
     /* Custom Crafting Logic via Helper Methods */
@@ -369,6 +373,37 @@ public class CompactRefineryBlockEntity extends BlockEntity implements MenuProvi
     public void clearContent() {
         for (int i = 0; i < itemHandler.getSlots(); i++) {
             itemHandler.setStackInSlot(i, ItemStack.EMPTY);
+        }
+    }
+
+    private void pushOutputs() {
+        ItemStack outputStack = itemHandler.getStackInSlot(OUTPUT_SLOT);
+        if (outputStack.isEmpty()) {
+            return;
+        }
+
+        Direction facing = this.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
+        Direction[] outputDirections = { Direction.DOWN, facing.getClockWise() };
+
+        for (Direction direction : outputDirections) {
+            BlockEntity neighbor = level.getBlockEntity(worldPosition.relative(direction));
+            if (neighbor == null) {
+                continue;
+            }
+
+            IItemHandler neighborHandler = level.getCapability(Capabilities.ItemHandler.BLOCK,
+                    worldPosition.relative(direction),
+                    direction.getOpposite());
+
+            if (neighborHandler != null) {
+                ItemStack remainder = ItemHandlerHelper.insertItem(neighborHandler, outputStack, false);
+
+                if (remainder.getCount() < outputStack.getCount()) {
+                    itemHandler.setStackInSlot(OUTPUT_SLOT, remainder);
+                    setChanged();
+                    return;
+                }
+            }
         }
     }
 }

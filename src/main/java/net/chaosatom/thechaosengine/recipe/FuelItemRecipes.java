@@ -8,6 +8,7 @@ import java.util.HashMap;
 
 public class FuelItemRecipes {
     // Mainly used for Compact Coal Generator
+    // TODO: Replace with custom recipe system like newer machines
     public record FuelData(int specificBurnProgress, int specificEnergyPerTick) {
     }
 

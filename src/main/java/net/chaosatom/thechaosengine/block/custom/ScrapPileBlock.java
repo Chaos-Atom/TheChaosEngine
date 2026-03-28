@@ -66,6 +66,7 @@ public class ScrapPileBlock extends Block {
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player,
                                               InteractionHand hand, BlockHitResult hitResult) {
+        // TODO: Replace placeholder item with dedicated future "Decorator Screwdriver" Item
         if (!level.isClientSide() && stack.getItem() == ChaosEngineItems.ASSEMBLY_HOUSING.get()) {
             level.setBlock(pos, state.cycle(DESIGN), 3);
             return ItemInteractionResult.sidedSuccess(level.isClientSide);

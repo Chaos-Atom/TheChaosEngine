@@ -78,7 +78,7 @@ public class CompactRefineryScreen extends AbstractContainerScreen<CompactRefine
 
         renderEnergyAreaTooltip(guiGraphics, mouseX, mouseY, x, y);
         renderFluidTooltipArea(guiGraphics, mouseX, mouseY, x, y, menu.getFluid(),
-                14, 9, fluidRenderer);
+                9, 9, fluidRenderer);
     }
 
     @Override
