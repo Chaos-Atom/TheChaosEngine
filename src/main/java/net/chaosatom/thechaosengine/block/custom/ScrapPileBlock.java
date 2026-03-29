@@ -9,6 +9,7 @@ import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Mirror;
@@ -19,6 +20,8 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 public class ScrapPileBlock extends Block {
@@ -26,12 +29,35 @@ public class ScrapPileBlock extends Block {
     public static final IntegerProperty DESIGN = IntegerProperty.create("design",0,2);
     public static final MapCodec<ScrapPileBlock> CODEC = simpleCodec(ScrapPileBlock::new);
 
+    public static final VoxelShape SHAPE_ELECTRONIC_SMALL = Block.box(0,0,0,16,4,16);
+
     public ScrapPileBlock(Properties properties) {
         super(properties);
 
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(FACING, Direction.NORTH)
                 .setValue(DESIGN, 0));
+    }
+
+    /* Voxel Shape Methods */
+    @Override
+    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        return SHAPE_ELECTRONIC_SMALL;
+    }
+
+    @Override
+    protected VoxelShape getOcclusionShape(BlockState state, BlockGetter level, BlockPos pos) {
+        return SHAPE_ELECTRONIC_SMALL;
+    }
+
+    @Override
+    protected VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        return SHAPE_ELECTRONIC_SMALL;
+    }
+
+    @Override
+    protected VoxelShape getInteractionShape(BlockState state, BlockGetter level, BlockPos pos) {
+        return SHAPE_ELECTRONIC_SMALL;
     }
 
     @Override

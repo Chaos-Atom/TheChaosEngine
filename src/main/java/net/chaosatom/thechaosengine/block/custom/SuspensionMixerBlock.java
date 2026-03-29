@@ -82,80 +82,34 @@ public class SuspensionMixerBlock extends BaseEntityBlock implements EntityBlock
     /* Voxel Shape Methods */
     // Note to self, asymmetrical models means verbose voxel shapes
 
+    private VoxelShape getShapeFromState(BlockState state) {
+        boolean isDeployed = state.getValue(DEPLOYED);
+        return switch (state.getValue(FACING)) {
+            case EAST -> isDeployed ? SHAPE_DEPLOYED_EAST : SHAPE_UNDEPLOYED_EAST;
+            case SOUTH -> isDeployed ? SHAPE_DEPLOYED_SOUTH : SHAPE_UNDEPLOYED_SOUTH;
+            case WEST -> isDeployed ? SHAPE_DEPLOYED_WEST : SHAPE_UNDEPLOYED_WEST;
+            default -> isDeployed ? SHAPE_DEPLOYED_NORTH : SHAPE_UNDEPLOYED_NORTH;
+        };
+    }
+
     @Override
     protected @NotNull VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        if (state.getValue(DEPLOYED)) {
-            return switch (state.getValue(FACING)) {
-                case EAST -> SHAPE_DEPLOYED_EAST;
-                case SOUTH -> SHAPE_DEPLOYED_SOUTH;
-                case WEST -> SHAPE_DEPLOYED_WEST;
-                default -> SHAPE_DEPLOYED_NORTH;
-            };
-        } else {
-            return switch (state.getValue(FACING)) {
-                case EAST -> SHAPE_UNDEPLOYED_EAST;
-                case SOUTH -> SHAPE_UNDEPLOYED_SOUTH;
-                case WEST -> SHAPE_UNDEPLOYED_WEST;
-                default -> SHAPE_UNDEPLOYED_NORTH;
-            };
-        }
+        return getShapeFromState(state);
     }
 
     @Override
     protected @NotNull VoxelShape getOcclusionShape(BlockState state, BlockGetter level, BlockPos pos) {
-        if (state.getValue(DEPLOYED)) {
-            return switch (state.getValue(FACING)) {
-                case EAST -> SHAPE_DEPLOYED_EAST;
-                case SOUTH -> SHAPE_DEPLOYED_SOUTH;
-                case WEST -> SHAPE_DEPLOYED_WEST;
-                default -> SHAPE_DEPLOYED_NORTH;
-            };
-        } else {
-            return switch (state.getValue(FACING)) {
-                case EAST -> SHAPE_UNDEPLOYED_EAST;
-                case SOUTH -> SHAPE_UNDEPLOYED_SOUTH;
-                case WEST -> SHAPE_UNDEPLOYED_WEST;
-                default -> SHAPE_UNDEPLOYED_NORTH;
-            };
-        }
+        return getShapeFromState(state);
     }
 
     @Override
     protected @NotNull VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        if (state.getValue(DEPLOYED)) {
-            return switch (state.getValue(FACING)) {
-                case EAST -> SHAPE_DEPLOYED_EAST;
-                case SOUTH -> SHAPE_DEPLOYED_SOUTH;
-                case WEST -> SHAPE_DEPLOYED_WEST;
-                default -> SHAPE_DEPLOYED_NORTH;
-            };
-        } else {
-            return switch (state.getValue(FACING)) {
-                case EAST -> SHAPE_UNDEPLOYED_EAST;
-                case SOUTH -> SHAPE_UNDEPLOYED_SOUTH;
-                case WEST -> SHAPE_UNDEPLOYED_WEST;
-                default -> SHAPE_UNDEPLOYED_NORTH;
-            };
-        }
+        return getShapeFromState(state);
     }
 
     @Override
     protected @NotNull VoxelShape getInteractionShape(BlockState state, BlockGetter level, BlockPos pos) {
-        if (state.getValue(DEPLOYED)) {
-            return switch (state.getValue(FACING)) {
-                case EAST -> SHAPE_DEPLOYED_EAST;
-                case SOUTH -> SHAPE_DEPLOYED_SOUTH;
-                case WEST -> SHAPE_DEPLOYED_WEST;
-                default -> SHAPE_DEPLOYED_NORTH;
-            };
-        } else {
-            return switch (state.getValue(FACING)) {
-                case EAST -> SHAPE_UNDEPLOYED_EAST;
-                case SOUTH -> SHAPE_UNDEPLOYED_SOUTH;
-                case WEST -> SHAPE_UNDEPLOYED_WEST;
-                default -> SHAPE_UNDEPLOYED_NORTH;
-            };
-        }
+        return getShapeFromState(state);
     }
 
     @Override

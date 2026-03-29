@@ -66,7 +66,7 @@ public record PulverizerRecipe(Ingredient inputItem, ItemStack result, int proce
         private static final MapCodec<PulverizerRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> // Given an instance...
                 inst.group( // Defines the fields within the instance
                 Ingredient.CODEC_NONEMPTY.fieldOf("ingredient").forGetter(PulverizerRecipe::inputItem), // First field, an ItemStack as the ingredient...thing?
-                ItemStack.CODEC.fieldOf("result").forGetter(PulverizerRecipe::result), // Second field, an ItemStack as an result item
+                ItemStack.CODEC.fieldOf("result").forGetter(PulverizerRecipe::result), // Second field, an ItemStack as a result item
                 Codec.INT.fieldOf("process_time").forGetter(PulverizerRecipe::processTime),
                 Codec.INT.fieldOf("energy").forGetter(PulverizerRecipe::energy))
                 .apply(inst, PulverizerRecipe::new)); // Defines how to create the object
