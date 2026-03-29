@@ -1,0 +1,8 @@
+{
+  "type": "thechaosengine:fuel_burning",
+  "ingredient": {
+    "item": "minecraft:coal"
+  },
+  "burnTime": 110,
+  "energyPerTick": 1
+}

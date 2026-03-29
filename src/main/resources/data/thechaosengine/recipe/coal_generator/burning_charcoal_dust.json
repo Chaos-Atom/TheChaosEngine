@@ -1,0 +1,8 @@
+{
+  "type": "thechaosengine:fuel_burning",
+  "ingredient": {
+    "item": "thechaosengine:charcoal_dust"
+  },
+  "burnTime": 65,
+  "energyPerTick": 2
+}

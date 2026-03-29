@@ -2,6 +2,7 @@ package net.chaosatom.thechaosengine.recipe;
 
 import net.chaosatom.thechaosengine.TheChaosEngine;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.neoforged.bus.api.IEventBus;
@@ -51,6 +52,16 @@ public class ChaosEngineRecipes {
                 @Override
                 public String toString() {
                     return "refining";
+                }
+            });
+
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<FuelItemRecipe>> FUEL_GENERATOR_SERIALIZER =
+            SERIALIZERS.register("fuel_burning", FuelItemRecipe.Serializer::new);
+    public static final DeferredHolder<RecipeType<?>, RecipeType<FuelItemRecipe>> FUEL_GENERATOR_TYPE =
+            TYPES.register("fuel_burning", () -> new RecipeType<FuelItemRecipe>() {
+                @Override
+                public String toString() {
+                    return "fuel_burning";
                 }
             });
 
