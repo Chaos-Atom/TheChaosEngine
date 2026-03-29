@@ -1,10 +1,11 @@
 package net.chaosatom.thechaosengine.block.entity.custom;
 
 import net.chaosatom.thechaosengine.block.entity.ChaosEngineBlockEntities;
+import net.chaosatom.thechaosengine.recipe.ChaosEngineRecipes;
+import net.chaosatom.thechaosengine.recipe.FuelItemRecipe;
+import net.chaosatom.thechaosengine.recipe.SingleItemRecipeInput;
 import net.chaosatom.thechaosengine.util.energy.EnergyStorage;
-import net.chaosatom.thechaosengine.recipe.FuelItemRecipes;
 import net.chaosatom.thechaosengine.screen.custom.CompactCoalGeneratorMenu;
-import net.chaosatom.thechaosengine.util.ChaosEngineTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -21,7 +22,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -31,6 +32,8 @@ import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
 
 public class CompactCoalGeneratorBlockEntity extends BlockEntity implements MenuProvider {
     public final ItemStackHandler itemHandler = new ItemStackHandler(1) {
@@ -116,6 +119,7 @@ public class CompactCoalGeneratorBlockEntity extends BlockEntity implements Menu
     }
 
     public void tick(Level level, BlockPos blockPos, BlockState blockState) {
+        Optional<RecipeHolder<FuelItemRecipe>> recipe = getCurrentRecipe();
         // Continues to burn the fuel, important failsafe if the world was saved mid-operation on a final item
         if (burnProgress > 0) {
             burnProgress--;
@@ -124,19 +128,14 @@ public class CompactCoalGeneratorBlockEntity extends BlockEntity implements Menu
         }
 
         // Starts a new fuel burn cycle when block is idle and has correct fuel item according to hashmap
-        if (burnProgress <= 0 && hasFuelItemInSlot() && ENERGY_STORAGE.getEnergyStored() < 32000) {
-            Item fuelItem = this.itemHandler.getStackInSlot(INPUT_SLOT).getItem(); // Assigns item based on slot's item
-            // Grabs item-specific data assigned in map & record from fuelItem
-            FuelItemRecipes.FuelData fuelData = FuelItemRecipes.FUEL_STATS.get(fuelItem);
-            if (fuelData != null) {
-                // Consumes one item (confirmed to be valid fuel) from generator's slot
-                this.itemHandler.extractItem(INPUT_SLOT, 1, false);
-                // Updates all the initialized variables to the corresponding specifics from each fuel item
-                this.burnProgress = fuelData.specificBurnProgress();
-                this.maxBurnProgress = fuelData.specificBurnProgress();
-                this.energyPerTick = fuelData.specificEnergyPerTick();
-                setChanged();
-            }
+        if (burnProgress <= 0 && recipe.isPresent() && ENERGY_STORAGE.getEnergyStored() < 32000) {
+            // Consumes one item (confirmed to be valid fuel) from generator's slot
+            consumeItem();
+            // Updates all the initialized variables to the corresponding specifics from each fuel item
+            this.burnProgress = recipe.get().value().burnTime();
+            this.maxBurnProgress = recipe.get().value().burnTime();
+            this.energyPerTick = recipe.get().value().energyPerTick();
+            setChanged();
         }
 
         // Checks if the generator is running, if it is, set block state to LIT for particle effects, sounds, etc.
@@ -192,12 +191,22 @@ public class CompactCoalGeneratorBlockEntity extends BlockEntity implements Menu
     }
     */
 
-    private boolean hasFuelItemInSlot() {
-        return this.itemHandler.getStackInSlot(INPUT_SLOT).is(ChaosEngineTags.Items.COAL_GENERATOR_FUEL);
-    }
-
     private void fillUpOnEnergy() {
         this.ENERGY_STORAGE.receiveEnergy(this.energyPerTick, false);
+    }
+
+    private void consumeItem() {
+        Optional<RecipeHolder<FuelItemRecipe>> recipe = getCurrentRecipe();
+        if (recipe.isEmpty()) {
+            return;
+        }
+
+        itemHandler.extractItem(INPUT_SLOT,1,false);
+    }
+
+    private Optional<RecipeHolder<FuelItemRecipe>> getCurrentRecipe() {
+        return this.level.getRecipeManager()
+                .getRecipeFor(ChaosEngineRecipes.FUEL_GENERATOR_TYPE.get(), new SingleItemRecipeInput(itemHandler.getStackInSlot(INPUT_SLOT)), level);
     }
 
     @Override
