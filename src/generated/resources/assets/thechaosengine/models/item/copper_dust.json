@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "thechaosengine:item/copper_dust"
+    "layer0": "thechaosengine:item/dust/copper_dust"
   }
 }

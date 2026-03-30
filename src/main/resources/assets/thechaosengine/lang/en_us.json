@@ -50,6 +50,10 @@
   "item.thechaosengine.basic_machine_panel": "Basic Machine Panel",
   "item.thechaosengine.solar_panel_unit": "Solar Panel Unit",
 
+  "item.thechaosengine.old_wires": "Old Wires",
+
+  "item.thechaosengine.decodriver": "DecoDriver",
+
   "block.thechaosengine.iron_dust_block": "Block of Iron Dust",
   "block.thechaosengine.gold_dust_block": "Block of Gold Dust",
   "block.thechaosengine.copper_dust_block": "Block of Copper Dust",
@@ -82,7 +86,7 @@
   "block.thechaosengine.alumina_bronze_panels": "Alumina Bronze Large Panels",
   "block.thechaosengine.cubic_alumina_bronze": "Cubic Alumina Bronze",
 
-  "block.thechaosengine.small_electronic_scrap_pile": "Small Electronic Scrap Pile",
+  "block.thechaosengine.electronic_scrap_pile": "Electronic Scrap Pile",
 
   "block.thechaosengine.compact_machine_chassis": "Compact Machine Chassis",
 

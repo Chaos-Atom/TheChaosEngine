@@ -73,6 +73,12 @@ public class ChaosEngineCreativeModeTabs {
                         output.accept(ChaosEngineItems.BASIC_MACHINE_PANEL);
                         output.accept(ChaosEngineItems.SOLAR_PANEL_UNIT);
 
+                        // Scrap Items & Recyclables
+                        output.accept(ChaosEngineItems.OLD_WIRES);
+
+                        // Tools & Gadgets
+                        output.accept(ChaosEngineItems.DECODRIVER);
+
                         /* BLOCKS */
                         // Full Blocks
                         output.accept(ChaosEngineBlocks.IRON_DUST_BLOCK);
@@ -83,7 +89,7 @@ public class ChaosEngineCreativeModeTabs {
                         output.accept(ChaosEngineBlocks.ALUMINIUM_BLOCK);
 
                         // Scrap Piles
-                        output.accept(ChaosEngineBlocks.SMALL_ELECTRONIC_SCRAP_PILE);
+                        output.accept(ChaosEngineBlocks.ELECTRONIC_SCRAP_PILE);
 
                         // Machine Blocks (Single)
                         output.accept(ChaosEngineBlocks.COMPACT_MACHINE_CHASSIS);

@@ -4,6 +4,8 @@ import com.mojang.serialization.MapCodec;
 import net.chaosatom.thechaosengine.item.ChaosEngineItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -22,6 +24,7 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class ScrapPileBlock extends Block {
@@ -90,12 +93,15 @@ public class ScrapPileBlock extends Block {
     }
 
     @Override
-    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player,
-                                              InteractionHand hand, BlockHitResult hitResult) {
-        // TODO: Replace placeholder item with dedicated future "Decorator Screwdriver" Item
-        if (!level.isClientSide() && stack.getItem() == ChaosEngineItems.ASSEMBLY_HOUSING.get()) {
-            level.setBlock(pos, state.cycle(DESIGN), 3);
-            return ItemInteractionResult.sidedSuccess(level.isClientSide);
+    protected @NotNull ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player,
+                                                       InteractionHand hand, BlockHitResult hitResult) {
+        if (stack.getItem() == ChaosEngineItems.DECODRIVER.asItem()) {
+            if (!level.isClientSide()) {
+                level.setBlock(pos, state.cycle(DESIGN),3);
+                // TODO: Replace current sound with custom
+                level.playSound(null, pos, SoundEvents.UI_BUTTON_CLICK.value(), SoundSource.BLOCKS, 0.5f, 0.625f);
+            }
+            return ItemInteractionResult.sidedSuccess(level.isClientSide());
         }
         return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
     }

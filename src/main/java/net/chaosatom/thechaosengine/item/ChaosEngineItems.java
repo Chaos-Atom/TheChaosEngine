@@ -107,6 +107,14 @@ public class ChaosEngineItems {
     public static final DeferredItem<Item> SOLAR_PANEL_UNIT = ITEMS.register("solar_panel_unit",
             () -> new Item(new Item.Properties()));
 
+    // Scrap Items & Recyclables
+    public static final DeferredItem<Item> OLD_WIRES = ITEMS.register("old_wires",
+            () -> new Item(new Item.Properties()));
+
+    // Tools & Simple Gadgets
+    public static final DeferredItem<Item> DECODRIVER = ITEMS.register("decodriver",
+            () -> new Item(new Item.Properties().stacksTo(1)));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

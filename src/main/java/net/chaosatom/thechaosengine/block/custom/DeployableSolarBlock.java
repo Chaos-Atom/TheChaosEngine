@@ -144,16 +144,12 @@ public class DeployableSolarBlock extends BaseEntityBlock implements EntityBlock
     @Override
     protected @NotNull ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player,
                                                        InteractionHand hand, BlockHitResult hitResult) {
-
         if (!state.getValue(DEPLOYED)) {
-
             // Checks if the block about the mixer is an air block so it's free to expand upwards.
             if (level.getBlockState(pos.above()).isAir()) {
                 level.setBlock(pos, state.setValue(DEPLOYED, true), 3); // Sets state to Deployed
-
                 if (level.getBlockEntity(pos) instanceof DeployableSolarBlockEntity blockEntity) {
                     blockEntity.startSolarPanelDeployment();
-
                 }
                 return ItemInteractionResult.sidedSuccess(level.isClientSide());
             } else {
@@ -167,7 +163,6 @@ public class DeployableSolarBlock extends BaseEntityBlock implements EntityBlock
 
         if (!level.isClientSide()) {
             BlockEntity entity = level.getBlockEntity(pos);
-
             if (state.getValue(DEPLOYED)) {
                 if (entity instanceof DeployableSolarBlockEntity deployableSolarBlockEntity) {
                     ((ServerPlayer) player).openMenu(new SimpleMenuProvider(deployableSolarBlockEntity,

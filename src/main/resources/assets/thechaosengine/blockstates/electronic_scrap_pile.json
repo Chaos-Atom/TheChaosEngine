@@ -1,0 +1,39 @@
+{
+  "variants": {
+    "facing=north,design=0": {
+      "model": "thechaosengine:block/electronic_scrap_pile_a" },
+    "facing=east,design=0":  {
+      "model": "thechaosengine:block/electronic_scrap_pile_a",
+      "y": 90 },
+    "facing=south,design=0": {
+      "model": "thechaosengine:block/electronic_scrap_pile_a",
+      "y": 180 },
+    "facing=west,design=0":  {
+      "model": "thechaosengine:block/electronic_scrap_pile_a",
+      "y": 270 },
+
+    "facing=north,design=1": {
+      "model": "thechaosengine:block/electronic_scrap_pile_b" },
+    "facing=east,design=1":  {
+      "model": "thechaosengine:block/electronic_scrap_pile_b",
+      "y": 90 },
+    "facing=south,design=1": {
+      "model": "thechaosengine:block/electronic_scrap_pile_b",
+      "y": 180 },
+    "facing=west,design=1":  {
+      "model": "thechaosengine:block/electronic_scrap_pile_b",
+      "y": 270 },
+	  
+    "facing=north,design=2": {
+      "model": "thechaosengine:block/electronic_scrap_pile_c" },
+    "facing=east,design=2":  {
+      "model": "thechaosengine:block/electronic_scrap_pile_c",
+      "y": 90 },
+    "facing=south,design=2": {
+      "model": "thechaosengine:block/electronic_scrap_pile_c",
+      "y": 180 },
+    "facing=west,design=2":  {
+      "model": "thechaosengine:block/electronic_scrap_pile_c",
+      "y": 270 }
+  }
+}

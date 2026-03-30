@@ -116,7 +116,7 @@ public class ChaosEngineBlocks {
                     .strength(4.5f, 5.0f).sound(SoundType.METAL)));
 
     // Scrap Pile Blocks
-    public static final DeferredBlock<Block> SMALL_ELECTRONIC_SCRAP_PILE = registerBlock("small_electronic_scrap_pile",
+    public static final DeferredBlock<Block> ELECTRONIC_SCRAP_PILE = registerBlock("electronic_scrap_pile",
             () -> new ScrapPileBlock(BlockBehaviour.Properties.of().noOcclusion().requiresCorrectToolForDrops().strength(1.25f)));
 
     // Machine Blocks

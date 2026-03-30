@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "thechaosengine:item/heat_pump_assembly"
+    "layer0": "thechaosengine:item/component/heat_pump_assembly"
   }
 }

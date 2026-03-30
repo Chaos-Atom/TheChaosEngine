@@ -24,6 +24,8 @@ public class ChaosEngineBlockTagsProvider extends BlockTagsProvider {
                 .add(ChaosEngineBlocks.COPPER_DUST_BLOCK.get());
 
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
+                .add(ChaosEngineBlocks.ELECTRONIC_SCRAP_PILE.get())
+
                 .add(ChaosEngineBlocks.BAUXITE.get())
                 .add(ChaosEngineBlocks.BAUXITE_STAIRS.get())
                 .add(ChaosEngineBlocks.BAUXITE_SLAB.get())
