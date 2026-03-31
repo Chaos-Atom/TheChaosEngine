@@ -118,6 +118,10 @@ public class CompactInductionFoundryBlockEntity extends BlockEntity implements M
         Optional<RecipeHolder<InductionFoundryRecipe>> recipe = getCurrentRecipe();
         boolean wasWorkingThisTick = false;
 
+        if (hasItemInOutput()) {
+            pushOutputs();
+        }
+
         if (recipe.isEmpty() || !isOutputSlotEmptyOrReceivable()) {
             setChanged(level, blockPos, blockState);
             resetProgress();
@@ -219,6 +223,10 @@ public class CompactInductionFoundryBlockEntity extends BlockEntity implements M
         int currentCount = itemHandler.getStackInSlot(OUTPUT_SLOT).getCount();
 
         return maxCount >= currentCount + count;
+    }
+
+    private boolean hasItemInOutput() {
+        return this.itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() > 0;
     }
 
     /* General Block Entity Methods */

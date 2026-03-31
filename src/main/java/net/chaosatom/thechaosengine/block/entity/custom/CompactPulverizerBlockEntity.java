@@ -118,6 +118,10 @@ public class CompactPulverizerBlockEntity extends BlockEntity implements MenuPro
         Optional<RecipeHolder<PulverizerRecipe>> recipe = getCurrentRecipe();
         boolean wasWorkingThisTick = false;
 
+        if (hasItemInOutput()) {
+            pushOutputs();
+        }
+
         if (recipe.isEmpty() || !isOutputSlotEmptyOrReceivable()) {
             setChanged(level, blockPos, blockState);
             resetProgress();
@@ -220,6 +224,10 @@ public class CompactPulverizerBlockEntity extends BlockEntity implements MenuPro
         int currentCount = itemHandler.getStackInSlot(OUTPUT_SLOT).getCount();
 
         return maxCount >= currentCount + count;
+    }
+
+    private boolean hasItemInOutput() {
+        return this.itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() > 0;
     }
 
     // General Block Entity Methods

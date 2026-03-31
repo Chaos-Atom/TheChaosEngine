@@ -136,6 +136,9 @@ public class CompactRefineryBlockEntity extends BlockEntity implements MenuProvi
     public void tick(Level level, BlockPos blockPos, BlockState blockState) {
         Optional<RecipeHolder<RefineryRecipe>> recipe = getCurrentRecipe();
         boolean wasWorkingThisTick;
+        if (hasItemInOutput()) {
+            pushOutputs();
+        }
 
         if (recipe.isEmpty() || !isOutputSlotEmptyOrReceivable()) {
             setChanged(level, blockPos, blockState);
@@ -237,7 +240,11 @@ public class CompactRefineryBlockEntity extends BlockEntity implements MenuProvi
         int maxCount = itemHandler.getStackInSlot(OUTPUT_SLOT).isEmpty() ? 64 : itemHandler.getStackInSlot(OUTPUT_SLOT).getMaxStackSize();
         int currentCount = itemHandler.getStackInSlot(OUTPUT_SLOT).getCount();
 
-        return maxCount >= currentCount + currentCount;
+        return maxCount >= count + currentCount;
+    }
+
+    private boolean hasItemInOutput() {
+        return this.itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() > 0;
     }
 
     private void resetProgress() {
