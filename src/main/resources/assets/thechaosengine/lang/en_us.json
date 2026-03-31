@@ -50,7 +50,10 @@
   "item.thechaosengine.basic_machine_panel": "Basic Machine Panel",
   "item.thechaosengine.solar_panel_unit": "Solar Panel Unit",
 
-  "item.thechaosengine.old_wires": "Old Wires",
+  "item.thechaosengine.old_cables": "Old Cables",
+  "item.thechaosengine.metal_scrap": "Metal Scrap",
+  "item.thechaosengine.delicate_circuitry": "Delicate Circuitry",
+  "item.thechaosengine.ancient_processor": "Ancient Processor",
 
   "item.thechaosengine.decodriver": "DecoDriver",
 
@@ -111,6 +114,9 @@
   "blockentity.thechaosengine.deployable_solar": "Deployable Solar Panel",
 
   "fluid_type.thechaosengine.lapis_suspension": "Lapis Suspension",
+
+  "tooltip.thechaosengine.ancient_processor": "§7Still working after all these years...§r",
+  "tooltip.thechaosengine.decodriver": "§7Used on certain blocks to change their appearance.§r",
 
   "tooltip.thechaosengine.compact_coal_generator_stickynote": "§7Sticky Note§r",
 

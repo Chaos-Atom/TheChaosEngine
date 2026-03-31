@@ -74,7 +74,10 @@ public class ChaosEngineCreativeModeTabs {
                         output.accept(ChaosEngineItems.SOLAR_PANEL_UNIT);
 
                         // Scrap Items & Recyclables
-                        output.accept(ChaosEngineItems.OLD_WIRES);
+                        output.accept(ChaosEngineItems.OLD_CABLES);
+                        output.accept(ChaosEngineItems.METAL_SCRAP);
+                        output.accept(ChaosEngineItems.DELICATE_CIRCUITRY);
+                        output.accept(ChaosEngineItems.ANCIENT_PROCESSOR);
 
                         // Tools & Gadgets
                         output.accept(ChaosEngineItems.DECODRIVER);

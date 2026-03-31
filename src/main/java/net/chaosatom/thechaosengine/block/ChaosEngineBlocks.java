@@ -117,7 +117,7 @@ public class ChaosEngineBlocks {
 
     // Scrap Pile Blocks
     public static final DeferredBlock<Block> ELECTRONIC_SCRAP_PILE = registerBlock("electronic_scrap_pile",
-            () -> new ScrapPileBlock(BlockBehaviour.Properties.of().noOcclusion().requiresCorrectToolForDrops().strength(1.25f)));
+            () -> new ScrapPileBlock(BlockBehaviour.Properties.of().noOcclusion().requiresCorrectToolForDrops().strength(0.75f)));
 
     // Machine Blocks
     public static  final DeferredBlock<Block> COMPACT_COAL_GENERATOR = registerBlock("compact_coal_generator",

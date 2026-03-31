@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_alumina_bronze_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "thechaosengine:alumina_bronze_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_basic_machine_panel": {
+      "conditions": {
+        "items": [
+          {
+            "items": "thechaosengine:basic_machine_panel"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "thechaosengine:decodriver"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_alumina_bronze_ingot",
+      "has_basic_machine_panel"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "thechaosengine:decodriver"
+    ]
+  }
+}

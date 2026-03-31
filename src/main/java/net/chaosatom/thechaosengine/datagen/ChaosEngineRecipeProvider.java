@@ -187,10 +187,15 @@ public class ChaosEngineRecipeProvider extends RecipeProvider implements ICondit
                 .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT)).save(recipeOutput);
 
         // Tools & Simple Gadgets
-        /*
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ChaosEngineItems.DECODRIVER.get(), 1)
-                        .pattern()
-         */
+                .pattern("I")
+                .pattern("F")
+                .pattern("A")
+                .define('I', Items.IRON_INGOT)
+                .define('F', ChaosEngineItems.BASIC_MACHINE_PANEL.get())
+                .define('A', ChaosEngineItems.ALUMINA_BRONZE_INGOT.get())
+                .unlockedBy("has_alumina_bronze_ingot", has(ChaosEngineItems.ALUMINA_BRONZE_INGOT))
+                .unlockedBy("has_basic_machine_panel", has(ChaosEngineItems.BASIC_MACHINE_PANEL)).save(recipeOutput);
 
         // TEMPORARY RECIPES
         // TODO: Replace with actual recipe once prerequisite items are created

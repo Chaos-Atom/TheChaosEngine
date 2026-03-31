@@ -11,7 +11,6 @@ import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
-import org.apache.logging.log4j.core.util.NameUtil;
 
 public class ChaosEngineItemModelProvider extends ItemModelProvider {
     public ChaosEngineItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
@@ -63,7 +62,10 @@ public class ChaosEngineItemModelProvider extends ItemModelProvider {
         basicItemWithPath(ChaosEngineItems.BASIC_MACHINE_PANEL.get(),"component");
         basicItemWithPath(ChaosEngineItems.SOLAR_PANEL_UNIT.get(),"component");
 
-        basicItemWithPath(ChaosEngineItems.OLD_WIRES.get(), "scrap_drop");
+        basicItemWithPath(ChaosEngineItems.OLD_CABLES.get(), "scrap_drop");
+        basicItemWithPath(ChaosEngineItems.METAL_SCRAP.get(), "scrap_drop");
+        basicItemWithPath(ChaosEngineItems.DELICATE_CIRCUITRY.get(), "scrap_drop");
+        basicItemWithPath(ChaosEngineItems.ANCIENT_PROCESSOR.get(), "scrap_drop");
 
         handheldItem(ChaosEngineItems.DECODRIVER.get());
 

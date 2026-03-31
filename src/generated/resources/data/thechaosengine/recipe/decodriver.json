@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "item": "thechaosengine:alumina_bronze_ingot"
+    },
+    "F": {
+      "item": "thechaosengine:basic_machine_panel"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    "I",
+    "F",
+    "A"
+  ],
+  "result": {
+    "count": 1,
+    "id": "thechaosengine:decodriver"
+  }
+}

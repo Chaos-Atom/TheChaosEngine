@@ -9,6 +9,7 @@
           "children": [
             {
               "type": "minecraft:item",
+              "name": "thechaosengine:electronic_scrap_pile",
               "conditions": [
                 {
                   "condition": "minecraft:match_tool",
@@ -26,58 +27,148 @@
                   }
                 }
               ],
-              "name": "thechaosengine:electronic_scrap_pile"
+              "functions": []
+            }
+          ]
+        }
+      ],
+      "rolls": 1,
+      "functions": [],
+      "conditions": []
+    },
+    {
+      "rolls": 3,
+      "bonus_rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:group",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "name": "thechaosengine:old_cables",
+              "weight": 7,
+              "functions": [
+                {
+                  "function": "minecraft:set_count",
+                  "count": {
+                    "type": "minecraft:binomial",
+                    "n": 3,
+                    "p": 0.6575
+                  },
+                  "add": true,
+                  "conditions": []
+                },
+                {
+                  "function": "minecraft:apply_bonus",
+                  "enchantment": "minecraft:fortune",
+                  "formula": "minecraft:uniform_bonus_count",
+                  "parameters": {
+                    "bonusMultiplier": 1
+                  }
+                }
+              ]
             },
             {
-              "type": "minecraft:group",
-              "children": [
+              "type": "minecraft:item",
+              "name": "thechaosengine:metal_scrap",
+              "weight": 4,
+              "functions": [
                 {
-                  "type": "minecraft:alternatives",
-                  "children": [
-                    {
-                      "type": "minecraft:item",
-                      "name": "thechaosengine:simple_logic_board",
-                      "functions": [
-                        {
-                          "function": "minecraft:set_count",
-                          "count": {
-                            "type": "minecraft:uniform",
-                            "min": 0,
-                            "max": 2
-                          },
-                          "add": true
-                        }
-                      ]
-                    },
-                    {
-                      "type": "minecraft:item",
-                      "name": "thechaosengine:logic_assembly",
-                      "conditions": [],
-                      "functions": [
-                        {
-                          "function": "minecraft:set_count",
-                          "count": {
-                            "type": "minecraft:uniform",
-                            "min": 0,
-                            "max": 1
-                          },
-                          "add": true
-                        },
-                        {
-                          "function": "minecraft:limit_count",
-                          "limit": 2
-                        }
-                      ]
-                    }
-                  ],
+                  "function": "minecraft:set_count",
+                  "count": {
+                    "type": "minecraft:binomial",
+                    "n": 3,
+                    "p": 0.3585
+                  },
+                  "add": true
+                },
+                {
+                  "function": "minecraft:apply_bonus",
+                  "enchantment": "minecraft:fortune",
+                  "formula": "minecraft:uniform_bonus_count",
+                  "parameters": {
+                    "bonusMultiplier": 1
+                  }
+                }
+              ]
+            },
+            {
+              "type": "minecraft:item",
+              "name": "thechaosengine:delicate_circuitry",
+              "weight": 2,
+              "quality": 1,
+              "functions": [
+                {
+                  "function": "minecraft:set_count",
+                  "count": {
+                    "type": "minecraft:binomial",
+                    "n": 3,
+                    "p": 0.2185
+                  },
+                  "add": false
+                },
+                {
+                  "function": "minecraft:apply_bonus",
+                  "enchantment": "minecraft:fortune",
+                  "formula": "minecraft:binomial_with_bonus_count",
+                  "parameters": {
+                    "extra": 1,
+                    "probability": 0.68
+                  },
                   "conditions": []
+                }
+              ]
+            },
+            {
+              "type": "minecraft:item",
+              "name": "thechaosengine:ancient_processor",
+              "weight": 1,
+              "quality": 2,
+              "functions": [
+                {
+                  "function": "minecraft:set_count",
+                  "count": {
+                    "type": "minecraft:binomial",
+                    "n": 3,
+                    "p": 0.1125
+                  },
+                  "add": false
+                },
+                {
+                  "function": "minecraft:apply_bonus",
+                  "enchantment": "minecraft:fortune",
+                  "formula": "minecraft:binomial_with_bonus_count",
+                  "parameters": {
+                    "extra": 1,
+                    "probability": 0.25
+                  }
                 }
               ]
             }
           ]
         }
       ],
-      "rolls": 1
+      "functions": [],
+      "conditions": [
+        {
+          "condition": "minecraft:inverted",
+          "term": {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "predicates": {
+                "minecraft:enchantments": [
+                  {
+                    "enchantments": "minecraft:silk_touch",
+                    "levels": {
+                      "min": 1
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
     }
   ],
   "functions": [

@@ -1,8 +1,9 @@
-// 1.21.1	2026-03-30T02:32:04.7345659	Item Models: thechaosengine
+// 1.21.1	2026-03-30T23:39:57.3894499	Item Models: thechaosengine
 f2efbcd2ff98652cdaeade8c86982d98059ea45c assets/thechaosengine/models/item/alumina_bronze_dust.json
 432f63fb1dc0778e6f8000b81ad0a5e932e9fcec assets/thechaosengine/models/item/alumina_bronze_ingot.json
 760a46a33621d1e1af32cb13f4bfbf58547e59f9 assets/thechaosengine/models/item/alumina_dust.json
 b6634975647a1494fe1ad2120c243ab07b6702c3 assets/thechaosengine/models/item/aluminium_ingot.json
+f4e4dc98fc915566da9b5d74d73c0476aee50340 assets/thechaosengine/models/item/ancient_processor.json
 f96b93b132d25fb9620a8ad4e3a251e734a27a8a assets/thechaosengine/models/item/assembly_housing.json
 19eea6e452444ee8e66041a784cae929d35dab57 assets/thechaosengine/models/item/basic_machine_panel.json
 a4498cc5c73b50a615f54cef601a707c4fdf4ca3 assets/thechaosengine/models/item/bauxite_brick_wall.json
@@ -19,6 +20,7 @@ deaa23cbedac4a10c7b557c82bd36a4fc3353bf4 assets/thechaosengine/models/item/coppe
 0c9e4c1b58738f19b654d418584f90a619cd2da2 assets/thechaosengine/models/item/crystal_gold.json
 7334b4954649220d87dcc0a79f65350f3a5275c2 assets/thechaosengine/models/item/crystal_iron.json
 45530c94859b122f93f199bef36e2bef68c24835 assets/thechaosengine/models/item/decodriver.json
+0f2557f02cbf69f76c9230c2e52b5e6a8877e57e assets/thechaosengine/models/item/delicate_circuitry.json
 cb69913eae3fe7fc18093593084a01ac0f67414e assets/thechaosengine/models/item/deployment_assembly.json
 f3da68ba32127bebe3686629e2dae874fc1c5630 assets/thechaosengine/models/item/empty_board.json
 0ff9290650d22754be687320ab6a0d8868a850d4 assets/thechaosengine/models/item/enchanted_copper_shards.json
@@ -33,7 +35,8 @@ c59af63fd258598d788d94efe720034f03d72786 assets/thechaosengine/models/item/iron_
 16c2f7eebefee21b90b695f7303ea510fb3809b1 assets/thechaosengine/models/item/lapis_lazuli_dust.json
 98efd736b8d9c20184d682bd163f8dc904e0909d assets/thechaosengine/models/item/lapis_suspension_bucket.json
 3c1f8ed0d91390df3a11e910c7edf491ddc014ff assets/thechaosengine/models/item/logic_assembly.json
-3b2f6936dd13050c5258fe8d361df4ccc3a622b0 assets/thechaosengine/models/item/old_wires.json
+8ebe5b825c3cabf98018875730a06c41fa714d31 assets/thechaosengine/models/item/metal_scrap.json
+a4fe9b436781ea5e316e2149b1a0f357756ea7cc assets/thechaosengine/models/item/old_cables.json
 0eefbebd28f0fc4143ed9f13f61e1198d1443d44 assets/thechaosengine/models/item/polished_bauxite_wall.json
 2d90455c87a92ae251789a31c4b574e1c1b515e9 assets/thechaosengine/models/item/purified_crystal_copper.json
 e2e9039c716af9c19b1a30a8dd25ed1fefdf2ba5 assets/thechaosengine/models/item/purified_crystal_gold.json
