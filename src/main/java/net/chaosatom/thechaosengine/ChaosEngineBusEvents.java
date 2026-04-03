@@ -18,7 +18,7 @@ public class ChaosEngineBusEvents {
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ChaosEngineBlockEntities.COMPACT_COAL_GENERATOR_BE.get(),
                 (blockEntity, side) -> {
             Direction facing = blockEntity.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
-            return (side == facing.getClockWise()) ? blockEntity.getEnergyStorage(side) : null;
+            return (side == facing.getCounterClockWise()) ? blockEntity.getEnergyStorage(side) : null;
         });
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ChaosEngineBlockEntities.COMPACT_PULVERIZER_BE.get(),
                 (blockEntity, side) -> {
@@ -65,8 +65,8 @@ public class ChaosEngineBusEvents {
         event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, ChaosEngineBlockEntities.SUSPENSION_MIXER_BE.get(),
                 (blockEntity, side) -> {
             Direction facing = blockEntity.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
-            Direction inputSide = facing.getCounterClockWise();
-            Direction outputSide = facing.getClockWise();
+            Direction inputSide = facing.getClockWise();
+            Direction outputSide = facing.getCounterClockWise();
 
             if (side == inputSide) {
                 return blockEntity.getInputTank(side);
@@ -88,9 +88,9 @@ public class ChaosEngineBusEvents {
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ChaosEngineBlockEntities.COMPACT_COAL_GENERATOR_BE.get(),
                 (blockEntity, side) -> {
                     Direction facing = blockEntity.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
-                    Direction leftSide = facing.getCounterClockWise();
+                    Direction rightSide = facing.getClockWise();
 
-                    if (side == leftSide) {
+                    if (side == rightSide) {
                         return blockEntity.itemHandler;
                     }
                     return null;

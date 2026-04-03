@@ -390,7 +390,7 @@ public class CompactRefineryBlockEntity extends BlockEntity implements MenuProvi
         }
 
         Direction facing = this.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
-        Direction[] outputDirections = { Direction.DOWN, facing.getClockWise() };
+        Direction[] outputDirections = { Direction.DOWN, facing.getCounterClockWise() };
 
         for (Direction direction : outputDirections) {
             BlockEntity neighbor = level.getBlockEntity(worldPosition.relative(direction));

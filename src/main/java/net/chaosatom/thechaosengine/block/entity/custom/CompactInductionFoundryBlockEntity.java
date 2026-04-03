@@ -350,7 +350,7 @@ public class CompactInductionFoundryBlockEntity extends BlockEntity implements M
         }
 
         Direction facing = this.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
-        Direction[] outputDirections = { Direction.DOWN, facing.getClockWise() }; // Bottom & Right side of block
+        Direction[] outputDirections = { Direction.DOWN, facing.getCounterClockWise() }; // Bottom & Left side of block
 
         // For each result side, check if neighbor is a block entity
         for (Direction direction : outputDirections) {

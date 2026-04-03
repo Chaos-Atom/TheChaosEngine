@@ -371,7 +371,7 @@ public class ChaosEngineRecipeProvider extends RecipeProvider implements ICondit
         oreSmeltingSingle(recipeOutput, ChaosEngineItems.COPPER_DUST.get(), RecipeCategory.MISC, Items.COPPER_INGOT,
                 0.7f, 180, "copper_ingot");
         oreSmeltingSingle(recipeOutput, ChaosEngineItems.BAUXITE_DUST.get(), RecipeCategory.MISC, ChaosEngineItems.ALUMINIUM_INGOT,
-                0.7f, 480, "aluminium_ingot");
+                0.7f, 180, "aluminium_ingot");
         oreSmeltingSingle(recipeOutput, ChaosEngineItems.ALUMINA_BRONZE_DUST.get(), RecipeCategory.MISC, ChaosEngineItems.ALUMINA_BRONZE_INGOT,
                 0.7f, 180, "alumina_bronze_ingot");
 
@@ -383,7 +383,7 @@ public class ChaosEngineRecipeProvider extends RecipeProvider implements ICondit
         oreBlastingSingle(recipeOutput, ChaosEngineItems.COPPER_DUST.get(), RecipeCategory.MISC, Items.COPPER_INGOT,
                 0.7f, 90, "copper_ingot");
         oreBlastingSingle(recipeOutput, ChaosEngineItems.BAUXITE_DUST.get(), RecipeCategory.MISC, ChaosEngineItems.ALUMINIUM_INGOT,
-                0.7f, 240, "aluminium_ingot");
+                0.7f, 90, "aluminium_ingot");
         oreBlastingSingle(recipeOutput, ChaosEngineItems.ALUMINA_BRONZE_DUST.get(), RecipeCategory.MISC, ChaosEngineItems.ALUMINA_BRONZE_INGOT,
                 0.7f, 90, "alumina_bronze_ingot");
     }

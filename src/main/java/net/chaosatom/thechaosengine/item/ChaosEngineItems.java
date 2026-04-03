@@ -72,8 +72,10 @@ public class ChaosEngineItems {
     public static final DeferredItem<Item> CHARCOAL_DUST = ITEMS.register("charcoal_dust",
             () -> new Item(new Item.Properties()));
 
+    // TODO: Replace with complete recipe once Aluminium processing line has been completed
     public static final DeferredItem<Item> ALUMINA_DUST = ITEMS.register("alumina_dust",
             () -> new Item(new Item.Properties()));
+
     public static final DeferredItem<Item> ALUMINA_BRONZE_DUST = ITEMS.register("alumina_bronze_dust",
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> ALUMINA_BRONZE_INGOT = ITEMS.register("alumina_bronze_ingot",
