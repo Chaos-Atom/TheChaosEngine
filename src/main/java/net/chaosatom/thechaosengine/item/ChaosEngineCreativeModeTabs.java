@@ -105,6 +105,7 @@ public class ChaosEngineCreativeModeTabs {
                         output.accept(ChaosEngineBlocks.ATMOSPHERIC_CONDENSER);
                         output.accept(ChaosEngineBlocks.DEPLOYABLE_SOLAR);
                         output.accept(ChaosEngineBlocks.SUSPENSION_MIXER);
+                        output.accept(ChaosEngineBlocks.DEPLOYABLE_COKE_FACTORY);
                     }).build());
 
     public static final Supplier<CreativeModeTab> THE_CHAOS_ENGINE_DECORATIONS_TAB =

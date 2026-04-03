@@ -135,6 +135,8 @@ public class ChaosEngineBlocks {
             () -> new SuspensionMixerBlock(BlockBehaviour.Properties.of().noOcclusion().strength(3f)));
     public static final DeferredBlock<Block> DEPLOYABLE_SOLAR = registerBlock("deployable_solar",
             () -> new DeployableSolarBlock(BlockBehaviour.Properties.of().noOcclusion().strength(3f)));
+    public static final DeferredBlock<Block> DEPLOYABLE_COKE_FACTORY = registerBlock("deployable_coke_factory",
+            () -> new DeployableCokeFactoryBlock(BlockBehaviour.Properties.of().noOcclusion().strength(3f)));
 
     // Fluid Blocks
     public static final DeferredHolder<Block, LiquidBlock> LAPIS_SUSPENSION_BLOCK = BLOCKS.register("lapis_suspension_block",

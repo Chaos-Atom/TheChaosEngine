@@ -101,6 +101,7 @@
   "block.thechaosengine.atmospheric_condenser": "Atmospheric Condenser",
   "block.thechaosengine.suspension_mixer": "Suspension Mixer",
   "block.thechaosengine.deployable_solar": "Deployable Solar Generator",
+  "block.thechaosengine.deployable_coke_factory": "Deployable Coke Factory",
 
   "block.thechaosengine.deployable_machine.tooltip": "§7Currently not deployed, place on ground and right-click to deploy.§r",
 
@@ -112,6 +113,7 @@
   "blockentity.thechaosengine.atmospheric_condenser": "Atmospheric Condenser",
   "blockentity.thechaosengine.suspension_mixer": "Suspension Mixer",
   "blockentity.thechaosengine.deployable_solar": "Deployable Solar Panel",
+  "blockentity.thechaosengine.deployable_coke_factory": "Deployable Coke Factory",
 
   "fluid_type.thechaosengine.lapis_suspension": "Lapis Suspension",
 
@@ -126,8 +128,10 @@
   "message.thechaosengine.condenser_no_room": "Not enough space to place the Atmospheric Condenser.",
   "message.thechaosengine.mixer_no_room": "Not enough space to place the Suspension Mixer.",
   "message.thechaosengine.solar_panel_no_room": "Not enough space to place the Deployable Solar Panel",
+  "message.thechaosengine.coke_factory_no_room": "Not enough space to place the Deployable Coke Factory",
 
   "message.thechaosengine.condenser_obstructed": "Atmospheric Condenser is obstructed and cannot deploy.",
   "message.thechaosengine.mixer_obstructed": "Suspension Mixer is obstructed and cannot deploy.",
-  "message.thechaosengine.solar_panel_obstructed": "Deployable Solar Panel is obstructed and cannot deploy"
+  "message.thechaosengine.solar_panel_obstructed": "Deployable Solar Panel is obstructed and cannot deploy",
+  "message.thechaosengine.coke_factory_obstructed": "Deployable Coke Factory is obstructed and cannot deploy"
 }

@@ -1,0 +1,2211 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"coking_factory.deploying": {
+			"loop": "hold_on_last_frame",
+			"animation_length": 4.5,
+			"bones": {
+				"NB Basin Wall": {
+					"rotation": {
+						"1.125": {
+							"vector": [0, 0, 0]
+						},
+						"1.875": {
+							"vector": [90, 0, 0],
+							"easing": "easeInOutCubic"
+						}
+					}
+				},
+				"NU Wall": {
+					"rotation": {
+						"1.25": {
+							"vector": [0, 0, 0]
+						},
+						"1.875": {
+							"vector": [-180, 0, 0],
+							"easing": "easeInOutCubic"
+						}
+					}
+				},
+				"SB Basin Wall": {
+					"rotation": {
+						"1.125": {
+							"vector": [0, 0, 0]
+						},
+						"1.875": {
+							"vector": [-90, 0, 0],
+							"easing": "easeInOutCubic"
+						}
+					}
+				},
+				"SU Wall": {
+					"rotation": {
+						"1.25": {
+							"vector": [0, 0, 0]
+						},
+						"1.875": {
+							"vector": [180, 0, 0],
+							"easing": "easeInOutCubic"
+						}
+					}
+				},
+				"NWU_Wall": {
+					"rotation": {
+						"2.25": {
+							"vector": [0, 0, 0]
+						},
+						"2.875": {
+							"vector": [0, 90, 0],
+							"easing": "easeInOutCubic"
+						}
+					}
+				},
+				"SWU Wall": {
+					"rotation": {
+						"2.25": {
+							"vector": [0, 0, 0]
+						},
+						"2.875": {
+							"vector": [0, 90, 0],
+							"easing": "easeInOutCubic"
+						}
+					}
+				},
+				"SEU Wall": {
+					"rotation": {
+						"2.25": {
+							"vector": [0, 0, 0]
+						},
+						"2.875": {
+							"vector": [0, -90, 0],
+							"easing": "easeInOutCubic"
+						}
+					}
+				},
+				"NEU Wall": {
+					"rotation": {
+						"2.25": {
+							"vector": [0, 0, 0]
+						},
+						"2.875": {
+							"vector": [0, -90, 0],
+							"easing": "easeInOutCubic"
+						}
+					}
+				},
+				"NEB Wall": {
+					"rotation": {
+						"1.75": {
+							"vector": [0, 0, 0]
+						},
+						"2.375": {
+							"vector": [-180, 0, 0],
+							"easing": "easeInOutCubic"
+						}
+					}
+				},
+				"NWB Wall": {
+					"rotation": {
+						"1.75": {
+							"vector": [0, 0, 0]
+						},
+						"2.375": {
+							"vector": [-180, 0, 0],
+							"easing": "easeInOutCubic"
+						}
+					}
+				},
+				"SEB Wall": {
+					"rotation": {
+						"1.875": {
+							"vector": [0, 0, 0]
+						},
+						"2.5": {
+							"vector": [180, 0, 0],
+							"easing": "easeInOutCubic"
+						}
+					}
+				},
+				"SWB Wall": {
+					"rotation": {
+						"1.875": {
+							"vector": [0, 0, 0]
+						},
+						"2.5": {
+							"vector": [180, 0, 0],
+							"easing": "easeInOutCubic"
+						}
+					}
+				},
+				"Main Spine": {
+					"rotation": {
+						"0.875": {
+							"vector": [0, 0, 0]
+						},
+						"2.0417": {
+							"vector": [-77.5, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.65]
+						},
+						"3.5417": {
+							"vector": [-77.5, 0, 0]
+						},
+						"4.0": {
+							"vector": [-90, 0, 0],
+							"easing": "easeInOutBack"
+						}
+					}
+				},
+				"Base Arm": {
+					"rotation": {
+						"1.25": {
+							"vector": [0, 0, 0]
+						},
+						"1.7083": {
+							"vector": [-12.5, 0, 0],
+							"easing": "easeOutBack"
+						},
+						"3.5417": {
+							"vector": [-12.5, 0, 0],
+							"easing": "linear"
+						},
+						"4.0": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack"
+						}
+					}
+				},
+				"West Inner Shell": {
+					"rotation": {
+						"0.3333": {
+							"vector": [0, 0, 0]
+						},
+						"1.2917": {
+							"vector": [0, 0, 90],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.85]
+						},
+						"2.3333": {
+							"vector": [0, 0, 90]
+						},
+						"3.1667": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.65]
+						}
+					}
+				},
+				"East Inner Shell": {
+					"rotation": {
+						"0.3333": {
+							"vector": [0, 0, 0]
+						},
+						"1.2917": {
+							"vector": [0, 0, -90],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.85]
+						},
+						"2.3333": {
+							"vector": [0, 0, -90]
+						},
+						"3.1667": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.65]
+						}
+					}
+				},
+				"W Shell Top": {
+					"rotation": {
+						"2.5417": {
+							"vector": [0, 0, 0]
+						},
+						"2.9583": {
+							"vector": [0, 0, 90],
+							"easing": "easeInOutSine"
+						}
+					}
+				},
+				"E Shell Top": {
+					"rotation": {
+						"2.5417": {
+							"vector": [0, 0, 0]
+						},
+						"2.9583": {
+							"vector": [0, 0, -90],
+							"easing": "easeInOutSine"
+						}
+					}
+				},
+				"W Shell Cap Hinge": {
+					"rotation": {
+						"3.1667": {
+							"vector": [0, 0, 0]
+						},
+						"3.875": {
+							"vector": [0, 0, -90],
+							"easing": "easeInOutCubic"
+						}
+					}
+				},
+				"W Shell Cap": {
+					"rotation": {
+						"3.1667": {
+							"vector": [0, 0, 0]
+						},
+						"3.875": {
+							"vector": [0, 0, -180],
+							"easing": "easeInOutCubic"
+						}
+					}
+				},
+				"E Shell Cap Hinge": {
+					"rotation": {
+						"3.1667": {
+							"vector": [0, 0, 0]
+						},
+						"3.875": {
+							"vector": [0, 0, 90],
+							"easing": "easeInOutCubic"
+						}
+					}
+				},
+				"E Shell  Cap": {
+					"rotation": {
+						"3.1667": {
+							"vector": [0, 0, 0]
+						},
+						"3.875": {
+							"vector": [0, 0, 180],
+							"easing": "easeInOutCubic"
+						}
+					}
+				},
+				"Screen Joint 1": {
+					"rotation": {
+						"0.875": {
+							"vector": [0, 0, 0]
+						},
+						"1.5417": {
+							"vector": [-180, 0, 0],
+							"easing": "easeOutBack"
+						},
+						"3.375": {
+							"vector": [-180, 0, 0],
+							"easing": "linear"
+						},
+						"4.0": {
+							"vector": [50, 0, 0],
+							"easing": "easeInOutQuad"
+						}
+					}
+				},
+				"Screen Joint 2A": {
+					"rotation": {
+						"3.3333": {
+							"vector": [0, 0, 0]
+						},
+						"3.9167": {
+							"vector": [0, 0, -180],
+							"easing": "easeInOutQuad"
+						}
+					}
+				},
+				"Screen Joint 2B": {
+					"rotation": {
+						"3.3333": {
+							"vector": [0, 0, 0]
+						},
+						"3.9167": {
+							"vector": [0, 0, 180],
+							"easing": "easeInOutQuad"
+						}
+					}
+				},
+				"North Outer Shell": {
+					"rotation": {
+						"0.125": {
+							"vector": [0, 0, 0]
+						},
+						"0.9583": {
+							"vector": [90, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.85]
+						},
+						"3.25": {
+							"vector": [90, 0, 0]
+						},
+						"4.0833": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.4]
+						}
+					}
+				},
+				"South Outer Shell": {
+					"rotation": {
+						"0.125": {
+							"vector": [0, 0, 0]
+						},
+						"0.9583": {
+							"vector": [-90, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.85]
+						},
+						"3.25": {
+							"vector": [-90, 0, 0]
+						},
+						"4.0833": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.4]
+						}
+					}
+				},
+				"South Spine Bypass B": {
+					"rotation": {
+						"3.2917": {
+							"vector": [0, 0, 0]
+						},
+						"3.7917": {
+							"vector": [0, 90, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.85]
+						}
+					}
+				},
+				"South Spine Bypass A": {
+					"rotation": {
+						"3.2917": {
+							"vector": [0, 0, 0]
+						},
+						"3.7917": {
+							"vector": [0, -90, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.85]
+						}
+					}
+				},
+				"Front Screen": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"4.5": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.55]
+						}
+					}
+				},
+				"NW Wall": {
+					"rotation": {
+						"3.0417": {
+							"vector": [0, 0, 0]
+						},
+						"3.7083": {
+							"vector": [0, 0, 90],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.8]
+						}
+					}
+				},
+				"NE Wall": {
+					"rotation": {
+						"3.0417": {
+							"vector": [0, 0, 0]
+						},
+						"3.7083": {
+							"vector": [0, 0, -90],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.8]
+						}
+					}
+				},
+				"SE Wall": {
+					"rotation": {
+						"3.0417": {
+							"vector": [0, 0, 0]
+						},
+						"3.7083": {
+							"vector": [0, 0, -90],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.6]
+						}
+					}
+				},
+				"SW Wall": {
+					"rotation": {
+						"3.0417": {
+							"vector": [0, 0, 0]
+						},
+						"3.7083": {
+							"vector": [0, 0, 90],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.6]
+						}
+					}
+				},
+				"E Back Wall": {
+					"rotation": {
+						"3.375": {
+							"vector": [0, 0, 0]
+						},
+						"4.0833": {
+							"vector": [-90, 0, 0],
+							"easing": "easeInOutQuart"
+						}
+					}
+				},
+				"W Back Wall": {
+					"rotation": {
+						"3.375": {
+							"vector": [0, 0, 0]
+						},
+						"4.0833": {
+							"vector": [90, 0, 0],
+							"easing": "easeInOutQuart"
+						}
+					}
+				}
+			}
+		},
+		"coking_factory.working": {
+			"loop": true,
+			"animation_length": 2,
+			"bones": {
+				"NB Basin Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [90, 0, 0],
+							"easing": "easeInOutCubic"
+						},
+						"2.0": {
+							"vector": [90, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"NU Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [-180, 0, 0],
+							"easing": "easeInOutCubic"
+						},
+						"2.0": {
+							"vector": [-180, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"SB Basin Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [-90, 0, 0],
+							"easing": "easeInOutCubic"
+						},
+						"2.0": {
+							"vector": [-90, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"SU Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [180, 0, 0],
+							"easing": "easeInOutCubic"
+						},
+						"2.0": {
+							"vector": [180, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"NWU_Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 90, 0],
+							"easing": "easeInOutCubic"
+						},
+						"2.0": {
+							"vector": [0, 90, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"SWU Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 90, 0],
+							"easing": "easeInOutCubic"
+						},
+						"2.0": {
+							"vector": [0, 90, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"SEU Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, -90, 0],
+							"easing": "easeInOutCubic"
+						},
+						"2.0": {
+							"vector": [0, -90, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"NEU Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, -90, 0],
+							"easing": "easeInOutCubic"
+						},
+						"2.0": {
+							"vector": [0, -90, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"NEB Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [-180, 0, 0],
+							"easing": "easeInOutCubic"
+						},
+						"2.0": {
+							"vector": [-180, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"NWB Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [-180, 0, 0],
+							"easing": "easeInOutCubic"
+						},
+						"2.0": {
+							"vector": [-180, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"SEB Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [180, 0, 0],
+							"easing": "easeInOutCubic"
+						},
+						"2.0": {
+							"vector": [180, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"SWB Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [180, 0, 0],
+							"easing": "easeInOutCubic"
+						},
+						"2.0": {
+							"vector": [180, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"Main Spine": {
+					"rotation": {
+						"0.0": {
+							"vector": [-90, 0, 0],
+							"easing": "easeInOutBack"
+						},
+						"2.0": {
+							"vector": [-90, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"Base Arm": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack"
+						},
+						"2.0": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"West Inner Shell": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.65]
+						},
+						"2.0": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"East Inner Shell": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.65]
+						},
+						"2.0": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"W Shell Top": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 90],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.6]
+						},
+						"2.0": {
+							"vector": [0, 0, 90],
+							"easing": "linear"
+						}
+					}
+				},
+				"E Shell Top": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, -90],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.6]
+						},
+						"2.0": {
+							"vector": [0, 0, -90],
+							"easing": "linear"
+						}
+					}
+				},
+				"W Shell Cap Hinge": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, -90],
+							"easing": "easeInOutCubic"
+						},
+						"2.0": {
+							"vector": [0, 0, -90],
+							"easing": "linear"
+						}
+					}
+				},
+				"W Shell Cap": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, -180],
+							"easing": "easeInOutCubic"
+						},
+						"2.0": {
+							"vector": [0, 0, -180],
+							"easing": "linear"
+						}
+					}
+				},
+				"E Shell Cap Hinge": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 90],
+							"easing": "easeInOutCubic"
+						},
+						"2.0": {
+							"vector": [0, 0, 90],
+							"easing": "linear"
+						}
+					}
+				},
+				"E Shell  Cap": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 180],
+							"easing": "easeInOutCubic"
+						},
+						"2.0": {
+							"vector": [0, 0, 180],
+							"easing": "linear"
+						}
+					}
+				},
+				"Screen Joint 1": {
+					"rotation": {
+						"0.0": {
+							"vector": [50, 0, 0],
+							"easing": "easeInOutQuad"
+						},
+						"2.0": {
+							"vector": [50, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"Screen Joint 2A": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, -180],
+							"easing": "easeInOutQuad"
+						},
+						"2.0": {
+							"vector": [0, 0, -180],
+							"easing": "linear"
+						}
+					}
+				},
+				"Screen Joint 2B": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 180],
+							"easing": "easeInOutQuad"
+						},
+						"2.0": {
+							"vector": [0, 0, 180],
+							"easing": "linear"
+						}
+					}
+				},
+				"North Outer Shell": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.8]
+						},
+						"2.0": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"South Outer Shell": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.8]
+						},
+						"2.0": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"South Spine Bypass B": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 90, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.85]
+						},
+						"2.0": {
+							"vector": [0, 90, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"South Spine Bypass A": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, -90, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.85]
+						},
+						"2.0": {
+							"vector": [0, -90, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"Front Screen": {
+					"rotation": {
+						"0.0": {
+							"vector": [-215, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.55]
+						},
+						"2.0": {
+							"vector": [-215, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"NW Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 90]
+						},
+						"2.0": {
+							"vector": [0, 0, 90]
+						}
+					}
+				},
+				"NE Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, -90]
+						},
+						"2.0": {
+							"vector": [0, 0, -90]
+						}
+					}
+				},
+				"SE Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, -90]
+						},
+						"2.0": {
+							"vector": [0, 0, -90]
+						}
+					}
+				},
+				"SW Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 90]
+						},
+						"2.0": {
+							"vector": [0, 0, 90]
+						}
+					}
+				},
+				"E Back Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [-90, 0, 0]
+						},
+						"2.0": {
+							"vector": [-90, 0, 0]
+						}
+					}
+				},
+				"W Back Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [90, 0, 0]
+						},
+						"2.0": {
+							"vector": [90, 0, 0]
+						}
+					}
+				}
+			}
+		},
+		"coking_factory.idle": {
+			"loop": true,
+			"animation_length": 2,
+			"bones": {
+				"NB Basin Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [90, 0, 0],
+							"easing": "easeInOutCubic"
+						},
+						"2.0": {
+							"vector": [90, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"NU Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [-180, 0, 0],
+							"easing": "easeInOutCubic"
+						},
+						"2.0": {
+							"vector": [-180, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"SB Basin Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [-90, 0, 0],
+							"easing": "easeInOutCubic"
+						},
+						"2.0": {
+							"vector": [-90, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"SU Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [180, 0, 0],
+							"easing": "easeInOutCubic"
+						},
+						"2.0": {
+							"vector": [180, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"NWU_Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 90, 0],
+							"easing": "easeInOutCubic"
+						},
+						"2.0": {
+							"vector": [0, 90, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"SWU Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 90, 0],
+							"easing": "easeInOutCubic"
+						},
+						"2.0": {
+							"vector": [0, 90, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"SEU Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, -90, 0],
+							"easing": "easeInOutCubic"
+						},
+						"2.0": {
+							"vector": [0, -90, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"NEU Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, -90, 0],
+							"easing": "easeInOutCubic"
+						},
+						"2.0": {
+							"vector": [0, -90, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"NEB Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [-180, 0, 0],
+							"easing": "easeInOutCubic"
+						},
+						"2.0": {
+							"vector": [-180, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"NWB Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [-180, 0, 0],
+							"easing": "easeInOutCubic"
+						},
+						"2.0": {
+							"vector": [-180, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"SEB Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [180, 0, 0],
+							"easing": "easeInOutCubic"
+						},
+						"2.0": {
+							"vector": [180, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"SWB Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [180, 0, 0],
+							"easing": "easeInOutCubic"
+						},
+						"2.0": {
+							"vector": [180, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"Main Spine": {
+					"rotation": {
+						"0.0": {
+							"vector": [-90, 0, 0],
+							"easing": "easeInOutBack"
+						},
+						"2.0": {
+							"vector": [-90, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"Base Arm": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack"
+						},
+						"2.0": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"West Inner Shell": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.65]
+						},
+						"2.0": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"East Inner Shell": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.65]
+						},
+						"2.0": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"W Shell Top": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 90],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.6]
+						},
+						"2.0": {
+							"vector": [0, 0, 90],
+							"easing": "linear"
+						}
+					}
+				},
+				"E Shell Top": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, -90],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.6]
+						},
+						"2.0": {
+							"vector": [0, 0, -90],
+							"easing": "linear"
+						}
+					}
+				},
+				"W Shell Cap Hinge": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, -90],
+							"easing": "easeInOutCubic"
+						},
+						"2.0": {
+							"vector": [0, 0, -90],
+							"easing": "linear"
+						}
+					}
+				},
+				"W Shell Cap": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, -180],
+							"easing": "easeInOutCubic"
+						},
+						"2.0": {
+							"vector": [0, 0, -180],
+							"easing": "linear"
+						}
+					}
+				},
+				"E Shell Cap Hinge": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 90],
+							"easing": "easeInOutCubic"
+						},
+						"2.0": {
+							"vector": [0, 0, 90],
+							"easing": "linear"
+						}
+					}
+				},
+				"E Shell  Cap": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 180],
+							"easing": "easeInOutCubic"
+						},
+						"2.0": {
+							"vector": [0, 0, 180],
+							"easing": "linear"
+						}
+					}
+				},
+				"Screen Joint 1": {
+					"rotation": {
+						"0.0": {
+							"vector": [50, 0, 0],
+							"easing": "easeInOutQuad"
+						},
+						"2.0": {
+							"vector": [50, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"Screen Joint 2A": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, -180],
+							"easing": "easeInOutQuad"
+						},
+						"2.0": {
+							"vector": [0, 0, -180],
+							"easing": "linear"
+						}
+					}
+				},
+				"Screen Joint 2B": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 180],
+							"easing": "easeInOutQuad"
+						},
+						"2.0": {
+							"vector": [0, 0, 180],
+							"easing": "linear"
+						}
+					}
+				},
+				"North Outer Shell": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.8]
+						},
+						"2.0": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"South Outer Shell": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.8]
+						},
+						"2.0": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"South Spine Bypass B": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 90, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.85]
+						},
+						"2.0": {
+							"vector": [0, 90, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"South Spine Bypass A": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, -90, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.85]
+						},
+						"2.0": {
+							"vector": [0, -90, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"Front Screen": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.55]
+						},
+						"2.0": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"NW Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 90]
+						},
+						"2.0": {
+							"vector": [0, 0, 90]
+						}
+					}
+				},
+				"NE Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, -90]
+						},
+						"2.0": {
+							"vector": [0, 0, -90]
+						}
+					}
+				},
+				"SE Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, -90]
+						},
+						"2.0": {
+							"vector": [0, 0, -90]
+						}
+					}
+				},
+				"SW Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 90]
+						},
+						"2.0": {
+							"vector": [0, 0, 90]
+						}
+					}
+				},
+				"E Back Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [-90, 0, 0]
+						},
+						"2.0": {
+							"vector": [-90, 0, 0]
+						}
+					}
+				},
+				"W Back Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [90, 0, 0]
+						},
+						"2.0": {
+							"vector": [90, 0, 0]
+						}
+					}
+				}
+			}
+		},
+		"coking_factory.retracting": {
+			"loop": "hold_on_last_frame",
+			"animation_length": 3.75,
+			"bones": {
+				"NB Basin Wall": {
+					"rotation": {
+						"2.0": {
+							"vector": [90, 0, 0],
+							"easing": "linear"
+						},
+						"2.625": {
+							"vector": [0, 0, 0],
+							"easing": "easeInCubic"
+						}
+					}
+				},
+				"NU Wall": {
+					"rotation": {
+						"1.5": {
+							"vector": [-180, 0, 0],
+							"easing": "linear"
+						},
+						"2.125": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutCubic"
+						}
+					}
+				},
+				"SB Basin Wall": {
+					"rotation": {
+						"2.0": {
+							"vector": [-90, 0, 0],
+							"easing": "linear"
+						},
+						"2.625": {
+							"vector": [0, 0, 0],
+							"easing": "easeInCubic"
+						}
+					}
+				},
+				"SU Wall": {
+					"rotation": {
+						"1.5": {
+							"vector": [180, 0, 0],
+							"easing": "linear"
+						},
+						"2.125": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutCubic"
+						}
+					}
+				},
+				"NWU_Wall": {
+					"rotation": {
+						"0.5": {
+							"vector": [0, 90, 0],
+							"easing": "linear"
+						},
+						"1.125": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutCubic"
+						}
+					}
+				},
+				"SWU Wall": {
+					"rotation": {
+						"0.5": {
+							"vector": [0, 90, 0],
+							"easing": "linear"
+						},
+						"1.125": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutCubic"
+						}
+					}
+				},
+				"SEU Wall": {
+					"rotation": {
+						"0.5": {
+							"vector": [0, -90, 0],
+							"easing": "linear"
+						},
+						"1.125": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutCubic"
+						}
+					}
+				},
+				"NEU Wall": {
+					"rotation": {
+						"0.5": {
+							"vector": [0, -90, 0],
+							"easing": "linear"
+						},
+						"1.125": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutCubic"
+						}
+					}
+				},
+				"NEB Wall": {
+					"rotation": {
+						"1.125": {
+							"vector": [-180, 0, 0],
+							"easing": "linear"
+						},
+						"1.75": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutQuad"
+						}
+					}
+				},
+				"NWB Wall": {
+					"rotation": {
+						"1.125": {
+							"vector": [-180, 0, 0],
+							"easing": "linear"
+						},
+						"1.75": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutQuad"
+						}
+					}
+				},
+				"SEB Wall": {
+					"rotation": {
+						"0.9583": {
+							"vector": [180, 0, 0],
+							"easing": "linear"
+						},
+						"1.5833": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutQuad"
+						}
+					}
+				},
+				"SWB Wall": {
+					"rotation": {
+						"0.9583": {
+							"vector": [180, 0, 0],
+							"easing": "linear"
+						},
+						"1.5833": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutQuad"
+						}
+					}
+				},
+				"Main Spine": {
+					"rotation": {
+						"0.0": {
+							"vector": [-90, 0, 0],
+							"easing": "linear"
+						},
+						"0.5": {
+							"vector": [-75, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						},
+						"2.1667": {
+							"vector": [-75, 0, 0]
+						},
+						"2.7917": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutQuad"
+						}
+					}
+				},
+				"Base Arm": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						},
+						"0.5": {
+							"vector": [-15, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						},
+						"2.1667": {
+							"vector": [-15, 0, 0]
+						},
+						"2.7917": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutQuad"
+						}
+					}
+				},
+				"West Inner Shell": {
+					"rotation": {
+						"0.2917": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						},
+						"0.7917": {
+							"vector": [0, 0, 90],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						},
+						"2.75": {
+							"vector": [0, 0, 90]
+						},
+						"3.375": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						}
+					}
+				},
+				"East Inner Shell": {
+					"rotation": {
+						"0.2917": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						},
+						"0.7917": {
+							"vector": [0, 0, -90],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						},
+						"2.75": {
+							"vector": [0, 0, -90]
+						},
+						"3.375": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						}
+					}
+				},
+				"W Shell Top": {
+					"rotation": {
+						"0.2917": {
+							"vector": [0, 0, 90],
+							"easing": "linear"
+						},
+						"0.7917": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						}
+					}
+				},
+				"E Shell Top": {
+					"rotation": {
+						"0.2917": {
+							"vector": [0, 0, -90],
+							"easing": "linear"
+						},
+						"0.7917": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						}
+					}
+				},
+				"W Shell Cap Hinge": {
+					"rotation": {
+						"0.25": {
+							"vector": [0, 0, -90]
+						},
+						"0.6667": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutSine"
+						}
+					}
+				},
+				"W Shell Cap": {
+					"rotation": {
+						"0.25": {
+							"vector": [0, 0, -180]
+						},
+						"0.6667": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutSine"
+						}
+					}
+				},
+				"E Shell Cap Hinge": {
+					"rotation": {
+						"0.25": {
+							"vector": [0, 0, 90]
+						},
+						"0.6667": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutSine"
+						}
+					}
+				},
+				"E Shell  Cap": {
+					"rotation": {
+						"0.25": {
+							"vector": [0, 0, 180]
+						},
+						"0.6667": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutSine"
+						}
+					}
+				},
+				"Screen Joint 1": {
+					"rotation": {
+						"0.0": {
+							"vector": [50, 0, 0],
+							"easing": "linear"
+						},
+						"0.5": {
+							"vector": [-180, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						},
+						"2.6667": {
+							"vector": [-180, 0, 0]
+						},
+						"3.0833": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						}
+					}
+				},
+				"Screen Joint 2A": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, -180],
+							"easing": "linear"
+						},
+						"0.5": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						}
+					}
+				},
+				"Screen Joint 2B": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 180],
+							"easing": "linear"
+						},
+						"0.5": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						}
+					}
+				},
+				"North Outer Shell": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						},
+						"0.5": {
+							"vector": [90, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.8]
+						},
+						"3.125": {
+							"vector": [90, 0, 0]
+						},
+						"3.75": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						}
+					}
+				},
+				"South Outer Shell": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						},
+						"0.5": {
+							"vector": [-90, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.8]
+						},
+						"3.125": {
+							"vector": [-90, 0, 0]
+						},
+						"3.75": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						}
+					}
+				},
+				"South Spine Bypass B": {
+					"rotation": {
+						"0.0833": {
+							"vector": [0, 90, 0],
+							"easing": "linear"
+						},
+						"0.5": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.8]
+						}
+					}
+				},
+				"South Spine Bypass A": {
+					"rotation": {
+						"0.0833": {
+							"vector": [0, -90, 0],
+							"easing": "linear"
+						},
+						"0.5": {
+							"vector": [0, 2.5, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.8]
+						}
+					}
+				},
+				"Front Screen": {
+					"rotation": {
+						"0.0": {
+							"vector": [-215, 0, 0],
+							"easing": "linear"
+						},
+						"0.5": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack"
+						}
+					}
+				},
+				"NW Wall": {
+					"rotation": {
+						"0.0833": {
+							"vector": [0, 0, 90]
+						},
+						"0.6667": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						}
+					}
+				},
+				"NE Wall": {
+					"rotation": {
+						"0.0833": {
+							"vector": [0, 0, -90]
+						},
+						"0.6667": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						}
+					}
+				},
+				"SE Wall": {
+					"rotation": {
+						"0.0833": {
+							"vector": [0, 0, -90]
+						},
+						"0.6667": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						}
+					}
+				},
+				"SW Wall": {
+					"rotation": {
+						"0.0833": {
+							"vector": [0, 0, 90]
+						},
+						"0.6667": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						}
+					}
+				},
+				"E Back Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [-90, 0, 0]
+						},
+						"0.5": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						}
+					}
+				},
+				"W Back Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [90, 0, 0]
+						},
+						"0.5": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutBack",
+							"easingArgs": [0.45]
+						}
+					}
+				}
+			}
+		},
+		"coking_factory.undeployed": {
+			"loop": true,
+			"animation_length": 2,
+			"bones": {
+				"NB Basin Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"NU Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"SB Basin Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"SU Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"NWU_Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"SWU Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"SEU Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"NEU Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"NEB Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"NWB Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"SEB Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"SWB Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"Main Spine": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"Base Arm": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"West Inner Shell": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"East Inner Shell": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"W Shell Top": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"E Shell Top": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"W Shell Cap Hinge": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"W Shell Cap": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"E Shell Cap Hinge": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"E Shell  Cap": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"Screen Joint 1": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"Screen Joint 2A": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"Screen Joint 2B": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"North Outer Shell": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"South Outer Shell": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"South Spine Bypass B": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"South Spine Bypass A": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"Front Screen": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"NW Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"NE Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"SE Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"SW Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"E Back Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"W Back Wall": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				}
+			}
+		}
+	}
+}

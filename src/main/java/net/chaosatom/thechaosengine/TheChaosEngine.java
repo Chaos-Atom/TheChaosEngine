@@ -2,10 +2,7 @@ package net.chaosatom.thechaosengine;
 
 import net.chaosatom.thechaosengine.block.ChaosEngineBlocks;
 import net.chaosatom.thechaosengine.block.entity.ChaosEngineBlockEntities;
-import net.chaosatom.thechaosengine.client.renderer.block.AtmosphericCondenserBlockEntityRenderer;
-import net.chaosatom.thechaosengine.client.renderer.block.CompactInductionFoundryBlockEntityRenderer;
-import net.chaosatom.thechaosengine.client.renderer.block.DeployableSolarBlockEntityRenderer;
-import net.chaosatom.thechaosengine.client.renderer.block.SuspensionMixerBlockEntityRenderer;
+import net.chaosatom.thechaosengine.client.renderer.block.*;
 import net.chaosatom.thechaosengine.fluid.ChaosEngineFluids;
 import net.chaosatom.thechaosengine.item.ChaosEngineCreativeModeTabs;
 import net.chaosatom.thechaosengine.item.ChaosEngineItems;
@@ -106,6 +103,7 @@ public class TheChaosEngine {
             event.registerBlockEntityRenderer(ChaosEngineBlockEntities.ATMOSPHERIC_CONDENSER_BE.get(), AtmosphericCondenserBlockEntityRenderer::new);
             event.registerBlockEntityRenderer(ChaosEngineBlockEntities.SUSPENSION_MIXER_BE.get(), SuspensionMixerBlockEntityRenderer::new);
             event.registerBlockEntityRenderer(ChaosEngineBlockEntities.DEPLOYABLE_SOLAR_BE.get(), DeployableSolarBlockEntityRenderer::new);
+            event.registerBlockEntityRenderer(ChaosEngineBlockEntities.DEPLOYABLE_COKE_FACTORY_BE.get(), DeployableCokeFactoryBlockEntityRenderer::new);
         }
 
         @SubscribeEvent
