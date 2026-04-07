@@ -1,0 +1,8 @@
+{
+  "type": "thechaosengine:fuel_burning",
+  "ingredient": {
+    "item": "thechaosengine:coke"
+  },
+  "burnTime": 215,
+  "energyPerTick": 2
+}

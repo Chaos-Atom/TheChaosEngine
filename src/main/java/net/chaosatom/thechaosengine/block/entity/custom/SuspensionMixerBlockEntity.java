@@ -71,8 +71,7 @@ public class SuspensionMixerBlockEntity extends BlockEntity implements GeoBlockE
                 switch (index) {
                     case 0: SuspensionMixerBlockEntity.this.progress = value; break;
                     case 1: SuspensionMixerBlockEntity.this.maxProgress = value; break;
-                    case 2: break;
-                    case 3: break;
+                    case 2, 3: break;
                 }
             }
 

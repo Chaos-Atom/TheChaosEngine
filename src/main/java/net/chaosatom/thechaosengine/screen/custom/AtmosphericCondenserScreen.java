@@ -4,7 +4,10 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.chaosatom.thechaosengine.TheChaosEngine;
 import net.chaosatom.thechaosengine.screen.renderer.EnergyDisplayTooltipArea;
 import net.chaosatom.thechaosengine.screen.renderer.FluidTankRenderer;
+import net.chaosatom.thechaosengine.screen.renderer.GenericDisplayToolTipArea;
 import net.chaosatom.thechaosengine.util.MouseUtil;
+import net.chaosatom.thechaosengine.util.RenderLabelUtil;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
@@ -19,55 +22,44 @@ import java.util.Optional;
 public class AtmosphericCondenserScreen extends AbstractContainerScreen<AtmosphericCondenserMenu> {
     private static final ResourceLocation GUI_TEXTURE =
             ResourceLocation.fromNamespaceAndPath(TheChaosEngine.MOD_ID,"textures/gui/atmospheric_condenser/atmospheric_condenser_gui.png");
-    private static final ResourceLocation EFFECTIVENESS_METER =
-            ResourceLocation.fromNamespaceAndPath(TheChaosEngine.MOD_ID, "textures/gui/atmospheric_condenser/effectiveness_meter.png");
 
     private FluidTankRenderer fluidRenderer;
     private EnergyDisplayTooltipArea energyInfoArea;
+    private GenericDisplayToolTipArea metalStampInfoArea;
 
     public AtmosphericCondenserScreen(AtmosphericCondenserMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
+
+        this.imageHeight = 189;
     }
+    // Components to Render
 
-    private final int vertFluidTankLocX = 140;
-    private final int vertFluidTankLocY = 9;
-
-    private final int vertEnergyBarLocX = 159;
-    private final int vertEnergyBarLocY = 9;
+    // Coordinates
+    private final int fluidTankLocX = 138;
+    private final int fluidTankLocY = 28 ;
+    private final int energyBarLocX = 155;
+    private final int energyBarLocY = 28;
 
     @Override
     protected void init() {
         super.init();
-        this.titleLabelX = 8;
-        this.titleLabelY = 8;
 
         assignFluidRenderer();
         assignEnergyInfoArea();
+        assignMetalStampInfoArea();
     }
 
     private void assignEnergyInfoArea() {
-        energyInfoArea = new EnergyDisplayTooltipArea(((width - imageWidth) / 2) + vertEnergyBarLocX,
-                ((height - imageHeight) / 2) + vertEnergyBarLocY, menu.blockEntity.getEnergyStorage(null));
+        energyInfoArea = new EnergyDisplayTooltipArea(((width - imageWidth) / 2) + energyBarLocX,
+                ((height - imageHeight) / 2) + energyBarLocY, menu.blockEntity.getEnergyStorage(null));
     }
 
     private void renderEnergyAreaTooltip(GuiGraphics guiGraphics, int mouseX, int mouseY, int x, int y) {
-        if(isMouseAboveArea(mouseX, mouseY, x, y, vertEnergyBarLocX, vertEnergyBarLocY, 8, 64)) {
+        if(isMouseAboveArea(mouseX, mouseY, x, y, energyBarLocX, energyBarLocY, 8, 64)) {
             guiGraphics.renderTooltip(this.font, energyInfoArea.getTooltips(),
                     Optional.empty(), mouseX - x, mouseY - y);
         }
     }
-
-    @Override
-    protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
-        super.renderLabels(guiGraphics, mouseX, mouseY);
-        int x = (width - imageWidth) / 2;
-        int y = (height - imageHeight) / 2;
-
-        renderEnergyAreaTooltip(guiGraphics, mouseX, mouseY, x, y);
-        renderFluidTooltipArea(guiGraphics, mouseX, mouseY, x, y, menu.blockEntity.getFluid(),
-                vertFluidTankLocX, vertFluidTankLocY, fluidRenderer);
-    }
-
     private void assignFluidRenderer() {
         fluidRenderer = new FluidTankRenderer(16000, true, 8, 64);
     }
@@ -78,6 +70,52 @@ public class AtmosphericCondenserScreen extends AbstractContainerScreen<Atmosphe
             guiGraphics.renderTooltip(this.font, renderer.getTooltip(fluidStack, TooltipFlag.Default.NORMAL),
                     Optional.empty(), mouseX - x, mouseY - y );
         }
+    }
+
+    private void assignMetalStampInfoArea() {
+        metalStampInfoArea = new GenericDisplayToolTipArea((width - imageWidth) / 2,
+                (height - imageHeight) / 2, width, height, menu.getData());
+    }
+
+    private void renderMetalStampTooltip(GuiGraphics guiGraphics, int mouseX, int mouseY, int x, int y) {
+        if (isMouseAboveArea(mouseX, mouseY, x, y, 107, 33, 14, 14)) {
+            guiGraphics.renderTooltip(this.font,
+                    metalStampInfoArea.getDescriptiveTooltip("tooltip.thechaosengine.metal_stamp"),
+                    mouseX - x,
+                    mouseY - y);
+        }
+    }
+
+    @Override
+    protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+        int x = (width - imageWidth) / 2;
+        int y = (height - imageHeight) / 2;
+
+        Component title = this.getTitle();
+        int titleWidth = this.font.width(title);
+        int centerX = (this.imageWidth - titleWidth) / 2;
+        int textColor = 3289650;
+
+        Component monitorTitle = Component.translatable("label.thechaosengine.generic.monitor_title");
+        Component effectivePercent = Component.translatable("label.thechaosengine.atmospheric_condenser.effective_percent")
+                .append(this.menu.getEffectivenessPercentage() + "%");
+        Component waterGeneration = Component.translatable("label.thechaosengine.atmospheric_condenser.production_shorthand")
+                .append(this.menu.getCurrentWaterGeneration() + " mB/t");
+        Component fluidTransferRate = Component.translatable("label.thechaosengine.generic.output")
+                .append(this.menu.getCurrentFluidTransferAmount() + " mB");
+
+        RenderLabelUtil.renderScaledComponent(guiGraphics, this.font, title, centerX, this.titleLabelY + 2, 164, textColor);
+        RenderLabelUtil.renderScaledComponent(guiGraphics, this.font, this.playerInventoryTitle, 8, this.imageHeight - 94,
+                50, textColor);
+
+        RenderLabelUtil.renderScaledComponentLinked(guiGraphics, this.font,  monitorTitle, effectivePercent,
+                waterGeneration, fluidTransferRate, 22, 38, 22,47,22,56,22,65,
+                59,0x29B46C );
+
+        renderEnergyAreaTooltip(guiGraphics, mouseX, mouseY, x, y);
+        renderFluidTooltipArea(guiGraphics, mouseX, mouseY, x, y, menu.blockEntity.getFluid(),
+                fluidTankLocX, fluidTankLocY, fluidRenderer);
+        renderMetalStampTooltip(guiGraphics, mouseX, mouseY, x, y);
     }
 
     @Override
@@ -91,18 +129,7 @@ public class AtmosphericCondenserScreen extends AbstractContainerScreen<Atmosphe
         guiGraphics.blit(GUI_TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
 
         energyInfoArea.render(guiGraphics);
-        fluidRenderer.render(guiGraphics, x + vertFluidTankLocX, y + vertFluidTankLocY, menu.blockEntity.getFluid());
-
-        renderEffectivenessMeter(guiGraphics, x, y);
-    }
-
-    private void renderEffectivenessMeter(GuiGraphics guiGraphics, int x, int y) {
-        int scaledHeight = menu.getScaledEffectiveness(40);
-        if (scaledHeight > 0) {
-            guiGraphics.blit(EFFECTIVENESS_METER, x + 9, y + 24 + 40 - scaledHeight,
-                    0, 40 - scaledHeight,
-                    2, scaledHeight, 2, 40 );
-        }
+        fluidRenderer.render(guiGraphics, x + fluidTankLocX, y + fluidTankLocY, menu.blockEntity.getFluid());
     }
 
     @Override
@@ -112,11 +139,23 @@ public class AtmosphericCondenserScreen extends AbstractContainerScreen<Atmosphe
         renderTooltip(guiGraphics, mouseX, mouseY);
     }
 
-    public static boolean isMouseAboveFluidArea(int pMouseX, int pMouseY, int x, int y, int offsetX, int offsetY, FluidTankRenderer renderer) {
+    private static boolean isMouseAboveFluidArea(double pMouseX, double pMouseY, int x, int y, int offsetX, int offsetY, FluidTankRenderer renderer) {
         return MouseUtil.isMouseOver(pMouseX, pMouseY, x + offsetX, y + offsetY, renderer.getWidth(), renderer.getHeight());
     }
 
-    public static boolean isMouseAboveArea(int pMouseX, int pMouseY, int x, int y, int offsetX, int offsetY, int width, int height) {
+    private static boolean isMouseAboveArea(double pMouseX, double pMouseY, int x, int y, int offsetX, int offsetY, int width, int height) {
         return MouseUtil.isMouseOver(pMouseX, pMouseY, x + offsetX, y + offsetY, width, height);
+    }
+
+    @Override
+    public boolean mouseClicked(double mouseX, double mouseY, int button) {
+        if (isMouseAboveArea(mouseX - this.leftPos, mouseY - this.topPos, 107,33,0,0,14,14)) {
+            assert this.minecraft != null;
+            assert this.minecraft.player != null;
+            this.minecraft.player.displayClientMessage(Component.translatable(
+                    "lore.thechaosengine.atmospheric_condenser.metal_stamp").withStyle(ChatFormatting.GRAY), false);
+            this.minecraft.player.closeContainer();
+        }
+        return super.mouseClicked(mouseX, mouseY, button);
     }
 }

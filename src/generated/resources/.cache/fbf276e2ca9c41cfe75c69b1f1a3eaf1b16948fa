@@ -1,4 +1,4 @@
-// 1.21.1	2026-03-30T23:39:57.3894499	Item Models: thechaosengine
+// 1.21.1	2026-04-03T23:03:15.1289242	Item Models: thechaosengine
 f2efbcd2ff98652cdaeade8c86982d98059ea45c assets/thechaosengine/models/item/alumina_bronze_dust.json
 432f63fb1dc0778e6f8000b81ad0a5e932e9fcec assets/thechaosengine/models/item/alumina_bronze_ingot.json
 760a46a33621d1e1af32cb13f4bfbf58547e59f9 assets/thechaosengine/models/item/alumina_dust.json
@@ -13,6 +13,8 @@ a4498cc5c73b50a615f54cef601a707c4fdf4ca3 assets/thechaosengine/models/item/bauxi
 ae9eba2710c3dcb2364973b0e60551a6800cc7f0 assets/thechaosengine/models/item/bauxite_wall.json
 d2f11b172f68763b6f81b8abbcaf55db51d8e4ed assets/thechaosengine/models/item/charcoal_dust.json
 c2de5d9a659049d24179513bb7a07d4e5df182a0 assets/thechaosengine/models/item/coal_dust.json
+d3664d331c70daac8fbae88a06d9a5edd275cbba assets/thechaosengine/models/item/coke.json
+303847fb8c7d417dc086de2ee0b49d5332f6762d assets/thechaosengine/models/item/coke_dust.json
 4a8722c455830cd490ee7c1044d6cf279c554cf7 assets/thechaosengine/models/item/copper_chunk.json
 e8baafb3d8342a8da724ddb684b1fb4302714b1d assets/thechaosengine/models/item/copper_coils.json
 deaa23cbedac4a10c7b557c82bd36a4fc3353bf4 assets/thechaosengine/models/item/copper_dust.json

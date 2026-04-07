@@ -118,31 +118,45 @@ public class CompactCoalGeneratorBlock extends BaseEntityBlock {
     // TODO: Add custom sounds
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
-        if (!state.getValue(LIT)) {
-            return;
-        }
-        double d0 = (double)pos.getX() + (double)0.75F;
-        double d1 = (double)pos.getY() + (double)1.15F;
-        double d2 = (double)pos.getZ() + (double)0.875F;
-        if (random.nextDouble() < 0.1) {
-            // Plays sounds at a specific spot
-            level.playLocalSound(d0, d1, d2, SoundEvents.BLASTFURNACE_FIRE_CRACKLE, SoundSource.BLOCKS,
-                    0.85F,
-                    0.75F,
-                    false);
-        }
+        if (state.getValue(LIT)) {
+            double posX = (double)pos.getX() + (double)0.21875F;
+            double posY = (double)pos.getY() + (double)1.125F;
+            double posZ = (double)pos.getZ() + (double)0.84375F;
+            if (random.nextDouble() < 0.1) {
+                // Plays sounds at a specific spot
+                level.playLocalSound(posX, posY, posZ, SoundEvents.BLASTFURNACE_FIRE_CRACKLE, SoundSource.BLOCKS,
+                        0.85F,
+                        0.75F,
+                        false);
+            }
 
-        // TODO: Fix particle directionality
-        Direction direction = state.getValue(FACING);
-        Direction.Axis directionAxis = direction.getAxis();
-        double d3 = directionAxis == Direction.Axis.X ? (double)direction.getStepX() * 0.5: 0;
-        double d4 = directionAxis == Direction.Axis.Z ? (double)direction.getStepZ() * 0.5: 0;
+            Direction direction = state.getValue(FACING);
+            switch (direction) {
+                // Particle spawn point is off centered in both axes, each direction gets a different offset
+                case NORTH -> {
+                    posX += 0.0;
+                    posZ += 0.0;
+                }
+                case EAST -> {
+                    posX -= 0.09375;
+                    posZ -= 0.625;
+                }
+                case SOUTH -> {
+                    posX += 0.53125;
+                    posZ -= 0.71875;
+                }
+                case WEST -> {
+                    posX += 0.65625;
+                    posZ -= 0.09375;
+                }
+            }
 
-        if (level.getBlockEntity(pos) instanceof CompactCoalGeneratorBlockEntity compactCoalGeneratorBlockEntity
-                && !compactCoalGeneratorBlockEntity.itemHandler.getStackInSlot(0).isEmpty()) {
-            // Creates smoke particles at a specific spot on the block.
-            level.addParticle(ParticleTypes.SMOKE, d0, d1, d2, (double)0.0F, (double)0.0F, (double)0.0F);
-            level.addParticle(ParticleTypes.SMOKE, d0, d1, d2, (double)0.0F, (double)0.01F, (double)0.0F);
+            if (level.getBlockEntity(pos) instanceof CompactCoalGeneratorBlockEntity compactCoalGeneratorBlockEntity
+                    && !compactCoalGeneratorBlockEntity.itemHandler.getStackInSlot(0).isEmpty()) {
+                // Creates smoke particles at a specific spot on the block.
+                level.addParticle(ParticleTypes.SMOKE, posX, posY, posZ, (double)0.0F, (double)0.0F, (double)0.0F);
+                level.addParticle(ParticleTypes.SMOKE, posX, posY, posZ, (double)0.0F, (double)0.01F, (double)0.0F);
+            }
         }
     }
 }

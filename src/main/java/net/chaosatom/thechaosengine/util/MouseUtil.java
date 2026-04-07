@@ -4,7 +4,7 @@ package net.chaosatom.thechaosengine.util;
 Created by Kaupenjoe
  */
 public class MouseUtil {
-    private static boolean isMouseOver(double mouseX, double mouseY, int x, int y) {
+    public static boolean isMouseOver(double mouseX, double mouseY, int x, int y) {
         return isMouseOver(mouseX, mouseY, x, y, 16);
     }
 

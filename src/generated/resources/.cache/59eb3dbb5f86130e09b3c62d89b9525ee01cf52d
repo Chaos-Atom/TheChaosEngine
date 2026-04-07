@@ -1,4 +1,4 @@
-// 1.21.1	2025-10-14T01:24:13.4068141	Loot Tables
+// 1.21.1	2026-04-04T14:01:29.3879138	Loot Tables
 848cf83019519d9256ebc2ddcfd1dfbf58392ca8 data/thechaosengine/loot_table/blocks/alumina_bronze_block.json
 f64a35bce4bb58442589f27d10831558e48efc12 data/thechaosengine/loot_table/blocks/alumina_bronze_dust_block.json
 8496cde4672e673406a119f3ce5e33641190ca3d data/thechaosengine/loot_table/blocks/alumina_bronze_panels.json
@@ -31,4 +31,5 @@ bd17a921b1223d5a17b26575f3074ad3edabf11c data/thechaosengine/loot_table/blocks/p
 86505fab69932c9bb45f4676257ace884e3341ef data/thechaosengine/loot_table/blocks/polished_bauxite_slab.json
 107053bd44913c240763f616780bd3c8816ea17c data/thechaosengine/loot_table/blocks/polished_bauxite_stairs.json
 87f0b56edb476fe2eb2cbb749fe99e5c8e03ca81 data/thechaosengine/loot_table/blocks/polished_bauxite_wall.json
+67d54db96477d415fe97d2a58c5ab0998ac85fb1 data/thechaosengine/loot_table/blocks/pyrolysis_crucible.json
 dc79a03a9a121e9dbdda4ee3d0494631c6a75b18 data/thechaosengine/loot_table/blocks/suspension_mixer.json

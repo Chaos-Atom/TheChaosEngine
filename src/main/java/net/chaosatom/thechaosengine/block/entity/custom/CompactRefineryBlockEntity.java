@@ -4,7 +4,6 @@ import net.chaosatom.thechaosengine.block.entity.ChaosEngineBlockEntities;
 import net.chaosatom.thechaosengine.fluid.ChaosEngineFluids;
 import net.chaosatom.thechaosengine.recipe.ChaosEngineRecipes;
 import net.chaosatom.thechaosengine.recipe.RefineryRecipe;
-import net.chaosatom.thechaosengine.recipe.SuspensionMixerRecipe;
 import net.chaosatom.thechaosengine.screen.custom.CompactRefineryMenu;
 import net.chaosatom.thechaosengine.util.energy.EnergyStorage;
 import net.minecraft.core.BlockPos;
@@ -41,7 +40,6 @@ import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.sql.Ref;
 import java.util.Optional;
 
 public class CompactRefineryBlockEntity extends BlockEntity implements MenuProvider, WorldlyContainer {

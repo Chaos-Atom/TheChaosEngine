@@ -1,7 +1,6 @@
 package net.chaosatom.thechaosengine;
 
 import net.chaosatom.thechaosengine.block.entity.ChaosEngineBlockEntities;
-import net.chaosatom.thechaosengine.block.entity.custom.*;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -54,6 +53,13 @@ public class ChaosEngineBusEvents {
             return (side == facing.getOpposite() || side == Direction.DOWN) ? blockEntity.getEnergyStorage(side) : null;
                 });
 
+        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ChaosEngineBlockEntities.PYROLYSIS_CRUCIBLE_BE.get(),
+                (blockEntity, side) -> {
+                    Direction facing = blockEntity.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
+                    boolean isValidSide = side == facing.getOpposite() || side == Direction.DOWN || side == facing;
+                    return isValidSide ? blockEntity.getEnergyStorage(side) : null;
+                });
+
         /* Fluid Capabilities */
 
         event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, ChaosEngineBlockEntities.ATMOSPHERIC_CONDENSER_BE.get(),
@@ -103,6 +109,8 @@ public class ChaosEngineBusEvents {
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ChaosEngineBlockEntities.SUSPENSION_MIXER_BE.get(),
                 SidedInvWrapper::new);
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ChaosEngineBlockEntities.COMPACT_REFINERY_BE.get(),
+                SidedInvWrapper::new);
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ChaosEngineBlockEntities.PYROLYSIS_CRUCIBLE_BE.get(),
                 SidedInvWrapper::new);
     }
 }

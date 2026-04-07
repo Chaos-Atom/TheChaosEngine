@@ -10,12 +10,10 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
-import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 import java.util.Set;
@@ -42,6 +40,7 @@ public class ChaosEngineBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ChaosEngineBlocks.ATMOSPHERIC_CONDENSER.get());
         dropSelf(ChaosEngineBlocks.SUSPENSION_MIXER.get());
         dropSelf(ChaosEngineBlocks.DEPLOYABLE_SOLAR.get());
+        dropSelf(ChaosEngineBlocks.PYROLYSIS_CRUCIBLE.get());
 
         dropSelf(ChaosEngineBlocks.BAUXITE.get());
         dropSelf(ChaosEngineBlocks.BAUXITE_STAIRS.get());

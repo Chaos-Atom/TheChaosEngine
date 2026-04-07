@@ -2,6 +2,7 @@ package net.chaosatom.thechaosengine.item;
 
 import net.chaosatom.thechaosengine.TheChaosEngine;
 import net.chaosatom.thechaosengine.fluid.ChaosEngineFluids;
+import net.chaosatom.thechaosengine.item.custom.FuelItem;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
@@ -22,8 +23,8 @@ public class ChaosEngineItems {
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> COPPER_DUST = ITEMS.register("copper_dust",
             () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> COAL_DUST = ITEMS.register("coal_dust",
-            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<FuelItem> COAL_DUST = ITEMS.register("coal_dust",
+            () -> new FuelItem(new Item.Properties(), 1600));
 
     // Tier 2 General Ore Processing
     public static final DeferredItem<Item> IRON_CHUNK = ITEMS.register("iron_chunk",
@@ -69,8 +70,8 @@ public class ChaosEngineItems {
     // Misc. Ore Items
     public static final DeferredItem<Item> LAPIS_LAZULI_DUST = ITEMS.register("lapis_lazuli_dust",
             () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> CHARCOAL_DUST = ITEMS.register("charcoal_dust",
-            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<FuelItem> CHARCOAL_DUST = ITEMS.register("charcoal_dust",
+            () -> new FuelItem(new Item.Properties(), 1600));
 
     // TODO: Replace with complete recipe once Aluminium processing line has been completed
     public static final DeferredItem<Item> ALUMINA_DUST = ITEMS.register("alumina_dust",
@@ -87,6 +88,11 @@ public class ChaosEngineItems {
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> BAUXITE_DUST = ITEMS.register("bauxite_dust",
             () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<FuelItem> COKE = ITEMS.register("coke",
+            () -> new FuelItem(new Item.Properties(), 3600));
+    public static final DeferredItem<FuelItem> COKE_DUST = ITEMS.register("coke_dust",
+            () -> new FuelItem(new Item.Properties(), 3600));
 
     // Various Crafting Components
     public static final DeferredItem<Item> EMPTY_BOARD = ITEMS.register("empty_board",

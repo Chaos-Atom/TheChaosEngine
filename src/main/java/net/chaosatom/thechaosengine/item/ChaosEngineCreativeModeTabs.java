@@ -42,6 +42,9 @@ public class ChaosEngineCreativeModeTabs {
                         output.accept(ChaosEngineItems.BAUXITE_CHUNK);
                         output.accept(ChaosEngineItems.BAUXITE_DUST);
 
+                        output.accept(ChaosEngineItems.COKE);
+                        output.accept(ChaosEngineItems.COKE_DUST);
+
                         output.accept(ChaosEngineItems.ENCHANTED_IRON_SHARDS);
                         output.accept(ChaosEngineItems.ENCHANTED_GOLD_SHARDS);
                         output.accept(ChaosEngineItems.ENCHANTED_COPPER_SHARDS);
@@ -105,7 +108,7 @@ public class ChaosEngineCreativeModeTabs {
                         output.accept(ChaosEngineBlocks.ATMOSPHERIC_CONDENSER);
                         output.accept(ChaosEngineBlocks.DEPLOYABLE_SOLAR);
                         output.accept(ChaosEngineBlocks.SUSPENSION_MIXER);
-                        output.accept(ChaosEngineBlocks.DEPLOYABLE_COKE_FACTORY);
+                        output.accept(ChaosEngineBlocks.PYROLYSIS_CRUCIBLE);
                     }).build());
 
     public static final Supplier<CreativeModeTab> THE_CHAOS_ENGINE_DECORATIONS_TAB =

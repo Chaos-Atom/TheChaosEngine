@@ -1,7 +1,7 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"coking_factory.deploying": {
+		"pyrolysis_crucible.deploying": {
 			"loop": "hold_on_last_frame",
 			"animation_length": 4.5,
 			"bones": {
@@ -470,7 +470,7 @@
 				}
 			}
 		},
-		"coking_factory.working": {
+		"pyrolysis_crucible.working": {
 			"loop": true,
 			"animation_length": 2,
 			"bones": {
@@ -905,7 +905,7 @@
 				}
 			}
 		},
-		"coking_factory.idle": {
+		"pyrolysis_crucible.idle": {
 			"loop": true,
 			"animation_length": 2,
 			"bones": {
@@ -1340,7 +1340,7 @@
 				}
 			}
 		},
-		"coking_factory.retracting": {
+		"pyrolysis_crucible.retracting": {
 			"loop": "hold_on_last_frame",
 			"animation_length": 3.75,
 			"bones": {
@@ -1841,7 +1841,7 @@
 				}
 			}
 		},
-		"coking_factory.undeployed": {
+		"pyrolysis_crucible.undeployed": {
 			"loop": true,
 			"animation_length": 2,
 			"bones": {

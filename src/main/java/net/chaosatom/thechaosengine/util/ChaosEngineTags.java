@@ -13,6 +13,15 @@ import net.minecraft.world.level.material.Fluid;
 
 public class ChaosEngineTags {
     public static class Blocks {
+        //  Used by Pyrolysis Crucible for processing time reduction
+        public static final TagKey<Block> HEAT_BONUS_LEVEL_ONE = createTag("heat_bonus_lvl_one");
+        public static final TagKey<Block> HEAT_BONUS_LEVEL_TWO = createTag("heat_bonus_lvl_two");
+        public static final TagKey<Block> HEAT_BONUS_LEVEL_THREE = createTag("heat_bonus_lvl_three");
+        public static final TagKey<Block> HEAT_BONUS_LEVEL_FOUR = createTag("heat_bonus_lvl_four");
+        public static final TagKey<Block> HEAT_BONUS_LEVEL_FIVE = createTag("heat_bonus_lvl_five");
+        public static final TagKey<Block> HEAT_BONUS_LEVEL_SIX = createTag("heat_bonus_lvl_six");
+        public static final TagKey<Block> HEAT_BONUS_LEVEL_SEVEN = createTag("heat_bonus_lvl_seven");
+
         private static TagKey<Block> createTag(String name) {
             return BlockTags.create(ResourceLocation.fromNamespaceAndPath(TheChaosEngine.MOD_ID, name));
         }

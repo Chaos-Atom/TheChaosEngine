@@ -4,6 +4,8 @@
     "minecraft:charcoal",
     "minecraft:coal_block",
     "thechaosengine:coal_dust",
-    "thechaosengine:charcoal_dust"
+    "thechaosengine:charcoal_dust",
+    "thechaosengine:coke",
+    "thechaosengine:coke_dust"
   ]
 }

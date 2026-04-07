@@ -35,12 +35,16 @@ public class CompactRefineryMenu extends AbstractContainerMenu {
         addPlayerInventory(inventory);
         addPlayerHotbar(inventory);
 
-        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 0, 53, 37));
-        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 1, 107, 37));
+        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 0, 57, 52));
+        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 1, 111, 52));
     }
 
     public boolean isRefining() {
         return data.get(0) > 0;
+    }
+
+    public ContainerData getData() {
+        return data;
     }
 
     public FluidStack getFluid() {
@@ -106,14 +110,14 @@ public class CompactRefineryMenu extends AbstractContainerMenu {
     private void addPlayerInventory(Inventory playerInventory) {
         for (int i = 0; i < 3; i++) {
             for (int l = 0; l < 9; l++) {
-                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 84 + i * 18));
+                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 107 + i * 18));
             }
         }
     }
 
     private void addPlayerHotbar(Inventory playerHotBar) {
         for (int i = 0; i < 9; i++) {
-            this.addSlot(new Slot(playerHotBar, i, 8 + i * 18, 142));
+            this.addSlot(new Slot(playerHotBar, i, 8 + i * 18, 165));
         }
     }
 }

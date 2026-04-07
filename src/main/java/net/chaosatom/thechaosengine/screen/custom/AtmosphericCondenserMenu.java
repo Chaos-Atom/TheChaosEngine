@@ -18,7 +18,7 @@ public class AtmosphericCondenserMenu extends AbstractContainerMenu {
     private final ContainerData data;
 
     public AtmosphericCondenserMenu(int containerId, Inventory inventory, FriendlyByteBuf extraData) {
-        this(containerId, inventory, inventory.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
+        this(containerId, inventory, inventory.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(4));
     }
 
     public AtmosphericCondenserMenu(int containerId, Inventory inventory, BlockEntity entity, ContainerData data) {
@@ -32,7 +32,7 @@ public class AtmosphericCondenserMenu extends AbstractContainerMenu {
         addPlayerInventory(inventory);
         addPlayerHotbar(inventory);
 
-        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 0, 80, 39) {
+        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 0, 107, 54) {
             @Override
             public int getMaxStackSize() {
                 return 1;
@@ -40,9 +40,27 @@ public class AtmosphericCondenserMenu extends AbstractContainerMenu {
         });
     }
 
+    public ContainerData getData() {
+        return data;
+    }
+
+    public int getCurrentFluidTransferAmount() {
+        return data.get(2);
+    }
+
+    public int getCurrentWaterGeneration() {
+        return data.get(3);
+    }
+
+    public int getEffectivenessPercentage() {
+        double effectiveness = data.get(0);
+        double maxEffectiveness = data.get(1);
+        return effectiveness != 0.0 ? (int) ((effectiveness / maxEffectiveness) * 100) : 0;
+    }
+
     public int getScaledEffectiveness(int meterHeightPixelSize) {
-        int effectiveness = this.data.get(0);
-        int maxEffectiveness = this.data.get(1);
+        int effectiveness = data.get(0);
+        int maxEffectiveness = data.get(1);
         int maxVisualEffectiveness = 200;
 
         int clampedEffectiveness = Math.min(effectiveness, maxVisualEffectiveness);
@@ -112,14 +130,14 @@ public class AtmosphericCondenserMenu extends AbstractContainerMenu {
     private void addPlayerInventory(Inventory playerInventory) {
         for (int i = 0; i < 3; i++) {
             for (int l = 0; l < 9; l++) {
-                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 84 + i * 18));
+                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 107  + i * 18));
             }
         }
     }
 
     private void addPlayerHotbar(Inventory playerHotBar) {
         for (int i = 0; i < 9; i++) {
-            this.addSlot(new Slot(playerHotBar, i, 8 + i * 18, 142));
+            this.addSlot(new Slot(playerHotBar, i, 8 + i * 18, 165));
         }
     }
 }

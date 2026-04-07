@@ -10,6 +10,7 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.neoforged.neoforge.items.SlotItemHandler;
 
 public class DeployableSolarMenu extends AbstractContainerMenu {
     public final DeployableSolarBlockEntity blockEntity;
@@ -17,12 +18,12 @@ public class DeployableSolarMenu extends AbstractContainerMenu {
     private final ContainerData data;
 
     public DeployableSolarMenu(int containerId, Inventory inventory, FriendlyByteBuf extraData) {
-        this(containerId, inventory, inventory.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(3));
+        this(containerId, inventory, inventory.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(4));
     }
 
     public DeployableSolarMenu(int containerId, Inventory inventory, BlockEntity entity, ContainerData data) {
         super(ChaosEngineMenuTypes.DEPLOYABLE_SOLAR_MENU.get(), containerId);
-        checkContainerSize(inventory, 0);
+        checkContainerSize(inventory, 1);
         this.blockEntity = ((DeployableSolarBlockEntity) entity);
         this.level = inventory.player.level();
         this.data = data;
@@ -30,17 +31,20 @@ public class DeployableSolarMenu extends AbstractContainerMenu {
         addDataSlots(data);
         addPlayerInventory(inventory);
         addPlayerHotbar(inventory);
+
+        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 0, 123, 59));
     }
 
-    public int getScaledPowerGeneration(int meterHeightPixelSize) {
-        int solarOutput = this.data.get(0);
-        int maxSolarOutput = this.data.get(1);
-
-        return solarOutput > 0 && solarOutput <= maxSolarOutput ? (solarOutput * meterHeightPixelSize) / maxSolarOutput : 0;
+    public double getSolarOutput() {
+        return this.data.get(0);
     }
 
-    public int sendOperationStatus() {
+    public int getOperationStatus() {
         return this.data.get(2);
+    }
+
+    public double getCurrentEnergyTransfer() {
+        return this.data.get(3);
     }
 
     // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons
@@ -52,7 +56,7 @@ public class DeployableSolarMenu extends AbstractContainerMenu {
     private static final int VANILLA_FIRST_SLOT_INDEX = 0;
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
-    private static final int TE_INVENTORY_SLOT_COUNT = 0;  // must be the number of slots you have!
+    private static final int TE_INVENTORY_SLOT_COUNT = 1;  // must be the number of slots you have!
     @Override
     public ItemStack quickMoveStack(Player playerIn, int pIndex) {
         Slot sourceSlot = slots.get(pIndex);
@@ -90,14 +94,14 @@ public class DeployableSolarMenu extends AbstractContainerMenu {
     private void addPlayerInventory(Inventory playerInventory) {
         for (int i = 0; i < 3; i++) {
             for (int l = 0; l < 9; l++) {
-                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 84 + i * 18));
+                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 107 + i * 18));
             }
         }
     }
 
     private void addPlayerHotbar(Inventory playerHotBar) {
         for (int i = 0; i < 9; i++) {
-            this.addSlot(new Slot(playerHotBar, i, 8 + i * 18, 142));
+            this.addSlot(new Slot(playerHotBar, i, 8 + i * 18, 165));
         }
     }
 }

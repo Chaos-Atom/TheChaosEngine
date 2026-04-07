@@ -2,7 +2,6 @@ package net.chaosatom.thechaosengine.recipe;
 
 import net.chaosatom.thechaosengine.TheChaosEngine;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.neoforged.bus.api.IEventBus;
@@ -48,7 +47,7 @@ public class ChaosEngineRecipes {
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<RefineryRecipe>> REFINERY_SERIALIZER =
             SERIALIZERS.register("refining", RefineryRecipe.Serializer::new);
     public static final DeferredHolder<RecipeType<?>, RecipeType<RefineryRecipe>> REFINERY_TYPE =
-            TYPES.register("refining", () -> new RecipeType<RefineryRecipe>() {
+            TYPES.register("refining", () -> new RecipeType<>() {
                 @Override
                 public String toString() {
                     return "refining";
@@ -58,10 +57,20 @@ public class ChaosEngineRecipes {
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<FuelItemRecipe>> FUEL_GENERATOR_SERIALIZER =
             SERIALIZERS.register("fuel_burning", FuelItemRecipe.Serializer::new);
     public static final DeferredHolder<RecipeType<?>, RecipeType<FuelItemRecipe>> FUEL_GENERATOR_TYPE =
-            TYPES.register("fuel_burning", () -> new RecipeType<FuelItemRecipe>() {
+            TYPES.register("fuel_burning", () -> new RecipeType<>() {
                 @Override
                 public String toString() {
                     return "fuel_burning";
+                }
+            });
+
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<PyrolizingRecipe>> PYROLYSIS_CRUCIBLE_SERIALIZER =
+            SERIALIZERS.register("pyrolizing", PyrolizingRecipe.Serializer::new);
+    public static final DeferredHolder<RecipeType<?>, RecipeType<PyrolizingRecipe>> PYROLYSIS_CRUCIBLE_TYPE =
+            TYPES.register("pyrolizing", () -> new RecipeType<>() {
+                @Override
+                public String toString() {
+                    return "pyrolizing";
                 }
             });
 

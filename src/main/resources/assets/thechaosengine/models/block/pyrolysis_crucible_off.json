@@ -3,9 +3,9 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
-		"0": "thechaosengine:block/dcf_undeployed_main",
-		"1": "thechaosengine:block/dcf_undeployed_misc",
-		"particle": "thechaosengine:block/dcf_undeployed_main"
+		"0": "thechaosengine:block/pyrolysis_crucible_undeployed_main",
+		"1": "thechaosengine:block/pyrolysis_crucible_undeployed_misc",
+		"particle": "thechaosengine:block/pyrolysis_crucible_undeployed_main"
 	},
 	"elements": [
 		{

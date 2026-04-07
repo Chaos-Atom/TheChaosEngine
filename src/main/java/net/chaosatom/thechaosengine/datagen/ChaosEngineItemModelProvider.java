@@ -28,6 +28,9 @@ public class ChaosEngineItemModelProvider extends ItemModelProvider {
         basicItemWithPath(ChaosEngineItems.ALUMINA_DUST.get(), "dust");
         basicItemWithPath(ChaosEngineItems.ALUMINA_BRONZE_DUST.get(), "dust");
         basicItemWithPath(ChaosEngineItems.BAUXITE_DUST.get(), "dust");
+        basicItemWithPath(ChaosEngineItems.COKE_DUST.get(), "dust");
+
+        basicItem(ChaosEngineItems.COKE.get());
 
         basicItem(ChaosEngineItems.ALUMINIUM_INGOT.get());
         basicItem(ChaosEngineItems.ALUMINA_BRONZE_INGOT.get());
@@ -75,13 +78,13 @@ public class ChaosEngineItemModelProvider extends ItemModelProvider {
         wallItem(ChaosEngineBlocks.BAUXITE_TILE_WALL, ChaosEngineBlocks.BAUXITE_TILES);
     }
 
+    // Helper Methods
     public void wallItem(DeferredBlock<Block> block, DeferredBlock<Block> baseBlock) {
         this.withExistingParent(block.getId().getPath(), mcLoc("block/wall_inventory"))
                 .texture("wall", ResourceLocation.fromNamespaceAndPath(TheChaosEngine.MOD_ID,
                         "block/" + baseBlock.getId().getPath()));
     }
 
-    // Helper method
     private void basicItemWithPath(Item item, String subfolderName) {
         String name = BuiltInRegistries.ITEM.getKey(item).getPath();
         withExistingParent(name, mcLoc("item/generated"))

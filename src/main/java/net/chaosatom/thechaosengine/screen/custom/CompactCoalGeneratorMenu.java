@@ -32,13 +32,17 @@ public class CompactCoalGeneratorMenu extends AbstractContainerMenu {
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
 
-        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 0, 80, 49));
+        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 0, 80, 64));
 
         addDataSlots(data);
     }
 
     public boolean isBurning() {
         return this.data.get(0) > 0;
+    }
+
+    public ContainerData getData() {
+        return this.data;
     }
 
     public float getFuelProgress() {
@@ -110,21 +114,21 @@ public class CompactCoalGeneratorMenu extends AbstractContainerMenu {
 
     private void addPlayerInventory(Inventory playerInventory) {
         // Verbose variable usage for educational purpose
-        int INVENTORY_X = 8; // x-coordinate of where the top-leftmost slot starts
-        int INVENTORY_Y = 84; // y-coordinate of top-leftmost slot
+        int inventoryX = 8; // x-coordinate of where the top-leftmost slot starts
+        int inventoryY = 104; // y-coordinate of top-leftmost slot
         for (int i = 0; i < PLAYER_INVENTORY_ROW_COUNT; ++i) {
             for (int l = 0; l < PLAYER_INVENTORY_COLUMN_COUNT; ++l) {
-                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, INVENTORY_X + l * 18, INVENTORY_Y + i * 18));
+                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, inventoryX + l * 18, inventoryY + i * 18));
             }
         }
     }
 
     private void addPlayerHotbar(Inventory playerInventory) {
         // Verbose variable usage for educational purpose
-        int HOTBAR_X = 8; // x-coordinate of where the first hotbar slot starts
-        int HOTBAR_Y = 142; // y-coordinate of first hotbar slot
+        int hotbarX = 8; // x-coordinate of where the first hotbar slot starts
+        int hotbarY = 162; // y-coordinate of first hotbar slot
         for (int i = 0; i < 9; ++i) {
-            this.addSlot(new Slot(playerInventory, i, HOTBAR_X + i * 18, HOTBAR_Y));
+            this.addSlot(new Slot(playerInventory, i, hotbarX + i * 18, hotbarY));
         }
     }
 }

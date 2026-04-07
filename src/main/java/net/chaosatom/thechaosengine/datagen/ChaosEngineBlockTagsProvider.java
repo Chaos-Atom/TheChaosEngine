@@ -2,9 +2,12 @@ package net.chaosatom.thechaosengine.datagen;
 
 import net.chaosatom.thechaosengine.TheChaosEngine;
 import net.chaosatom.thechaosengine.block.ChaosEngineBlocks;
+import net.chaosatom.thechaosengine.util.ChaosEngineTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -55,5 +58,21 @@ public class ChaosEngineBlockTagsProvider extends BlockTagsProvider {
                 .add(ChaosEngineBlocks.POLISHED_BAUXITE_WALL.get())
                 .add(ChaosEngineBlocks.BAUXITE_BRICK_WALL.get())
                 .add(ChaosEngineBlocks.BAUXITE_TILE_WALL.get());
+
+        this.tag(ChaosEngineTags.Blocks.HEAT_BONUS_LEVEL_ONE)
+                .add(Blocks.MAGMA_BLOCK);
+        this.tag(ChaosEngineTags.Blocks.HEAT_BONUS_LEVEL_TWO)
+                .add(Blocks.FIRE)
+                .add(Blocks.CAMPFIRE);
+        this.tag(ChaosEngineTags.Blocks.HEAT_BONUS_LEVEL_THREE)
+                .add(Blocks.SOUL_FIRE)
+                .add(Blocks.SOUL_CAMPFIRE);
+        this.tag(ChaosEngineTags.Blocks.HEAT_BONUS_LEVEL_FOUR)
+                .add(Blocks.LAVA)
+                .add(Blocks.LAVA_CAULDRON);
+        this.tag(ChaosEngineTags.Blocks.HEAT_BONUS_LEVEL_FIVE);
+        this.tag(ChaosEngineTags.Blocks.HEAT_BONUS_LEVEL_SIX);
+        this.tag(ChaosEngineTags.Blocks.HEAT_BONUS_LEVEL_SEVEN)
+                .add(Blocks.BEACON); // For Debugging
     }
 }
