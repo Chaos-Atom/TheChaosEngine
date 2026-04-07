@@ -34,6 +34,7 @@ import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.neoforge.fluids.FluidActionResult;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidUtil;
+import net.neoforged.neoforge.fluids.IFluidTank;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import net.neoforged.neoforge.items.ItemStackHandler;
@@ -84,17 +85,19 @@ public class AtmosphericCondenserBlockEntity extends BlockEntity implements GeoB
     private int effectiveness = 0;
     private int maxEffectiveness = 250;
     private static final int FLUID_TRANSFER_AMOUNT = 500; // mB for cycle
+    private int currentFluidTransferAmount = 0;
 
     // Water Generation Related
     private int cooldown = 0;
-    private static final int MAX_COOLDOWN = 5; // Total cycle time, runs every second (20 ticks)
-    private static final int BASE_WATER_GENERATION = 15; // Base rate: 10 mB per cycle
+    private static final int MAX_COOLDOWN = 5; // Total cycle time, runs 1/5 second (5 ticks)
+    private static final int BASE_WATER_GENERATION = 15; // Base rate: 15 mB per cycle
     private static final int ENERGY_REQUIREMENT = 20; // Energy cost per cycle, FE
     private static final int SEA_LEVEL = 63;
     private static final double BONUS_PER_BLOCK_DOWN = 0.01;
     private static final double PENALTY_PER_BLOCK_UP = 0.005;
     private static final double MAX_HEIGHT_BONUS = 0.35; // Technically max depth but name is for consistency
     private static final double MAX_HEIGHT_PENALTY = 0.65;
+    private int currentWaterGeneration = 0;
 
     private int effectivenessUpdateCooldown = 0;
     private static final int EFFECTIVE_UPDATE_INTERVAL = 200; // Every 10 seconds, run a check to update effectiveness
@@ -135,6 +138,8 @@ public class AtmosphericCondenserBlockEntity extends BlockEntity implements GeoB
                 return switch (index) {
                     case 0 -> AtmosphericCondenserBlockEntity.this.effectiveness;
                     case 1 -> AtmosphericCondenserBlockEntity.this.maxEffectiveness;
+                    case 2 -> AtmosphericCondenserBlockEntity.this.currentFluidTransferAmount;
+                    case 3 -> AtmosphericCondenserBlockEntity.this.currentWaterGeneration;
                     default -> 0;
                 };
             }
@@ -144,12 +149,14 @@ public class AtmosphericCondenserBlockEntity extends BlockEntity implements GeoB
                 switch (index) {
                     case 0: AtmosphericCondenserBlockEntity.this.effectiveness = value; break;
                     case 1: AtmosphericCondenserBlockEntity.this.maxEffectiveness = value; break;
+                    case 2: break;
+                    case 3: break;
                 }
             }
 
             @Override
             public int getCount() {
-                return 2;
+                return 4;
             }
         };
     }
@@ -237,6 +244,7 @@ public class AtmosphericCondenserBlockEntity extends BlockEntity implements GeoB
         this.cooldown = MAX_COOLDOWN;
 
         int waterAmount = getWaterAmount();
+        this.currentWaterGeneration = waterAmount;
 
         if (canGenerate() && waterAmount > 0) {
             isWorking = true;
@@ -244,6 +252,8 @@ public class AtmosphericCondenserBlockEntity extends BlockEntity implements GeoB
             this.FLUID_TANK.fill(new FluidStack(Fluids.WATER, waterAmount), IFluidHandler.FluidAction.EXECUTE);
             level.setBlock(blockPos, blockState.setValue(BlockStateProperties.LIT, isWorking), 3);
             setChanged();
+        } else {
+            this.currentWaterGeneration = 0;
         }
         pushFluidToOutputSides();
     }
@@ -324,6 +334,7 @@ public class AtmosphericCondenserBlockEntity extends BlockEntity implements GeoB
     }
 
     private void pushFluidToOutputSides() {
+        this.currentFluidTransferAmount = 0;
         if (this.FLUID_TANK.getFluidAmount() <= 0) { return; }
 
         List<IFluidHandler> validNeighbors = new ArrayList<>(); // Create new array list ready for valid input neighbors
@@ -343,10 +354,13 @@ public class AtmosphericCondenserBlockEntity extends BlockEntity implements GeoB
          // Check if there are any valid neighbors in list
         if (!validNeighbors.isEmpty()) {
             int amountToPush = Math.min(this.FLUID_TANK.getFluidAmount(), FLUID_TRANSFER_AMOUNT);
+            this.currentFluidTransferAmount = amountToPush;
             int amountPerNeighbor = amountToPush / validNeighbors.size(); // Equally distribute amount between both sides (if valid)
 
             // If there is not enough to push, exit method with no fluid exchange
-            if (amountPerNeighbor <= 0) { return; }
+            if (amountPerNeighbor <= 0) {
+                return;
+            }
 
             for (IFluidHandler neighbor : validNeighbors) {
                 FluidStack toSend = this.FLUID_TANK.getFluid().copy();

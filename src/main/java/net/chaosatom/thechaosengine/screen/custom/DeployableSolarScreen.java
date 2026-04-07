@@ -4,6 +4,8 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.chaosatom.thechaosengine.TheChaosEngine;
 import net.chaosatom.thechaosengine.screen.renderer.EnergyDisplayTooltipArea;
 import net.chaosatom.thechaosengine.util.MouseUtil;
+import net.chaosatom.thechaosengine.util.RenderLabelUtil;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
@@ -33,16 +35,16 @@ public class DeployableSolarScreen extends AbstractContainerScreen<DeployableSol
 
     public DeployableSolarScreen(DeployableSolarMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
+
+        this.imageHeight = 189;
     }
 
-    private final int vertEnergyBarLocX = 159;
-    private final int vertEnergyBarLocY = 9;
+    private final int vertEnergyBarLocX = 155;
+    private final int vertEnergyBarLocY = 28;
 
     @Override
     protected void init() {
         super.init();
-        this.titleLabelX = 8;
-        this.titleLabelY = 8;
 
         assignEnergyInfoArea();
     }
@@ -61,9 +63,25 @@ public class DeployableSolarScreen extends AbstractContainerScreen<DeployableSol
 
     @Override
     protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
-        super.renderLabels(guiGraphics, mouseX, mouseY);
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
+
+        Component title = this.getTitle();
+        int textWidth = this.font.width(title);
+        int centerX = (this.imageWidth - textWidth) / 2;
+        int textColor = 3289650;
+
+        Component productionLabel = Component.translatable("label.thechaosengine.generic.production")
+                .append(this.menu.getSolarOutput() + " FE/t");
+        Component outputLabel = Component.translatable("label.thechaosengine.generic.output")
+                        .append(this.menu.getCurrentEnergyTransfer() + " FE/t");
+
+        RenderLabelUtil.renderScaledComponent(guiGraphics, this.font, title, centerX, this.titleLabelY + 2, 164, textColor);
+        RenderLabelUtil.renderScaledComponent(guiGraphics, this.font, this.playerInventoryTitle, 8, this.imageHeight - 94,
+                50, textColor);
+
+        RenderLabelUtil.renderScaledComponentLinked(guiGraphics, this.font, productionLabel, outputLabel, 30, 45,
+                30, 57, 67, 0x29B46C);
 
         renderEnergyAreaTooltip(guiGraphics, mouseX, mouseY, x, y);
     }
@@ -80,24 +98,13 @@ public class DeployableSolarScreen extends AbstractContainerScreen<DeployableSol
 
         energyInfoArea.render(guiGraphics);
 
-        renderPowerGenerationMeter(guiGraphics, x, y);
         renderOperationStatusIcon(guiGraphics, x, y);
     }
 
-    private void renderPowerGenerationMeter(GuiGraphics guiGraphics, int x, int y) {
-        int scaledHeight = menu.getScaledPowerGeneration(41);
-        if (scaledHeight > 0) {
-            guiGraphics.blit(POWER_GENERATION_METER, x + 9, y + 23 + 41 - scaledHeight,
-                    0, 41 - scaledHeight,
-                    19, scaledHeight,
-                    19, 41);
-        }
-    }
-
     private void renderOperationStatusIcon(GuiGraphics guiGraphics, int x, int y) {
-        int operationStatus = menu.sendOperationStatus();
-        int iconX = x + 80;
-        int iconY = y + 32;
+        int operationStatus = menu.getOperationStatus();
+        int iconX = x + 123;
+        int iconY = y + 36;
         switch (operationStatus) {
             case 0:
                 guiGraphics.blit(FULL_SUN_ICON, iconX, iconY, 0, 0, 16, 16, 16, 16);

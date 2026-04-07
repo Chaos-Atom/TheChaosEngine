@@ -1,13 +1,16 @@
 package net.chaosatom.thechaosengine.datagen;
 
 import net.chaosatom.thechaosengine.TheChaosEngine;
+import net.chaosatom.thechaosengine.block.ChaosEngineBlocks;
 import net.chaosatom.thechaosengine.item.ChaosEngineItems;
 import net.chaosatom.thechaosengine.util.ChaosEngineTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
@@ -26,7 +29,9 @@ public class ChaosEngineItemTagsProvider extends ItemTagsProvider {
                 .add(Items.CHARCOAL)
                 .add(Items.COAL_BLOCK)
                 .add(ChaosEngineItems.COAL_DUST.get())
-                .add(ChaosEngineItems.CHARCOAL_DUST.get());
+                .add(ChaosEngineItems.CHARCOAL_DUST.get())
+                .add(ChaosEngineItems.COKE.get())
+                .add(ChaosEngineItems.COKE_DUST.get());
 
         tag(ChaosEngineTags.Items.DUSTS_IRON).add(ChaosEngineItems.IRON_DUST.get());
         tag(ChaosEngineTags.Items.DUSTS_GOLD).add(ChaosEngineItems.GOLD_DUST.get());

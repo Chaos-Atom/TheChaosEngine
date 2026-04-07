@@ -4,7 +4,10 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.chaosatom.thechaosengine.TheChaosEngine;
 import net.chaosatom.thechaosengine.screen.renderer.EnergyDisplayTooltipArea;
 import net.chaosatom.thechaosengine.screen.renderer.FluidTankRenderer;
+import net.chaosatom.thechaosengine.screen.renderer.GenericDisplayToolTipArea;
 import net.chaosatom.thechaosengine.util.MouseUtil;
+import net.chaosatom.thechaosengine.util.RenderLabelUtil;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
@@ -23,6 +26,7 @@ public class SuspensionMixerScreen extends AbstractContainerScreen<SuspensionMix
             ResourceLocation.fromNamespaceAndPath(TheChaosEngine.MOD_ID, "textures/gui/suspension_mixer/long_intersect_arrow.png");
     private static final ResourceLocation MIXER_PROGRESS =
             ResourceLocation.fromNamespaceAndPath(TheChaosEngine.MOD_ID, "textures/gui/suspension_mixer/mixer_progress.png");
+    private GenericDisplayToolTipArea metalStampInfoArea;
 
     // Meter Locations (for ease of testing)
     private static final int vertEnergyBarLocX = 156;
@@ -46,12 +50,10 @@ public class SuspensionMixerScreen extends AbstractContainerScreen<SuspensionMix
     @Override
     protected void init() {
         super.init();
-        this.titleLabelX = 46;
-        this.titleLabelY = 8;
-        this.inventoryLabelY = (this.imageHeight / 2) - 1;
 
         assignEnergyInfoArea();
         assignFluidRenderer();
+        assignMetalStampInfoArea();
     }
 
     private void assignEnergyInfoArea() {
@@ -78,6 +80,20 @@ public class SuspensionMixerScreen extends AbstractContainerScreen<SuspensionMix
         }
     }
 
+    private void assignMetalStampInfoArea() {
+        metalStampInfoArea = new GenericDisplayToolTipArea((width - imageWidth) / 2,
+                (height - imageHeight) / 2, width, height, menu.getData());
+    }
+
+    private void renderMetalStampTooltip(GuiGraphics guiGraphics, int mouseX, int mouseY, int x, int y) {
+        if (isMouseAboveArea(mouseX, mouseY, x, y, 53, 24, 14, 14)) {
+            guiGraphics.renderTooltip(this.font,
+                    metalStampInfoArea.getDescriptiveTooltip("tooltip.thechaosengine.metal_stamp"),
+                    mouseX - x,
+                    mouseY - y);
+        }
+    }
+
     private void renderHorizontalProgressArrow(GuiGraphics guiGraphics, int x, int y) {
         if (menu.isMixing()) {
             guiGraphics.blit(MAIN_PROGRESS_ARROW, x + 40, y + 46, 0, 0, menu.getScaledArrowProgress(92),
@@ -94,15 +110,24 @@ public class SuspensionMixerScreen extends AbstractContainerScreen<SuspensionMix
 
     @Override
     protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
-        super.renderLabels(guiGraphics, mouseX, mouseY);
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
+
+        Component title = this.getTitle();
+        int titleWidth = this.font.width(title);
+        int centerX = (this.imageWidth - titleWidth) / 2;
+        int textColor = 3289650; // 50-50-50 RGB
+
+        RenderLabelUtil.renderScaledComponent(guiGraphics, this.font, title, centerX, this.titleLabelY + 2, 164, textColor);
+        RenderLabelUtil.renderScaledComponent(guiGraphics, this.font, this.playerInventoryTitle, 8, this.imageHeight - 94,
+                50, textColor);
 
         renderEnergyAreaTooltip(guiGraphics, mouseX, mouseY, x, y);
         renderFluidTooltipArea(guiGraphics, mouseX, mouseY, x, y, menu.getInputFluid(),
                 vertFluidInputBarLocX, vertFluidInputBarLocY, fluidRenderer);
         renderFluidTooltipArea(guiGraphics, mouseX, mouseY, x, y, menu.getOutputFluid(),
                 vertFluidOutputBarLocX, vertFluidOutputBarLocY, fluidRenderer);
+        renderMetalStampTooltip(guiGraphics, mouseX, mouseY, x, y);
     }
 
     @Override
@@ -130,11 +155,23 @@ public class SuspensionMixerScreen extends AbstractContainerScreen<SuspensionMix
         renderTooltip(guiGraphics, mouseX, mouseY);
     }
 
-    public static boolean isMouseAboveFluidArea(int pMouseX, int pMouseY, int x, int y, int offsetX, int offsetY, FluidTankRenderer renderer) {
+    private static boolean isMouseAboveFluidArea(double pMouseX, double pMouseY, int x, int y, int offsetX, int offsetY, FluidTankRenderer renderer) {
         return MouseUtil.isMouseOver(pMouseX, pMouseY, x + offsetX, y + offsetY, renderer.getWidth(), renderer.getHeight());
     }
 
-    public static boolean isMouseAboveArea(int pMouseX, int pMouseY, int x, int y, int offsetX, int offsetY, int width, int height) {
+    private static boolean isMouseAboveArea(double pMouseX, double pMouseY, int x, int y, int offsetX, int offsetY, int width, int height) {
         return MouseUtil.isMouseOver(pMouseX, pMouseY, x + offsetX, y + offsetY, width, height);
+    }
+
+    @Override
+    public boolean mouseClicked(double mouseX, double mouseY, int button) {
+        if (isMouseAboveArea(mouseX - this.leftPos, mouseY - this.topPos, 53,24,0,0,14,14)) {
+            assert this.minecraft != null;
+            assert this.minecraft.player != null;
+            this.minecraft.player.displayClientMessage(Component.translatable(
+                    "lore.thechaosengine.suspension_mixer.metal_stamp").withStyle(ChatFormatting.GRAY), false);
+            this.minecraft.player.closeContainer();
+        }
+        return super.mouseClicked(mouseX, mouseY, button);
     }
 }

@@ -1,0 +1,12 @@
+{
+  "type": "thechaosengine:pulverizing",
+  "ingredient": {
+    "item": "thechaosengine:coke"
+  },
+  "result": {
+    "id": "thechaosengine:coke_dust",
+    "count": 1
+  },
+  "process_time": 43,
+  "energy": 1
+}

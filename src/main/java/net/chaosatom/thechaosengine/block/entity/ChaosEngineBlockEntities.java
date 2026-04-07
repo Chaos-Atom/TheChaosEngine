@@ -42,6 +42,10 @@ public class ChaosEngineBlockEntities {
             BLOCK_ENTITIES.register("compact_refinery_be", () -> BlockEntityType.Builder.of(
                     CompactRefineryBlockEntity::new, ChaosEngineBlocks.COMPACT_REFINERY.get()).build(null));
 
+    public static final Supplier<BlockEntityType<PyrolysisCrucibleBlockEntity>> PYROLYSIS_CRUCIBLE_BE =
+            BLOCK_ENTITIES.register("deployable_pyrolysis_crucible_be", () -> BlockEntityType.Builder.of(
+                    PyrolysisCrucibleBlockEntity::new, ChaosEngineBlocks.PYROLYSIS_CRUCIBLE.get()).build(null));
+
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
     }

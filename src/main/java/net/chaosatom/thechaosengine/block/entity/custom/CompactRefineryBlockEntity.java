@@ -4,7 +4,6 @@ import net.chaosatom.thechaosengine.block.entity.ChaosEngineBlockEntities;
 import net.chaosatom.thechaosengine.fluid.ChaosEngineFluids;
 import net.chaosatom.thechaosengine.recipe.ChaosEngineRecipes;
 import net.chaosatom.thechaosengine.recipe.RefineryRecipe;
-import net.chaosatom.thechaosengine.recipe.SuspensionMixerRecipe;
 import net.chaosatom.thechaosengine.screen.custom.CompactRefineryMenu;
 import net.chaosatom.thechaosengine.util.energy.EnergyStorage;
 import net.minecraft.core.BlockPos;
@@ -41,7 +40,6 @@ import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.sql.Ref;
 import java.util.Optional;
 
 public class CompactRefineryBlockEntity extends BlockEntity implements MenuProvider, WorldlyContainer {
@@ -136,6 +134,9 @@ public class CompactRefineryBlockEntity extends BlockEntity implements MenuProvi
     public void tick(Level level, BlockPos blockPos, BlockState blockState) {
         Optional<RecipeHolder<RefineryRecipe>> recipe = getCurrentRecipe();
         boolean wasWorkingThisTick;
+        if (hasItemInOutput()) {
+            pushOutputs();
+        }
 
         if (recipe.isEmpty() || !isOutputSlotEmptyOrReceivable()) {
             setChanged(level, blockPos, blockState);
@@ -237,7 +238,11 @@ public class CompactRefineryBlockEntity extends BlockEntity implements MenuProvi
         int maxCount = itemHandler.getStackInSlot(OUTPUT_SLOT).isEmpty() ? 64 : itemHandler.getStackInSlot(OUTPUT_SLOT).getMaxStackSize();
         int currentCount = itemHandler.getStackInSlot(OUTPUT_SLOT).getCount();
 
-        return maxCount >= currentCount + currentCount;
+        return maxCount >= count + currentCount;
+    }
+
+    private boolean hasItemInOutput() {
+        return this.itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() > 0;
     }
 
     private void resetProgress() {
@@ -383,7 +388,7 @@ public class CompactRefineryBlockEntity extends BlockEntity implements MenuProvi
         }
 
         Direction facing = this.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
-        Direction[] outputDirections = { Direction.DOWN, facing.getClockWise() };
+        Direction[] outputDirections = { Direction.DOWN, facing.getCounterClockWise() };
 
         for (Direction direction : outputDirections) {
             BlockEntity neighbor = level.getBlockEntity(worldPosition.relative(direction));

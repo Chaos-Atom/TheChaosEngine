@@ -30,8 +30,8 @@ public class CompactPulverizerMenu extends AbstractContainerMenu {
         addPlayerInventory(inventory);
         addPlayerHotbar(inventory);
 
-        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 0, 53, 37));
-        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 1, 107, 37));
+        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 0, 53, 51));
+        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 1, 107, 51));
 
         addDataSlots(data);
     }
@@ -39,10 +39,14 @@ public class CompactPulverizerMenu extends AbstractContainerMenu {
         return data.get(0) > 0;
     }
 
+    public ContainerData getData() {
+        return this.data;
+    }
+
     public int getScaledArrowProgress() {
         int progress = this.data.get(0);
         int maxProgress = this.data.get(1);
-        int arrowPixelSize = 28;
+        int arrowPixelSize = 27;
 
         return maxProgress != 0 && progress != 0 ? progress * arrowPixelSize / maxProgress : 0;
     }
@@ -106,14 +110,14 @@ public class CompactPulverizerMenu extends AbstractContainerMenu {
     private void addPlayerInventory(Inventory playerInventory) {
         for (int i = 0; i < 3; i++) {
             for (int l = 0; l < 9; l++) {
-                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 84 + i * 18));
+                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 107 + i * 18));
             }
         }
     }
 
     private void addPlayerHotbar(Inventory playerHotBar) {
         for (int i = 0; i < 9; i++) {
-            this.addSlot(new Slot(playerHotBar, i, 8 + i * 18, 142));
+            this.addSlot(new Slot(playerHotBar, i, 8 + i * 18, 165));
         }
     }
 }

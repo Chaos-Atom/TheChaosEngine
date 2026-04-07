@@ -1,5 +1,6 @@
 package net.chaosatom.thechaosengine.screen.renderer;
 
+import net.chaosatom.thechaosengine.util.energy.EnergyDisplayUtil;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.neoforged.neoforge.energy.IEnergyStorage;
@@ -35,7 +36,11 @@ public class EnergyDisplayTooltipArea {
     }
 
     public List<Component> getTooltips() {
-        return List.of(Component.literal(energy.getEnergyStored()+" / "+energy.getMaxEnergyStored()+" FE"));
+        double currentEnergy = energy.getEnergyStored();
+        double maxEnergy = energy.getMaxEnergyStored();
+
+        return List.of(Component.literal(EnergyDisplayUtil.getFormattedEnergy(currentEnergy) + " / " +
+                EnergyDisplayUtil.getFormattedEnergy(maxEnergy)));
     }
 
     public void render(GuiGraphics guiGraphics) {

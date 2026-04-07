@@ -152,11 +152,11 @@ public class CompactCoalGeneratorBlockEntity extends BlockEntity implements Menu
         }
 
         Direction facing = this.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
-        Direction rightSide = facing.getClockWise();
+        Direction leftSide = facing.getCounterClockWise();
         assert level != null;
         IEnergyStorage neighborEnergy = level.getCapability(Capabilities.EnergyStorage.BLOCK,
-                worldPosition.relative(rightSide),
-                rightSide.getOpposite());
+                worldPosition.relative(leftSide),
+                leftSide.getOpposite());
         if (neighborEnergy != null && neighborEnergy.canReceive()) {
             int toSend = this.ENERGY_STORAGE.extractEnergy(ENERGY_TRANSFER_AMOUNT, true);
             int toReceive = neighborEnergy.receiveEnergy(toSend, false);

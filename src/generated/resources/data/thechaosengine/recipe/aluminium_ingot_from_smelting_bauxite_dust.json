@@ -1,7 +1,7 @@
 {
   "type": "minecraft:smelting",
   "category": "misc",
-  "cookingtime": 480,
+  "cookingtime": 180,
   "experience": 0.7,
   "group": "aluminium_ingot",
   "ingredient": {

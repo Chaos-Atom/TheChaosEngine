@@ -116,8 +116,8 @@ public class ChaosEngineBlocks {
                     .strength(4.5f, 5.0f).sound(SoundType.METAL)));
 
     // Scrap Pile Blocks
-    public static final DeferredBlock<Block> SMALL_ELECTRONIC_SCRAP_PILE = registerBlock("small_electronic_scrap_pile",
-            () -> new ScrapPileBlock(BlockBehaviour.Properties.of().noOcclusion().requiresCorrectToolForDrops().strength(1.25f)));
+    public static final DeferredBlock<Block> ELECTRONIC_SCRAP_PILE = registerBlock("electronic_scrap_pile",
+            () -> new ScrapPileBlock(BlockBehaviour.Properties.of().noOcclusion().requiresCorrectToolForDrops().strength(0.75f)));
 
     // Machine Blocks
     public static  final DeferredBlock<Block> COMPACT_COAL_GENERATOR = registerBlock("compact_coal_generator",
@@ -135,6 +135,8 @@ public class ChaosEngineBlocks {
             () -> new SuspensionMixerBlock(BlockBehaviour.Properties.of().noOcclusion().strength(3f)));
     public static final DeferredBlock<Block> DEPLOYABLE_SOLAR = registerBlock("deployable_solar",
             () -> new DeployableSolarBlock(BlockBehaviour.Properties.of().noOcclusion().strength(3f)));
+    public static final DeferredBlock<Block> PYROLYSIS_CRUCIBLE = registerBlock("pyrolysis_crucible",
+            () -> new PyrolysisCrucibleBlock(BlockBehaviour.Properties.of().noOcclusion().strength(3f)));
 
     // Fluid Blocks
     public static final DeferredHolder<Block, LiquidBlock> LAPIS_SUSPENSION_BLOCK = BLOCKS.register("lapis_suspension_block",

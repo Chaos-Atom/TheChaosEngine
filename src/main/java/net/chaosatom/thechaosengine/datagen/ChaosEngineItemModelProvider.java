@@ -3,8 +3,10 @@ package net.chaosatom.thechaosengine.datagen;
 import net.chaosatom.thechaosengine.TheChaosEngine;
 import net.chaosatom.thechaosengine.block.ChaosEngineBlocks;
 import net.chaosatom.thechaosengine.item.ChaosEngineItems;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -17,24 +19,26 @@ public class ChaosEngineItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        basicItem(ChaosEngineItems.IRON_DUST.get());
-        basicItem(ChaosEngineItems.GOLD_DUST.get());
-        basicItem(ChaosEngineItems.COPPER_DUST.get());
-        basicItem(ChaosEngineItems.COAL_DUST.get());
-        basicItem(ChaosEngineItems.LAPIS_LAZULI_DUST.get());
-        basicItem(ChaosEngineItems.CHARCOAL_DUST.get());
+        basicItemWithPath(ChaosEngineItems.IRON_DUST.get(), "dust");
+        basicItemWithPath(ChaosEngineItems.GOLD_DUST.get(), "dust");
+        basicItemWithPath(ChaosEngineItems.COPPER_DUST.get(), "dust");
+        basicItemWithPath(ChaosEngineItems.COAL_DUST.get(), "dust");
+        basicItemWithPath(ChaosEngineItems.LAPIS_LAZULI_DUST.get(), "dust");
+        basicItemWithPath(ChaosEngineItems.CHARCOAL_DUST.get(), "dust");
+        basicItemWithPath(ChaosEngineItems.ALUMINA_DUST.get(), "dust");
+        basicItemWithPath(ChaosEngineItems.ALUMINA_BRONZE_DUST.get(), "dust");
+        basicItemWithPath(ChaosEngineItems.BAUXITE_DUST.get(), "dust");
+        basicItemWithPath(ChaosEngineItems.COKE_DUST.get(), "dust");
 
-        basicItem(ChaosEngineItems.ALUMINA_DUST.get());
+        basicItem(ChaosEngineItems.COKE.get());
+
         basicItem(ChaosEngineItems.ALUMINIUM_INGOT.get());
-        basicItem(ChaosEngineItems.ALUMINA_BRONZE_DUST.get());
         basicItem(ChaosEngineItems.ALUMINA_BRONZE_INGOT.get());
 
         basicItem(ChaosEngineItems.IRON_CHUNK.get());
         basicItem(ChaosEngineItems.GOLD_CHUNK.get());
         basicItem(ChaosEngineItems.COPPER_CHUNK.get());
-
         basicItem(ChaosEngineItems.BAUXITE_CHUNK.get());
-        basicItem(ChaosEngineItems.BAUXITE_DUST.get());
 
         basicItem(ChaosEngineItems.ENCHANTED_IRON_SHARDS.get());
         basicItem(ChaosEngineItems.ENCHANTED_GOLD_SHARDS.get());
@@ -50,16 +54,23 @@ public class ChaosEngineItemModelProvider extends ItemModelProvider {
 
         basicItem(ChaosEngineItems.LAPIS_SUSPENSION_BUCKET.get());
 
-        basicItem(ChaosEngineItems.EMPTY_BOARD.get());
-        basicItem(ChaosEngineItems.SIMPLE_LOGIC_BOARD.get());
-        basicItem(ChaosEngineItems.ASSEMBLY_HOUSING.get());
-        basicItem(ChaosEngineItems.LOGIC_ASSEMBLY.get());
-        basicItem(ChaosEngineItems.DEPLOYMENT_ASSEMBLY.get());
-        basicItem(ChaosEngineItems.HEAT_PUMP_ASSEMBLY.get());
-        basicItem(ChaosEngineItems.COPPER_COILS.get());
-        basicItem(ChaosEngineItems.GOLD_COILS.get());
-        basicItem(ChaosEngineItems.BASIC_MACHINE_PANEL.get());
-        basicItem(ChaosEngineItems.SOLAR_PANEL_UNIT.get());
+        basicItemWithPath(ChaosEngineItems.EMPTY_BOARD.get(),"component");
+        basicItemWithPath(ChaosEngineItems.SIMPLE_LOGIC_BOARD.get(),"component");
+        basicItemWithPath(ChaosEngineItems.ASSEMBLY_HOUSING.get(),"component");
+        basicItemWithPath(ChaosEngineItems.LOGIC_ASSEMBLY.get(),"component");
+        basicItemWithPath(ChaosEngineItems.DEPLOYMENT_ASSEMBLY.get(),"component");
+        basicItemWithPath(ChaosEngineItems.HEAT_PUMP_ASSEMBLY.get(),"component");
+        basicItemWithPath(ChaosEngineItems.COPPER_COILS.get(),"component");
+        basicItemWithPath(ChaosEngineItems.GOLD_COILS.get(),"component");
+        basicItemWithPath(ChaosEngineItems.BASIC_MACHINE_PANEL.get(),"component");
+        basicItemWithPath(ChaosEngineItems.SOLAR_PANEL_UNIT.get(),"component");
+
+        basicItemWithPath(ChaosEngineItems.OLD_CABLES.get(), "scrap_drop");
+        basicItemWithPath(ChaosEngineItems.METAL_SCRAP.get(), "scrap_drop");
+        basicItemWithPath(ChaosEngineItems.DELICATE_CIRCUITRY.get(), "scrap_drop");
+        basicItemWithPath(ChaosEngineItems.ANCIENT_PROCESSOR.get(), "scrap_drop");
+
+        handheldItem(ChaosEngineItems.DECODRIVER.get());
 
         wallItem(ChaosEngineBlocks.BAUXITE_WALL, ChaosEngineBlocks.BAUXITE);
         wallItem(ChaosEngineBlocks.POLISHED_BAUXITE_WALL, ChaosEngineBlocks.POLISHED_BAUXITE);
@@ -67,9 +78,16 @@ public class ChaosEngineItemModelProvider extends ItemModelProvider {
         wallItem(ChaosEngineBlocks.BAUXITE_TILE_WALL, ChaosEngineBlocks.BAUXITE_TILES);
     }
 
+    // Helper Methods
     public void wallItem(DeferredBlock<Block> block, DeferredBlock<Block> baseBlock) {
         this.withExistingParent(block.getId().getPath(), mcLoc("block/wall_inventory"))
                 .texture("wall", ResourceLocation.fromNamespaceAndPath(TheChaosEngine.MOD_ID,
                         "block/" + baseBlock.getId().getPath()));
+    }
+
+    private void basicItemWithPath(Item item, String subfolderName) {
+        String name = BuiltInRegistries.ITEM.getKey(item).getPath();
+        withExistingParent(name, mcLoc("item/generated"))
+                .texture("layer0", modLoc("item/" + subfolderName + "/" + name));
     }
 }

@@ -2,10 +2,7 @@ package net.chaosatom.thechaosengine;
 
 import net.chaosatom.thechaosengine.block.ChaosEngineBlocks;
 import net.chaosatom.thechaosengine.block.entity.ChaosEngineBlockEntities;
-import net.chaosatom.thechaosengine.client.renderer.block.AtmosphericCondenserBlockEntityRenderer;
-import net.chaosatom.thechaosengine.client.renderer.block.CompactInductionFoundryBlockEntityRenderer;
-import net.chaosatom.thechaosengine.client.renderer.block.DeployableSolarBlockEntityRenderer;
-import net.chaosatom.thechaosengine.client.renderer.block.SuspensionMixerBlockEntityRenderer;
+import net.chaosatom.thechaosengine.client.renderer.block.*;
 import net.chaosatom.thechaosengine.fluid.ChaosEngineFluids;
 import net.chaosatom.thechaosengine.item.ChaosEngineCreativeModeTabs;
 import net.chaosatom.thechaosengine.item.ChaosEngineItems;
@@ -106,6 +103,7 @@ public class TheChaosEngine {
             event.registerBlockEntityRenderer(ChaosEngineBlockEntities.ATMOSPHERIC_CONDENSER_BE.get(), AtmosphericCondenserBlockEntityRenderer::new);
             event.registerBlockEntityRenderer(ChaosEngineBlockEntities.SUSPENSION_MIXER_BE.get(), SuspensionMixerBlockEntityRenderer::new);
             event.registerBlockEntityRenderer(ChaosEngineBlockEntities.DEPLOYABLE_SOLAR_BE.get(), DeployableSolarBlockEntityRenderer::new);
+            event.registerBlockEntityRenderer(ChaosEngineBlockEntities.PYROLYSIS_CRUCIBLE_BE.get(), PyrolysisCrucibleBlockEntityRenderer::new);
         }
 
         @SubscribeEvent
@@ -113,10 +111,12 @@ public class TheChaosEngine {
             event.register(ChaosEngineMenuTypes.COMPACT_COAL_GENERATOR_MENU.get(), CompactCoalGeneratorScreen::new);
             event.register(ChaosEngineMenuTypes.COMPACT_PULVERIZER_MENU.get(), CompactPulverizerScreen::new);
             event.register(ChaosEngineMenuTypes.COMPACT_INDUCTION_FOUNDRY_MENU.get(), CompactInductionFoundryScreen::new);
+            event.register(ChaosEngineMenuTypes.COMPACT_REFINERY_MENU.get(), CompactRefineryScreen::new);
+
             event.register(ChaosEngineMenuTypes.ATMOSPHERIC_CONDENSER_MENU.get(), AtmosphericCondenserScreen::new);
             event.register(ChaosEngineMenuTypes.SUSPENSION_MIXER_MENU.get(), SuspensionMixerScreen::new);
             event.register(ChaosEngineMenuTypes.DEPLOYABLE_SOLAR_MENU.get(), DeployableSolarScreen::new);
-            event.register(ChaosEngineMenuTypes.COMPACT_REFINERY_MENU.get(), CompactRefineryScreen::new);
+            event.register(ChaosEngineMenuTypes.PYROLYSIS_CRUCIBLE_MENU.get(), PyrolysisCrucibleScreen::new);
         }
     }
 }

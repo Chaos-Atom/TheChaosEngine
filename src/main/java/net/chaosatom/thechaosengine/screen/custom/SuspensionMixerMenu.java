@@ -53,6 +53,10 @@ public class SuspensionMixerMenu extends AbstractContainerMenu {
         return new FluidStack(ChaosEngineFluids.LAPIS_SUSPENSION_SOURCE.get(), this.data.get(3));
     }
 
+    public ContainerData getData() {
+        return data;
+    }
+
     public int getScaledArrowProgress(int arrowPixelWidth) {
         int progress = this.data.get(0);
         int maxProgress = this.data.get(1);

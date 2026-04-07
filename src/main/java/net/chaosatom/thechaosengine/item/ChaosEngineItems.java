@@ -2,14 +2,16 @@ package net.chaosatom.thechaosengine.item;
 
 import net.chaosatom.thechaosengine.TheChaosEngine;
 import net.chaosatom.thechaosengine.fluid.ChaosEngineFluids;
+import net.chaosatom.thechaosengine.item.custom.FuelItem;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.world.item.BucketItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.List;
 
 public class ChaosEngineItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(TheChaosEngine.MOD_ID);
@@ -21,8 +23,8 @@ public class ChaosEngineItems {
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> COPPER_DUST = ITEMS.register("copper_dust",
             () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> COAL_DUST = ITEMS.register("coal_dust",
-            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<FuelItem> COAL_DUST = ITEMS.register("coal_dust",
+            () -> new FuelItem(new Item.Properties(), 1600));
 
     // Tier 2 General Ore Processing
     public static final DeferredItem<Item> IRON_CHUNK = ITEMS.register("iron_chunk",
@@ -68,11 +70,13 @@ public class ChaosEngineItems {
     // Misc. Ore Items
     public static final DeferredItem<Item> LAPIS_LAZULI_DUST = ITEMS.register("lapis_lazuli_dust",
             () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> CHARCOAL_DUST = ITEMS.register("charcoal_dust",
-            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<FuelItem> CHARCOAL_DUST = ITEMS.register("charcoal_dust",
+            () -> new FuelItem(new Item.Properties(), 1600));
 
+    // TODO: Replace with complete recipe once Aluminium processing line has been completed
     public static final DeferredItem<Item> ALUMINA_DUST = ITEMS.register("alumina_dust",
             () -> new Item(new Item.Properties()));
+
     public static final DeferredItem<Item> ALUMINA_BRONZE_DUST = ITEMS.register("alumina_bronze_dust",
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> ALUMINA_BRONZE_INGOT = ITEMS.register("alumina_bronze_ingot",
@@ -84,6 +88,11 @@ public class ChaosEngineItems {
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> BAUXITE_DUST = ITEMS.register("bauxite_dust",
             () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<FuelItem> COKE = ITEMS.register("coke",
+            () -> new FuelItem(new Item.Properties(), 3600));
+    public static final DeferredItem<FuelItem> COKE_DUST = ITEMS.register("coke_dust",
+            () -> new FuelItem(new Item.Properties(), 3600));
 
     // Various Crafting Components
     public static final DeferredItem<Item> EMPTY_BOARD = ITEMS.register("empty_board",
@@ -106,6 +115,39 @@ public class ChaosEngineItems {
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> SOLAR_PANEL_UNIT = ITEMS.register("solar_panel_unit",
             () -> new Item(new Item.Properties()));
+
+    // Scrap Items & Recyclables
+    public static final DeferredItem<Item> OLD_CABLES = ITEMS.register("old_cables",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> METAL_SCRAP = ITEMS.register("metal_scrap",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> DELICATE_CIRCUITRY = ITEMS.register("delicate_circuitry",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> ANCIENT_PROCESSOR = ITEMS.registerItem("ancient_processor", properties -> new Item(properties) {
+        @Override
+        public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+            tooltipComponents.add(Component.translatable("tooltip.thechaosengine.ancient_processor"));
+            super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+        }
+        @Override
+        public int getMaxStackSize(ItemStack stack) {
+            return 16;
+        }
+    });
+
+
+    // Tools & Simple Gadgets
+    public static final DeferredItem<Item> DECODRIVER = ITEMS.registerItem("decodriver", properties -> new Item(properties) {
+        @Override
+        public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+            tooltipComponents.add(Component.translatable("tooltip.thechaosengine.decodriver"));
+            super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+        }
+        @Override
+        public int getMaxStackSize(ItemStack stack) {
+            return 1;
+        }
+    });
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

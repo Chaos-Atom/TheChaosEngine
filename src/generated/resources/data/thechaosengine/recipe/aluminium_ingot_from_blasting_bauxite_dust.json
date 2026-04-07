@@ -1,7 +1,7 @@
 {
   "type": "minecraft:blasting",
   "category": "misc",
-  "cookingtime": 240,
+  "cookingtime": 90,
   "experience": 0.7,
   "group": "aluminium_ingot",
   "ingredient": {

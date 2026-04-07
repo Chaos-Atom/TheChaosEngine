@@ -1,7 +1,6 @@
 package net.chaosatom.thechaosengine;
 
 import net.chaosatom.thechaosengine.block.entity.ChaosEngineBlockEntities;
-import net.chaosatom.thechaosengine.block.entity.custom.*;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -18,7 +17,7 @@ public class ChaosEngineBusEvents {
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ChaosEngineBlockEntities.COMPACT_COAL_GENERATOR_BE.get(),
                 (blockEntity, side) -> {
             Direction facing = blockEntity.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
-            return (side == facing.getClockWise()) ? blockEntity.getEnergyStorage(side) : null;
+            return (side == facing.getCounterClockWise()) ? blockEntity.getEnergyStorage(side) : null;
         });
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ChaosEngineBlockEntities.COMPACT_PULVERIZER_BE.get(),
                 (blockEntity, side) -> {
@@ -54,6 +53,13 @@ public class ChaosEngineBusEvents {
             return (side == facing.getOpposite() || side == Direction.DOWN) ? blockEntity.getEnergyStorage(side) : null;
                 });
 
+        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ChaosEngineBlockEntities.PYROLYSIS_CRUCIBLE_BE.get(),
+                (blockEntity, side) -> {
+                    Direction facing = blockEntity.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
+                    boolean isValidSide = side == facing.getOpposite() || side == Direction.DOWN || side == facing;
+                    return isValidSide ? blockEntity.getEnergyStorage(side) : null;
+                });
+
         /* Fluid Capabilities */
 
         event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, ChaosEngineBlockEntities.ATMOSPHERIC_CONDENSER_BE.get(),
@@ -65,8 +71,8 @@ public class ChaosEngineBusEvents {
         event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, ChaosEngineBlockEntities.SUSPENSION_MIXER_BE.get(),
                 (blockEntity, side) -> {
             Direction facing = blockEntity.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
-            Direction inputSide = facing.getCounterClockWise();
-            Direction outputSide = facing.getClockWise();
+            Direction inputSide = facing.getClockWise();
+            Direction outputSide = facing.getCounterClockWise();
 
             if (side == inputSide) {
                 return blockEntity.getInputTank(side);
@@ -88,9 +94,9 @@ public class ChaosEngineBusEvents {
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ChaosEngineBlockEntities.COMPACT_COAL_GENERATOR_BE.get(),
                 (blockEntity, side) -> {
                     Direction facing = blockEntity.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
-                    Direction leftSide = facing.getCounterClockWise();
+                    Direction rightSide = facing.getClockWise();
 
-                    if (side == leftSide) {
+                    if (side == rightSide) {
                         return blockEntity.itemHandler;
                     }
                     return null;
@@ -103,6 +109,8 @@ public class ChaosEngineBusEvents {
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ChaosEngineBlockEntities.SUSPENSION_MIXER_BE.get(),
                 SidedInvWrapper::new);
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ChaosEngineBlockEntities.COMPACT_REFINERY_BE.get(),
+                SidedInvWrapper::new);
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ChaosEngineBlockEntities.PYROLYSIS_CRUCIBLE_BE.get(),
                 SidedInvWrapper::new);
     }
 }

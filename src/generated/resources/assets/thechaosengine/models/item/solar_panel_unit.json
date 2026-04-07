@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "thechaosengine:item/solar_panel_unit"
+    "layer0": "thechaosengine:item/component/solar_panel_unit"
   }
 }

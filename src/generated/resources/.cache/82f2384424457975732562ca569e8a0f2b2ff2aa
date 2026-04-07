@@ -1,4 +1,11 @@
-// 1.21.1	2025-10-13T22:21:15.1961729	Tags for minecraft:block mod id thechaosengine
-fbb89032032d5136e17707eef0af4db0331cbf2f data/minecraft/tags/block/mineable/pickaxe.json
+// 1.21.1	2026-04-04T04:59:30.2730457	Tags for minecraft:block mod id thechaosengine
+3c74a8aa040eace9576cb5b3c41c800563d3a2ed data/minecraft/tags/block/mineable/pickaxe.json
 93d6392079f3ebffbbebb883a96e3bb7bc93f487 data/minecraft/tags/block/mineable/shovel.json
 43508b6013a0d6269778eac2166716ceb1b2f8bf data/minecraft/tags/block/walls.json
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/thechaosengine/tags/block/heat_bonus_lvl_five.json
+70807e7cd391d9c34227330c136cd6d9b587e3f7 data/thechaosengine/tags/block/heat_bonus_lvl_four.json
+f0f92c5f0b5c5412980a4ca8436b4cb180919deb data/thechaosengine/tags/block/heat_bonus_lvl_one.json
+04ce5de11b482132517d63af08aae269d1055025 data/thechaosengine/tags/block/heat_bonus_lvl_seven.json
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/thechaosengine/tags/block/heat_bonus_lvl_six.json
+d8dfe60bd1ae85f7a46defc4a7cc4bf42b5cf87e data/thechaosengine/tags/block/heat_bonus_lvl_three.json
+8ab72c8953853281ca07fa4e516e52648c7518fa data/thechaosengine/tags/block/heat_bonus_lvl_two.json

@@ -5,6 +5,8 @@
   "item.thechaosengine.aluminium_ingot": "Aluminium Ingot",
   "item.thechaosengine.alumina_bronze_ingot": "Alumina-Bronze Ingot",
 
+  "item.thechaosengine.coke": "Coke",
+
   "item.thechaosengine.iron_dust": "Iron Dust",
   "item.thechaosengine.gold_dust": "Gold Dust",
   "item.thechaosengine.copper_dust": "Copper Dust",
@@ -13,6 +15,7 @@
   "item.thechaosengine.charcoal_dust": "Charcoal Dust",
   "item.thechaosengine.alumina_dust": "Alumina Dust",
   "item.thechaosengine.alumina_bronze_dust": "Alumina-Bronze Dust",
+  "item.thechaosengine.coke_dust": "Coke Dust",
 
   "item.thechaosengine.iron_chunk": "Iron Chunk",
   "item.thechaosengine.gold_chunk": "Gold Chunk",
@@ -50,6 +53,13 @@
   "item.thechaosengine.basic_machine_panel": "Basic Machine Panel",
   "item.thechaosengine.solar_panel_unit": "Solar Panel Unit",
 
+  "item.thechaosengine.old_cables": "Old Cables",
+  "item.thechaosengine.metal_scrap": "Metal Scrap",
+  "item.thechaosengine.delicate_circuitry": "Delicate Circuitry",
+  "item.thechaosengine.ancient_processor": "Ancient Processor",
+
+  "item.thechaosengine.decodriver": "DecoDriver",
+
   "block.thechaosengine.iron_dust_block": "Block of Iron Dust",
   "block.thechaosengine.gold_dust_block": "Block of Gold Dust",
   "block.thechaosengine.copper_dust_block": "Block of Copper Dust",
@@ -82,7 +92,7 @@
   "block.thechaosengine.alumina_bronze_panels": "Alumina Bronze Large Panels",
   "block.thechaosengine.cubic_alumina_bronze": "Cubic Alumina Bronze",
 
-  "block.thechaosengine.small_electronic_scrap_pile": "Small Electronic Scrap Pile",
+  "block.thechaosengine.electronic_scrap_pile": "Electronic Scrap Pile",
 
   "block.thechaosengine.compact_machine_chassis": "Compact Machine Chassis",
 
@@ -94,6 +104,7 @@
   "block.thechaosengine.atmospheric_condenser": "Atmospheric Condenser",
   "block.thechaosengine.suspension_mixer": "Suspension Mixer",
   "block.thechaosengine.deployable_solar": "Deployable Solar Generator",
+  "block.thechaosengine.pyrolysis_crucible": "Pyrolysis Crucible",
 
   "block.thechaosengine.deployable_machine.tooltip": "§7Currently not deployed, place on ground and right-click to deploy.§r",
 
@@ -105,19 +116,43 @@
   "blockentity.thechaosengine.atmospheric_condenser": "Atmospheric Condenser",
   "blockentity.thechaosengine.suspension_mixer": "Suspension Mixer",
   "blockentity.thechaosengine.deployable_solar": "Deployable Solar Panel",
+  "blockentity.thechaosengine.pyrolysis_crucible": "Pyrolysis Crucible",
 
   "fluid_type.thechaosengine.lapis_suspension": "Lapis Suspension",
 
-  "tooltip.thechaosengine.compact_coal_generator_stickynote": "§7Sticky Note§r",
+  "tooltip.thechaosengine.ancient_processor": "§7Still working after all these years...§r",
+  "tooltip.thechaosengine.decodriver": "§7Used on certain blocks to change their appearance.§r",
+
+  "tooltip.thechaosengine.metal_plaque": "§7Metal Plaque§r",
+  "tooltip.thechaosengine.metal_stamp": "§7Metal Stamp§r",
+  "tooltip.thechaosengine.heat_bonus_level": "§cHeat Bonus Level: §r",
 
   "tooltip.thechaosengine.liquid.amount.with.capacity": "%s / %s mB",
   "tooltip.thechaosengine.liquid.amount": "%s mB",
 
+  "label.thechaosengine.generic.production": "Production: ",
+  "label.thechaosengine.generic.output": "Output: ",
+  "label.thechaosengine.generic.monitor_title": "ElysiumOS...",
+
+  "label.thechaosengine.atmospheric_condenser.effective_percent": "Power: ",
+  "label.thechaosengine.atmospheric_condenser.production_shorthand": "Water: + ",
+
   "message.thechaosengine.condenser_no_room": "Not enough space to place the Atmospheric Condenser.",
   "message.thechaosengine.mixer_no_room": "Not enough space to place the Suspension Mixer.",
   "message.thechaosengine.solar_panel_no_room": "Not enough space to place the Deployable Solar Panel",
+  "message.thechaosengine.pyrolysis_crucible_no_room": "Not enough space to place the Pyrolysis Crucible",
 
   "message.thechaosengine.condenser_obstructed": "Atmospheric Condenser is obstructed and cannot deploy.",
   "message.thechaosengine.mixer_obstructed": "Suspension Mixer is obstructed and cannot deploy.",
-  "message.thechaosengine.solar_panel_obstructed": "Deployable Solar Panel is obstructed and cannot deploy"
+  "message.thechaosengine.solar_panel_obstructed": "Deployable Solar Panel is obstructed and cannot deploy",
+  "message.thechaosengine.pyrolysis_crucible_obstructed": "Pyrolysis Crucible is obstructed and cannot deploy",
+
+  "lore.thechaosengine.compact_coal_generator.metal_plaque": "A small metal plaque that reads...\n§oWARNING! Exposed Internals!\nThe Combustion Generation by the Compactronics Guild is a first-gen product!\nOnly to be accessed if machine requires maintenance!",
+  "lore.thechaosengine.compact_pulverizer.metal_plaque": "A commemorative plaque that reads...\n§oFirst Product Launched!\nThanks to the team who made this possible!§r\n...A list of over 20 names follow.",
+  "lore.thechaosengine.pyrolysis_crucible.metal_plaque": "A metal plaque that reads...\n§oAutoCraft Guild: Pyrolysis Crucible\nInsert coal to create coke or wooden logs to create charcoal!\nProcessing speed dependent on heating blocks below the machine.§r",
+  "lore.thechaosengine.compact_induction_foundry.metal_plaque": "A small, thin plaque that reads...\n§oPlaque must not be removed for any reason! Our legacy exists through these machines we build!\nSigned by: Chief Machine Designer Godfry Ironblood XI§r",
+
+  "lore.thechaosengine.compact_refinery.metal_stamp": "A detailed hammer icon stamped into the metal...\nSmall text can be seen on the edges that reads...\n§oProduct Certified by Bureau of Automation, circa 1852 ME§r",
+  "lore.thechaosengine.atmospheric_condenser.metal_stamp": "A detailed trophy icon stamped into the metal...\nSmall text can be seen on the edges that reads...\n§oBest Overall Innovation: Sustainability, circa 1802 ME§r",
+  "lore.thechaosengine.suspension_mixer.metal_stamp": "A detailed pickaxe icon stamped into the metal...\nSmall text can be seen on the edges that reads...\n§oGuild Favorite Award, circa 1890 ME§r"
 }

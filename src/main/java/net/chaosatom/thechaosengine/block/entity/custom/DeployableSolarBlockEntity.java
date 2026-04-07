@@ -23,6 +23,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.energy.IEnergyStorage;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoBlockEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
@@ -34,13 +35,19 @@ import java.util.List;
 
 public class DeployableSolarBlockEntity extends BlockEntity implements GeoBlockEntity, MenuProvider{
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
-    private final ContainerData data;
     private static final int MAX_ENERGY_TRANSFER = 320;
+
+    // Energy Generation Related
     private int solarOutput = 0;
     private int maxSolarOutput = 65; // FE per tick
     private int solarOutputCooldown = 0;
     private static final int SOLAR_UPDATE_INTERVAL = 20;
     private int operationStatus = 0;
+    private int currentEnergyTransfer = 0;
+
+    // Labeled Slot Index
+    private final ContainerData data;
+    private static final int INPUT_SLOT = 0;
 
     public DeployableSolarBlockEntity(BlockPos pos, BlockState blockState) {
         super(ChaosEngineBlockEntities.DEPLOYABLE_SOLAR_BE.get(), pos, blockState);
@@ -51,6 +58,7 @@ public class DeployableSolarBlockEntity extends BlockEntity implements GeoBlockE
                     case 0 -> DeployableSolarBlockEntity.this.solarOutput;
                     case 1 -> DeployableSolarBlockEntity.this.maxSolarOutput;
                     case 2 -> DeployableSolarBlockEntity.this.operationStatus;
+                    case 3 -> DeployableSolarBlockEntity.this.currentEnergyTransfer;
                     default -> 0;
                 };
             }
@@ -61,17 +69,28 @@ public class DeployableSolarBlockEntity extends BlockEntity implements GeoBlockE
                     case 0: DeployableSolarBlockEntity.this.solarOutput = value;
                     case 1: DeployableSolarBlockEntity.this.maxSolarOutput = value;
                     case 2: DeployableSolarBlockEntity.this.operationStatus = value;
+                    case 3: DeployableSolarBlockEntity.this.currentEnergyTransfer = value;
                 }
             }
 
             @Override
             public int getCount() {
-                return 3;
+                return 4;
             }
         };
     }
 
     /* Capabilities */
+    public final ItemStackHandler itemHandler = new ItemStackHandler(1) {
+        @Override
+        protected void onContentsChanged(int slot) {
+            setChanged();
+            if (!level.isClientSide()) {
+                level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
+            }
+        }
+    };
+
     private final EnergyStorage ENERGY_STORAGE = createEnergyStorage();
     private EnergyStorage createEnergyStorage() {
         return new EnergyStorage(80000, MAX_ENERGY_TRANSFER) {
@@ -195,6 +214,7 @@ public class DeployableSolarBlockEntity extends BlockEntity implements GeoBlockE
     /* Machine Logic Helper Methods */
 
     private void pushEnergyToOutputs(Level level) {
+        this.currentEnergyTransfer = 0;
         if (this.ENERGY_STORAGE.getEnergyStored() <= 0) { return; } // If solar generator has no energy, leave method
 
         Direction facing = this.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
@@ -216,10 +236,13 @@ public class DeployableSolarBlockEntity extends BlockEntity implements GeoBlockE
             int amountEnergyToPush = Math.min(this.ENERGY_STORAGE.getEnergyStored(), MAX_ENERGY_TRANSFER);
             int amountPerNeighbor = amountEnergyToPush / validEnergyNeighbors.size();
 
-            if (amountPerNeighbor <= 0) {return;}
+            if (amountPerNeighbor <= 0) {
+                return;
+            }
 
             for (IEnergyStorage neighbor : validEnergyNeighbors) {
                 int energyAccepted = neighbor.receiveEnergy(amountPerNeighbor, false);
+                this.currentEnergyTransfer = energyAccepted;
                 if (energyAccepted > 0) {
                     this.ENERGY_STORAGE.extractEnergy(energyAccepted, false);
                     setChanged();
@@ -247,9 +270,12 @@ public class DeployableSolarBlockEntity extends BlockEntity implements GeoBlockE
     private void calculateSolarOutput(Level level, BlockPos pos) {
         long scaledDayTime = level.getDayTime() / 100;
         // Function to mimic real world solar panel power generation changes throughout the day
-        this.solarOutput = (int) Math.min((long) ((-0.018)*(Math.pow((double) (scaledDayTime - 60), 2)) + this.maxSolarOutput), this.maxSolarOutput);
+        this.solarOutput = (int) Math.floor(Math.max((long) ((-0.018)*(Math.pow((double) (scaledDayTime - 60), 2)) +
+                this.maxSolarOutput), 0));
         if (level.isRaining()) {
             this.solarOutput = (int) ((this.solarOutput) * 0.25);
+        } else if (level.isThundering()) {
+            this.solarOutput = (int) ((this.solarOutput) * 0.1);
         }
         if (!level.canSeeSky(pos.above()) || level.isThundering()) {
             this.solarOutput = 0;

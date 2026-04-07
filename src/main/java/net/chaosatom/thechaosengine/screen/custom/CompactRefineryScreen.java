@@ -4,7 +4,10 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.chaosatom.thechaosengine.TheChaosEngine;
 import net.chaosatom.thechaosengine.screen.renderer.EnergyDisplayTooltipArea;
 import net.chaosatom.thechaosengine.screen.renderer.FluidTankRenderer;
+import net.chaosatom.thechaosengine.screen.renderer.GenericDisplayToolTipArea;
 import net.chaosatom.thechaosengine.util.MouseUtil;
+import net.chaosatom.thechaosengine.util.RenderLabelUtil;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
@@ -24,28 +27,33 @@ public class CompactRefineryScreen extends AbstractContainerScreen<CompactRefine
 
     private FluidTankRenderer fluidRenderer;
     private EnergyDisplayTooltipArea energyInfoArea;
+    private GenericDisplayToolTipArea metalStampInfoArea;
 
     public CompactRefineryScreen(CompactRefineryMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
+
+        this.imageHeight = 189;
     }
+
+    private final int energyBarX = 155;
+    private final int energyBarY = 28;
 
     @Override
     protected void init() {
         super.init();
-        this.titleLabelX = 45;
-        this.titleLabelY = 8;
 
         assignEnergyInfoArea();
         assignFluidRenderer();
+        assignMetalStampInfoArea();
     }
 
     private void assignEnergyInfoArea() {
-        energyInfoArea = new EnergyDisplayTooltipArea(((width - imageWidth) / 2) + 159,
-                ((height - imageHeight) / 2) + 9, menu.blockEntity.getEnergyStorage(null), 8, 64);
+        energyInfoArea = new EnergyDisplayTooltipArea(((width - imageWidth) / 2) + energyBarX,
+                ((height - imageHeight) / 2) + energyBarY , menu.blockEntity.getEnergyStorage(null), 8, 64);
     }
 
     private void renderEnergyAreaTooltip(GuiGraphics guiGraphics, int mouseX, int mouseY, int x, int y) {
-        if(isMouseAboveArea(mouseX, mouseY, x, y, 159, 9, 8, 64)) {
+        if(isMouseAboveArea(mouseX, mouseY, x, y, energyBarX, energyBarY, 8, 64)) {
             guiGraphics.renderTooltip(this.font, energyInfoArea.getTooltips(),
                     Optional.empty(), mouseX - x, mouseY - y);
         }
@@ -63,22 +71,45 @@ public class CompactRefineryScreen extends AbstractContainerScreen<CompactRefine
         }
     }
 
+    private void assignMetalStampInfoArea() {
+        metalStampInfoArea = new GenericDisplayToolTipArea((width - imageWidth) / 2,
+                (height - imageHeight) / 2, width, height, menu.getData());
+    }
+
+    private void renderMetalStampTooltip(GuiGraphics guiGraphics, int mouseX, int mouseY, int x, int y) {
+        if (isMouseAboveArea(mouseX, mouseY, x, y, 132, 26, 14, 14)) {
+            guiGraphics.renderTooltip(this.font,
+                    metalStampInfoArea.getDescriptiveTooltip("tooltip.thechaosengine.metal_stamp"),
+                    mouseX - x,
+                    mouseY - y);
+        }
+    }
+
     private void renderRefineryProgress(GuiGraphics guiGraphics, int x, int y) {
         if (menu.isRefining()) {
-            guiGraphics.blit(PROGRESS_METER, x + 21, y + 35, 0, 0, menu.getScaledProgress(78),
+            guiGraphics.blit(PROGRESS_METER, x + 25, y + 50, 0, 0, menu.getScaledProgress(78),
                     21, 78, 21);
         }
     }
 
     @Override
     protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
-        super.renderLabels(guiGraphics, mouseX, mouseY);
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
 
+        Component title = this.getTitle();
+        int titleWidth = this.font.width(title);
+        int centerX = (this.imageWidth - titleWidth) / 2;
+        int textColor = 3289650; // 50-50-50 RGB
+
+        RenderLabelUtil.renderScaledComponent(guiGraphics, this.font, title, centerX, this.titleLabelY + 2, 149, textColor);
+        RenderLabelUtil.renderScaledComponent(guiGraphics, this.font, this.playerInventoryTitle, 8, this.imageHeight - 94,
+                50, textColor);
+
         renderEnergyAreaTooltip(guiGraphics, mouseX, mouseY, x, y);
         renderFluidTooltipArea(guiGraphics, mouseX, mouseY, x, y, menu.getFluid(),
-                9, 9, fluidRenderer);
+                13, 28, fluidRenderer);
+        renderMetalStampTooltip(guiGraphics, mouseX, mouseY, x, y);
     }
 
     @Override
@@ -92,7 +123,7 @@ public class CompactRefineryScreen extends AbstractContainerScreen<CompactRefine
         guiGraphics.blit(GUI_TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
 
         energyInfoArea.render(guiGraphics);
-        fluidRenderer.render(guiGraphics, x + 9, y + 9, menu.getFluid());
+        fluidRenderer.render(guiGraphics, x + 13, y + 28, menu.getFluid());
 
         renderRefineryProgress(guiGraphics, x, y);
     }
@@ -104,11 +135,23 @@ public class CompactRefineryScreen extends AbstractContainerScreen<CompactRefine
         renderTooltip(guiGraphics, mouseX, mouseY);
     }
 
-    public static boolean isMouseAboveFluidArea(int pMouseX, int pMouseY, int x, int y, int offsetX, int offsetY, FluidTankRenderer renderer) {
+    private static boolean isMouseAboveFluidArea(double pMouseX, double pMouseY, int x, int y, int offsetX, int offsetY, FluidTankRenderer renderer) {
         return MouseUtil.isMouseOver(pMouseX, pMouseY, x + offsetX, y + offsetY, renderer.getWidth(), renderer.getHeight());
     }
 
-    public static boolean isMouseAboveArea(int pMouseX, int pMouseY, int x, int y, int offsetX, int offsetY, int width, int height) {
+    private static boolean isMouseAboveArea(double pMouseX, double pMouseY, int x, int y, int offsetX, int offsetY, int width, int height) {
         return MouseUtil.isMouseOver(pMouseX, pMouseY, x + offsetX, y + offsetY, width, height);
+    }
+
+    @Override
+    public boolean mouseClicked(double mouseX, double mouseY, int button) {
+        if (isMouseAboveArea(mouseX - this.leftPos, mouseY - this.topPos, 132,26,0,0,14,14)) {
+            assert this.minecraft != null;
+            assert this.minecraft.player != null;
+            this.minecraft.player.displayClientMessage(Component.translatable(
+                    "lore.thechaosengine.compact_refinery.metal_stamp").withStyle(ChatFormatting.GRAY), false);
+            this.minecraft.player.closeContainer();
+        }
+        return super.mouseClicked(mouseX, mouseY, button);
     }
 }

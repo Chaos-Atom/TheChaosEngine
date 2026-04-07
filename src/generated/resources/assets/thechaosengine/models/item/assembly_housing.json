@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "thechaosengine:item/assembly_housing"
+    "layer0": "thechaosengine:item/component/assembly_housing"
   }
 }
