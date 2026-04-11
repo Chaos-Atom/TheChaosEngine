@@ -25,11 +25,14 @@ public class ChaosEngineBlockLootTableProvider extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
+        // Dust Blocks
         dropSelf(ChaosEngineBlocks.IRON_DUST_BLOCK.get());
         dropSelf(ChaosEngineBlocks.GOLD_DUST_BLOCK.get());
         dropSelf(ChaosEngineBlocks.COPPER_DUST_BLOCK.get());
         dropSelf(ChaosEngineBlocks.ALUMINA_BRONZE_DUST_BLOCK.get());
+        dropSelf(ChaosEngineBlocks.LAPIS_DUST_BLOCK.get());
 
+        // Machine Blocks
         dropSelf(ChaosEngineBlocks.COMPACT_MACHINE_CHASSIS.get());
 
         dropSelf(ChaosEngineBlocks.COMPACT_COAL_GENERATOR.get());
@@ -42,6 +45,7 @@ public class ChaosEngineBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ChaosEngineBlocks.DEPLOYABLE_SOLAR.get());
         dropSelf(ChaosEngineBlocks.PYROLYSIS_CRUCIBLE.get());
 
+        // Rocks
         dropSelf(ChaosEngineBlocks.BAUXITE.get());
         dropSelf(ChaosEngineBlocks.BAUXITE_STAIRS.get());
         this.add(ChaosEngineBlocks.BAUXITE_SLAB.get(),
@@ -66,6 +70,9 @@ public class ChaosEngineBlockLootTableProvider extends BlockLootSubProvider {
                 block -> createSlabItemTable(ChaosEngineBlocks.BAUXITE_TILE_SLAB.get()));
         dropSelf(ChaosEngineBlocks.BAUXITE_TILE_WALL.get());
 
+        dropSelf(ChaosEngineBlocks.CRYOLITE.get());
+
+        // Metal
         dropSelf(ChaosEngineBlocks.ALUMINIUM_BLOCK.get());
 
         dropSelf(ChaosEngineBlocks.ALUMINA_BRONZE_BLOCK.get());

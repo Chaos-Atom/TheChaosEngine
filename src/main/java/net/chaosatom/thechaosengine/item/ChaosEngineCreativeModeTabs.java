@@ -68,13 +68,19 @@ public class ChaosEngineCreativeModeTabs {
                         output.accept(ChaosEngineItems.EMPTY_BOARD);
                         output.accept(ChaosEngineItems.SIMPLE_LOGIC_BOARD);
                         output.accept(ChaosEngineItems.ASSEMBLY_HOUSING);
+
                         output.accept(ChaosEngineItems.LOGIC_ASSEMBLY);
                         output.accept(ChaosEngineItems.DEPLOYMENT_ASSEMBLY);
                         output.accept(ChaosEngineItems.HEAT_PUMP_ASSEMBLY);
+                        output.accept(ChaosEngineItems.MOTOR_ASSEMBLY);
+
                         output.accept(ChaosEngineItems.COPPER_COILS);
                         output.accept(ChaosEngineItems.GOLD_COILS);
                         output.accept(ChaosEngineItems.BASIC_MACHINE_PANEL);
                         output.accept(ChaosEngineItems.SOLAR_PANEL_UNIT);
+
+                        output.accept(ChaosEngineItems.EMPTY_PHIAL);
+                        output.accept(ChaosEngineItems.SPECIALTY_PAINT_PHIAL);
 
                         // Scrap Items & Recyclables
                         output.accept(ChaosEngineItems.OLD_CABLES);
@@ -91,6 +97,7 @@ public class ChaosEngineCreativeModeTabs {
                         output.accept(ChaosEngineBlocks.GOLD_DUST_BLOCK);
                         output.accept(ChaosEngineBlocks.COPPER_DUST_BLOCK);
                         output.accept(ChaosEngineBlocks.ALUMINA_BRONZE_DUST_BLOCK);
+                        output.accept(ChaosEngineBlocks.LAPIS_DUST_BLOCK);
 
                         output.accept(ChaosEngineBlocks.ALUMINIUM_BLOCK);
 
@@ -118,10 +125,13 @@ public class ChaosEngineCreativeModeTabs {
                     .withTabsBefore(ResourceLocation.fromNamespaceAndPath(TheChaosEngine.MOD_ID, "the_chaos_engine_main_tab"))
                     .displayItems((parameters, output) -> {
                         // Full Blocks
+
                         output.accept(ChaosEngineBlocks.BAUXITE);
                         output.accept(ChaosEngineBlocks.POLISHED_BAUXITE);
                         output.accept(ChaosEngineBlocks.BAUXITE_BRICKS);
                         output.accept(ChaosEngineBlocks.BAUXITE_TILES);
+
+                        output.accept(ChaosEngineBlocks.CRYOLITE);
 
                         output.accept(ChaosEngineBlocks.ALUMINA_BRONZE_BLOCK);
                         output.accept(ChaosEngineBlocks.ORNATE_ALUMINA_BRONZE);

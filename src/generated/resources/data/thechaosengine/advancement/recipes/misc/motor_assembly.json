@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_assembly_housing": {
+      "conditions": {
+        "items": [
+          {
+            "items": "thechaosengine:assembly_housing"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_grindstone": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:grindstone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "thechaosengine:motor_assembly"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_assembly_housing",
+      "has_grindstone"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "thechaosengine:motor_assembly"
+    ]
+  }
+}

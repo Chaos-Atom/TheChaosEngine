@@ -54,6 +54,13 @@ public class ChaosEngineBlocks {
                     return null;
                 }
             });
+    public static final DeferredBlock<Block> LAPIS_DUST_BLOCK = registerBlock("lapis_dust_block",
+            () -> new FallingBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLUE).strength(1f).sound(SoundType.SAND)) {
+                @Override
+                protected MapCodec<? extends FallingBlock> codec() {
+                    return null;
+                }
+            });
 
     // General Blocks
     public static final DeferredBlock<Block> COMPACT_MACHINE_CHASSIS = registerBlock("compact_machine_chassis",
@@ -95,6 +102,11 @@ public class ChaosEngineBlocks {
             () -> new SlabBlock(BlockBehaviour.Properties.of().strength(1.35f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
     public static final DeferredBlock<Block> BAUXITE_TILE_WALL = registerBlock("bauxite_tile_wall",
             () -> new WallBlock(BlockBehaviour.Properties.of().strength(1.35f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+
+    // Cryolite-related
+    public static final DeferredBlock<Block> CRYOLITE = registerBlock("cryolite",
+            () -> new CETransparentBlock(BlockBehaviour.Properties.of().strength(1.0f).requiresCorrectToolForDrops().noOcclusion()
+                    .mapColor(MapColor.TERRACOTTA_WHITE).sound(SoundType.STONE)));
 
     // Aluminium-related
     public static final DeferredBlock<Block> ALUMINIUM_BLOCK = registerBlock("aluminium_block",

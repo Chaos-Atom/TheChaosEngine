@@ -7,11 +7,14 @@
     },
     "I": {
       "item": "minecraft:iron_ingot"
+    },
+    "S": {
+      "item": "thechaosengine:specialty_paint_phial"
     }
   },
   "pattern": [
-    "IA",
-    "AI"
+    "IAS",
+    "AI "
   ],
   "result": {
     "count": 2,

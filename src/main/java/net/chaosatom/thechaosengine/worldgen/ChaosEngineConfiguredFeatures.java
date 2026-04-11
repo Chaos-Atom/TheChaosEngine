@@ -19,6 +19,8 @@ import java.util.List;
 public class ChaosEngineConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_BAUXITE_ORE_KEY = registerKey("bauxite_ore");
 
+    public static final ResourceKey<ConfiguredFeature<?,?>> OVERWORLD_CRYOLITE_ORE_KEY = registerKey("cryolite_ore");
+
     public static void bootstrap (BootstrapContext<ConfiguredFeature<?, ?>> context) {
         RuleTest stoneReplaceables = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
         RuleTest deepslateReplaceables = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
@@ -26,8 +28,12 @@ public class ChaosEngineConfiguredFeatures {
         List<OreConfiguration.TargetBlockState> overworldBauxiteOre = List.of(
                 OreConfiguration.target(stoneReplaceables, ChaosEngineBlocks.BAUXITE.get().defaultBlockState()),
                 OreConfiguration.target(deepslateReplaceables, ChaosEngineBlocks.BAUXITE.get().defaultBlockState()));
+        List<OreConfiguration.TargetBlockState> overworldCryoliteOre = List.of(
+                OreConfiguration.target(stoneReplaceables, ChaosEngineBlocks.CRYOLITE.get().defaultBlockState()),
+                OreConfiguration.target(deepslateReplaceables, ChaosEngineBlocks.CRYOLITE.get().defaultBlockState()));
 
-        register(context, OVERWORLD_BAUXITE_ORE_KEY, Feature.ORE, new OreConfiguration(overworldBauxiteOre, 34));
+        register(context, OVERWORLD_BAUXITE_ORE_KEY, Feature.ORE, new OreConfiguration(overworldBauxiteOre, 18));
+        register(context, OVERWORLD_CRYOLITE_ORE_KEY, Feature.ORE, new OreConfiguration(overworldCryoliteOre, 30));
     }
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {

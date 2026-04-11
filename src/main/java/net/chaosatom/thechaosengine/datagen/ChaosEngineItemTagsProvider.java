@@ -11,6 +11,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
@@ -39,5 +41,7 @@ public class ChaosEngineItemTagsProvider extends ItemTagsProvider {
         tag(ChaosEngineTags.Items.DUSTS_COAL).add(ChaosEngineItems.COAL_DUST.get());
         tag(ChaosEngineTags.Items.DUSTS_LAPIS).add(ChaosEngineItems.LAPIS_LAZULI_DUST.get());
         tag(ChaosEngineTags.Items.DUSTS_CHARCOAL).add(ChaosEngineItems.CHARCOAL_DUST.get());
+
+        tag(Tags.Items.DYES_BLUE).add(ChaosEngineItems.LAPIS_LAZULI_DUST.get());
     }
 }

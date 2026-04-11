@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "thechaosengine:assembly_housing"
+    },
+    "D": {
+      "item": "minecraft:redstone"
+    },
+    "G": {
+      "item": "minecraft:grindstone"
+    },
+    "L": {
+      "item": "thechaosengine:simple_logic_board"
+    }
+  },
+  "pattern": [
+    "GLG",
+    "DAD"
+  ],
+  "result": {
+    "count": 1,
+    "id": "thechaosengine:motor_assembly"
+  }
+}

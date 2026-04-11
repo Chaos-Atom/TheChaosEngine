@@ -5,15 +5,12 @@
     "C": {
       "item": "minecraft:copper_ingot"
     },
-    "G": {
-      "item": "minecraft:green_dye"
-    },
-    "L": {
-      "item": "thechaosengine:lapis_lazuli_dust"
+    "S": {
+      "item": "thechaosengine:specialty_paint_phial"
     }
   },
   "pattern": [
-    "LGL",
+    " S ",
     "CCC"
   ],
   "result": {

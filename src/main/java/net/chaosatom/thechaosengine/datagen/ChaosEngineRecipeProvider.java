@@ -9,7 +9,7 @@ import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 
 import java.util.List;
@@ -50,6 +50,12 @@ public class ChaosEngineRecipeProvider extends RecipeProvider implements ICondit
                 .pattern("AAA")
                 .define('A', ChaosEngineItems.ALUMINA_BRONZE_DUST.get())
                 .unlockedBy("has_alumina_bronze_dust", has(ChaosEngineItems.ALUMINA_BRONZE_DUST.get())).save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ChaosEngineBlocks.LAPIS_DUST_BLOCK.get())
+                .pattern("LLL")
+                .pattern("LLL")
+                .pattern("LLL")
+                .define('L', ChaosEngineItems.LAPIS_LAZULI_DUST.get())
+                .unlockedBy("has_alumina_bronze_dust", has(ChaosEngineItems.LAPIS_LAZULI_DUST.get())).save(recipeOutput);
 
         // Dust-to-Dust (alloying)
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ChaosEngineItems.ALUMINA_BRONZE_DUST.get(), 9)
@@ -109,18 +115,16 @@ public class ChaosEngineRecipeProvider extends RecipeProvider implements ICondit
 
         // Various Crafting Components
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ChaosEngineItems.EMPTY_BOARD.get(), 3)
-                .pattern("LGL")
+                .pattern(" S ")
                 .pattern("CCC")
-                .define('L', ChaosEngineItems.LAPIS_LAZULI_DUST.get())
-                .define('G', Items.GREEN_DYE)
+                .define('S', ChaosEngineItems.SPECIALTY_PAINT_PHIAL.get())
                 .define('C', Items.COPPER_INGOT)
                 .unlockedBy("has_lapis_lazuli_dust", has(ChaosEngineItems.LAPIS_LAZULI_DUST.get())).save(recipeOutput);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ChaosEngineItems.SIMPLE_LOGIC_BOARD.get())
-                .pattern(" X ")
-                .pattern("IEC")
-                .define('X', Items.COMPARATOR)
-                .define('I', Items.IRON_INGOT)
-                .define('C', Items.COPPER_INGOT)
+                .pattern("RCR")
+                .pattern(" E ")
+                .define('R', Items.REDSTONE)
+                .define('C', Items.COMPARATOR)
                 .define('E', ChaosEngineItems.EMPTY_BOARD.get())
                 .unlockedBy("has_empty_board", has(ChaosEngineItems.EMPTY_BOARD.get())).save(recipeOutput);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ChaosEngineItems.ASSEMBLY_HOUSING.get(), 4)
@@ -170,10 +174,11 @@ public class ChaosEngineRecipeProvider extends RecipeProvider implements ICondit
                 .unlockedBy("has_gold_ingot", has(Items.GOLD_INGOT))
                 .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT)).save(recipeOutput);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ChaosEngineItems.BASIC_MACHINE_PANEL.get(), 2)
-                .pattern("IA")
-                .pattern("AI")
-                .define('A', ChaosEngineItems.ALUMINIUM_INGOT.get())
+                .pattern("IAS")
+                .pattern("AI ")
                 .define('I', Items.IRON_INGOT)
+                .define('A', ChaosEngineItems.ALUMINIUM_INGOT.get())
+                .define('S', ChaosEngineItems.SPECIALTY_PAINT_PHIAL.get())
                 .unlockedBy("has_aluminium_ingot", has(ChaosEngineItems.ALUMINIUM_INGOT))
                 .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT)).save(recipeOutput);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ChaosEngineItems.SOLAR_PANEL_UNIT.get(), 2)
@@ -185,6 +190,20 @@ public class ChaosEngineRecipeProvider extends RecipeProvider implements ICondit
                 .define('L', ChaosEngineItems.LOGIC_ASSEMBLY.get())
                 .unlockedBy("has_aluminium_ingot", has(ChaosEngineItems.ALUMINIUM_INGOT))
                 .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT)).save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ChaosEngineItems.MOTOR_ASSEMBLY.get())
+                .pattern("GLG")
+                .pattern("DAD")
+                .define('G', Items.GRINDSTONE)
+                .define('L', ChaosEngineItems.SIMPLE_LOGIC_BOARD.get())
+                .define('D', Items.REDSTONE)
+                .define('A', ChaosEngineItems.ASSEMBLY_HOUSING.get())
+                .unlockedBy("has_assembly_housing", has(ChaosEngineItems.ASSEMBLY_HOUSING))
+                .unlockedBy("has_grindstone", has(Items.GRINDSTONE)).save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ChaosEngineItems.EMPTY_PHIAL.get(), 5)
+                .pattern("G G")
+                .pattern("GGG")
+                .define('G', Items.GLASS_PANE)
+                .unlockedBy("has_glass_pane", has(Items.GLASS_PANE)).save(recipeOutput);
 
         // Tools & Simple Gadgets
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ChaosEngineItems.DECODRIVER.get(), 1)
@@ -236,13 +255,13 @@ public class ChaosEngineRecipeProvider extends RecipeProvider implements ICondit
                 .unlockedBy("has_compact_machine_chassis", has(ChaosEngineBlocks.COMPACT_MACHINE_CHASSIS.get())).save(recipeOutput);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ChaosEngineBlocks.COMPACT_PULVERIZER.get())
                 .pattern("I I")
-                .pattern("LXL")
-                .pattern("RGR")
+                .pattern("PXL")
+                .pattern("RIR")
                 .define('I', Items.IRON_INGOT)
+                .define('P', ChaosEngineItems.MOTOR_ASSEMBLY.get())
                 .define('L', ChaosEngineItems.LOGIC_ASSEMBLY.get())
                 .define('X', ChaosEngineBlocks.COMPACT_MACHINE_CHASSIS.get())
                 .define('R', Items.REDSTONE)
-                .define('G', Items.GRINDSTONE)
                 .unlockedBy("has_compact_machine_chassis", has(ChaosEngineBlocks.COMPACT_MACHINE_CHASSIS.get())).save(recipeOutput);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ChaosEngineBlocks.COMPACT_REFINERY.get())
                 .pattern("III")

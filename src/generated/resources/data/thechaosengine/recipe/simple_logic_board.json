@@ -3,21 +3,18 @@
   "category": "misc",
   "key": {
     "C": {
-      "item": "minecraft:copper_ingot"
+      "item": "minecraft:comparator"
     },
     "E": {
       "item": "thechaosengine:empty_board"
     },
-    "I": {
-      "item": "minecraft:iron_ingot"
-    },
-    "X": {
-      "item": "minecraft:comparator"
+    "R": {
+      "item": "minecraft:redstone"
     }
   },
   "pattern": [
-    " X ",
-    "IEC"
+    "RCR",
+    " E "
   ],
   "result": {
     "count": 1,

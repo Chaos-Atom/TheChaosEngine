@@ -2,14 +2,14 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "G": {
-      "item": "minecraft:grindstone"
-    },
     "I": {
       "item": "minecraft:iron_ingot"
     },
     "L": {
       "item": "thechaosengine:logic_assembly"
+    },
+    "P": {
+      "item": "thechaosengine:motor_assembly"
     },
     "R": {
       "item": "minecraft:redstone"
@@ -20,8 +20,8 @@
   },
   "pattern": [
     "I I",
-    "LXL",
-    "RGR"
+    "PXL",
+    "RIR"
   ],
   "result": {
     "count": 1,

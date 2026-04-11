@@ -19,6 +19,8 @@ public class ChaosEnginePlacedFeatures {
     public static final ResourceKey<PlacedFeature> BAUXITE_ORE_PLACED_UPPER_KEY = registerKey("bauxite_ore_placed_upper");
     public static final ResourceKey<PlacedFeature> BAUXITE_ORE_PLACED_LOWER_KEY = registerKey("bauxite_ore_placed_lower");
 
+    public static final ResourceKey<PlacedFeature> CRYOLITE_ORE_PLACED_KEY = registerKey("cryolite_ore_placed");
+
     public static void bootstrap (BootstrapContext<PlacedFeature> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 
@@ -27,6 +29,10 @@ public class ChaosEnginePlacedFeatures {
                         HeightRangePlacement.triangle(VerticalAnchor.absolute(48), VerticalAnchor.absolute(180))));
         register(context, BAUXITE_ORE_PLACED_LOWER_KEY, configuredFeatures.getOrThrow(ChaosEngineConfiguredFeatures.OVERWORLD_BAUXITE_ORE_KEY),
                 ChaosEngineOrePlacements.rareOrePlacement(3, HeightRangePlacement.triangle(VerticalAnchor.absolute(32), VerticalAnchor.absolute(96))));
+
+        register(context, CRYOLITE_ORE_PLACED_KEY, configuredFeatures.getOrThrow(ChaosEngineConfiguredFeatures.OVERWORLD_CRYOLITE_ORE_KEY),
+                ChaosEngineOrePlacements.commonOrePlacement(1,
+                        HeightRangePlacement.triangle(VerticalAnchor.absolute(-30), VerticalAnchor.absolute(50))));
     }
 
     private static ResourceKey<PlacedFeature> registerKey (String name) {

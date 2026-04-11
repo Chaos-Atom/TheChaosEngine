@@ -1,6 +1,9 @@
-// 1.21.1	2025-10-12T01:05:29.1094789	Registries
+// 1.21.1	2026-04-09T03:50:16.4897945	Registries
 6a28d4720b0d41abdd80f969489b4d5bc8ae7363 data/thechaosengine/neoforge/biome_modifier/add_bauxite_ore_lower.json
 42ba3e955b2f079824ab293571a7641e53748f27 data/thechaosengine/neoforge/biome_modifier/add_bauxite_ore_upper.json
-7da2cd98c34972cad2b8198748df33733b01c05b data/thechaosengine/worldgen/configured_feature/bauxite_ore.json
+e5927679390f56ff34694385200e9c9dd3db8cf0 data/thechaosengine/neoforge/biome_modifier/add_cryolite_ore.json
+8c7e40a6900528fc5eb56efc1466f1941928f47a data/thechaosengine/worldgen/configured_feature/bauxite_ore.json
+5631443b0aa3094e7504ad5cc9391353c758132f data/thechaosengine/worldgen/configured_feature/cryolite_ore.json
 775dae57afe4d1e95b4015760cab7e081b3f0bee data/thechaosengine/worldgen/placed_feature/bauxite_ore_placed_lower.json
 bdb73196e36b0c33b18503e0b18d7e35c697bf05 data/thechaosengine/worldgen/placed_feature/bauxite_ore_placed_upper.json
+d5880a01af7954fac4bb696e1fc66e5b7ab263a8 data/thechaosengine/worldgen/placed_feature/cryolite_ore_placed.json

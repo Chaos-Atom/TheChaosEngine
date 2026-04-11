@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "L": {
+      "item": "thechaosengine:lapis_lazuli_dust"
+    }
+  },
+  "pattern": [
+    "LLL",
+    "LLL",
+    "LLL"
+  ],
+  "result": {
+    "count": 1,
+    "id": "thechaosengine:lapis_dust_block"
+  }
+}

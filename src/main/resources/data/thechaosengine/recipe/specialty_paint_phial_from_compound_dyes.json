@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:gray_dye"
+    },
+    {
+      "tag": "c:dyes/blue"
+    },
+    {
+      "item": "minecraft:cyan_dye"
+    },
+    {
+      "item": "minecraft:redstone"
+    },
+    {
+      "item": "minecraft:black_dye"
+    },
+    {
+      "item": "minecraft:black_dye"
+    },
+    {
+      "item": "thechaosengine:empty_phial"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "thechaosengine:specialty_paint_phial"
+  }
+}

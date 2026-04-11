@@ -52,6 +52,9 @@ public class ChaosEngineItemModelProvider extends ItemModelProvider {
         basicItem(ChaosEngineItems.CRYSTAL_GOLD.get());
         basicItem(ChaosEngineItems.CRYSTAL_COPPER.get());
 
+        basicItem(ChaosEngineItems.EMPTY_PHIAL.get());
+        basicItem(ChaosEngineItems.SPECIALTY_PAINT_PHIAL.get());
+
         basicItem(ChaosEngineItems.LAPIS_SUSPENSION_BUCKET.get());
 
         basicItemWithPath(ChaosEngineItems.EMPTY_BOARD.get(),"component");
@@ -64,6 +67,7 @@ public class ChaosEngineItemModelProvider extends ItemModelProvider {
         basicItemWithPath(ChaosEngineItems.GOLD_COILS.get(),"component");
         basicItemWithPath(ChaosEngineItems.BASIC_MACHINE_PANEL.get(),"component");
         basicItemWithPath(ChaosEngineItems.SOLAR_PANEL_UNIT.get(),"component");
+        basicItemWithPath(ChaosEngineItems.MOTOR_ASSEMBLY.get(),"component");
 
         basicItemWithPath(ChaosEngineItems.OLD_CABLES.get(), "scrap_drop");
         basicItemWithPath(ChaosEngineItems.METAL_SCRAP.get(), "scrap_drop");

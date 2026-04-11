@@ -94,6 +94,8 @@ public class TheChaosEngine {
             event.enqueueWork(() -> {
                     ItemBlockRenderTypes.setRenderLayer(ChaosEngineFluids.LAPIS_SUSPENSION_SOURCE.get(), RenderType.translucent());
                     ItemBlockRenderTypes.setRenderLayer(ChaosEngineFluids.LAPIS_SUSPENSION_FLOWING.get(), RenderType.translucent());
+
+                    ItemBlockRenderTypes.setRenderLayer(ChaosEngineBlocks.CRYOLITE.get(), RenderType.translucent());
             });
         }
 

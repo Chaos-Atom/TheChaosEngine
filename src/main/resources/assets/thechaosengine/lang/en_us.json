@@ -44,14 +44,20 @@
 
   "item.thechaosengine.empty_board": "Empty Board",
   "item.thechaosengine.simple_logic_board": "Simple Logic Board",
+
   "item.thechaosengine.assembly_housing": "Assembly Housing",
   "item.thechaosengine.logic_assembly": "Logic Assembly",
   "item.thechaosengine.deployment_assembly": "Deployment Assembly",
   "item.thechaosengine.heat_pump_assembly": "Heat Pump Assembly",
+  "item.thechaosengine.motor_assembly": "Motor Assembly",
+
   "item.thechaosengine.copper_coils": "Copper Coils",
   "item.thechaosengine.gold_coils": "Gold Coils",
   "item.thechaosengine.basic_machine_panel": "Basic Machine Panel",
   "item.thechaosengine.solar_panel_unit": "Solar Panel Unit",
+
+  "item.thechaosengine.empty_phial": "Empty Phial",
+  "item.thechaosengine.specialty_paint_phial": "Phial of Specialty Paint",
 
   "item.thechaosengine.old_cables": "Old Cables",
   "item.thechaosengine.metal_scrap": "Metal Scrap",
@@ -64,6 +70,9 @@
   "block.thechaosengine.gold_dust_block": "Block of Gold Dust",
   "block.thechaosengine.copper_dust_block": "Block of Copper Dust",
   "block.thechaosengine.alumina_bronze_dust_block": "Block of Alumina-Bronze Dust",
+  "block.thechaosengine.lapis_dust_block": "Block of Lapis Lazuli Dust",
+
+  "block.thechaosengine.cryolite": "Cryolite",
 
   "block.thechaosengine.bauxite": "Bauxite",
   "block.thechaosengine.bauxite_stairs": "Bauxite Stairs",
@@ -147,8 +156,8 @@
   "message.thechaosengine.solar_panel_obstructed": "Deployable Solar Panel is obstructed and cannot deploy",
   "message.thechaosengine.pyrolysis_crucible_obstructed": "Pyrolysis Crucible is obstructed and cannot deploy",
 
-  "lore.thechaosengine.compact_coal_generator.metal_plaque": "A small metal plaque that reads...\n§oWARNING! Exposed Internals!\nThe Combustion Generation by the Compactronics Guild is a first-gen product!\nOnly to be accessed if machine requires maintenance!",
-  "lore.thechaosengine.compact_pulverizer.metal_plaque": "A commemorative plaque that reads...\n§oFirst Product Launched!\nThanks to the team who made this possible!§r\n...A list of over 20 names follow.",
+  "lore.thechaosengine.compact_coal_generator.metal_plaque": "A small metal plaque that reads...\n§oWARNING! Exposed Internals!\nThe Combustion Generator by the Compactronics Guild is a first-gen product!\nOnly to be accessed if machine requires maintenance!",
+  "lore.thechaosengine.compact_pulverizer.metal_plaque": "A commemorative plaque that reads...\n§oFirst Product Launched!\nThanks to the team who made this possible!§r\n§7...A list of over 20 names follow.§r",
   "lore.thechaosengine.pyrolysis_crucible.metal_plaque": "A metal plaque that reads...\n§oAutoCraft Guild: Pyrolysis Crucible\nInsert coal to create coke or wooden logs to create charcoal!\nProcessing speed dependent on heating blocks below the machine.§r",
   "lore.thechaosengine.compact_induction_foundry.metal_plaque": "A small, thin plaque that reads...\n§oPlaque must not be removed for any reason! Our legacy exists through these machines we build!\nSigned by: Chief Machine Designer Godfry Ironblood XI§r",
 

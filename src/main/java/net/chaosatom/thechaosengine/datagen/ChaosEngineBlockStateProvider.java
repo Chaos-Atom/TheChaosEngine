@@ -2,6 +2,7 @@ package net.chaosatom.thechaosengine.datagen;
 
 import net.chaosatom.thechaosengine.TheChaosEngine;
 import net.chaosatom.thechaosengine.block.ChaosEngineBlocks;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
@@ -22,6 +23,8 @@ public class ChaosEngineBlockStateProvider extends BlockStateProvider {
         blockWithItem(ChaosEngineBlocks.POLISHED_BAUXITE);
         blockWithItem(ChaosEngineBlocks.BAUXITE_BRICKS);
         blockWithItem(ChaosEngineBlocks.BAUXITE_TILES);
+
+        blockWithItem(ChaosEngineBlocks.CRYOLITE);
 
         blockWithItem(ChaosEngineBlocks.ALUMINA_BRONZE_BLOCK);
         blockWithItem(ChaosEngineBlocks.ORNATE_ALUMINA_BRONZE);
@@ -69,8 +72,8 @@ public class ChaosEngineBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(deferredBlock.get(), new ModelFile.UncheckedModelFile("thechaosengine:block/" + deferredBlock.getId().getPath()));
     }
 
-    // Attempt at better categorizing related blocks, have to premake the new texture directory first
-//    private void blockItemCustomFilepath(DeferredBlock<Block> deferredBlock, String customDirectory) {
+    //   Attempt at better categorizing related blocks, have to premake the new texture directory first
+//    private void blockItemWithPath(DeferredBlock<Block> deferredBlock, String customDirectory) {
 //        simpleBlockItem(deferredBlock.get(), new ModelFile.UncheckedModelFile("thechaosengine:block/" +
 //                customDirectory + "/" + deferredBlock.getId().getPath()));
 //    }

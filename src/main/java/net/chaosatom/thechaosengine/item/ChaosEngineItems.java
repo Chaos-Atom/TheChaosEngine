@@ -115,6 +115,13 @@ public class ChaosEngineItems {
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> SOLAR_PANEL_UNIT = ITEMS.register("solar_panel_unit",
             () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> MOTOR_ASSEMBLY = ITEMS.register("motor_assembly",
+            () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> EMPTY_PHIAL = ITEMS.register("empty_phial",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> SPECIALTY_PAINT_PHIAL = ITEMS.register("specialty_paint_phial",
+            () -> new Item(new Item.Properties().craftRemainder(ChaosEngineItems.EMPTY_PHIAL.get())));
 
     // Scrap Items & Recyclables
     public static final DeferredItem<Item> OLD_CABLES = ITEMS.register("old_cables",
