@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_assembly_housing": {
+    "has_compact_machine_chassis": {
       "conditions": {
         "items": [
           {
-            "items": "thechaosengine:assembly_housing"
+            "items": "thechaosengine:compact_machine_chassis"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "thechaosengine:logic_assembly"
+        "recipe": "thechaosengine:pyrolysis_crucible"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_assembly_housing"
+      "has_compact_machine_chassis"
     ]
   ],
   "rewards": {
     "recipes": [
-      "thechaosengine:logic_assembly"
+      "thechaosengine:pyrolysis_crucible"
     ]
   }
 }

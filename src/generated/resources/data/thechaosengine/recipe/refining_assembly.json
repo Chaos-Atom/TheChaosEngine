@@ -5,20 +5,20 @@
     "A": {
       "item": "thechaosengine:assembly_housing"
     },
+    "B": {
+      "item": "minecraft:brewing_stand"
+    },
     "L": {
       "item": "thechaosengine:simple_logic_board"
-    },
-    "P": {
-      "item": "minecraft:piston"
     }
   },
   "pattern": [
-    "P",
+    "B",
     "L",
     "A"
   ],
   "result": {
     "count": 1,
-    "id": "thechaosengine:deployment_assembly"
+    "id": "thechaosengine:refining_assembly"
   }
 }

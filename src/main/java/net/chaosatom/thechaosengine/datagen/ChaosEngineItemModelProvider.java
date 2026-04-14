@@ -59,15 +59,23 @@ public class ChaosEngineItemModelProvider extends ItemModelProvider {
 
         basicItemWithPath(ChaosEngineItems.EMPTY_BOARD.get(),"component");
         basicItemWithPath(ChaosEngineItems.SIMPLE_LOGIC_BOARD.get(),"component");
+
         basicItemWithPath(ChaosEngineItems.ASSEMBLY_HOUSING.get(),"component");
-        basicItemWithPath(ChaosEngineItems.LOGIC_ASSEMBLY.get(),"component");
+        basicItemWithPath(ChaosEngineItems.CONTROL_ASSEMBLY.get(),"component");
         basicItemWithPath(ChaosEngineItems.DEPLOYMENT_ASSEMBLY.get(),"component");
         basicItemWithPath(ChaosEngineItems.HEAT_PUMP_ASSEMBLY.get(),"component");
+        basicItemWithPath(ChaosEngineItems.MOTOR_ASSEMBLY.get(),"component");
+        basicItemWithPath(ChaosEngineItems.REFINING_ASSEMBLY.get(),"component");
+        basicItemWithPath(ChaosEngineItems.IGNITION_ASSEMBLY.get(),"component");
+
         basicItemWithPath(ChaosEngineItems.COPPER_COILS.get(),"component");
         basicItemWithPath(ChaosEngineItems.GOLD_COILS.get(),"component");
+        basicItemWithPath(ChaosEngineItems.INDUSTRIAL_WHISK.get(),"component");
+        basicItemWithPath(ChaosEngineItems.SIMPLE_MOTOR.get(),"component");
+
         basicItemWithPath(ChaosEngineItems.BASIC_MACHINE_PANEL.get(),"component");
         basicItemWithPath(ChaosEngineItems.SOLAR_PANEL_UNIT.get(),"component");
-        basicItemWithPath(ChaosEngineItems.MOTOR_ASSEMBLY.get(),"component");
+
 
         basicItemWithPath(ChaosEngineItems.OLD_CABLES.get(), "scrap_drop");
         basicItemWithPath(ChaosEngineItems.METAL_SCRAP.get(), "scrap_drop");

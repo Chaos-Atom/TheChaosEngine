@@ -5,8 +5,11 @@
     "D": {
       "item": "minecraft:daylight_detector"
     },
+    "G": {
+      "item": "minecraft:glass_pane"
+    },
     "L": {
-      "item": "thechaosengine:logic_assembly"
+      "item": "thechaosengine:simple_logic_board"
     },
     "P": {
       "item": "thechaosengine:basic_machine_panel"
@@ -16,6 +19,7 @@
     }
   },
   "pattern": [
+    " G ",
     "PDP",
     "RLR"
   ],

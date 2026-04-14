@@ -2,17 +2,17 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "B": {
-      "item": "minecraft:brewing_stand"
+    "C": {
+      "item": "minecraft:cauldron"
     },
     "I": {
       "item": "minecraft:iron_ingot"
     },
     "L": {
-      "item": "thechaosengine:logic_assembly"
+      "item": "thechaosengine:control_assembly"
     },
     "R": {
-      "item": "minecraft:redstone"
+      "item": "thechaosengine:refining_assembly"
     },
     "X": {
       "item": "thechaosengine:compact_machine_chassis"
@@ -20,8 +20,8 @@
   },
   "pattern": [
     "III",
-    "LXL",
-    "RBR"
+    "RXL",
+    "ICI"
   ],
   "result": {
     "count": 1,

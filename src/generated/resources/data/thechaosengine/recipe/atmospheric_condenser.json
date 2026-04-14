@@ -11,8 +11,8 @@
     "H": {
       "item": "thechaosengine:heat_pump_assembly"
     },
-    "R": {
-      "item": "minecraft:redstone"
+    "I": {
+      "item": "minecraft:iron_ingot"
     },
     "W": {
       "item": "minecraft:water_bucket"
@@ -24,7 +24,7 @@
   "pattern": [
     "CCC",
     "DXH",
-    "RWR"
+    "IWI"
   ],
   "result": {
     "count": 1,

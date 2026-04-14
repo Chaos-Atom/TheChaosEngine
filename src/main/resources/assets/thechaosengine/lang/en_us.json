@@ -46,15 +46,20 @@
   "item.thechaosengine.simple_logic_board": "Simple Logic Board",
 
   "item.thechaosengine.assembly_housing": "Assembly Housing",
-  "item.thechaosengine.logic_assembly": "Logic Assembly",
+  "item.thechaosengine.control_assembly": "Control Assembly",
   "item.thechaosengine.deployment_assembly": "Deployment Assembly",
   "item.thechaosengine.heat_pump_assembly": "Heat Pump Assembly",
   "item.thechaosengine.motor_assembly": "Motor Assembly",
+  "item.thechaosengine.refining_assembly": "Refining Assembly",
+  "item.thechaosengine.ignition_assembly": "Ignition Assembly",
 
   "item.thechaosengine.copper_coils": "Copper Coils",
   "item.thechaosengine.gold_coils": "Gold Coils",
+
   "item.thechaosengine.basic_machine_panel": "Basic Machine Panel",
   "item.thechaosengine.solar_panel_unit": "Solar Panel Unit",
+  "item.thechaosengine.industrial_whisk": "Industrial Whisk",
+  "item.thechaosengine.simple_motor": "Simple Motor",
 
   "item.thechaosengine.empty_phial": "Empty Phial",
   "item.thechaosengine.specialty_paint_phial": "Phial of Specialty Paint",

@@ -69,15 +69,18 @@ public class ChaosEngineCreativeModeTabs {
                         output.accept(ChaosEngineItems.SIMPLE_LOGIC_BOARD);
                         output.accept(ChaosEngineItems.ASSEMBLY_HOUSING);
 
-                        output.accept(ChaosEngineItems.LOGIC_ASSEMBLY);
+                        output.accept(ChaosEngineItems.CONTROL_ASSEMBLY);
                         output.accept(ChaosEngineItems.DEPLOYMENT_ASSEMBLY);
                         output.accept(ChaosEngineItems.HEAT_PUMP_ASSEMBLY);
                         output.accept(ChaosEngineItems.MOTOR_ASSEMBLY);
+                        output.accept(ChaosEngineItems.REFINING_ASSEMBLY);
+                        output.accept(ChaosEngineItems.IGNITION_ASSEMBLY);
 
                         output.accept(ChaosEngineItems.COPPER_COILS);
                         output.accept(ChaosEngineItems.GOLD_COILS);
                         output.accept(ChaosEngineItems.BASIC_MACHINE_PANEL);
                         output.accept(ChaosEngineItems.SOLAR_PANEL_UNIT);
+                        output.accept(ChaosEngineItems.SIMPLE_MOTOR);
 
                         output.accept(ChaosEngineItems.EMPTY_PHIAL);
                         output.accept(ChaosEngineItems.SPECIALTY_PAINT_PHIAL);

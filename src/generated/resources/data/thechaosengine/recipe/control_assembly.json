@@ -8,19 +8,17 @@
     "D": {
       "item": "minecraft:redstone"
     },
-    "G": {
-      "item": "minecraft:gold_ingot"
-    },
     "L": {
       "item": "thechaosengine:simple_logic_board"
     }
   },
   "pattern": [
-    "GLD",
-    " A "
+    "L",
+    "D",
+    "A"
   ],
   "result": {
     "count": 1,
-    "id": "thechaosengine:logic_assembly"
+    "id": "thechaosengine:control_assembly"
   }
 }

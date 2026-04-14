@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_assembly_housing": {
+      "conditions": {
+        "items": [
+          {
+            "items": "thechaosengine:assembly_housing"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_fire_charge": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:fire_charge"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "thechaosengine:ignition_assembly"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_assembly_housing",
+      "has_fire_charge"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "thechaosengine:ignition_assembly"
+    ]
+  }
+}

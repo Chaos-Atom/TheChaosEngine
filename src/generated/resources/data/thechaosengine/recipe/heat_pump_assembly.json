@@ -8,16 +8,14 @@
     "C": {
       "item": "thechaosengine:copper_coils"
     },
-    "D": {
-      "item": "minecraft:redstone"
-    },
     "L": {
       "item": "thechaosengine:simple_logic_board"
     }
   },
   "pattern": [
-    "CLC",
-    "DAD"
+    "C",
+    "L",
+    "A"
   ],
   "result": {
     "count": 1,

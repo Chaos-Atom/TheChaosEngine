@@ -2,26 +2,26 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
+    "A": {
+      "item": "thechaosengine:control_assembly"
+    },
     "C": {
       "item": "thechaosengine:copper_coils"
     },
     "F": {
       "item": "minecraft:furnace"
     },
-    "L": {
-      "item": "thechaosengine:logic_assembly"
-    },
-    "R": {
-      "item": "minecraft:redstone"
+    "I": {
+      "item": "minecraft:iron_ingot"
     },
     "X": {
       "item": "thechaosengine:compact_machine_chassis"
     }
   },
   "pattern": [
-    "RCR",
-    "LXL",
-    "RFR"
+    "IAI",
+    "CXC",
+    "IFI"
   ],
   "result": {
     "count": 1,

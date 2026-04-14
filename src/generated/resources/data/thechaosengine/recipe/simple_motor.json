@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "thechaosengine:aluminium_ingot"
+    },
+    "C": {
+      "item": "thechaosengine:copper_coils"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "pattern": [
+    "ACA",
+    "RIR",
+    "CRC"
+  ],
+  "result": {
+    "count": 2,
+    "id": "thechaosengine:simple_motor"
+  }
+}

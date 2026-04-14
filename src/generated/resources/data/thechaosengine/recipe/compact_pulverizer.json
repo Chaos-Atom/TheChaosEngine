@@ -6,13 +6,10 @@
       "item": "minecraft:iron_ingot"
     },
     "L": {
-      "item": "thechaosengine:logic_assembly"
+      "item": "thechaosengine:control_assembly"
     },
-    "P": {
+    "M": {
       "item": "thechaosengine:motor_assembly"
-    },
-    "R": {
-      "item": "minecraft:redstone"
     },
     "X": {
       "item": "thechaosengine:compact_machine_chassis"
@@ -20,8 +17,8 @@
   },
   "pattern": [
     "I I",
-    "PXL",
-    "RIR"
+    "MXL",
+    "III"
   ],
   "result": {
     "count": 1,

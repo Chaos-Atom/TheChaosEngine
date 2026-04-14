@@ -2,20 +2,20 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "C": {
-      "item": "minecraft:copper_ingot"
-    },
     "I": {
       "item": "minecraft:iron_ingot"
+    },
+    "N": {
+      "item": "minecraft:iron_nugget"
     }
   },
   "pattern": [
-    "CIC",
-    "CIC",
-    "CIC"
+    " I ",
+    "NIN",
+    "NNN"
   ],
   "result": {
-    "count": 3,
-    "id": "thechaosengine:copper_coils"
+    "count": 1,
+    "id": "thechaosengine:industrial_whisk"
   }
 }

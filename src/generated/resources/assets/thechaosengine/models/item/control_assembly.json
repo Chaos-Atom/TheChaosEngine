@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "thechaosengine:item/component/logic_assembly"
+    "layer0": "thechaosengine:item/component/control_assembly"
   }
 }

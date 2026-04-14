@@ -5,20 +5,20 @@
     "A": {
       "item": "thechaosengine:assembly_housing"
     },
+    "F": {
+      "item": "minecraft:fire_charge"
+    },
     "L": {
       "item": "thechaosengine:simple_logic_board"
-    },
-    "P": {
-      "item": "minecraft:piston"
     }
   },
   "pattern": [
-    "P",
+    "F",
     "L",
     "A"
   ],
   "result": {
     "count": 1,
-    "id": "thechaosengine:deployment_assembly"
+    "id": "thechaosengine:ignition_assembly"
   }
 }

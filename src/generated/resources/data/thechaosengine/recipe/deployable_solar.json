@@ -5,8 +5,8 @@
     "D": {
       "item": "thechaosengine:deployment_assembly"
     },
-    "R": {
-      "item": "minecraft:redstone"
+    "I": {
+      "item": "minecraft:iron_ingot"
     },
     "S": {
       "item": "thechaosengine:solar_panel_unit"
@@ -18,7 +18,7 @@
   "pattern": [
     "S S",
     "SDS",
-    "RXR"
+    "IXI"
   ],
   "result": {
     "count": 1,
